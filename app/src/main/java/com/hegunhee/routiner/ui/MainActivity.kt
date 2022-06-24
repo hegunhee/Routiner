@@ -24,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolBar)
         supportActionBar?.run {
             setDisplayHomeAsUpEnabled(true)
-            setDisplayShowTitleEnabled(false)
             setHomeAsUpIndicator(R.drawable.ic_dehaze)
         }
     }
