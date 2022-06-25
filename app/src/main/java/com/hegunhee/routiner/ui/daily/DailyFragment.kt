@@ -7,7 +7,9 @@ import com.hegunhee.routiner.R
 import com.hegunhee.routiner.databinding.FragmentDailyBinding
 import com.hegunhee.routiner.ui.BaseFragment
 import com.hegunhee.routiner.ui.MainActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
