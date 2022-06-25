@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.ui
+package com.hegunhee.routiner
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp
