@@ -12,3 +12,7 @@
 6. Category 설정  
     * 공부, 운동 이런 카테고리들을 설정
     * 만약 된다면 db 버전을 올려야함  
+
+## 정보들  
+1. Entity들  
+   * https://github.com/hegunhee/Routiner/issues/1
