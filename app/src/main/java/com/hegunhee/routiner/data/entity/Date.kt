@@ -4,7 +4,4 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-class Date {
-    @PrimaryKey
-    var date : Int = 0
-}
+data class Date(@PrimaryKey val date : Int)
