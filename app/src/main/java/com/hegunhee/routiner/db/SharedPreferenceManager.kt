@@ -23,6 +23,8 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext private va
 
         const val CURRENT_DATE_KEY = "currentDate"
         const val CURRENT_DEFAULT_DATE = -1
+
+
     }
 
 }
