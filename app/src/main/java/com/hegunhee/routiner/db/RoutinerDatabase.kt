@@ -15,6 +15,10 @@ abstract class RoutinerDatabase : RoomDatabase(){
 
     abstract fun reviewDao() : ReviewDao
 
+    companion object{
+        const val APP_NAME = "routinerDatabase.db"
+    }
+
 
 
 }

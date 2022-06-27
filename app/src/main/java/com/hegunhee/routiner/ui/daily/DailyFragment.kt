@@ -3,6 +3,7 @@ package com.hegunhee.routiner.ui.daily
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.fragment.app.viewModels
 import com.hegunhee.routiner.R
 import com.hegunhee.routiner.databinding.FragmentDailyBinding
 import com.hegunhee.routiner.db.SharedPreferenceManager
@@ -16,9 +17,14 @@ import javax.inject.Inject
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
 
     @Inject lateinit var prefs : SharedPreferenceManager
+    private val viewModel : DailyViewModel by viewModels()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Toast.makeText(requireContext(), "DailyFragment", Toast.LENGTH_SHORT).show()
+        binding.apply {
+            viewmodel = viewModel
+            lifecycleOwner = this@DailyFragment
+        }
         (requireActivity() as MainActivity).supportActionBar?.title =  prefs.getCurrentDate().toString()
         prefs.setCurrentDate(getCurrentDate())
     }
