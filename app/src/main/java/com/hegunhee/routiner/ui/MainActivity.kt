@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initActionBar()
         setNavigation()
+        checkDate()
     }
 
     private fun initActionBar() = with(binding) {
@@ -39,6 +40,10 @@ class MainActivity : AppCompatActivity() {
             val navController = it.navController
             navView.setupWithNavController(navController)
         }
+    }
+
+    private fun checkDate(){
+        viewModel.checkDate()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

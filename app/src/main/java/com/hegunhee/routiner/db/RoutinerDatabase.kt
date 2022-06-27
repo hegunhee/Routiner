@@ -11,7 +11,7 @@ abstract class RoutinerDatabase : RoomDatabase(){
 
     abstract fun routineDao() : RoutineDao
 
-    abstract fun entityDao() : DateDao
+    abstract fun dateDao() : DateDao
 
     abstract fun reviewDao() : ReviewDao
 

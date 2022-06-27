@@ -2,6 +2,7 @@ package com.hegunhee.routiner.di
 
 import android.content.Context
 import androidx.room.Room
+import com.hegunhee.routiner.db.DateDao
 import com.hegunhee.routiner.db.RoutineDao
 import com.hegunhee.routiner.db.RoutinerDatabase
 import dagger.Module
@@ -25,5 +26,11 @@ class RoomDatabaseModule {
     @Provides
     fun provideRoutineDao(database : RoutinerDatabase) : RoutineDao{
         return database.routineDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideDateDao(database : RoutinerDatabase) : DateDao{
+        return database.dateDao()
     }
 }

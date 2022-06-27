@@ -5,14 +5,15 @@ import com.hegunhee.routiner.model.Repository
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @InstallIn(SingletonComponent::class)
 @Module
-class GetAllDailyRoutineUseCase @Inject constructor(private val repository: Repository) : UseCase {
+class GetRoutineListByDate @Inject constructor(
+    private val repository: Repository
+) : UseCase {
 
-    operator fun invoke(date : Int) : Flow<List<Routine>>{
-        return repository.getAllDailyRoutineByFlow(date)
+    suspend operator fun invoke(date :Int) : List<Routine>{
+        return repository.getRoutineListByDate(date)
     }
 }
