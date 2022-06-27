@@ -2,6 +2,7 @@ package com.hegunhee.routiner.ui.daily
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -21,29 +22,36 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
 
     @Inject lateinit var prefs : SharedPreferenceManager
     private val viewModel : DailyViewModel by viewModels()
+    private val adapter = DailyAdapter(
+        listOf(),
+        deleteRoutine = { id -> viewModel.deleteData(id)},
+        insertRoutine = {routine -> viewModel.toggleData(routine)}
+        )
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Toast.makeText(requireContext(), "DailyFragment", Toast.LENGTH_SHORT).show()
         binding.apply {
             viewmodel = viewModel
             lifecycleOwner = this@DailyFragment
+            dailyRecyclerView.adapter = adapter
         }
-        (requireActivity() as MainActivity).supportActionBar?.title =  prefs.getCurrentDate().toString()
-        prefs.setCurrentDate(getCurrentDate())
+        (requireActivity() as MainActivity).supportActionBar?.title = getCurrentDate().toString()
         initObserver()
     }
 
     private fun initObserver(){
         viewModel.onClickEvent.observe(viewLifecycleOwner){
             when(it){
-                Event.Uninitalized -> {
-                    Toast.makeText(requireContext(), "Uninitalized", Toast.LENGTH_SHORT).show()
-                }
+                Event.Uninitalized -> {}
                 Event.Clicked -> {
-                    Toast.makeText(requireContext(), "Clicked", Toast.LENGTH_SHORT).show()
                     insertData()
                 }
+                Event.EndClick -> {}
             }
+        }
+        viewModel.dailyRoutineListLiveData.observe(viewLifecycleOwner){
+            Log.d("RoutineCheck",it.toString())
+            adapter.setRoutineList(it)
         }
     }
 
@@ -61,8 +69,11 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                     } else {
                         viewModel.insertRoutine(editText.text.toString())
                     }
+                    viewModel.endClick()
                 })
-            .setNegativeButton("취소", DialogInterface.OnClickListener { _, _ -> })
+            .setNegativeButton("취소", DialogInterface.OnClickListener { _, _ ->
+                viewModel.endClick()
+            })
             .show()
     }
 }

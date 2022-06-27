@@ -1,16 +1,13 @@
 package com.hegunhee.routiner.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.hegunhee.routiner.data.entity.Routine
 import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface RoutineDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertDailyRoutine(routine: Routine)
 
     @Query("SELECT * FROM routine WHERE date = :date")
@@ -18,4 +15,7 @@ interface RoutineDao {
 
     @Query("DELETE FROM routine WHERE date = :date")
     suspend fun deleteAllRoutineByDate(date : Int)
+
+    @Query("DELETE FROM routine WHERE id = :id")
+    suspend fun deleteRoutine(id : Int)
 }

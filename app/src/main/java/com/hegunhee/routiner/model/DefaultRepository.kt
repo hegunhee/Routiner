@@ -16,4 +16,8 @@ class DefaultRepository(private val routineDao : RoutineDao) : Repository {
     override suspend fun deleteAllRoutineByDate(date: Int) {
         routineDao.deleteAllRoutineByDate(date)
     }
+
+    override suspend fun deleteRoutine(id: Int) {
+        routineDao.deleteRoutine(id)
+    }
 }

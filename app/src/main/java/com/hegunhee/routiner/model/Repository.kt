@@ -10,4 +10,6 @@ interface Repository {
     suspend fun insertDailyRoutine(routine: Routine)
 
     suspend fun deleteAllRoutineByDate(date : Int)
+
+    suspend fun deleteRoutine(id : Int)
 }

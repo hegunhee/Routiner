@@ -5,9 +5,7 @@ import androidx.lifecycle.*
 import com.hegunhee.routiner.data.entity.Routine
 import com.hegunhee.routiner.db.RoutineDao
 import com.hegunhee.routiner.db.SharedPreferenceManager
-import com.hegunhee.routiner.domain.DeleteAllByRoutineByDate
-import com.hegunhee.routiner.domain.GetAllDailyRoutineUseCase
-import com.hegunhee.routiner.domain.InsertDailyRoutineUseCase
+import com.hegunhee.routiner.domain.*
 import com.hegunhee.routiner.util.getCurrentDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -17,7 +15,7 @@ import javax.inject.Inject
 class DailyViewModel @Inject constructor(
     private val getAllDailyRoutineUseCase: GetAllDailyRoutineUseCase,
     private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
-    private val deleteAllByRoutineByDate: DeleteAllByRoutineByDate
+    private val deleteRoutineUseCase: DeleteRoutineUseCase
 ) : ViewModel() {
 
     val dailyRoutineListLiveData: LiveData<List<Routine>> =
@@ -57,6 +55,18 @@ class DailyViewModel @Inject constructor(
             Log.d("insertRoutine","not exist")
             insertDailyRoutineUseCase(Routine(getCurrentDate(),text))
         }
+    }
+
+    fun deleteData(id : Int) = viewModelScope.launch {
+        deleteRoutineUseCase(id)
+    }
+
+    fun toggleData(routine: Routine) = viewModelScope.launch {
+        insertDailyRoutineUseCase(routine)
+    }
+
+    fun endClick() {
+        _onClickEvent.postValue(Event.EndClick)
     }
 
 
