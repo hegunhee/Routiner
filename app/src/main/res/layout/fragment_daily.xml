@@ -38,7 +38,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="오늘 등록된 메모가 없습니다.\n 메모를 등록해주세요"
+                android:text="오늘 등록된 루틴이 없습니다.\n 루틴을 등록해주세요"
                 android:textSize="30dp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -51,8 +51,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:text="메모 등록하기"
-                android:onClick="@{() -> viewmodel.insertData()}"
+                android:text="루틴 등록하기"
+                android:onClick="@{() -> viewmodel.onClickRoutineInsert()}"
                 app:layout_constraintEnd_toEndOf="@id/empty_textView"
                 app:layout_constraintStart_toStartOf="@id/empty_textView"
                 app:layout_constraintTop_toBottomOf="@id/empty_textView"
@@ -69,7 +69,7 @@
             android:layout_marginBottom="30dp"
             android:src="@drawable/ic_add"
             android:elevation="10dp"
-            android:onClick="@{() -> viewmodel.insertData()}"
+            android:onClick="@{() -> viewmodel.onClickRoutineInsert()}"
             app:layout_constraintBottom_toTopOf="@id/bottomLayout"
             app:layout_constraintEnd_toEndOf="parent" />
 

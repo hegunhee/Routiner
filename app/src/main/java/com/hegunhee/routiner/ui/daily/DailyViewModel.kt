@@ -21,12 +21,18 @@ class DailyViewModel @Inject constructor(
 ) : ViewModel() {
 
     val dailyRoutineListLiveData: LiveData<List<Routine>> =
-        getAllDailyRoutineUseCase(getCurrentDate()).asLiveData()
+        getAllDailyRoutineUseCase(getCurrentDate()).asLiveData().apply {
+            Log.d("RoutineCheck",this.value?.toString() ?: "no")
+        }
 
     val recyclerViewVisible: LiveData<Boolean> = Transformations.map(dailyRoutineListLiveData) {
         Log.d("RoutineCheck","check"+ it.toString())
         dailyRoutineListLiveData.value?.isNotEmpty()
     }
+
+    private var _onClickEvent : MutableLiveData<Event> = MutableLiveData(Event.Uninitalized)
+    val onClickEvent : LiveData<Event>
+    get() = _onClickEvent
 
     val dailyRoutineprogress : LiveData<String> = Transformations.map(dailyRoutineListLiveData){
         return@map if(it.isEmpty()){
@@ -38,12 +44,19 @@ class DailyViewModel @Inject constructor(
 
     fun onClickRoutineInsert() = viewModelScope.launch{
         // 버튼을 클릭했을때 일어나는 일
-
-        insertDailyRoutineUseCase(Routine(getCurrentDate(),"테스트"))
+        _onClickEvent.postValue(Event.Clicked)
     }
 
-    fun insertRoutine() = viewModelScope.launch {
+    fun insertRoutine(text : String) = viewModelScope.launch {
+        //코드 작성 중복같은것도 해서
+        val isExistSameText : Boolean = dailyRoutineListLiveData.value?.filter { it.text == text }?.size != 0
 
+        if(isExistSameText){
+            Log.d("insertRoutine","exist")
+        }else{
+            Log.d("insertRoutine","not exist")
+            insertDailyRoutineUseCase(Routine(getCurrentDate(),text))
+        }
     }
 
 

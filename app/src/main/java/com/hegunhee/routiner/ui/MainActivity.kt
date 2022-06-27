@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val viewModel : MainViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)?.apply {
+        binding = ActivityMainBinding.inflate(layoutInflater).apply {
             viewmodel = viewModel
             lifecycleOwner = this@MainActivity
         }
