@@ -16,4 +16,6 @@ interface RoutineDao {
     @Query("SELECT * FROM routine WHERE date = :date")
     fun getDailyRoutine(date : Int) : Flow<List<Routine>>
 
+    @Query("DELETE FROM routine WHERE date = :date")
+    suspend fun deleteAllRoutineByDate(date : Int)
 }

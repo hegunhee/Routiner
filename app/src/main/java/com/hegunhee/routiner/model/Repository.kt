@@ -8,4 +8,6 @@ interface Repository {
     fun getAllDailyRoutine(date : Int) : Flow<List<Routine>>
 
     suspend fun insertDailyRoutine(routine: Routine)
+
+    suspend fun deleteAllRoutineByDate(date : Int)
 }

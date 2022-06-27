@@ -27,7 +27,7 @@
             android:id="@+id/empty_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:visibility="@{viewmodel.recyclerViewVisible ? View.GONE : View.GONE}"
+            android:visibility="@{viewmodel.recyclerViewVisible ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/bottomLayout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -52,6 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:text="메모 등록하기"
+                android:onClick="@{() -> viewmodel.insertData()}"
                 app:layout_constraintEnd_toEndOf="@id/empty_textView"
                 app:layout_constraintStart_toStartOf="@id/empty_textView"
                 app:layout_constraintTop_toBottomOf="@id/empty_textView"
@@ -68,6 +69,7 @@
             android:layout_marginBottom="30dp"
             android:src="@drawable/ic_add"
             android:elevation="10dp"
+            android:onClick="@{() -> viewmodel.insertData()}"
             app:layout_constraintBottom_toTopOf="@id/bottomLayout"
             app:layout_constraintEnd_toEndOf="parent" />
 
@@ -86,12 +88,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
-                android:text="7/7"
+                android:text="@{viewmodel.dailyRoutineprogress.toString()}"
                 android:textSize="30dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
 
                 />
+
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
