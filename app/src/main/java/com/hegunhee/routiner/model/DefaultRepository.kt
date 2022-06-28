@@ -33,4 +33,9 @@ class DefaultRepository(
     override suspend fun insertDate(date: Date) {
         return dateDao.insertDate(date)
     }
+
+    override suspend fun getAllDate(): List<Date> {
+        return dateDao.getAllDate()
+    }
+
 }
