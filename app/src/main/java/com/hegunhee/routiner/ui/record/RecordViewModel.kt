@@ -2,7 +2,9 @@ package com.hegunhee.routiner.ui.record
 
 import android.util.Log
 import androidx.lifecycle.*
+import com.hegunhee.routiner.domain.GetAllDailyRoutineUseCase
 import com.hegunhee.routiner.domain.GetAllDateUseCase
+import com.hegunhee.routiner.domain.GetRoutineListByDate
 import com.hegunhee.routiner.util.getCurrentDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -11,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecordViewModel @Inject constructor(
-    private val getAllDateUseCase: GetAllDateUseCase
+    private val getAllDateUseCase: GetAllDateUseCase,
+    private val getRoutineListByDateUseCase: GetRoutineListByDate
 
 ) : ViewModel() {
 
@@ -19,10 +22,14 @@ class RecordViewModel @Inject constructor(
     val recordIsEmpty: LiveData<Boolean>
         get() = _recordIsEmpty
 
-    private var _currentDate: MutableLiveData<CurrentDateState> =
-        MutableLiveData(CurrentDateState.Uninitalized)
-    val currentDate: LiveData<CurrentDateState>
+    private var _currentDate: MutableLiveData<String> = MutableLiveData(DATE_INITALVALUE)
+    val currentDate: LiveData<String>
         get() = _currentDate
+
+    private var _currentRoutineList: MutableLiveData<RoutineListState> =
+        MutableLiveData(RoutineListState.Uninitalized)
+    val currentRoutineListState: LiveData<RoutineListState>
+        get() = _currentRoutineList
 
 
     init {
@@ -43,27 +50,62 @@ class RecordViewModel @Inject constructor(
     }
 
     fun setLeftData() = viewModelScope.launch(Dispatchers.IO) {
-        with(currentDate.value!!) {
-            when (this) {
-                is CurrentDateState.SetData -> {
-                    this.date
-                }
-                CurrentDateState.Uninitalized -> {
-                    val leftDay = getAllDateUseCase().map { it.date }.filter { it < getCurrentDate()}.maxOrNull()
-                    if (leftDay == null){
-                        Log.d("dateTest","isNull")
-                    }else{
-                        _currentDate.postValue(CurrentDateState.SetData(leftDay))
-                        Log.d("dateTest","isNotNull $leftDay")
-                    }
-                }
+        if (currentDate.value == DATE_INITALVALUE) {
+            val leftDate =
+                getAllDateUseCase().map { it.date }.filter { it < getCurrentDate() }.maxOrNull()
+            if (leftDate == null) {
+                Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. INIT")
+                // 존재하지 않습니다~
+            } else {
+                _currentDate.postValue(leftDate.toString())
+                setRecordRoutine(leftDate)
+            }
+        } else {
+            val leftDay =
+                getAllDateUseCase().map { it.date }.filter { it < currentDate.value!!.toInt() }
+                    .maxOrNull()
+            if (leftDay == null) {
+                Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. ")
+                // 존재하지 않습니다~
+            } else {
+                _currentDate.postValue(leftDay.toString())
+                setRecordRoutine(leftDay)
             }
         }
     }
-}
 
-fun setRightData() {
+    fun setRightDate() = viewModelScope.launch(Dispatchers.IO) {
+        if (currentDate.value == DATE_INITALVALUE) {
+            val rightDate =
+                getAllDateUseCase().map { it.date }.filter { it > getCurrentDate() }.minOrNull()
+            if (rightDate == null) {
+                Log.d("currentDateTest", "조회할 이후 데이터가 없습니다. INIT")
+                // 존재하지 않습니다~
+            } else {
+                _currentDate.postValue(rightDate.toString())
+                setRecordRoutine(rightDate)
+            }
+        } else {
+            val rightDate =
+                getAllDateUseCase().map { it.date }.filter { it > currentDate.value!!.toInt() }
+                    .minOrNull()
+            if (rightDate == null) {
+                Log.d("currentDateTest", "조회할 이후 데이터가 없습니다.")
+                // 존재하지 않습니다.
+            } else {
+                _currentDate.postValue(rightDate.toString())
+                setRecordRoutine(rightDate)
+            }
+        }
+    }
 
+    private suspend fun setRecordRoutine(date: Int) {
+        _currentRoutineList.postValue(RoutineListState.Success(getRoutineListByDateUseCase(date)))
+    }
+
+    companion object {
+        const val DATE_INITALVALUE = "기록이 존재하지 않습니다."
+    }
 }
 
 //    private fun setDate()

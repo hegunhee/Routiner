@@ -25,6 +25,28 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         }
         (requireActivity() as MainActivity).supportActionBar?.title = "record"
         setHasOptionsMenu(true)
+        observeData()
+    }
+
+    private fun observeData() = with(viewModel){
+        currentDate.observe(viewLifecycleOwner){
+            setActionBarTitle(it)
+        }
+        currentRoutineListState.observe(viewLifecycleOwner){
+            when(it){
+                RoutineListState.Uninitalized -> {
+                    Toast.makeText(requireContext(), "Uninitalized", Toast.LENGTH_SHORT).show()
+                }
+                is RoutineListState.Success -> {
+                    Toast.makeText(requireContext(), it.routineList.toString(), Toast.LENGTH_SHORT).show()
+                }
+
+            }
+        }
+    }
+
+    private fun setActionBarTitle(title : String){
+        (requireActivity() as MainActivity).supportActionBar?.title = title
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -32,21 +54,21 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         super.onCreateOptionsMenu(menu, inflater)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (viewModel.recordIsEmpty.value == true) {
+    override fun onOptionsItemSelected(item: MenuItem): Boolean = with(viewModel){
+        if (recordIsEmpty.value == true) {
             Toast.makeText(requireContext(), "기록이 존재하지않습니다.", Toast.LENGTH_SHORT).show()
         } else {
             when (item.itemId) {
                 R.id.click_left -> {
                     Toast.makeText(requireContext(), "click_left", Toast.LENGTH_SHORT).show()
+                    setLeftData()
                 }
                 R.id.click_right -> {
                     Toast.makeText(requireContext(), "click_right", Toast.LENGTH_SHORT).show()
-
+                    setRightDate()
                 }
             }
         }
-
         return super.onOptionsItemSelected(item)
     }
 
