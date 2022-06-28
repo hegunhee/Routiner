@@ -33,7 +33,7 @@ class DailyViewModel @Inject constructor(
     val onClickEvent : LiveData<Event>
     get() = _onClickEvent
 
-    val dailyRoutineprogress : LiveData<String> = Transformations.map(dailyRoutineListLiveData){
+    val dailyRoutineProgress : LiveData<String> = Transformations.map(dailyRoutineListLiveData){
         return@map if(it.isEmpty()){
             "0 / 0"
         }else{

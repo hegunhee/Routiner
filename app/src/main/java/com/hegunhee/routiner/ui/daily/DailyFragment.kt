@@ -32,7 +32,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
         Toast.makeText(requireContext(), "DailyFragment", Toast.LENGTH_SHORT).show()
         binding.apply {
             viewmodel = viewModel
-            lifecycleOwner = this@DailyFragment
+            lifecycleOwner = lifecycleOwner
             dailyRecyclerView.adapter = adapter
         }
         (requireActivity() as MainActivity).supportActionBar?.title = getCurrentDate().toString()
