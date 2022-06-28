@@ -8,6 +8,7 @@ import com.hegunhee.routiner.db.SharedPreferenceManager
 import com.hegunhee.routiner.domain.*
 import com.hegunhee.routiner.util.getCurrentDate
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -41,14 +42,11 @@ class DailyViewModel @Inject constructor(
     }
 
     fun onClickRoutineInsert() = viewModelScope.launch{
-        // 버튼을 클릭했을때 일어나는 일
         _onClickEvent.postValue(Event.Clicked)
     }
 
-    fun insertRoutine(text : String) = viewModelScope.launch {
-        //코드 작성 중복같은것도 해서
+    fun insertRoutine(text : String) = viewModelScope.launch(Dispatchers.IO) {
         val isExistSameText : Boolean = dailyRoutineListLiveData.value?.filter { it.text == text }?.size != 0
-
         if(isExistSameText){
             Log.d("insertRoutine","exist")
         }else{
@@ -57,11 +55,11 @@ class DailyViewModel @Inject constructor(
         }
     }
 
-    fun deleteData(id : Int) = viewModelScope.launch {
+    fun deleteData(id : Int) = viewModelScope.launch(Dispatchers.IO) {
         deleteRoutineUseCase(id)
     }
 
-    fun toggleData(routine: Routine) = viewModelScope.launch {
+    fun toggleData(routine: Routine) = viewModelScope.launch(Dispatchers.IO) {
         insertDailyRoutineUseCase(routine)
     }
 

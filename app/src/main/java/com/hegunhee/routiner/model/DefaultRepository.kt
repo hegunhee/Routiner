@@ -31,6 +31,6 @@ class DefaultRepository(
     }
 
     override suspend fun insertDate(date: Date) {
-        return
+        return dateDao.insertDate(date)
     }
 }

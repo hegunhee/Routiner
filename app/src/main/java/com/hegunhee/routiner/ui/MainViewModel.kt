@@ -9,7 +9,9 @@ import com.hegunhee.routiner.domain.GetRoutineListByDate
 import com.hegunhee.routiner.domain.InsertDateUseCase
 import com.hegunhee.routiner.util.getCurrentDate
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -21,24 +23,18 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        Log.d("MainViewModel","mainViewModel init")
+        Log.d("MainViewModel", "mainViewModel init")
     }
 
-    fun checkDate() = viewModelScope.launch {
+    fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
         val sharedPreferenceCurrentDate = sharedPreferenceManager.getCurrentDate()
-        if(sharedPreferenceCurrentDate == SharedPreferenceManager.CURRENT_DEFAULT_DATE){
-            Log.d("sharedTest","Default Value")
-        }else if(sharedPreferenceCurrentDate != getCurrentDate()){
-            Log.d("sharedTest","is not same")
-            if(getRoutineListByDate(sharedPreferenceCurrentDate).isEmpty()){
-                Log.d("sharedTest","isEmpty")
-            }else{
-                Log.d("sharedTest","isNotEmpty")
+        if (sharedPreferenceCurrentDate == SharedPreferenceManager.CURRENT_DEFAULT_DATE) {
+            // 앱을 처음 킨 상태라면
+        } else if (sharedPreferenceCurrentDate != getCurrentDate()) {
+            val currentDateRoutineList = getRoutineListByDate(sharedPreferenceCurrentDate)
+            if (currentDateRoutineList.isNotEmpty()) {
                 insertDateUseCase(sharedPreferenceCurrentDate)
             }
-
-        }else if(sharedPreferenceCurrentDate == getCurrentDate()){
-            Log.d("sharedTest","is Same")
         }
         sharedPreferenceManager.setCurrentDate(getCurrentDate())
     }
