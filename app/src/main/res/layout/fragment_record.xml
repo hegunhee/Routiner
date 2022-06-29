@@ -52,6 +52,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:textSize="30dp"
+                android:text="@{viewmodel.currentRoutineProgress.toString()}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="0 / 0" />

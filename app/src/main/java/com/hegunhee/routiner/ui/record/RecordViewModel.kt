@@ -31,6 +31,15 @@ class RecordViewModel @Inject constructor(
     val currentRoutineListState: LiveData<RoutineListState>
         get() = _currentRoutineList
 
+    val currentRoutineProgress = Transformations.map(currentRoutineListState){
+        return@map when(it){
+            is RoutineListState.Uninitalized -> {""}
+            is RoutineListState.Success -> {
+                "${it.routineList.count { it.isFinished }} / ${it.routineList.size}"
+            }
+        }
+    }
+
 
     init {
         initFun()
@@ -45,14 +54,12 @@ class RecordViewModel @Inject constructor(
         } else {
             _recordIsEmpty.postValue(false)
             setLeftData()
-            // 아니면 현재 가장 가까운 날짜 찾아서 집어넣자
         }
     }
 
     fun setLeftData() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
-            val leftDate =
-                getAllDateUseCase().map { it.date }.filter { it < getCurrentDate() }.maxOrNull()
+            val leftDate = getAllDateUseCase().map { it.date }.filter { it < getCurrentDate() }.maxOrNull()
             if (leftDate == null) {
                 Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. INIT")
                 // 존재하지 않습니다~
@@ -61,8 +68,7 @@ class RecordViewModel @Inject constructor(
                 setRecordRoutine(leftDate)
             }
         } else {
-            val leftDay =
-                getAllDateUseCase().map { it.date }.filter { it < currentDate.value!!.toInt() }
+            val leftDay = getAllDateUseCase().map { it.date }.filter { it < currentDate.value!!.toInt() }
                     .maxOrNull()
             if (leftDay == null) {
                 Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. ")
@@ -76,8 +82,7 @@ class RecordViewModel @Inject constructor(
 
     fun setRightDate() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
-            val rightDate =
-                getAllDateUseCase().map { it.date }.filter { it > getCurrentDate() }.minOrNull()
+            val rightDate = getAllDateUseCase().map { it.date }.filter { it > getCurrentDate() }.minOrNull()
             if (rightDate == null) {
                 Log.d("currentDateTest", "조회할 이후 데이터가 없습니다. INIT")
                 // 존재하지 않습니다~
@@ -86,8 +91,7 @@ class RecordViewModel @Inject constructor(
                 setRecordRoutine(rightDate)
             }
         } else {
-            val rightDate =
-                getAllDateUseCase().map { it.date }.filter { it > currentDate.value!!.toInt() }
+            val rightDate = getAllDateUseCase().map { it.date }.filter { it > currentDate.value!!.toInt() }
                     .minOrNull()
             if (rightDate == null) {
                 Log.d("currentDateTest", "조회할 이후 데이터가 없습니다.")
@@ -107,5 +111,3 @@ class RecordViewModel @Inject constructor(
         const val DATE_INITALVALUE = "기록이 존재하지 않습니다."
     }
 }
-
-//    private fun setDate()

@@ -23,10 +23,10 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        Log.d("MainViewModel", "mainViewModel init")
+        checkDate()
     }
 
-    fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
+    private fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
         val sharedPreferenceCurrentDate = sharedPreferenceManager.getCurrentDate()
         if (sharedPreferenceCurrentDate == SharedPreferenceManager.CURRENT_DEFAULT_DATE) {
             // 앱을 처음 킨 상태라면
