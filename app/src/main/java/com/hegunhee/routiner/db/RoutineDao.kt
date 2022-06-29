@@ -11,7 +11,7 @@ interface RoutineDao {
     suspend fun insertDailyRoutine(routine: Routine)
 
     @Query("SELECT * FROM routine WHERE date = :date")
-    fun getDailyRoutineFromFlow(date : Int) : Flow<List<Routine>>
+    fun getDailyRoutineByFlow(date : Int) : Flow<List<Routine>>
 
     @Query("SELECT * FROM routine WHERE date = :date")
     suspend fun getRoutineListByDate(date : Int) : List<Routine>

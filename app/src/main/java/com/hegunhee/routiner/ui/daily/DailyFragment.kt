@@ -20,7 +20,6 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
 
-    @Inject lateinit var prefs : SharedPreferenceManager
     private val viewModel : DailyViewModel by viewModels()
     private val adapter = DailyAdapter(
         listOf(),
@@ -50,7 +49,6 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             }
         }
         viewModel.dailyRoutineListLiveData.observe(viewLifecycleOwner){
-            Log.d("RoutineCheck",it.toString())
             adapter.setRoutineList(it)
         }
     }

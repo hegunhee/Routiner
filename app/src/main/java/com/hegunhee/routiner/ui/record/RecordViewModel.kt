@@ -2,9 +2,8 @@ package com.hegunhee.routiner.ui.record
 
 import android.util.Log
 import androidx.lifecycle.*
-import com.hegunhee.routiner.domain.GetAllDailyRoutineUseCase
 import com.hegunhee.routiner.domain.GetAllDateUseCase
-import com.hegunhee.routiner.domain.GetRoutineListByDate
+import com.hegunhee.routiner.domain.GetRoutineListByDateUseCase
 import com.hegunhee.routiner.util.getCurrentDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +13,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RecordViewModel @Inject constructor(
     private val getAllDateUseCase: GetAllDateUseCase,
-    private val getRoutineListByDateUseCase: GetRoutineListByDate
+    private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase
 
 ) : ViewModel() {
 
@@ -68,14 +67,14 @@ class RecordViewModel @Inject constructor(
                 setRecordRoutine(leftDate)
             }
         } else {
-            val leftDay = getAllDateUseCase().map { it.date }.filter { it < currentDate.value!!.toInt() }
+            val leftDate = getAllDateUseCase().map { it.date }.filter { it < currentDate.value!!.toInt() }
                     .maxOrNull()
-            if (leftDay == null) {
+            if (leftDate == null) {
                 Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. ")
                 // 존재하지 않습니다~
             } else {
-                _currentDate.postValue(leftDay.toString())
-                setRecordRoutine(leftDay)
+                _currentDate.postValue(leftDate.toString())
+                setRecordRoutine(leftDate)
             }
         }
     }

@@ -11,7 +11,7 @@ class DefaultRepository(
     private val dateDao : DateDao
 ) : Repository {
     override fun getAllDailyRoutineByFlow(date: Int): Flow<List<Routine>> {
-        return routineDao.getDailyRoutineFromFlow(date)
+        return routineDao.getDailyRoutineByFlow(date)
     }
 
     override suspend fun insertDailyRoutine(routine: Routine) {

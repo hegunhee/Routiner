@@ -23,7 +23,6 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
             viewmodel = viewModel
             lifecycleOwner = lifecycleOwner
         }
-        (requireActivity() as MainActivity).supportActionBar?.title = "record"
         setHasOptionsMenu(true)
         observeData()
     }
@@ -35,10 +34,9 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         currentRoutineListState.observe(viewLifecycleOwner){
             when(it){
                 RoutineListState.Uninitalized -> {
-                    Toast.makeText(requireContext(), "Uninitalized", Toast.LENGTH_SHORT).show()
                 }
                 is RoutineListState.Success -> {
-                    Toast.makeText(requireContext(), it.routineList.toString(), Toast.LENGTH_SHORT).show()
+                    // 여기서 이제 RecyclerView의 데이터를 변경줌
                 }
 
             }

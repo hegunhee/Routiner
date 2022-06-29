@@ -21,7 +21,7 @@ class DailyAdapter(
             deleteButton.setOnClickListener {
                 deleteRoutine(routine.id)
             }
-            check.visibility = if(routine.isFinished) View.VISIBLE else View.GONE
+            check.visibility = if(routine.isFinished) View.VISIBLE else View.INVISIBLE
             title.setOnClickListener{
                 insertRoutine(routine.copy(isFinished = !routine.isFinished))
             }

@@ -3,8 +3,6 @@ package com.hegunhee.routiner.ui.daily
 import android.util.Log
 import androidx.lifecycle.*
 import com.hegunhee.routiner.data.entity.Routine
-import com.hegunhee.routiner.db.RoutineDao
-import com.hegunhee.routiner.db.SharedPreferenceManager
 import com.hegunhee.routiner.domain.*
 import com.hegunhee.routiner.util.getCurrentDate
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,20 +12,14 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DailyViewModel @Inject constructor(
-    private val getAllDailyRoutineUseCase: GetAllDailyRoutineUseCase,
+    private val getAllDailyRoutineByFlowUseCase: GetAllDailyRoutineByFlowUseCase,
     private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
     private val deleteRoutineUseCase: DeleteRoutineUseCase
 ) : ViewModel() {
 
-    val dailyRoutineListLiveData: LiveData<List<Routine>> =
-        getAllDailyRoutineUseCase(getCurrentDate()).asLiveData().apply {
-            Log.d("RoutineCheck",this.value?.toString() ?: "no")
-        }
+    val dailyRoutineListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(getCurrentDate()).asLiveData()
 
-    val recyclerViewVisible: LiveData<Boolean> = Transformations.map(dailyRoutineListLiveData) {
-        Log.d("RoutineCheck","check"+ it.toString())
-        dailyRoutineListLiveData.value?.isNotEmpty()
-    }
+    val recyclerViewVisible: LiveData<Boolean> = Transformations.map(dailyRoutineListLiveData) { dailyRoutineListLiveData.value?.isNotEmpty() }
 
     private var _onClickEvent : MutableLiveData<Event> = MutableLiveData(Event.Uninitalized)
     val onClickEvent : LiveData<Event>
@@ -42,16 +34,14 @@ class DailyViewModel @Inject constructor(
     }
 
     fun onClickRoutineInsert() = viewModelScope.launch{
-        Log.d("Clicked","clicked")
         _onClickEvent.postValue(Event.Clicked)
     }
 
     fun insertRoutine(text : String) = viewModelScope.launch(Dispatchers.IO) {
         val isExistSameText : Boolean = dailyRoutineListLiveData.value?.filter { it.text == text }?.size != 0
         if(isExistSameText){
-            Log.d("insertRoutine","exist")
-        }else{
-            Log.d("insertRoutine","not exist")
+
+        } else{
             insertDailyRoutineUseCase(Routine(getCurrentDate(),text))
         }
     }

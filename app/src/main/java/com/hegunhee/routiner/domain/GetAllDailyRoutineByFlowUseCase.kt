@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 @InstallIn(SingletonComponent::class)
 @Module
-class GetAllDailyRoutineUseCase @Inject constructor(private val repository: Repository) : UseCase {
+class GetAllDailyRoutineByFlowUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
     operator fun invoke(date : Int) : Flow<List<Routine>>{
         return repository.getAllDailyRoutineByFlow(date)
