@@ -42,6 +42,7 @@ class DailyViewModel @Inject constructor(
     }
 
     fun onClickRoutineInsert() = viewModelScope.launch{
+        Log.d("Clicked","clicked")
         _onClickEvent.postValue(Event.Clicked)
     }
 

@@ -69,11 +69,10 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                     } else {
                         viewModel.insertRoutine(editText.text.toString())
                     }
-                    viewModel.endClick()
                 })
             .setNegativeButton("취소", DialogInterface.OnClickListener { _, _ ->
-                viewModel.endClick()
             })
             .show()
+        viewModel.endClick()
     }
 }

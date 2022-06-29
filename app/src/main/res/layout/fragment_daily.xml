@@ -13,12 +13,11 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
-        android:layout_marginTop="50dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="50dp">
 
 
         <androidx.recyclerview.widget.RecyclerView
-            android:elevation="10dp"
             android:id="@+id/daily_recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -30,10 +29,10 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:elevation="10dp"
             android:id="@+id/empty_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:elevation="10dp"
             android:visibility="@{viewmodel.recyclerViewVisible ? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/bottomLayout"
             app:layout_constraintEnd_toEndOf="parent"
@@ -67,29 +66,31 @@
                 />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/floating_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:elevation="10dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
             android:onClick="@{() -> viewmodel.onClickRoutineInsert()}"
             android:src="@drawable/ic_add"
             app:layout_constraintBottom_toTopOf="@id/bottomLayout"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
 
-
+            />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottomLayout"
-            android:background="@color/light_pink"
             android:layout_width="0dp"
             android:layout_height="100dp"
+            android:background="@color/light_pink"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
+            <TextView xmlns:tools="http://schemas.android.com/tools"
                 android:id="@+id/today_record_text_view"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,10 +98,9 @@
                 android:layout_marginEnd="30dp"
                 android:text="@{viewmodel.dailyRoutineProgress.toString()}"
                 android:textSize="30dp"
-                xmlns:tools="http://schemas.android.com/tools"
-                tools:text="0 / 0"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                tools:text="0 / 0"
 
                 />
 
