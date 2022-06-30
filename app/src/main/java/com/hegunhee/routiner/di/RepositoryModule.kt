@@ -1,6 +1,7 @@
 package com.hegunhee.routiner.di
 
 import com.hegunhee.routiner.db.DateDao
+import com.hegunhee.routiner.db.ReviewDao
 import com.hegunhee.routiner.db.RoutineDao
 import com.hegunhee.routiner.model.DefaultRepository
 import com.hegunhee.routiner.model.Repository
@@ -18,8 +19,9 @@ class RepositoryModule {
     @Provides
     fun provideDefaultRepository(
         routineDao : RoutineDao,
-        dateDao : DateDao
+        dateDao : DateDao,
+        reviewDao: ReviewDao
     ) : Repository {
-        return DefaultRepository(routineDao,dateDao)
+        return DefaultRepository(routineDao,dateDao,reviewDao)
     }
 }
