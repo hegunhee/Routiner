@@ -21,11 +21,11 @@ import javax.inject.Inject
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
 
     private val viewModel : DailyViewModel by viewModels()
-    private val adapter = DailyAdapter(
+    private val adapter : DailyAdapter by lazy {DailyAdapter(
         listOf(),
         deleteRoutine = { id -> viewModel.deleteData(id)},
         insertRoutine = {routine -> viewModel.toggleData(routine)}
-        )
+        )}
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Toast.makeText(requireContext(), "DailyFragment", Toast.LENGTH_SHORT).show()

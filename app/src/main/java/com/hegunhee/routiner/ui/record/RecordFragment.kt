@@ -17,11 +17,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 
     private val viewModel: RecordViewModel by viewModels()
+    private val adapter : RecordAdapter by lazy {RecordAdapter(listOf())}
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             viewmodel = viewModel
             lifecycleOwner = lifecycleOwner
+            recyclerView.adapter = adapter
         }
         setHasOptionsMenu(true)
         observeData()
@@ -37,6 +39,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 }
                 is RoutineListState.Success -> {
                     // 여기서 이제 RecyclerView의 데이터를 변경줌
+                    adapter.setList(it.routineList)
                 }
 
             }
@@ -58,11 +61,9 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         } else {
             when (item.itemId) {
                 R.id.click_left -> {
-                    Toast.makeText(requireContext(), "click_left", Toast.LENGTH_SHORT).show()
                     setLeftData()
                 }
                 R.id.click_right -> {
-                    Toast.makeText(requireContext(), "click_right", Toast.LENGTH_SHORT).show()
                     setRightDate()
                 }
             }
