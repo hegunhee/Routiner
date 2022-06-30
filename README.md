@@ -6,6 +6,7 @@
 2. 오늘의 데일리 루틴 등록기능  
     * SharedPreference (날짜 저장)  
     * Room  
+-------------------------------------------  
 3. 기록 탭  
 4. Core Routine(매일 자동으로 등록되는 루틴)  
 5. Google Login(Firebase)  
