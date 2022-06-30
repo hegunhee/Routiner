@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_marginBottom="10dp"
+    android:layout_height="wrap_content"
     android:layout_marginTop="10dp"
-    android:layout_height="wrap_content">
+    android:layout_marginBottom="10dp"
+    android:background="@color/white">
 
     <TextView
         android:id="@+id/title"
@@ -15,13 +15,12 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
-
         android:ellipsize="end"
         android:maxLines="1"
         android:textSize="30dp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_weight="4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="영어 공부하기" />

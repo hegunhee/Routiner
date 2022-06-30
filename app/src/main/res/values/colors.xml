@@ -9,6 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="light_pink">#CA7693</color>
     <color name="red">#C61515</color>
-    <color name="success_color">#87F38C</color>
-    <color name="fail_color">#DD5A5A</color>
+    <color name="success_color">#90ee90</color>
+    <color name="fail_color">#ff4040</color>
 </resources>

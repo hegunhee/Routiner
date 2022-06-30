@@ -28,13 +28,11 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
         )}
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(requireContext(), "DailyFragment", Toast.LENGTH_SHORT).show()
         binding.apply {
             viewmodel = viewModel
-            lifecycleOwner = lifecycleOwner
             dailyRecyclerView.adapter = adapter
         }
-        (requireActivity() as MainActivity).supportActionBar?.title = getCurrentDate().toString()
+        (requireActivity() as MainActivity).supportActionBar?.title = "오늘의 루틴"
         initObserver()
     }
 

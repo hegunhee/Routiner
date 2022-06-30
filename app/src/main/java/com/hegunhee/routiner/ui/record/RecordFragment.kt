@@ -22,7 +22,6 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             viewmodel = viewModel
-            lifecycleOwner = lifecycleOwner
             recyclerView.adapter = adapter
         }
         setHasOptionsMenu(true)
