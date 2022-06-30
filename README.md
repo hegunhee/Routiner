@@ -18,4 +18,6 @@
 
 ## 정보들  
 1. Entity들  
-   * https://github.com/hegunhee/Routiner/issues/1
+   * https://github.com/hegunhee/Routiner/issues/1  
+2. 실기기 ActionBar 관련 에러 수정  
+   * https://github.com/hegunhee/Routiner/issues/2
