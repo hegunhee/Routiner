@@ -1,6 +1,33 @@
-# Routiner
+# Routiner  
+## 2022.06.21 ~ ing  
+## 소개  
 루티너는 습관을 등록하고 나중에 확인할 수 있는 앱입니다.  
-## 계획  
+## 앱 사진  
+  
+## 사용된 라이브러리  
+* JetPack  
+  * AAC-ViewModel  
+  * LiveData  
+  * Room  
+* Coroutine  
+  * Flow  
+* Hilt  
+* SharedPreference  
+## 기술 정보  
+* **AAC-ViewModel** 적용  
+ Activity나 Fragment에 보여줄 data를 가지고있습니다.  
+ Activity나 Fragment가 화면 회전 등의 이유로 Destroy 상태가 되어도  
+ AAC-ViewModel은 재 생성되지 않기때문에 데이터를 쉽게 관리할 수 있습니다.
+ 그리고 ViewModelScope를 사용해 비동기 코드를 쉽게 작성할 수 있습니다.  
+* **Flow** 적용  
+ 지속적으로 데이터를 받을 수 있는 Flow를 사용해 오늘의 루틴을 받을 수 있습니다.  
+* **DataBinding** 적용  
+ dataBinding을 사용하여 findViewById를 사용하지 않으며 xml 파일과 데이터 객체를 연결해줍니다.  
+* **Hilt** 적용  
+ 의존성 주입을 사용해서 테스트를 쉽게 사용하고 코드 내부에서 의존관계를 만들지 않고 관심사를 외부로 돌립니다.  
+* **Room Database** 적용  
+ 루틴들을 저장하고 불러오는데 Room Database를 사용하였습니다.  
+## 진척도  
 1. DrawerLayout 등록  
     * 오늘의 루틴, 기록  
 2. 오늘의 데일리 루틴 등록기능  
