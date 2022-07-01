@@ -2,7 +2,6 @@ package com.hegunhee.routiner.ui.daily
 
 import android.content.DialogInterface
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -10,12 +9,9 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.hegunhee.routiner.R
 import com.hegunhee.routiner.databinding.FragmentDailyBinding
-import com.hegunhee.routiner.db.SharedPreferenceManager
 import com.hegunhee.routiner.ui.BaseFragment
 import com.hegunhee.routiner.ui.MainActivity
-import com.hegunhee.routiner.util.getCurrentDate
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
