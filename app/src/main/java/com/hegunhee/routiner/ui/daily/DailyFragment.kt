@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import com.hegunhee.routiner.R
 import com.hegunhee.routiner.databinding.FragmentDailyBinding
 import com.hegunhee.routiner.ui.BaseFragment
-import com.hegunhee.routiner.ui.MainActivity
+import com.hegunhee.routiner.ui.mainActivity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

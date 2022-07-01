@@ -3,12 +3,11 @@ package com.hegunhee.routiner.ui.setting
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.fragment.app.viewModels
 import com.hegunhee.routiner.R
 import com.hegunhee.routiner.databinding.FragmentSettingBinding
 import com.hegunhee.routiner.db.SharedPreferenceManager
 import com.hegunhee.routiner.ui.BaseFragment
-import com.hegunhee.routiner.ui.MainActivity
+import com.hegunhee.routiner.ui.mainActivity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

@@ -1,6 +1,7 @@
-package com.hegunhee.routiner.ui
+package com.hegunhee.routiner.ui.mainActivity
 
-import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hegunhee.routiner.db.SharedPreferenceManager
@@ -24,10 +25,14 @@ class MainViewModel @Inject constructor(
         checkDate()
     }
 
+    private var _firstAppOpenEvent = MutableLiveData<FirstAppOpenEvent>(FirstAppOpenEvent.UnInitalized)
+    val firstAppOpenEvent : LiveData<FirstAppOpenEvent>
+    get() = _firstAppOpenEvent
+
     private fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
         val sharedPreferenceCurrentDate = sharedPreferenceManager.getCurrentDate()
         if (sharedPreferenceCurrentDate == SharedPreferenceManager.CURRENT_DATE_DEFAULT_DATE) {
-            // 앱을 처음 킨 상태라면
+            _firstAppOpenEvent.postValue(FirstAppOpenEvent.OpenDialog)
         } else if (sharedPreferenceCurrentDate != getCurrentDate()) {
             val currentDateRoutineList = getRoutineListByDateUseCase(sharedPreferenceCurrentDate)
             if (currentDateRoutineList.isNotEmpty()) {
@@ -36,4 +41,14 @@ class MainViewModel @Inject constructor(
         }
         sharedPreferenceManager.setCurrentDate(getCurrentDate())
     }
+
+    fun setInitNotiValue(notiValue : Boolean){
+        sharedPreferenceManager.setNofiSendValue(notiValue)
+    }
+
+    fun setEventFinish() = viewModelScope.launch {
+        _firstAppOpenEvent.postValue(FirstAppOpenEvent.Finished)
+    }
+
+
 }
