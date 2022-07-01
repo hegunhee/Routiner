@@ -22,7 +22,7 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext private va
     }
 
     fun setNofiSendValue(notiValue : Boolean){
-        prefs.edit().putBoolean(CURRENT_NOTI_KEY,notiValue)
+        prefs.edit().putBoolean(CURRENT_NOTI_KEY,notiValue).apply()
     }
 
 
