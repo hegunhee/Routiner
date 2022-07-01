@@ -25,7 +25,7 @@ class MainViewModel @Inject constructor(
 
     private fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
         val sharedPreferenceCurrentDate = sharedPreferenceManager.getCurrentDate()
-        if (sharedPreferenceCurrentDate == SharedPreferenceManager.CURRENT_DEFAULT_DATE) {
+        if (sharedPreferenceCurrentDate == SharedPreferenceManager.CURRENT_DATE_DEFAULT_DATE) {
             // 앱을 처음 킨 상태라면
         } else if (sharedPreferenceCurrentDate != getCurrentDate()) {
             val currentDateRoutineList = getRoutineListByDateUseCase(sharedPreferenceCurrentDate)
