@@ -9,10 +9,14 @@ import com.hegunhee.routiner.ui.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting){
+class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        (requireActivity() as MainActivity).supportActionBar?.title = "settings"
+        (requireActivity() as MainActivity).supportActionBar?.title = "설정"
+        binding.apply {
+        }
+
+
     }
 }
