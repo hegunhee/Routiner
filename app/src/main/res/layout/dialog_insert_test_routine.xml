@@ -14,13 +14,14 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintEnd_toEndOf="@id/datepicker"
         app:layout_constraintStart_toStartOf="@id/datepicker"
         app:layout_constraintTop_toTopOf="parent" />
 
     <DatePicker
         android:id="@+id/datepicker"
+        app:layout_constraintVertical_chainStyle="packed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:calendarViewShown="false"
@@ -33,6 +34,7 @@
         android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+
         app:layout_constraintEnd_toEndOf="@id/datepicker"
         app:layout_constraintStart_toStartOf="@id/datepicker"
         app:layout_constraintTop_toBottomOf="@id/datepicker" />

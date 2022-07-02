@@ -1,5 +1,6 @@
 package com.hegunhee.routiner.ui.daily
 
+import android.app.Dialog
 import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
@@ -8,10 +9,15 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.hegunhee.routiner.R
+import com.hegunhee.routiner.data.entity.Routine
+import com.hegunhee.routiner.databinding.DialogInsertTestRoutineBinding
 import com.hegunhee.routiner.databinding.FragmentDailyBinding
 import com.hegunhee.routiner.ui.BaseFragment
 import com.hegunhee.routiner.ui.mainActivity.MainActivity
+import com.hegunhee.routiner.util.getCurrentTestDayInfo
+import com.hegunhee.routiner.util.getDateFormat
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.DecimalFormat
 
 @AndroidEntryPoint
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
@@ -28,8 +34,9 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             viewmodel = viewModel
             dailyRecyclerView.adapter = adapter
         }
-        (requireActivity() as MainActivity).supportActionBar?.title = "오늘의 루틴"
+        (requireActivity() as MainActivity).supportActionBar?.title = "테스트 루티너"
         initObserver()
+        initTestListener()
     }
 
     private fun initObserver(){
@@ -66,5 +73,28 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             })
             .show()
         viewModel.endClick()
+    }
+
+    private fun initTestListener() = with(binding){
+        testInsertRoutineButton.setOnClickListener {
+            insertTestRoutine()
+        }
+    }
+
+    private fun insertTestRoutine(){
+        Toast.makeText(requireContext(),"${getCurrentTestDayInfo().year} ${getCurrentTestDayInfo().month.value} ${getCurrentTestDayInfo().dayOfMonth} ", Toast.LENGTH_SHORT).show()
+        DialogInsertTestRoutineBinding.inflate(layoutInflater).run {
+            val dialog = AlertDialog.Builder(requireActivity()).setView(root).show()
+            button.setOnClickListener {
+                if(editText.text.toString() == "") {
+                    Toast.makeText(requireContext(), "내용이 비어있습니다.", Toast.LENGTH_SHORT).show()
+                }else{
+                    val date = "${datepicker.year}${getDateFormat(datepicker.month+1)}${getDateFormat(datepicker.dayOfMonth)}".toInt()
+                    Toast.makeText(requireContext(), date.toString(), Toast.LENGTH_SHORT).show()
+                    viewModel.insertTestRoutine(Routine(date,editText.text.toString(),isFinishCheckBox.isChecked))
+                    dialog.dismiss()
+                }
+            }
+        }
     }
 }
