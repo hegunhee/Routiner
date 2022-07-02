@@ -90,7 +90,6 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                     Toast.makeText(requireContext(), "내용이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 }else{
                     val date = "${datepicker.year}${getDateFormat(datepicker.month+1)}${getDateFormat(datepicker.dayOfMonth)}".toInt()
-                    Toast.makeText(requireContext(), date.toString(), Toast.LENGTH_SHORT).show()
                     viewModel.insertTestRoutine(Routine(date,editText.text.toString(),isFinishCheckBox.isChecked))
                     dialog.dismiss()
                 }
