@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="테스트 입니다."
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/datepicker"
+        app:layout_constraintStart_toStartOf="@id/datepicker"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <DatePicker
+        android:id="@+id/datepicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:calendarViewShown="false"
+        android:datePickerMode="spinner"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@id/datepicker"
+        app:layout_constraintStart_toStartOf="@id/datepicker"
+        app:layout_constraintTop_toBottomOf="@id/datepicker" />
+
+    <TextView
+        android:id="@+id/descCheckBoxTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="완료한 루틴입니까?"
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        app:layout_constraintEnd_toStartOf="@id/isFinishCheckBox"
+        app:layout_constraintStart_toStartOf="@id/datepicker"
+        app:layout_constraintTop_toBottomOf="@id/editText" />
+
+    <CheckBox
+        android:id="@+id/isFinishCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/descCheckBoxTextView"
+        app:layout_constraintEnd_toEndOf="@id/datepicker"
+        app:layout_constraintStart_toEndOf="@id/descCheckBoxTextView"
+        app:layout_constraintTop_toTopOf="@id/descCheckBoxTextView" />
+
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/teal_200"
+        android:text="확인"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="@id/datepicker"
+        app:layout_constraintStart_toStartOf="@id/datepicker"
+        app:layout_constraintTop_toBottomOf="@id/descCheckBoxTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
