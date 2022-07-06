@@ -18,7 +18,4 @@ abstract class RoutinerDatabase : RoomDatabase(){
     companion object{
         const val APP_NAME = "routinerDatabase.db"
     }
-
-
-
 }

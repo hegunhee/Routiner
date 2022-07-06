@@ -21,4 +21,11 @@
         android:name="com.hegunhee.routiner.ui.setting.SettingFragment"
         android:label="SettingFragment"
         tools:layout="@layout/fragment_setting" />
+    <fragment
+        android:id="@+id/repeat"
+        android:name="com.hegunhee.routiner.ui.repeat.RepeatFragment"
+        tools:layout="@layout/fragment_repeat"
+        android:label="RepeatFragment" />
+
+
 </navigation>

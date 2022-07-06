@@ -1,7 +1,6 @@
 package com.hegunhee.routiner.db
 
 import androidx.room.*
-import com.hegunhee.routiner.data.entity.Date
 import com.hegunhee.routiner.data.entity.Review
 
 @Dao

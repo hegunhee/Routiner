@@ -19,5 +19,11 @@
         android:icon="@drawable/ic_setting"
         />
 
+    <item
+        android:id="@+id/repeat"
+        android:title="repeat"
+        android:icon="@drawable/ic_repeat"
+        />
+
 
 </menu>
