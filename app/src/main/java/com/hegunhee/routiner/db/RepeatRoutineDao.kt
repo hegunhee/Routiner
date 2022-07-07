@@ -18,4 +18,5 @@ interface RepeatRoutineDao {
 
     @Delete
     suspend fun deleteRepeatRoutine(repeatRoutine: RepeatRoutine)
+
 }

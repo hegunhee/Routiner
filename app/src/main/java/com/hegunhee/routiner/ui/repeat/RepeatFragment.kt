@@ -11,7 +11,6 @@ import com.hegunhee.routiner.databinding.DialogRepeatRoutineBinding
 import com.hegunhee.routiner.databinding.FragmentRepeatBinding
 import com.hegunhee.routiner.ui.BaseFragment
 import com.hegunhee.routiner.ui.mainActivity.MainActivity
-import com.hegunhee.routiner.util.getTodayDate
 import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -55,23 +54,19 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                 dialog.dismiss()
             }
             succeedButton.setOnClickListener {
-                if (routineEditText.text.toString().isEmpty()) {
+                val repeatRoutineText = routineEditText.text.toString()
+                if (repeatRoutineText.isEmpty()) {
                     Toast.makeText(requireContext(), "내용이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 } else if (dayOfWeekChipGroup.checkedChipIds.isEmpty()) {
                     Toast.makeText(requireContext(), "요일을 선택해주세요", Toast.LENGTH_SHORT).show()
                 } else {
-                    //날짜 변환 과정이 필요함
                     val dayOfWeekStringList = dayOfWeekChipGroup.checkedChipIds.map {
                         dayOfWeekChipGroup.findViewById<Chip>(it).text.toString()
                     }
                     if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList) {
-                        //오늘 날짜에 저장
-                        Toast.makeText(requireContext(), "오늘날짜가 있었네용", Toast.LENGTH_SHORT).show()
+                        viewModel.insertDailyRoutine(repeatRoutineText)
                     }
-                    viewModel.insertRepeatRoutine(
-                        routineEditText.text.toString(),
-                        dayOfWeekStringList
-                    )
+                    viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeekStringList)
                     dialog.dismiss()
                 }
             }

@@ -35,4 +35,6 @@ interface Repository {
     suspend fun getAllRepeatRoutine() : List<RepeatRoutine>
 
     suspend fun deleteRepeatRoutine(repeatRoutine: RepeatRoutine)
+
+    suspend fun insertAllRoutine(routineList: List<Routine>)
 }
