@@ -41,7 +41,6 @@ class MainViewModel @Inject constructor(
             if (currentDateRoutineList.isNotEmpty()) {
                 insertDateUseCase(sharedPreferenceCurrentDate)
             }
-            // 오늘날짜로 저장되어있는 거시기를 저장한다.
 
         }
         sharedPreferenceManager.setCurrentDate(getTodayDate())
