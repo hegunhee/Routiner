@@ -12,6 +12,7 @@
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:background="@color/white"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/floating_button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -24,6 +25,7 @@
             android:layout_height="0dp"
             app:layout_constraintBottom_toTopOf="@id/floating_button"
             app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/white"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
