@@ -1,6 +1,7 @@
 package com.hegunhee.routiner.model
 
 import com.hegunhee.routiner.data.entity.Date
+import com.hegunhee.routiner.data.entity.RepeatRoutine
 import com.hegunhee.routiner.data.entity.Review
 import com.hegunhee.routiner.data.entity.Routine
 import com.hegunhee.routiner.db.DateDao
@@ -54,5 +55,22 @@ class DefaultRepository(
     override suspend fun deleteReview(review: Review) {
         reviewDao.deleteReview(review)
     }
+
+    override suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutine) {
+        repeatRoutineDao.insertRepeatRoutine(repeatRoutine)
+    }
+
+    override fun getAllRepeatRoutineByFlow(): Flow<List<RepeatRoutine>> {
+        return repeatRoutineDao.getAllRepeatRoutineByFlow()
+    }
+
+    override suspend fun getAllRepeatRoutine(): List<RepeatRoutine> {
+        return repeatRoutineDao.getAllRepeatRoutine()
+    }
+
+    override suspend fun deleteRepeatRoutine(repeatRoutine: RepeatRoutine) {
+        repeatRoutineDao.deleteRepeatRoutine(repeatRoutine)
+    }
+
 
 }

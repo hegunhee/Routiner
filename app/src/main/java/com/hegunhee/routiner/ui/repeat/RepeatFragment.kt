@@ -16,9 +16,9 @@ import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_repeat){
+class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_repeat) {
 
-    private val viewModel : RepeatViewModel by viewModels()
+    private val viewModel: RepeatViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,19 +30,24 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
 
     }
 
-    private fun initObserver() = viewModel.clickEvent.observe(viewLifecycleOwner){
-        when(it){
-            ClickEvent.Uninitalized -> {}
-            ClickEvent.Clicked -> {
-                showRepeatDialog()
-                viewModel.finishClick()
+    private fun initObserver() {
+        viewModel.clickEvent.observe(viewLifecycleOwner) {
+            when (it) {
+                ClickEvent.Uninitalized -> {}
+                ClickEvent.Clicked -> {
+                    showRepeatDialog()
+                    viewModel.finishClick()
+                }
+                ClickEvent.Finished -> {}
             }
-            ClickEvent.Finished -> {}
-
+        }
+        viewModel.repeatRoutineListLiveData.observe(viewLifecycleOwner) {
+            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 
-    private fun showRepeatDialog(){
+
+    private fun showRepeatDialog() {
         DialogRepeatRoutineBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(this.root).show()
             cancelButton.setOnClickListener {
@@ -50,20 +55,23 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                 dialog.dismiss()
             }
             succeedButton.setOnClickListener {
-                if(routineEditText.text.toString().isEmpty()){
+                if (routineEditText.text.toString().isEmpty()) {
                     Toast.makeText(requireContext(), "내용이 비어있습니다.", Toast.LENGTH_SHORT).show()
-                }else if(dayOfWeekChipGroup.checkedChipIds.isEmpty()){
+                } else if (dayOfWeekChipGroup.checkedChipIds.isEmpty()) {
                     Toast.makeText(requireContext(), "요일을 선택해주세요", Toast.LENGTH_SHORT).show()
-                }else{
+                } else {
                     //날짜 변환 과정이 필요함
                     val dayOfWeekStringList = dayOfWeekChipGroup.checkedChipIds.map {
                         dayOfWeekChipGroup.findViewById<Chip>(it).text.toString()
                     }
-                    if(getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList){
+                    if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList) {
                         //오늘 날짜에 저장
                         Toast.makeText(requireContext(), "오늘날짜가 있었네용", Toast.LENGTH_SHORT).show()
                     }
-
+                    viewModel.insertRepeatRoutine(
+                        routineEditText.text.toString(),
+                        dayOfWeekStringList
+                    )
                     dialog.dismiss()
                 }
             }

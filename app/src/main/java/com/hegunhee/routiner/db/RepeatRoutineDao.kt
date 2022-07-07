@@ -1,9 +1,6 @@
 package com.hegunhee.routiner.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.hegunhee.routiner.data.entity.RepeatRoutine
 import kotlinx.coroutines.flow.Flow
 
@@ -18,4 +15,7 @@ interface RepeatRoutineDao {
 
     @Query("SELECT * FROM RepeatRoutine")
     suspend fun getAllRepeatRoutine() : List<RepeatRoutine>
+
+    @Delete
+    suspend fun deleteRepeatRoutine(repeatRoutine: RepeatRoutine)
 }
