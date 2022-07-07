@@ -7,7 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.hegunhee.routiner.db.SharedPreferenceManager
 import com.hegunhee.routiner.domain.GetRoutineListByDateUseCase
 import com.hegunhee.routiner.domain.InsertDateUseCase
-import com.hegunhee.routiner.util.getCurrentDate
+import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,13 +33,13 @@ class MainViewModel @Inject constructor(
         val sharedPreferenceCurrentDate = sharedPreferenceManager.getCurrentDate()
         if (sharedPreferenceCurrentDate == SharedPreferenceManager.CURRENT_DATE_DEFAULT_DATE) {
             _firstAppOpenEvent.postValue(FirstAppOpenEvent.OpenDialog)
-        } else if (sharedPreferenceCurrentDate != getCurrentDate()) {
+        } else if (sharedPreferenceCurrentDate != getTodayDate()) {
             val currentDateRoutineList = getRoutineListByDateUseCase(sharedPreferenceCurrentDate)
             if (currentDateRoutineList.isNotEmpty()) {
                 insertDateUseCase(sharedPreferenceCurrentDate)
             }
         }
-        sharedPreferenceManager.setCurrentDate(getCurrentDate())
+        sharedPreferenceManager.setCurrentDate(getTodayDate())
     }
 
     fun setInitNotiValue(notiValue : Boolean){

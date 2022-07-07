@@ -1,10 +1,9 @@
 package com.hegunhee.routiner.ui.daily
 
-import android.util.Log
 import androidx.lifecycle.*
 import com.hegunhee.routiner.data.entity.Routine
 import com.hegunhee.routiner.domain.*
-import com.hegunhee.routiner.util.getCurrentDate
+import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,7 +16,7 @@ class DailyViewModel @Inject constructor(
     private val deleteRoutineUseCase: DeleteRoutineUseCase
 ) : ViewModel() {
 
-    val dailyRoutineListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(getCurrentDate()).asLiveData()
+    val dailyRoutineListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(getTodayDate()).asLiveData()
 
     val recyclerViewVisible: LiveData<Boolean> = Transformations.map(dailyRoutineListLiveData) { dailyRoutineListLiveData.value?.isNotEmpty() }
 
@@ -42,7 +41,7 @@ class DailyViewModel @Inject constructor(
         if(isExistSameText){
 
         } else{
-            insertDailyRoutineUseCase(Routine(getCurrentDate(),text))
+            insertDailyRoutineUseCase(Routine(getTodayDate(),text))
         }
     }
 

@@ -4,11 +4,10 @@ import android.util.Log
 import androidx.lifecycle.*
 import com.hegunhee.routiner.data.entity.Review
 import com.hegunhee.routiner.domain.*
-import com.hegunhee.routiner.util.getCurrentDate
+import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -83,7 +82,7 @@ class RecordViewModel @Inject constructor(
     fun setLeftData() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
             val leftDate =
-                getAllDateUseCase().map { it.date }.filter { it < getCurrentDate() }.maxOrNull()
+                getAllDateUseCase().map { it.date }.filter { it < getTodayDate() }.maxOrNull()
             if (leftDate == null) {
                 Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. INIT")
                 // 존재하지 않습니다~
@@ -110,7 +109,7 @@ class RecordViewModel @Inject constructor(
     fun setRightDate() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
             val rightDate =
-                getAllDateUseCase().map { it.date }.filter { it > getCurrentDate() }.minOrNull()
+                getAllDateUseCase().map { it.date }.filter { it > getTodayDate() }.minOrNull()
             if (rightDate == null) {
                 Log.d("currentDateTest", "조회할 이후 데이터가 없습니다. INIT")
                 // 존재하지 않습니다~

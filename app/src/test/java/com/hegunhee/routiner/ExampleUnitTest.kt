@@ -1,6 +1,6 @@
 package com.hegunhee.routiner
 
-import com.hegunhee.routiner.util.getCurrentDate
+import com.hegunhee.routiner.util.getTodayDate
 import org.junit.Test
 import org.junit.Assert.*
 
@@ -17,6 +17,6 @@ class ExampleUnitTest {
 
     @Test
     fun `get current date`(){
-        assertEquals(20220626, getCurrentDate())
+        assertEquals(20220626, getTodayDate())
     }
 }
