@@ -12,7 +12,8 @@ import com.hegunhee.routiner.databinding.RepeatRecordItemBinding
 import com.hegunhee.routiner.util.removebracket
 
 class RepeatAdapter(
-    private var repeatRoutineList: List<RepeatRoutine>
+    private var repeatRoutineList: List<RepeatRoutine>,
+    val clickRoot : (RepeatRoutine) -> Unit
 ) : RecyclerView.Adapter<RepeatAdapter.RepeatViewHolder>() {
 
     inner class RepeatViewHolder(private val binding: RepeatRecordItemBinding) :
@@ -21,6 +22,9 @@ class RepeatAdapter(
         fun bind(repeatRoutine: RepeatRoutine) = with(binding) {
             title.text = repeatRoutine.text
             chip.text = repeatRoutine.dayOfWeekList.toString().removebracket()
+            root.setOnClickListener{
+                clickRoot(repeatRoutine)
+            }
         }
     }
 

@@ -52,6 +52,7 @@
                     android:textColor="@color/black"
                     android:textSize="15dp"
                     tools:text="월 화"
+                    android:clickable="false"
                     android:backgroundTint="@color/teal_200"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>

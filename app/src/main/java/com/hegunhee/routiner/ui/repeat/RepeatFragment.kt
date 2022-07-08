@@ -8,6 +8,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.google.android.material.chip.Chip
 import com.hegunhee.routiner.R
+import com.hegunhee.routiner.data.entity.RepeatRoutine
+import com.hegunhee.routiner.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.routiner.databinding.DialogRepeatRoutineBinding
 import com.hegunhee.routiner.databinding.FragmentRepeatBinding
 import com.hegunhee.routiner.ui.BaseFragment
@@ -20,7 +22,13 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
 
     private val viewModel: RepeatViewModel by viewModels()
 
-    private val adapter : RepeatAdapter by lazy { RepeatAdapter(listOf()) }
+    private val adapter: RepeatAdapter by lazy {
+        RepeatAdapter(listOf()) { repeatRoutine ->
+            clickAdapterItem(
+                repeatRoutine
+            )
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,9 +53,9 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
             }
         }
         viewModel.repeatRoutineListLiveData.observe(viewLifecycleOwner) {
-            if(it.isEmpty()){
+            if (it.isEmpty()) {
 
-            }else{
+            } else {
                 adapter.setList(it)
             }
         }
@@ -80,5 +88,16 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                 }
             }
         }
+    }
+
+    private fun clickAdapterItem(repeatRoutine: RepeatRoutine) {
+        DialogClickRepeatRecordItemBinding.inflate(layoutInflater).run {
+            val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
+            deleteTextView.setOnClickListener{
+                viewModel.deleteRepeatRoutine(repeatRoutine.text)
+                dialog.dismiss()
+            }
+        }
+        Toast.makeText(requireContext(), repeatRoutine.toString(), Toast.LENGTH_SHORT).show()
     }
 }
