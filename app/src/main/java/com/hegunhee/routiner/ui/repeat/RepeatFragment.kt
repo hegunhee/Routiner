@@ -62,12 +62,22 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
     }
 
 
-    private fun showRepeatDialog() {
+    private fun showRepeatDialog(isRevise : Boolean = false, repeatRoutine: RepeatRoutine? = null) {
         DialogRepeatRoutineBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(this.root).show()
             cancelButton.setOnClickListener {
                 Toast.makeText(requireContext(), "취소버튼을 누르셨습니다.", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
+            }
+            repeatRoutine?.let {
+                if(isRevise){
+                    routineEditText.setText(it.text)
+                    routineEditText.isEnabled = false
+                    val chips = arrayOf<Chip>(mondayChip,tuesdayChip,wednesdayChip,thursdayChip,fridayChip,saturdayChip,sundayChip)
+                    for(chip in chips){
+                        if(chip.text in it.dayOfWeekList) chip.isChecked = true
+                    }
+                }
             }
 
             succeedButton.setOnClickListener {
@@ -80,7 +90,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     val dayOfWeekStringList = dayOfWeekChipGroup.checkedChipIds.map {
                         dayOfWeekChipGroup.findViewById<Chip>(it).text.toString()
                     }
-                    if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList) {
+                    if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList && !isRevise) {
                         viewModel.insertDailyRoutine(repeatRoutineText)
                     }
                     viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeekStringList)
@@ -94,7 +104,12 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
 
         DialogClickRepeatRecordItemBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
+            reviseTextView.setOnClickListener{
+                showRepeatDialog(true,repeatRoutine)
+                dialog.dismiss()
+            }
             deleteTextView.setOnClickListener{
+
                 viewModel.deleteRepeatRoutine(repeatRoutine.text)
                 dialog.dismiss()
             }
