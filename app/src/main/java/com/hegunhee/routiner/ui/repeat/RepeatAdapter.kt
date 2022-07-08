@@ -35,9 +35,7 @@ class RepeatAdapter(
                     }
                 }
             }
-
         }
-        //함수를 만들어서
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepeatViewHolder {
