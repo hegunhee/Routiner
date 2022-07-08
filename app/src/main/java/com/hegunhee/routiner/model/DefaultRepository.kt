@@ -68,8 +68,8 @@ class DefaultRepository(
         return repeatRoutineDao.getAllRepeatRoutine()
     }
 
-    override suspend fun deleteRepeatRoutine(repeatRoutine: RepeatRoutine) {
-        repeatRoutineDao.deleteRepeatRoutine(repeatRoutine)
+    override suspend fun deleteRepeatRoutine(text: String) {
+        repeatRoutineDao.deleteRepeatRoutine(text)
     }
 
     override suspend fun insertAllRoutine(routineList: List<Routine>) {

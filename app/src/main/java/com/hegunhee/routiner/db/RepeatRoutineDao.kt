@@ -16,7 +16,7 @@ interface RepeatRoutineDao {
     @Query("SELECT * FROM RepeatRoutine")
     suspend fun getAllRepeatRoutine() : List<RepeatRoutine>
 
-    @Delete
-    suspend fun deleteRepeatRoutine(repeatRoutine: RepeatRoutine)
+    @Query("DELETE FROM RepeatRoutine WHERE text = :text")
+    suspend fun deleteRepeatRoutine(text : String)
 
 }

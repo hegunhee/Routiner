@@ -11,7 +11,7 @@ import javax.inject.Inject
 @Module
 class DeleteRepeatRoutineUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
-    suspend operator fun invoke(repeatRoutine: RepeatRoutine) {
-        repository.deleteRepeatRoutine(repeatRoutine)
+    suspend operator fun invoke(text: String) {
+        repository.deleteRepeatRoutine(text)
     }
 }

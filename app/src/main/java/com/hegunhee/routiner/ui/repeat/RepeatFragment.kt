@@ -1,6 +1,7 @@
 package com.hegunhee.routiner.ui.repeat
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -19,10 +20,13 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
 
     private val viewModel: RepeatViewModel by viewModels()
 
+    private val adapter : RepeatAdapter by lazy { RepeatAdapter(listOf()) }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             viewmodel = viewModel
+            recyclerView.adapter = adapter
         }
         (requireActivity() as MainActivity).supportActionBar?.title = "반복 루틴 설정"
         initObserver()
@@ -41,7 +45,11 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
             }
         }
         viewModel.repeatRoutineListLiveData.observe(viewLifecycleOwner) {
-            Toast.makeText(requireContext(), it.toString(), Toast.LENGTH_SHORT).show()
+            if(it.isEmpty()){
+
+            }else{
+                adapter.setList(it)
+            }
         }
     }
 
@@ -53,6 +61,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                 Toast.makeText(requireContext(), "취소버튼을 누르셨습니다.", Toast.LENGTH_SHORT).show()
                 dialog.dismiss()
             }
+
             succeedButton.setOnClickListener {
                 val repeatRoutineText = routineEditText.text.toString()
                 if (repeatRoutineText.isEmpty()) {
