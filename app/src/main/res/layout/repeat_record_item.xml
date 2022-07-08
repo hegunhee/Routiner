@@ -48,14 +48,75 @@
                 android:layout_height="match_parent">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip"
+                    android:id="@+id/monday_chip"
                     android:textColor="@color/black"
                     android:textSize="15dp"
-                    tools:text="월 화"
+                    android:text="월"
                     android:clickable="false"
                     android:backgroundTint="@color/teal_200"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/tuesday_chip"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:text="화"
+                    android:clickable="false"
+                    android:backgroundTint="@color/teal_200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/wednesday_chip"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:text="수"
+                    android:clickable="false"
+                    android:backgroundTint="@color/teal_200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/thursday_chip"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:text="목"
+                    android:clickable="false"
+                    android:backgroundTint="@color/teal_200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/friday_chip"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:text="금"
+                    android:clickable="false"
+                    android:backgroundTint="@color/teal_200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/saturday_chip"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:text="토"
+                    android:clickable="false"
+                    android:backgroundTint="@color/teal_200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/sunday_chip"
+                    android:textColor="@color/black"
+                    android:textSize="15dp"
+                    android:text="일"
+                    android:clickable="false"
+                    android:backgroundTint="@color/teal_200"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
             </com.google.android.material.chip.ChipGroup>
 
         </HorizontalScrollView>
