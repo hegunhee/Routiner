@@ -12,6 +12,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.hegunhee.routiner.R
 import com.hegunhee.routiner.databinding.ActivityMainBinding
 import com.hegunhee.routiner.databinding.DialogFirstOpenBinding
+import com.hegunhee.routiner.util.getTestTodayDate
+import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
