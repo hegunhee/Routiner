@@ -14,7 +14,7 @@ import javax.inject.Inject
 class RecordViewModel @Inject constructor(
     private val getAllDateUseCase: GetAllDateUseCase,
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
-    private val getReview: GetReviewUseCase,
+    private val getReviewUseCase: GetReviewUseCase,
     private val insertReviewUseCase: InsertReviewUseCase,
     private val deleteReviewUseCase: DeleteReviewUseCase
 
@@ -28,8 +28,7 @@ class RecordViewModel @Inject constructor(
     val currentDate: LiveData<String>
         get() = _currentDate
 
-    private var _currentRoutineList: MutableLiveData<RoutineListState> =
-        MutableLiveData(RoutineListState.Uninitalized)
+    private var _currentRoutineList: MutableLiveData<RoutineListState> = MutableLiveData(RoutineListState.Uninitalized)
     val currentRoutineListState: LiveData<RoutineListState>
         get() = _currentRoutineList
 
@@ -48,6 +47,7 @@ class RecordViewModel @Inject constructor(
     val review: LiveData<ReviewState>
         get() = _review
 
+
     private var _reviewIsEmpty: MutableLiveData<Boolean> = MutableLiveData(true)
     val reviewIsEmpty: LiveData<Boolean>
         get() = _reviewIsEmpty
@@ -62,7 +62,6 @@ class RecordViewModel @Inject constructor(
 
 
     val review_editText: MutableLiveData<String> = MutableLiveData("")
-
 
     init {
         initFun()
@@ -138,7 +137,7 @@ class RecordViewModel @Inject constructor(
     }
 
     private suspend fun setReviewExist(date: Int) {
-        getReview(date).let {
+        getReviewUseCase(date).let {
             if (it.isEmpty()) {
                 _review.postValue(ReviewState.Empty)
                 _reviewIsEmpty.postValue(true)
@@ -152,7 +151,6 @@ class RecordViewModel @Inject constructor(
     fun addReview() = viewModelScope.launch(Dispatchers.IO) {
         review_editText.value?.toString()?.let { review_text ->
             if (review_text == "") {
-                Log.d("two_way_binding", "it is blank")
                 // 빈칸일경우
             } else {
                 currentDate.value?.let { date ->

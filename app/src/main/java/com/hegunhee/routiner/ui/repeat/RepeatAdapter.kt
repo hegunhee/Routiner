@@ -39,13 +39,7 @@ class RepeatAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepeatViewHolder {
-        return RepeatViewHolder(
-            RepeatRecordItemBinding.inflate(
-                LayoutInflater.from(parent.context),
-                parent,
-                false
-            )
-        )
+        return RepeatViewHolder(RepeatRecordItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
 
     override fun onBindViewHolder(holder: RepeatViewHolder, position: Int) {

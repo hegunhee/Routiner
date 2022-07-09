@@ -37,10 +37,8 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 RoutineListState.Uninitalized -> {
                 }
                 is RoutineListState.Success -> {
-                    // 여기서 이제 RecyclerView의 데이터를 변경줌
                     adapter.setList(it.routineList)
                 }
-
             }
         }
     }

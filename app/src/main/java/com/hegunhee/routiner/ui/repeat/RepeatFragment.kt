@@ -65,10 +65,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
     private fun showRepeatDialog(isRevise : Boolean = false, repeatRoutine: RepeatRoutine? = null) {
         DialogRepeatRoutineBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(this.root).show()
-            cancelButton.setOnClickListener {
-                Toast.makeText(requireContext(), "취소버튼을 누르셨습니다.", Toast.LENGTH_SHORT).show()
-                dialog.dismiss()
-            }
+
             repeatRoutine?.let {
                 if(isRevise){
                     routineEditText.setText(it.text)
@@ -79,6 +76,8 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     }
                 }
             }
+
+            cancelButton.setOnClickListener { dialog.dismiss() }
 
             succeedButton.setOnClickListener {
                 val repeatRoutineText = routineEditText.text.toString()

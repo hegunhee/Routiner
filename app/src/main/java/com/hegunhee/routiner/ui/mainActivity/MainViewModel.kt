@@ -6,7 +6,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hegunhee.routiner.db.SharedPreferenceManager
 import com.hegunhee.routiner.domain.GetRoutineListByDateUseCase
-import com.hegunhee.routiner.domain.InsertAllDailyRoutineUseCase
+import com.hegunhee.routiner.domain.InsertAllDailyRoutineFromRepeatRoutineUseCase
 import com.hegunhee.routiner.domain.InsertDateUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
     private val sharedPreferenceManager: SharedPreferenceManager,
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
     private val insertDateUseCase: InsertDateUseCase,
-    private val insertAllDailyRoutineUseCase: InsertAllDailyRoutineUseCase
+    private val insertAllDailyRoutineFromRepeatRoutineUseCase: InsertAllDailyRoutineFromRepeatRoutineUseCase
 ) : ViewModel() {
 
     init {
@@ -36,23 +36,24 @@ class MainViewModel @Inject constructor(
         if (sharedPreferenceCurrentDate == SharedPreferenceManager.CURRENT_DATE_DEFAULT_DATE) {
             _firstAppOpenEvent.postValue(FirstAppOpenEvent.OpenDialog)
         } else if (sharedPreferenceCurrentDate != getTodayDate()) {
-            insertAllDailyRoutineUseCase(getTodayDayOfWeekFormatedKorean())
+            insertAllDailyRoutineFromRepeatRoutineUseCase(getTodayDayOfWeekFormatedKorean())
             val currentDateRoutineList = getRoutineListByDateUseCase(sharedPreferenceCurrentDate)
             if (currentDateRoutineList.isNotEmpty()) {
                 insertDateUseCase(sharedPreferenceCurrentDate)
             }
-
         }
         sharedPreferenceManager.setCurrentDate(getTodayDate())
+    }
+
+    fun setEventFinish() = viewModelScope.launch {
+        _firstAppOpenEvent.postValue(FirstAppOpenEvent.Finished)
     }
 
     fun setInitNotiValue(notiValue : Boolean){
         sharedPreferenceManager.setNofiSendValue(notiValue)
     }
 
-    fun setEventFinish() = viewModelScope.launch {
-        _firstAppOpenEvent.postValue(FirstAppOpenEvent.Finished)
-    }
+
 
 
 }

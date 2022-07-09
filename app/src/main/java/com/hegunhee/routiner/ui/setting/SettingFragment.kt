@@ -22,9 +22,10 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
             notiSwitchButton.isChecked = sharedPreferenceManager.getNotiSendValue()
         }
         initListener()
+
     }
     private fun initListener() = with(binding){
-        notiSwitchButton.setOnCheckedChangeListener { compoundButton, switch ->
+        notiSwitchButton.setOnCheckedChangeListener { _, switch ->
             sharedPreferenceManager.setNofiSendValue(switch)
             if(switch){
                 Toast.makeText(requireContext(), "알람 수신이 설정되었습니다.", Toast.LENGTH_SHORT).show()

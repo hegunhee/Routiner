@@ -49,7 +49,7 @@ class DailyViewModel @Inject constructor(
         deleteRoutineUseCase(id)
     }
 
-    fun toggleData(routine: Routine) = viewModelScope.launch(Dispatchers.IO) {
+    fun toggleFinished(routine: Routine) = viewModelScope.launch(Dispatchers.IO) {
         insertDailyRoutineUseCase(routine)
     }
 

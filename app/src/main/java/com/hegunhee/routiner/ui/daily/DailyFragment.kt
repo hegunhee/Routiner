@@ -20,7 +20,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
     private val adapter : DailyAdapter by lazy {DailyAdapter(
         listOf(),
         deleteRoutine = { id -> viewModel.deleteData(id)},
-        insertRoutine = {routine -> viewModel.toggleData(routine)}
+        toggleFinishedRoutine = { routine -> viewModel.toggleFinished(routine)}
         )}
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -28,8 +28,12 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             viewmodel = viewModel
             dailyRecyclerView.adapter = adapter
         }
-        (requireActivity() as MainActivity).supportActionBar?.title = "오늘의 루틴"
+        setActionBarTitle()
         initObserver()
+    }
+
+    private fun setActionBarTitle(){
+        (requireActivity() as MainActivity).supportActionBar?.title = "오늘의 루틴"
     }
 
     private fun initObserver(){

@@ -1,6 +1,5 @@
 package com.hegunhee.routiner.ui.daily
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,7 +10,7 @@ import com.hegunhee.routiner.databinding.DailyItemBinding
 class DailyAdapter(
     private var routineList : List<Routine>,
     val deleteRoutine : (Int) -> Unit,
-    val insertRoutine : (Routine) -> Unit
+    val toggleFinishedRoutine : (Routine) -> Unit
 ) : RecyclerView.Adapter<DailyAdapter.DailyViewHolder>() {
 
     inner class DailyViewHolder(private val binding : DailyItemBinding) : RecyclerView.ViewHolder(binding.root){
@@ -23,7 +22,7 @@ class DailyAdapter(
             }
             check.visibility = if(routine.isFinished) View.VISIBLE else View.INVISIBLE
             title.setOnClickListener{
-                insertRoutine(routine.copy(isFinished = !routine.isFinished))
+                toggleFinishedRoutine(routine.copy(isFinished = !routine.isFinished))
             }
         }
     }
