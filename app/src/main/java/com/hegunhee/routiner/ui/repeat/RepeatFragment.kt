@@ -113,6 +113,5 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                 dialog.dismiss()
             }
         }
-        Toast.makeText(requireContext(), repeatRoutine.toString(), Toast.LENGTH_SHORT).show()
     }
 }
