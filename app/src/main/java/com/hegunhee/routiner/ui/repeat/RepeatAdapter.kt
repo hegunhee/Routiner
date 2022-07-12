@@ -19,6 +19,10 @@ class RepeatAdapter(
         fun bind(repeatRoutine: RepeatRoutine) = with(binding) {
             title.text = repeatRoutine.text
             setVisible(repeatRoutine.dayOfWeekList)
+            chipGroup.setOnClickListener{
+                clickRoot(repeatRoutine)
+            }
+
             root.setOnClickListener{
                 clickRoot(repeatRoutine)
             }
