@@ -1,9 +1,14 @@
 # Routiner  
-## 2022.06.21 ~ ing  
+## 2022.06.21 ~ 2022.07.11(앱출시) 지속적으로 업데이트중  
 ## 소개  
 루티너는 습관을 등록하고 나중에 확인할 수 있는 앱입니다.  
 ## 앱 사진  
-  
+![routiner_main](https://user-images.githubusercontent.com/57277631/178176431-c87501f5-396b-400b-b2e5-79c754965fde.PNG)  
+오늘 루틴    
+![record_routine](https://user-images.githubusercontent.com/57277631/178176436-b04eb935-91cf-4006-bd01-6b8b316e732e.jpg)  
+지난 기록  
+![repeat_routine](https://user-images.githubusercontent.com/57277631/178176451-54c389ed-66f9-4563-a245-1360058f25f7.jpg)  
+반복 루틴  
 ## 사용된 라이브러리  
 * JetPack  
   * AAC-ViewModel  
@@ -38,8 +43,9 @@
     * 기록 열람  
 4. Core Routine(매일 자동으로 등록되는 루틴)  
 
-    -------------------------------------------  
 5. 앱 출시  
+
+    -------------------------------------------  
 6. Google Login(Firebase)  
 7. 매일 오전 10시 오후 10시에 알람이 가는 notification  
 8. Category 설정  
