@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.chip.Chip
 import com.hegunhee.routiner.data.entity.RepeatRoutine
 import com.hegunhee.routiner.databinding.RepeatRecordItemBinding
+import com.hegunhee.routiner.util.setRepeatDefaultColor
 
 class RepeatAdapter(
     private var repeatRoutineList: List<RepeatRoutine>,
@@ -35,7 +36,7 @@ class RepeatAdapter(
                 list.forEach {
                     chipGroup.addView(Chip(chipGroup.context).apply {
                         text = it
-
+                        setRepeatDefaultColor()
                     })
                 }
             }
