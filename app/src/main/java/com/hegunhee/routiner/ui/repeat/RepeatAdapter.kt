@@ -18,7 +18,8 @@ class RepeatAdapter(
 
         fun bind(repeatRoutine: RepeatRoutine) = with(binding) {
             title.text = repeatRoutine.text
-            setVisible(repeatRoutine.dayOfWeekList)
+            chipGroup.removeAllViews()
+            addChip(repeatRoutine.dayOfWeekList)
             chipGroup.setOnClickListener{
                 clickRoot(repeatRoutine)
             }
@@ -28,15 +29,14 @@ class RepeatAdapter(
             }
         }
 
-        private fun setVisible(list : List<String>){
+
+        private fun addChip(list : List<String>){
             binding.run {
-                val chipList = arrayOf<Chip>(mondayChip,tuesdayChip,wednesdayChip,thursdayChip,fridayChip,saturdayChip,sundayChip)
-                for(chip in chipList){
-                    if(chip.text.toString() in list){
-                        chip.visibility = View.VISIBLE
-                    }else{
-                        chip.visibility = View.GONE
-                    }
+                list.forEach {
+                    chipGroup.addView(Chip(chipGroup.context).apply {
+                        text = it
+
+                    })
                 }
             }
         }
