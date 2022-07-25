@@ -24,6 +24,20 @@
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="영어 공부하기" />
 
+    <com.google.android.material.chip.Chip
+        android:id="@+id/category_chip"
+        android:layout_width="wrap_content"
+        android:visibility="invisible"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:layout_constraintEnd_toStartOf="@id/check"
+        tools:text="안녕"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/teal_200"
+        android:textSize="20dp"
+        />
+
     <View
         android:id="@+id/check"
         android:layout_width="0dp"
