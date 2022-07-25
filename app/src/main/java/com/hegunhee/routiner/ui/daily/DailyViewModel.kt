@@ -1,6 +1,7 @@
 package com.hegunhee.routiner.ui.daily
 
 import androidx.lifecycle.*
+import com.hegunhee.routiner.data.entity.Category
 import com.hegunhee.routiner.data.entity.Routine
 import com.hegunhee.routiner.domain.*
 import com.hegunhee.routiner.util.getTodayDate
@@ -13,7 +14,8 @@ import javax.inject.Inject
 class DailyViewModel @Inject constructor(
     private val getAllDailyRoutineByFlowUseCase: GetAllDailyRoutineByFlowUseCase,
     private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
-    private val deleteRoutineUseCase: DeleteRoutineUseCase
+    private val deleteRoutineUseCase: DeleteRoutineUseCase,
+    private val insertCategoryUseCase: InsertCategoryUseCase
 ) : ViewModel() {
 
     val dailyRoutineListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(getTodayDate()).asLiveData()
@@ -57,7 +59,9 @@ class DailyViewModel @Inject constructor(
         _onClickEvent.postValue(Event.EndClick)
     }
 
-
+    fun insertCategory(category : String) = viewModelScope.launch(Dispatchers.IO) {
+        insertCategoryUseCase(Category(category))
+    }
 
 
 }

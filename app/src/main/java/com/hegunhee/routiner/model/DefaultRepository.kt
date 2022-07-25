@@ -1,9 +1,6 @@
 package com.hegunhee.routiner.model
 
-import com.hegunhee.routiner.data.entity.Date
-import com.hegunhee.routiner.data.entity.RepeatRoutine
-import com.hegunhee.routiner.data.entity.Review
-import com.hegunhee.routiner.data.entity.Routine
+import com.hegunhee.routiner.data.entity.*
 import com.hegunhee.routiner.db.dao.*
 import kotlinx.coroutines.flow.Flow
 
@@ -72,6 +69,10 @@ class DefaultRepository(
 
     override suspend fun insertAllRoutine(routineList: List<Routine>) {
         routineDao.insertAllDailyRoutine(routineList)
+    }
+
+    override suspend fun insertCategory(category: Category) {
+        categoryDao.insertCategory(category)
     }
 
 

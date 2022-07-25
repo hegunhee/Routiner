@@ -1,9 +1,6 @@
 package com.hegunhee.routiner.model
 
-import com.hegunhee.routiner.data.entity.Date
-import com.hegunhee.routiner.data.entity.RepeatRoutine
-import com.hegunhee.routiner.data.entity.Review
-import com.hegunhee.routiner.data.entity.Routine
+import com.hegunhee.routiner.data.entity.*
 import kotlinx.coroutines.flow.Flow
 
 interface Repository {
@@ -37,4 +34,6 @@ interface Repository {
     suspend fun deleteRepeatRoutine(text: String)
 
     suspend fun insertAllRoutine(routineList: List<Routine>)
+
+    suspend fun insertCategory(category: Category)
 }
