@@ -4,17 +4,15 @@ import com.hegunhee.routiner.data.entity.Date
 import com.hegunhee.routiner.data.entity.RepeatRoutine
 import com.hegunhee.routiner.data.entity.Review
 import com.hegunhee.routiner.data.entity.Routine
-import com.hegunhee.routiner.db.dao.DateDao
-import com.hegunhee.routiner.db.dao.RepeatRoutineDao
-import com.hegunhee.routiner.db.dao.ReviewDao
-import com.hegunhee.routiner.db.dao.RoutineDao
+import com.hegunhee.routiner.db.dao.*
 import kotlinx.coroutines.flow.Flow
 
 class DefaultRepository(
     private val routineDao: RoutineDao,
     private val dateDao: DateDao,
     private val reviewDao: ReviewDao,
-    private val repeatRoutineDao: RepeatRoutineDao
+    private val repeatRoutineDao: RepeatRoutineDao,
+    private val categoryDao: CategoryDao
 ) : Repository {
     override fun getAllDailyRoutineByFlow(date: Int): Flow<List<Routine>> {
         return routineDao.getDailyRoutineByFlow(date)

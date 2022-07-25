@@ -1,9 +1,6 @@
 package com.hegunhee.routiner.di
 
-import com.hegunhee.routiner.db.dao.DateDao
-import com.hegunhee.routiner.db.dao.RepeatRoutineDao
-import com.hegunhee.routiner.db.dao.ReviewDao
-import com.hegunhee.routiner.db.dao.RoutineDao
+import com.hegunhee.routiner.db.dao.*
 import com.hegunhee.routiner.model.DefaultRepository
 import com.hegunhee.routiner.model.Repository
 import dagger.Module
@@ -22,8 +19,9 @@ class RepositoryModule {
         routineDao : RoutineDao,
         dateDao : DateDao,
         reviewDao: ReviewDao,
-        repeatRoutineDao: RepeatRoutineDao
+        repeatRoutineDao: RepeatRoutineDao,
+        categoryDao: CategoryDao
     ) : Repository {
-        return DefaultRepository(routineDao,dateDao,reviewDao,repeatRoutineDao)
+        return DefaultRepository(routineDao,dateDao,reviewDao,repeatRoutineDao,categoryDao)
     }
 }
