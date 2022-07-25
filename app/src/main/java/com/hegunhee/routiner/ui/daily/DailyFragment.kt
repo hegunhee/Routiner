@@ -16,6 +16,7 @@ import com.hegunhee.routiner.databinding.DialogInsertCategoryBinding
 import com.hegunhee.routiner.databinding.FragmentDailyBinding
 import com.hegunhee.routiner.ui.BaseFragment
 import com.hegunhee.routiner.ui.mainActivity.MainActivity
+import com.hegunhee.routiner.util.addChip
 import com.hegunhee.routiner.util.setRepeatDefaultColor
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,6 +54,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             }
         }
         viewModel.dailyRoutineListLiveData.observe(viewLifecycleOwner){
+            Log.d("Category",it.toString())
             adapter.setRoutineList(it)
         }
     }
@@ -61,10 +63,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
         DialogDailyRoutineBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
             viewModel.categoryList.value?.forEach {
-                categoryGroup.addView(Chip(requireContext()).apply {
-                    text = it.name
-                    setRepeatDefaultColor()
-                })
+                categoryGroup.addChip(it.name)
             }
             cancelButton.setOnClickListener {
                 dialog.dismiss()
@@ -74,7 +73,14 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                 if(routineText == ""){
                     Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 }else{
-                    viewModel.insertRoutine(routineText.trim())
+                    if(categoryGroup.checkedChipIds == emptyList<Int>()){
+                        viewModel.insertRoutine(routineText)
+                    }else{
+                        val category = categoryGroup.checkedChipIds.map {
+                            categoryGroup.findViewById<Chip>(it).text.toString()
+                        }.first()
+                        viewModel.insertRoutine(routineText,category = category)
+                    }
                     dialog.dismiss()
                 }
             }
@@ -93,19 +99,17 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                 dialog.dismiss()
             }
             succeedButton.setOnClickListener {
-                val categoryText = categoryEditText.text.toString()
+                val categoryText = categoryEditText.text.toString().trim()
                 if(categoryText == ""){
                     Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 }else{
                     viewModel.insertCategory(categoryText)
-                    chipGroup.addView(Chip(requireContext()).apply {
-                        text = categoryText
-                        setRepeatDefaultColor()
-                    })
+                    chipGroup.addChip(categoryText)
                     viewModel.setCategory()
                     dialog.dismiss()
                 }
             }
         }
     }
+
 }

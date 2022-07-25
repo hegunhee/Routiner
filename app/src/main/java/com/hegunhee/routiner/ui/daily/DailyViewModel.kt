@@ -48,12 +48,12 @@ class DailyViewModel @Inject constructor(
         _onClickEvent.postValue(Event.Clicked)
     }
 
-    fun insertRoutine(text : String) = viewModelScope.launch(Dispatchers.IO) {
+    fun insertRoutine(text : String,category : String = "") = viewModelScope.launch(Dispatchers.IO) {
         val isExistSameText : Boolean = dailyRoutineListLiveData.value?.filter { it.text == text }?.size != 0
         if(isExistSameText){
 
         } else{
-            insertDailyRoutineUseCase(Routine(getTodayDate(),text))
+            insertDailyRoutineUseCase(Routine(getTodayDate(),text,category = category))
         }
     }
 
