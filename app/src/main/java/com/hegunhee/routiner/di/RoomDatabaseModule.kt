@@ -3,6 +3,10 @@ package com.hegunhee.routiner.di
 import android.content.Context
 import androidx.room.Room
 import com.hegunhee.routiner.db.*
+import com.hegunhee.routiner.db.dao.DateDao
+import com.hegunhee.routiner.db.dao.RepeatRoutineDao
+import com.hegunhee.routiner.db.dao.ReviewDao
+import com.hegunhee.routiner.db.dao.RoutineDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,25 +26,25 @@ class RoomDatabaseModule {
 
     @Singleton
     @Provides
-    fun provideRoutineDao(database : RoutinerDatabase) : RoutineDao{
+    fun provideRoutineDao(database : RoutinerDatabase) : RoutineDao {
         return database.routineDao()
     }
 
     @Singleton
     @Provides
-    fun provideDateDao(database : RoutinerDatabase) : DateDao{
+    fun provideDateDao(database : RoutinerDatabase) : DateDao {
         return database.dateDao()
     }
 
     @Singleton
     @Provides
-    fun provideReviewDao(database: RoutinerDatabase) : ReviewDao{
+    fun provideReviewDao(database: RoutinerDatabase) : ReviewDao {
         return database.reviewDao()
     }
 
     @Singleton
     @Provides
-    fun provideRepeatRoutineDao(database: RoutinerDatabase) : RepeatRoutineDao{
+    fun provideRepeatRoutineDao(database: RoutinerDatabase) : RepeatRoutineDao {
         return database.repeatRoutineDao()
     }
 }

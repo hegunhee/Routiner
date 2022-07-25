@@ -4,10 +4,10 @@ import com.hegunhee.routiner.data.entity.Date
 import com.hegunhee.routiner.data.entity.RepeatRoutine
 import com.hegunhee.routiner.data.entity.Review
 import com.hegunhee.routiner.data.entity.Routine
-import com.hegunhee.routiner.db.DateDao
-import com.hegunhee.routiner.db.RepeatRoutineDao
-import com.hegunhee.routiner.db.ReviewDao
-import com.hegunhee.routiner.db.RoutineDao
+import com.hegunhee.routiner.db.dao.DateDao
+import com.hegunhee.routiner.db.dao.RepeatRoutineDao
+import com.hegunhee.routiner.db.dao.ReviewDao
+import com.hegunhee.routiner.db.dao.RoutineDao
 import kotlinx.coroutines.flow.Flow
 
 class DefaultRepository(

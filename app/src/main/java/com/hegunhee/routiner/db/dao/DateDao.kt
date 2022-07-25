@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.db
+package com.hegunhee.routiner.db.dao
 
 import androidx.room.Dao
 import androidx.room.Insert
