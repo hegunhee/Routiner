@@ -2,6 +2,7 @@ package com.hegunhee.routiner.ui.daily
 
 import android.content.DialogInterface
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.Toast
@@ -59,7 +60,12 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
     private fun insertData(){
         DialogDailyRoutineBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
-            // 카테고리를 추가하는 로직이 필요함
+            viewModel.categoryList.value?.forEach {
+                categoryGroup.addView(Chip(requireContext()).apply {
+                    text = it.name
+                    setRepeatDefaultColor()
+                })
+            }
             cancelButton.setOnClickListener {
                 dialog.dismiss()
             }
@@ -68,7 +74,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                 if(routineText == ""){
                     Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 }else{
-                    viewModel.insertRoutine(routineText)
+                    viewModel.insertRoutine(routineText.trim())
                     dialog.dismiss()
                 }
             }
@@ -96,6 +102,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                         text = categoryText
                         setRepeatDefaultColor()
                     })
+                    viewModel.setCategory()
                     dialog.dismiss()
                 }
             }

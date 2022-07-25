@@ -5,6 +5,7 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.hegunhee.routiner.data.entity.Category
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface CategoryDao {

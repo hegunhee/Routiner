@@ -75,5 +75,9 @@ class DefaultRepository(
         categoryDao.insertCategory(category)
     }
 
+    override suspend fun getAllCategory(): List<Category> {
+        return categoryDao.getAllCategory()
+    }
+
 
 }

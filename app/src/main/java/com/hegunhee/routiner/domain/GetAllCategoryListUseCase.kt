@@ -6,14 +6,15 @@ import com.hegunhee.routiner.model.Repository
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
 @InstallIn(SingletonComponent::class)
 @Module
-class InsertCategoryUseCase @Inject constructor(private val repository: Repository)  : UseCase{
+class GetAllCategoryListUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
-    suspend operator fun invoke(category: Category){
-        Log.d("Category",category.toString() +"insertCategory")
-        repository.insertCategory(category)
+    suspend operator fun invoke() : List<Category>{
+        Log.d("Category",repository.getAllCategory().toString() +"GetAllUseCase")
+        return repository.getAllCategory()
     }
 }

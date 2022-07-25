@@ -7,7 +7,9 @@ import com.hegunhee.routiner.domain.*
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel
@@ -15,12 +17,17 @@ class DailyViewModel @Inject constructor(
     private val getAllDailyRoutineByFlowUseCase: GetAllDailyRoutineByFlowUseCase,
     private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
     private val deleteRoutineUseCase: DeleteRoutineUseCase,
-    private val insertCategoryUseCase: InsertCategoryUseCase
+    private val insertCategoryUseCase: InsertCategoryUseCase,
+    private val getAllCategoryListUseCase: GetAllCategoryListUseCase
 ) : ViewModel() {
 
     val dailyRoutineListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(getTodayDate()).asLiveData()
 
     val recyclerViewVisible: LiveData<Boolean> = Transformations.map(dailyRoutineListLiveData) { dailyRoutineListLiveData.value?.isNotEmpty() }
+
+    private var _categoryList : MutableLiveData<List<Category>> = MutableLiveData(listOf())
+    val categoryList : LiveData<List<Category>>
+    get() = _categoryList
 
     private var _onClickEvent : MutableLiveData<Event> = MutableLiveData(Event.Uninitalized)
     val onClickEvent : LiveData<Event>
@@ -34,6 +41,9 @@ class DailyViewModel @Inject constructor(
         }
     }
 
+    init {
+        setCategory()
+    }
     fun onClickRoutineInsert() = viewModelScope.launch{
         _onClickEvent.postValue(Event.Clicked)
     }
@@ -62,6 +72,13 @@ class DailyViewModel @Inject constructor(
     fun insertCategory(category : String) = viewModelScope.launch(Dispatchers.IO) {
         insertCategoryUseCase(Category(category))
     }
+
+
+    fun setCategory() = viewModelScope.launch(Dispatchers.IO) {
+        _categoryList.postValue(getAllCategoryListUseCase())
+
+    }
+
 
 
 }

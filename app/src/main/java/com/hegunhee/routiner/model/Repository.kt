@@ -36,4 +36,6 @@ interface Repository {
     suspend fun insertAllRoutine(routineList: List<Routine>)
 
     suspend fun insertCategory(category: Category)
+
+    suspend fun getAllCategory() : List<Category>
 }
