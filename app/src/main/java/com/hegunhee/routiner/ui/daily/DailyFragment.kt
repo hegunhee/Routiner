@@ -67,7 +67,14 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                     dialog.dismiss()
                 }
             }
+            insertCategoryChip.setOnClickListener {
+                insertCategory()
+            }
         }
         viewModel.endClick()
+    }
+
+    private fun insertCategory(){
+        Toast.makeText(requireContext(), "addCategory", Toast.LENGTH_SHORT).show()
     }
 }
