@@ -41,16 +41,17 @@
 3. 기록 탭  
     * 리뷰 등록  
     * 기록 열람  
-4. Core Routine(매일 자동으로 등록되는 루틴)  
+4. Core Routine(요일별로 자동으로 등록되는 루틴)  
 
 5. 앱 출시  
 
     -------------------------------------------  
-6. Google Login(Firebase)  
-7. 매일 오전 10시 오후 10시에 알람이 가는 notification  
-8. Category 설정  
+6. Category 설정  
     * 공부, 운동 이런 카테고리들을 설정
     * 만약 된다면 db 버전을 올려야함  
+7. 매일 오전 10시 오후 10시에 알람이 가는 notification  
+8. Google Login(Firebase)  
+
 
 ## 정보들  
 1. Entity들  
