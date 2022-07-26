@@ -29,6 +29,11 @@ class RepeatAdapter(
             root.setOnClickListener{
                 clickRoot(repeatRoutine)
             }
+            if(repeatRoutine.category == ""){
+            }else{
+                categoryChip.visibility = View.VISIBLE
+                categoryChip.text = repeatRoutine.category
+            }
         }
 
 

@@ -18,12 +18,28 @@
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/scrollView"
+        app:layout_constraintEnd_toStartOf="@id/category_chip"
         app:layout_constraintHorizontal_weight="2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         tools:text="영어 공부하기" />
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/category_chip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        app:layout_constraintStart_toEndOf="@id/title"
+        app:layout_constraintEnd_toStartOf="@id/scrollView"
+        app:layout_constraintVertical_chainStyle="packed"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:backgroundTint="@color/teal_200"
+        tools:text="영어"
+        android:visibility="invisible"
+        />
 
 
         <HorizontalScrollView
@@ -35,7 +51,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="3"
-            app:layout_constraintStart_toEndOf="@id/title"
+            app:layout_constraintStart_toEndOf="@id/category_chip"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             >
