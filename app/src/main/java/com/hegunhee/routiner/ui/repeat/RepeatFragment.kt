@@ -7,9 +7,11 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import com.google.android.material.chip.Chip
+import com.google.android.material.chip.ChipGroup
 import com.hegunhee.routiner.R
 import com.hegunhee.routiner.data.entity.RepeatRoutine
 import com.hegunhee.routiner.databinding.DialogClickRepeatRecordItemBinding
+import com.hegunhee.routiner.databinding.DialogInsertCategoryBinding
 import com.hegunhee.routiner.databinding.DialogRepeatRoutineBinding
 import com.hegunhee.routiner.databinding.FragmentRepeatBinding
 import com.hegunhee.routiner.ui.BaseFragment
@@ -115,7 +117,12 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     dialog.dismiss()
                 }
             }
+            insertCategoryChip.setOnClickListener {
+                categoryGroup
+                insertCategory(categoryGroup)
+            }
         }
+
     }
 
     private fun clickAdapterItem(repeatRoutine: RepeatRoutine) {
@@ -130,6 +137,25 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
 
                 viewModel.deleteRepeatRoutine(repeatRoutine.text)
                 dialog.dismiss()
+            }
+        }
+    }
+    private fun insertCategory(chipGroup: ChipGroup){
+        DialogInsertCategoryBinding.inflate(layoutInflater).run {
+            val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
+            cancelButton.setOnClickListener {
+                dialog.dismiss()
+            }
+            succeedButton.setOnClickListener {
+                val categoryText = categoryEditText.text.toString().trim()
+                if(categoryText == ""){
+                    Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
+                }else{
+                    viewModel.insertCategory(categoryText)
+                    chipGroup.addCheckableChip(categoryText)
+                    viewModel.setCategory()
+                    dialog.dismiss()
+                }
             }
         }
     }
