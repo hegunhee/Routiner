@@ -2,6 +2,7 @@ package com.hegunhee.routiner.ui.record
 
 import android.content.res.ColorStateList
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -21,6 +22,12 @@ class RecordAdapter(
                 ColorStateList.valueOf(ContextCompat.getColor(root.context,R.color.success_color))
             }else{
                 ColorStateList.valueOf(ContextCompat.getColor(root.context,R.color.fail_color))
+            }
+            if(routine.category ==""){
+
+            }else{
+                category.visibility = View.VISIBLE
+                category.text = routine.category
             }
         }
     }

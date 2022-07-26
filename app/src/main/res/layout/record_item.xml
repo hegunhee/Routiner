@@ -26,4 +26,18 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:text="영어 공부하기" />
 
+    <com.google.android.material.chip.Chip
+        android:id="@+id/category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/title"
+        app:layout_constraintBottom_toBottomOf="@id/title"
+        tools:text="영어"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        android:backgroundTint="@color/teal_200"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
