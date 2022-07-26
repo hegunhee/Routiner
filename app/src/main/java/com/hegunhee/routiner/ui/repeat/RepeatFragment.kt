@@ -14,6 +14,7 @@ import com.hegunhee.routiner.databinding.DialogRepeatRoutineBinding
 import com.hegunhee.routiner.databinding.FragmentRepeatBinding
 import com.hegunhee.routiner.ui.BaseFragment
 import com.hegunhee.routiner.ui.mainActivity.MainActivity
+import com.hegunhee.routiner.util.addCheckableChip
 import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -74,8 +75,13 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     for(chip in chips){
                         if(chip.text in it.dayOfWeekList) chip.isChecked = true
                     }
+
                 }
             }
+            viewModel.categoryList.value?.forEach {
+                categoryGroup.addCheckableChip(it.name)
+            }
+            // 추가
 
             cancelButton.setOnClickListener { dialog.dismiss() }
 
@@ -89,11 +95,22 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     val dayOfWeekStringList = dayOfWeekChipGroup.checkedChipIds.map {
                         dayOfWeekChipGroup.findViewById<Chip>(it).text.toString()
                     }
-                    if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList && !isRevise) {
-                        viewModel.insertDailyRoutine(repeatRoutineText)
-                        // 루틴을 추가
+                    val categoryText = categoryGroup.checkedChipIds.map {
+                        categoryGroup.findViewById<Chip>(it).text.toString()
                     }
-                    viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeekStringList)
+                    Toast.makeText(requireContext(), categoryText.toString(), Toast.LENGTH_SHORT).show()
+                    if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList && !isRevise) {
+                        if(categoryText.isEmpty()){
+                            viewModel.insertDailyRoutine(repeatRoutineText)
+                        }else{
+                            viewModel.insertDailyRoutine(repeatRoutineText, category = categoryText.first())
+                        }
+                    }
+                    if(categoryText.isEmpty()){
+                        viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeekStringList)
+                    }else{
+                        viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeekStringList, category = categoryText.first())
+                    }
                     // 반복에 다는것
                     dialog.dismiss()
                 }

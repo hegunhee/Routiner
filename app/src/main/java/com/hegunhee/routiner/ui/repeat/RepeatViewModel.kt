@@ -1,12 +1,10 @@
 package com.hegunhee.routiner.ui.repeat
 
 import androidx.lifecycle.*
+import com.hegunhee.routiner.data.entity.Category
 import com.hegunhee.routiner.data.entity.RepeatRoutine
 import com.hegunhee.routiner.data.entity.Routine
-import com.hegunhee.routiner.domain.DeleteRepeatRoutineUseCase
-import com.hegunhee.routiner.domain.GetAllRepeatRoutineByFlowUseCase
-import com.hegunhee.routiner.domain.InsertDailyRoutineUseCase
-import com.hegunhee.routiner.domain.InsertRepeatRoutineUseCase
+import com.hegunhee.routiner.domain.*
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -18,7 +16,9 @@ class RepeatViewModel @Inject constructor(
     private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase,
     private val getAllRepeatRoutineByFlowUseCase: GetAllRepeatRoutineByFlowUseCase,
     private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
-    private val deleteRepeatRoutineUseCase: DeleteRepeatRoutineUseCase
+    private val deleteRepeatRoutineUseCase: DeleteRepeatRoutineUseCase,
+    private val insertCategoryUseCase: InsertCategoryUseCase,
+    private val getAllCategoryListUseCase: GetAllCategoryListUseCase
 ): ViewModel() {
 
     val repeatRoutineListLiveData : LiveData<List<RepeatRoutine>> = getAllRepeatRoutineByFlowUseCase().asLiveData()
@@ -30,6 +30,13 @@ class RepeatViewModel @Inject constructor(
     val clickEvent
     get() = _clickEvent
 
+    private var _categoryList : MutableLiveData<List<Category>> = MutableLiveData(listOf())
+    val categoryList : LiveData<List<Category>>
+        get() = _categoryList
+
+    init {
+        setCategory()
+    }
     fun clickFloatingActionButton() {
         _clickEvent.value = ClickEvent.Clicked
     }
@@ -48,6 +55,17 @@ class RepeatViewModel @Inject constructor(
 
     fun deleteRepeatRoutine(text : String) = viewModelScope.launch(Dispatchers.IO){
         deleteRepeatRoutineUseCase(text)
+    }
+
+
+    fun insertCategory(category : String) = viewModelScope.launch(Dispatchers.IO) {
+        insertCategoryUseCase(Category(category))
+    }
+
+
+    fun setCategory() = viewModelScope.launch(Dispatchers.IO) {
+        _categoryList.postValue(getAllCategoryListUseCase())
+
     }
 
 
