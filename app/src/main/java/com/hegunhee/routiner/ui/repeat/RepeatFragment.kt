@@ -91,8 +91,10 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     }
                     if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList && !isRevise) {
                         viewModel.insertDailyRoutine(repeatRoutineText)
+                        // 루틴을 추가
                     }
                     viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeekStringList)
+                    // 반복에 다는것
                     dialog.dismiss()
                 }
             }

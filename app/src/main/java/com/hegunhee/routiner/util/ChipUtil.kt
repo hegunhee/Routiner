@@ -10,11 +10,18 @@ fun Chip.setRepeatDefaultColor() {
     chipBackgroundColor = ColorStateList.valueOf(ContextCompat.getColor(context, R.color.teal_200))
 }
 
-fun ChipGroup.addChip(text : String) {
+fun ChipGroup.addCheckableChip(text : String) {
     addView(Chip(context).apply {
         this.text = text
         setRepeatDefaultColor()
         isCheckable = true
 
+    })
+}
+
+fun ChipGroup.addChip(text : String){
+    addView(Chip(context).apply {
+        this.text = text
+        setRepeatDefaultColor()
     })
 }

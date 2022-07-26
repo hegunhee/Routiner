@@ -1,10 +1,8 @@
 package com.hegunhee.routiner.ui.daily
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
@@ -16,8 +14,7 @@ import com.hegunhee.routiner.databinding.DialogInsertCategoryBinding
 import com.hegunhee.routiner.databinding.FragmentDailyBinding
 import com.hegunhee.routiner.ui.BaseFragment
 import com.hegunhee.routiner.ui.mainActivity.MainActivity
-import com.hegunhee.routiner.util.addChip
-import com.hegunhee.routiner.util.setRepeatDefaultColor
+import com.hegunhee.routiner.util.addCheckableChip
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -63,7 +60,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
         DialogDailyRoutineBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
             viewModel.categoryList.value?.forEach {
-                categoryGroup.addChip(it.name)
+                categoryGroup.addCheckableChip(it.name)
             }
             cancelButton.setOnClickListener {
                 dialog.dismiss()
@@ -104,7 +101,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                     Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 }else{
                     viewModel.insertCategory(categoryText)
-                    chipGroup.addChip(categoryText)
+                    chipGroup.addCheckableChip(categoryText)
                     viewModel.setCategory()
                     dialog.dismiss()
                 }
