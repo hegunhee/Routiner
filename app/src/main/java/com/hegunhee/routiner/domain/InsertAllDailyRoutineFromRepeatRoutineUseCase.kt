@@ -15,7 +15,7 @@ class InsertAllDailyRoutineFromRepeatRoutineUseCase @Inject constructor(
     private val repository: Repository
 ) {
     suspend operator fun invoke(dayOfWeek: String) {
-        val list = getAllRepeatRoutineUseCase().filter { it.dayOfWeekList.contains(dayOfWeek) }.map { Routine(getTodayDate(), it.text) }
+        val list = getAllRepeatRoutineUseCase().filter { it.dayOfWeekList.contains(dayOfWeek) }.map { Routine(getTodayDate(), it.text, category = it.category) }
         if (list.isNotEmpty()) {
             repository.insertAllRoutine(list)
         }

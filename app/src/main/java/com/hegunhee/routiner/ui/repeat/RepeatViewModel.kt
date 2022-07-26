@@ -38,12 +38,12 @@ class RepeatViewModel @Inject constructor(
         _clickEvent.value = ClickEvent.Finished
     }
 
-    fun insertDailyRoutine(text : String) = viewModelScope.launch(Dispatchers.IO) {
-        insertDailyRoutineUseCase(Routine(getTodayDate(),text))
+    fun insertDailyRoutine(text : String,category : String = "") = viewModelScope.launch(Dispatchers.IO) {
+        insertDailyRoutineUseCase(Routine(getTodayDate(),text, category = category))
     }
 
-    fun insertRepeatRoutine(text : String, dayOfWeeks : List<String>)= viewModelScope.launch(Dispatchers.IO){
-        insertRepeatRoutineUseCase(RepeatRoutine(text,dayOfWeeks))
+    fun insertRepeatRoutine(text : String, dayOfWeeks : List<String>,category : String = "")= viewModelScope.launch(Dispatchers.IO){
+        insertRepeatRoutineUseCase(RepeatRoutine(text,dayOfWeeks,category = category))
     }
 
     fun deleteRepeatRoutine(text : String) = viewModelScope.launch(Dispatchers.IO){
