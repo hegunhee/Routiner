@@ -113,7 +113,6 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     }else{
                         viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeekStringList, category = categoryText.first())
                     }
-                    // 반복에 다는것
                     dialog.dismiss()
                 }
             }

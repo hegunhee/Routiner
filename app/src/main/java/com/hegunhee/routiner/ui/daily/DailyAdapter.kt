@@ -24,9 +24,7 @@ class DailyAdapter(
             title.setOnClickListener{
                 toggleFinishedRoutine(routine.copy(isFinished = !routine.isFinished))
             }
-            if(routine.category == ""){
-
-            }else{
+            if(routine.category != ""){
                 categoryChip.visibility = View.VISIBLE
                 categoryChip.text = routine.category
             }

@@ -13,7 +13,6 @@ import javax.inject.Inject
 class InsertCategoryUseCase @Inject constructor(private val repository: Repository)  : UseCase{
 
     suspend operator fun invoke(category: Category){
-        Log.d("Category",category.toString() +"insertCategory")
         repository.insertCategory(category)
     }
 }

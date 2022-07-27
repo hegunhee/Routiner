@@ -23,9 +23,7 @@ class RecordAdapter(
             }else{
                 ColorStateList.valueOf(ContextCompat.getColor(root.context,R.color.fail_color))
             }
-            if(routine.category ==""){
-
-            }else{
+            if(routine.category !=""){
                 category.visibility = View.VISIBLE
                 category.text = routine.category
             }

@@ -73,16 +73,15 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                     if(categoryGroup.checkedChipIds == emptyList<Int>()){
                         viewModel.insertRoutine(routineText)
                     }else{
-                        val category = categoryGroup.checkedChipIds.map {
-                            categoryGroup.findViewById<Chip>(it).text.toString()
-                        }.first()
+                        val category = categoryGroup.checkedChipId.let { chipId ->
+                            categoryGroup.findViewById<Chip>(chipId).text.toString()
+                        }
                         viewModel.insertRoutine(routineText,category = category)
                     }
                     dialog.dismiss()
                 }
             }
             insertCategoryChip.setOnClickListener {
-                categoryGroup
                 insertCategory(categoryGroup)
             }
         }

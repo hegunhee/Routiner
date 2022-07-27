@@ -14,7 +14,6 @@ import javax.inject.Inject
 class GetAllCategoryListUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
     suspend operator fun invoke() : List<Category>{
-        Log.d("Category",repository.getAllCategory().toString() +"GetAllUseCase")
         return repository.getAllCategory()
     }
 }
