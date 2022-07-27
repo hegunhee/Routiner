@@ -83,7 +83,6 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
             viewModel.categoryList.value?.forEach {
                 categoryGroup.addCheckableChip(it.name)
             }
-            // 추가
 
             cancelButton.setOnClickListener { dialog.dismiss() }
 
@@ -97,27 +96,19 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     val dayOfWeekStringList = dayOfWeekChipGroup.checkedChipIds.map {
                         dayOfWeekChipGroup.findViewById<Chip>(it).text.toString()
                     }
-                    val categoryText = categoryGroup.checkedChipIds.map {
-                        categoryGroup.findViewById<Chip>(it).text.toString()
-                    }
-                    Toast.makeText(requireContext(), categoryText.toString(), Toast.LENGTH_SHORT).show()
-                    if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList && !isRevise) {
-                        if(categoryText.isEmpty()){
-                            viewModel.insertDailyRoutine(repeatRoutineText)
-                        }else{
-                            viewModel.insertDailyRoutine(repeatRoutineText, category = categoryText.first())
-                        }
-                    }
-                    if(categoryText.isEmpty()){
-                        viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeekStringList)
+                    val categoryText = if(categoryGroup.checkedChipId == View.NO_ID){
+                        ""
                     }else{
-                        viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeekStringList, category = categoryText.first())
+                        categoryGroup.findViewById<Chip>(categoryGroup.checkedChipId).text.toString()
                     }
+                    if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList && !isRevise) {
+                        viewModel.insertDailyRoutine(repeatRoutineText, category = categoryText)
+                    }
+                    viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeeks = dayOfWeekStringList, category = categoryText)
                     dialog.dismiss()
                 }
             }
             insertCategoryChip.setOnClickListener {
-                categoryGroup
                 insertCategory(categoryGroup)
             }
         }
@@ -133,7 +124,6 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                 dialog.dismiss()
             }
             deleteTextView.setOnClickListener{
-
                 viewModel.deleteRepeatRoutine(repeatRoutine.text)
                 dialog.dismiss()
             }
@@ -150,9 +140,8 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                 if(categoryText == ""){
                     Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 }else{
-                    viewModel.insertCategory(categoryText)
                     chipGroup.addCheckableChip(categoryText)
-                    viewModel.setCategory()
+                    viewModel.insertCategory(categoryText)
                     dialog.dismiss()
                 }
             }

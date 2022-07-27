@@ -60,10 +60,11 @@ class RepeatViewModel @Inject constructor(
 
     fun insertCategory(category : String) = viewModelScope.launch(Dispatchers.IO) {
         insertCategoryUseCase(Category(category))
+        setCategory()
     }
 
 
-    fun setCategory() = viewModelScope.launch(Dispatchers.IO) {
+    private fun setCategory() = viewModelScope.launch(Dispatchers.IO) {
         _categoryList.postValue(getAllCategoryListUseCase())
 
     }
