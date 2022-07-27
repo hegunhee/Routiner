@@ -70,14 +70,12 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                 if(routineText == ""){
                     Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 }else{
-                    if(categoryGroup.checkedChipIds == emptyList<Int>()){
-                        viewModel.insertRoutine(routineText)
+                    val checkedCategoryChipText = if(categoryGroup.checkedChipId == View.NO_ID){
+                        ""
                     }else{
-                        val category = categoryGroup.checkedChipId.let { chipId ->
-                            categoryGroup.findViewById<Chip>(chipId).text.toString()
-                        }
-                        viewModel.insertRoutine(routineText,category = category)
+                        categoryGroup.findViewById<Chip>(categoryGroup.checkedChipId).text.toString()
                     }
+                    viewModel.insertRoutine(routineText, category = checkedCategoryChipText)
                     dialog.dismiss()
                 }
             }
