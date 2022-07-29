@@ -116,7 +116,6 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
     }
 
     private fun clickAdapterItem(repeatRoutine: RepeatRoutine) {
-
         DialogClickRepeatRecordItemBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
             reviseTextView.setOnClickListener{
@@ -129,6 +128,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
             }
         }
     }
+
     private fun insertCategory(chipGroup: ChipGroup){
         DialogInsertCategoryBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
