@@ -51,7 +51,6 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             }
         }
         viewModel.dailyRoutineListLiveData.observe(viewLifecycleOwner){
-            Log.d("Category",it.toString())
             adapter.setRoutineList(it)
         }
     }
@@ -67,7 +66,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             }
             succeedButton.setOnClickListener {
                 val routineText = routineEditText.text.toString()
-                if(routineText == ""){
+                if(routineText.isBlank()){
                     Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 }else{
                     val categoryText = if(categoryGroup.checkedChipId == View.NO_ID){
@@ -94,7 +93,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             }
             succeedButton.setOnClickListener {
                 val categoryText = categoryEditText.text.toString().trim()
-                if(categoryText == ""){
+                if(categoryText.isBlank()){
                     Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
                 }else{
                     chipGroup.addCheckableChip(categoryText)
