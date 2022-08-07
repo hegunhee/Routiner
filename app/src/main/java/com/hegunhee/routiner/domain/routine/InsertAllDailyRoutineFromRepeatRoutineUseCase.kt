@@ -1,6 +1,7 @@
-package com.hegunhee.routiner.domain
+package com.hegunhee.routiner.domain.routine
 
 import com.hegunhee.routiner.data.entity.Routine
+import com.hegunhee.routiner.domain.repeatRoutine.GetAllRepeatRoutineUseCase
 import com.hegunhee.routiner.model.Repository
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.Module

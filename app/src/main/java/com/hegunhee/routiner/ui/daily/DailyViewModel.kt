@@ -3,13 +3,15 @@ package com.hegunhee.routiner.ui.daily
 import androidx.lifecycle.*
 import com.hegunhee.routiner.data.entity.Category
 import com.hegunhee.routiner.data.entity.Routine
-import com.hegunhee.routiner.domain.*
+import com.hegunhee.routiner.domain.category.GetAllCategoryListUseCase
+import com.hegunhee.routiner.domain.category.InsertCategoryUseCase
+import com.hegunhee.routiner.domain.routine.DeleteRoutineUseCase
+import com.hegunhee.routiner.domain.routine.GetAllDailyRoutineByFlowUseCase
+import com.hegunhee.routiner.domain.routine.InsertDailyRoutineUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import javax.inject.Inject
 
 @HiltViewModel

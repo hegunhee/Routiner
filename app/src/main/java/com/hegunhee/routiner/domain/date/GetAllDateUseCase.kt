@@ -1,6 +1,7 @@
-package com.hegunhee.routiner.domain
+package com.hegunhee.routiner.domain.date
 
 import com.hegunhee.routiner.data.entity.Date
+import com.hegunhee.routiner.domain.UseCase
 import com.hegunhee.routiner.model.Repository
 import dagger.Module
 import dagger.hilt.InstallIn

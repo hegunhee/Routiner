@@ -5,9 +5,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.hegunhee.routiner.db.SharedPreferenceManager
-import com.hegunhee.routiner.domain.GetRoutineListByDateUseCase
-import com.hegunhee.routiner.domain.InsertAllDailyRoutineFromRepeatRoutineUseCase
-import com.hegunhee.routiner.domain.InsertDateUseCase
+import com.hegunhee.routiner.domain.routine.GetRoutineListByDateUseCase
+import com.hegunhee.routiner.domain.routine.InsertAllDailyRoutineFromRepeatRoutineUseCase
+import com.hegunhee.routiner.domain.date.InsertDateUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel

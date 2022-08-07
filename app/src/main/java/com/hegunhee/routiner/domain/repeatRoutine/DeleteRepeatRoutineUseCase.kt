@@ -1,6 +1,6 @@
-package com.hegunhee.routiner.domain
+package com.hegunhee.routiner.domain.repeatRoutine
 
-import com.hegunhee.routiner.data.entity.RepeatRoutine
+import com.hegunhee.routiner.domain.UseCase
 import com.hegunhee.routiner.model.Repository
 import dagger.Module
 import dagger.hilt.InstallIn
