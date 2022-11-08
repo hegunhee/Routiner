@@ -50,8 +50,9 @@
     * 만약 된다면 db 버전을 올려야함  
     * **7월 29일 업데이트**  
   -------------------------------------------  
-7. 매일 오전 10시 오후 10시에 알람이 가는 notification  
-8. Google Login(Firebase)  
+7. Multi Module 도입 및 리팩토링  
+8. 매일 오전 10시 오후 10시에 알람이 가는 notification  
+9. Google Login(Firebase)  
 
 
 ## 정보들  
