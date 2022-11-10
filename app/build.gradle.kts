@@ -46,6 +46,8 @@ dependencies {
     androidTestImplementation(libs.testext)
     androidTestImplementation(libs.espresso)
 
+    implementation(project(":domain"))
+
     implementation(libs.bundles.navigation)
 
     implementation(libs.activity.ktx)
