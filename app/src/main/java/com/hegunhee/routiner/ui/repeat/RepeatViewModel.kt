@@ -1,15 +1,15 @@
 package com.hegunhee.routiner.ui.repeat
 
 import androidx.lifecycle.*
-import com.hegunhee.routiner.data.entity.Category
-import com.hegunhee.routiner.data.entity.RepeatRoutine
-import com.hegunhee.routiner.data.entity.Routine
-import com.hegunhee.routiner.domain.category.GetAllCategoryListUseCase
-import com.hegunhee.routiner.domain.category.InsertCategoryUseCase
-import com.hegunhee.routiner.domain.repeatRoutine.DeleteRepeatRoutineUseCase
-import com.hegunhee.routiner.domain.repeatRoutine.GetAllRepeatRoutineByFlowUseCase
-import com.hegunhee.routiner.domain.repeatRoutine.InsertRepeatRoutineUseCase
-import com.hegunhee.routiner.domain.routine.InsertDailyRoutineUseCase
+import com.example.domain.model.Category
+import com.example.domain.model.RepeatRoutine
+import com.example.domain.model.Routine
+import com.example.domain.usecase.category.GetAllCategoryListUseCase
+import com.example.domain.usecase.category.InsertCategoryUseCase
+import com.example.domain.usecase.repeatRoutine.DeleteRepeatRoutineUseCase
+import com.example.domain.usecase.repeatRoutine.GetAllRepeatRoutineByFlowUseCase
+import com.example.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
+import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers

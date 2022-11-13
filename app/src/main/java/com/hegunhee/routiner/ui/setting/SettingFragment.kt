@@ -6,11 +6,9 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.hegunhee.routiner.R
 import com.hegunhee.routiner.databinding.FragmentSettingBinding
-import com.hegunhee.routiner.db.SharedPreferenceManager
 import com.hegunhee.routiner.ui.BaseFragment
 import com.hegunhee.routiner.ui.mainActivity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {

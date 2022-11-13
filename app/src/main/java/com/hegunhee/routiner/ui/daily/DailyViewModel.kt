@@ -1,13 +1,13 @@
 package com.hegunhee.routiner.ui.daily
 
 import androidx.lifecycle.*
-import com.hegunhee.routiner.data.entity.Category
-import com.hegunhee.routiner.data.entity.Routine
-import com.hegunhee.routiner.domain.category.GetAllCategoryListUseCase
-import com.hegunhee.routiner.domain.category.InsertCategoryUseCase
-import com.hegunhee.routiner.domain.routine.DeleteRoutineUseCase
-import com.hegunhee.routiner.domain.routine.GetAllDailyRoutineByFlowUseCase
-import com.hegunhee.routiner.domain.routine.InsertDailyRoutineUseCase
+import com.example.domain.model.Category
+import com.example.domain.model.Routine
+import com.example.domain.usecase.category.GetAllCategoryListUseCase
+import com.example.domain.usecase.category.InsertCategoryUseCase
+import com.example.domain.usecase.routine.DeleteRoutineUseCase
+import com.example.domain.usecase.routine.GetAllDailyRoutineByFlowUseCase
+import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -23,19 +23,19 @@ class DailyViewModel @Inject constructor(
     private val getAllCategoryListUseCase: GetAllCategoryListUseCase
 ) : ViewModel() {
 
-    val dailyRoutineListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(getTodayDate()).asLiveData()
+    val dailyRoutineEntityListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(getTodayDate()).asLiveData()
 
-    val recyclerViewVisible: LiveData<Boolean> = Transformations.map(dailyRoutineListLiveData) { dailyRoutineListLiveData.value?.isNotEmpty() }
+    val recyclerViewVisible: LiveData<Boolean> = Transformations.map(dailyRoutineEntityListLiveData) { dailyRoutineEntityListLiveData.value?.isNotEmpty() }
 
-    private var _categoryList : MutableLiveData<List<Category>> = MutableLiveData(listOf())
-    val categoryList : LiveData<List<Category>>
-    get() = _categoryList
+    private var _categoryEntityList : MutableLiveData<List<Category>> = MutableLiveData(listOf())
+    val categoryEntityList : LiveData<List<Category>>
+    get() = _categoryEntityList
 
     private var _onClickEvent : MutableLiveData<Event> = MutableLiveData(Event.Uninitalized)
     val onClickEvent : LiveData<Event>
     get() = _onClickEvent
 
-    val dailyRoutineProgress : LiveData<String> = Transformations.map(dailyRoutineListLiveData){
+    val dailyRoutineProgress : LiveData<String> = Transformations.map(dailyRoutineEntityListLiveData){
         return@map if(it.isEmpty()){
             "0 / 0"
         }else{
@@ -51,7 +51,7 @@ class DailyViewModel @Inject constructor(
     }
 
     fun insertRoutine(text : String,category : String = "") = viewModelScope.launch(Dispatchers.IO) {
-        val isExistSameText : Boolean = dailyRoutineListLiveData.value?.filter { it.text == text }?.size != 0
+        val isExistSameText : Boolean = dailyRoutineEntityListLiveData.value?.filter { it.text == text }?.size != 0
         if(isExistSameText){
 
         } else{
@@ -78,7 +78,7 @@ class DailyViewModel @Inject constructor(
 
 
     private fun setCategory() = viewModelScope.launch(Dispatchers.IO) {
-        _categoryList.postValue(getAllCategoryListUseCase())
+        _categoryEntityList.postValue(getAllCategoryListUseCase())
 
     }
 

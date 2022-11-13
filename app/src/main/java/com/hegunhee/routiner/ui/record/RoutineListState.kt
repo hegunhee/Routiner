@@ -1,6 +1,6 @@
 package com.hegunhee.routiner.ui.record
 
-import com.hegunhee.routiner.data.entity.Routine
+import com.example.domain.model.Routine
 
 sealed class RoutineListState{
     object Uninitalized : RoutineListState()

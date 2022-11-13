@@ -1,7 +1,7 @@
 package com.hegunhee.routiner.ui.setting
 
 import androidx.lifecycle.ViewModel
-import com.hegunhee.routiner.db.SharedPreferenceManager
+import com.example.data.db.SharedPreferenceManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
