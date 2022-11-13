@@ -1,27 +1,28 @@
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdkVersion (32)
+    compileSdk = 32
 
     defaultConfig {
-        applicationId = "com.hegunhee.routiner"
-        minSdkVersion(26)
-        targetSdkVersion(32)
-        versionCode = (3)
-        versionName = "1.2"
+        minSdk = 21
+        targetSdk = 32
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
 
     buildTypes {
-        getByName("release") {
+        release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -35,12 +36,14 @@ android {
         dataBinding = true
         viewBinding = true
     }
+
 }
+
 dependencies {
 
-    implementation(project(":feature"))
-    implementation(project(":data"))
     implementation(project(":domain"))
+    //TODO SharedPreference도 분리하는 로직을 만들어야됨
+    implementation(project(":data"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
@@ -56,10 +59,6 @@ dependencies {
     implementation(libs.fragment.ktx)
 
     implementation(libs.lifecycle.livedata)
-
-    //Room DB
-    implementation(libs.bundles.room)
-    kapt(libs.room.compiler)
 
     //Hilt
     implementation(libs.bundles.hilt)
