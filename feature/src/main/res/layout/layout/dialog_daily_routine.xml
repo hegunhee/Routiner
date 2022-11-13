@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <TextView
+        android:id="@+id/title_text_view"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="루틴을 적어주세요"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/routine_edit_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <EditText
+        android:id="@+id/routine_edit_text"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        app:layout_constraintBottom_toTopOf="@id/categoryTextView"
+        app:layout_constraintEnd_toEndOf="@id/title_text_view"
+        app:layout_constraintStart_toStartOf="@id/title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/title_text_view"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <TextView
+        android:id="@+id/categoryTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="카테고리를 설정해주세요"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/categoryGroup"
+        app:layout_constraintEnd_toEndOf="@id/title_text_view"
+        app:layout_constraintStart_toStartOf="@id/title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/routine_edit_text"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/categoryGroup"
+        android:layout_width="0dp"
+        app:singleSelection="true"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@id/insertCategoryChip"
+        app:layout_constraintEnd_toEndOf="@id/title_text_view"
+        app:layout_constraintStart_toStartOf="@id/title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/categoryTextView"
+        app:layout_constraintVertical_chainStyle="packed">
+
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/insertCategoryChip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="카테고리 추가"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/teal_200"
+
+        app:layout_constraintBottom_toTopOf="@id/cancel_button"
+        app:layout_constraintStart_toStartOf="@id/title_text_view"
+        app:layout_constraintTop_toBottomOf="@id/categoryGroup"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/cancel_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/black"
+        android:text="취소"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/succeed_button"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/insertCategoryChip"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <Button
+        android:id="@+id/succeed_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/light_pink"
+        android:text="등록"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@id/cancel_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@id/cancel_button"
+        app:layout_constraintTop_toTopOf="@id/cancel_button" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
