@@ -1,15 +1,14 @@
 package com.hegunhee.routiner.ui.repeat
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import com.example.domain.model.RepeatRoutine
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.hegunhee.routiner.R
-import com.hegunhee.routiner.data.entity.RepeatRoutine
 import com.hegunhee.routiner.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.routiner.databinding.DialogInsertCategoryBinding
 import com.hegunhee.routiner.databinding.DialogRepeatRoutineBinding

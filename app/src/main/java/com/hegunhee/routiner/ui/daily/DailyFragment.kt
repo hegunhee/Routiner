@@ -1,7 +1,6 @@
 package com.hegunhee.routiner.ui.daily
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
@@ -50,7 +49,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                 Event.EndClick -> {}
             }
         }
-        viewModel.dailyRoutineListLiveData.observe(viewLifecycleOwner){
+        viewModel.dailyRoutineEntityListLiveData.observe(viewLifecycleOwner){
             adapter.setRoutineList(it)
         }
     }
@@ -58,7 +57,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
     private fun insertData(){
         DialogDailyRoutineBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
-            viewModel.categoryList.value?.forEach {
+            viewModel.categoryEntityList.value?.forEach {
                 categoryGroup.addCheckableChip(it.name)
             }
             cancelButton.setOnClickListener {

@@ -4,11 +4,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.chip.Chip
-import com.hegunhee.routiner.data.entity.RepeatRoutine
+import com.example.domain.model.RepeatRoutine
 import com.hegunhee.routiner.databinding.RepeatRecordItemBinding
 import com.hegunhee.routiner.util.addChip
-import com.hegunhee.routiner.util.setRepeatDefaultColor
 
 class RepeatAdapter(
     private var repeatRoutineList: List<RepeatRoutine>,
@@ -18,20 +16,20 @@ class RepeatAdapter(
     inner class RepeatViewHolder(private val binding: RepeatRecordItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(repeatRoutine: RepeatRoutine) = with(binding) {
-            title.text = repeatRoutine.text
+        fun bind(repeatRoutineEntity: RepeatRoutine) = with(binding) {
+            title.text = repeatRoutineEntity.text
             chipGroup.removeAllViews()
-            addChip(repeatRoutine.dayOfWeekList)
+            addChip(repeatRoutineEntity.dayOfWeekList)
             chipGroup.setOnClickListener{
-                clickRoot(repeatRoutine)
+                clickRoot(repeatRoutineEntity)
             }
 
             root.setOnClickListener{
-                clickRoot(repeatRoutine)
+                clickRoot(repeatRoutineEntity)
             }
-            if(repeatRoutine.category != ""){
+            if(repeatRoutineEntity.category != ""){
                 categoryChip.visibility = View.VISIBLE
-                categoryChip.text = repeatRoutine.category
+                categoryChip.text = repeatRoutineEntity.category
             }
         }
 

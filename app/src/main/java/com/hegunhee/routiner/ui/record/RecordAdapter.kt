@@ -6,8 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.domain.model.Routine
 import com.hegunhee.routiner.R
-import com.hegunhee.routiner.data.entity.Routine
 import com.hegunhee.routiner.databinding.RecordItemBinding
 
 class RecordAdapter(

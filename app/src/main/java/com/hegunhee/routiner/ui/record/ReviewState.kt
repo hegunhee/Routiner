@@ -1,6 +1,7 @@
 package com.hegunhee.routiner.ui.record
 
-import com.hegunhee.routiner.data.entity.Review
+import com.example.domain.model.Review
+
 
 sealed class ReviewState {
     object Uninitalized : ReviewState()

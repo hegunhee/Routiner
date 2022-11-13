@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.hegunhee.routiner.data.entity.Routine
+import com.example.domain.model.Routine
 import com.hegunhee.routiner.databinding.DailyItemBinding
 
 class DailyAdapter(
