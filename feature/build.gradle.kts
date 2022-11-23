@@ -42,8 +42,6 @@ android {
 dependencies {
 
     implementation(project(":domain"))
-    //TODO SharedPreference도 분리하는 로직을 만들어야됨
-    implementation(project(":data"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
