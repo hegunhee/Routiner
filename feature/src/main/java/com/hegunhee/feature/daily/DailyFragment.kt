@@ -13,7 +13,7 @@ import com.hegunhee.feature.databinding.DialogDailyRoutineBinding
 import com.hegunhee.feature.databinding.DialogInsertCategoryBinding
 import com.hegunhee.feature.databinding.FragmentDailyBinding
 import com.hegunhee.feature.mainActivity.MainActivity
-import com.hegunhee.routiner.util.addCheckableChip
+import com.hegunhee.feature.util.addCheckableChip
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

@@ -15,7 +15,7 @@ import com.hegunhee.feature.databinding.DialogInsertCategoryBinding
 import com.hegunhee.feature.databinding.DialogRepeatRoutineBinding
 import com.hegunhee.feature.databinding.FragmentRepeatBinding
 import com.hegunhee.feature.mainActivity.MainActivity
-import com.hegunhee.routiner.util.addCheckableChip
+import com.hegunhee.feature.util.addCheckableChip
 import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.AndroidEntryPoint
 

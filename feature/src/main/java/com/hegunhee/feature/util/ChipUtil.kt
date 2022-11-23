@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.util
+package com.hegunhee.feature.util
 
 import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat
