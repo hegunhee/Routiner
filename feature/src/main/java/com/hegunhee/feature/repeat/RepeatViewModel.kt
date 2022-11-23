@@ -10,7 +10,7 @@ import com.example.domain.usecase.repeatRoutine.DeleteRepeatRoutineUseCase
 import com.example.domain.usecase.repeatRoutine.GetAllRepeatRoutineByFlowUseCase
 import com.example.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
 import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
-import com.hegunhee.routiner.util.getTodayDate
+import com.hegunhee.feature.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

@@ -1,6 +1,6 @@
 package com.hegunhee.routiner
 
-import com.hegunhee.routiner.util.getTodayDate
+import com.hegunhee.feature.util.getTodayDate
 import org.junit.Test
 import org.junit.Assert.*
 
