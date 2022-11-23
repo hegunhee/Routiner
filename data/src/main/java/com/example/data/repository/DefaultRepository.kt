@@ -99,7 +99,7 @@ class DefaultRepository(
         return sharedPreferenceManager.setNofiSendValue(notiValue)
     }
 
-    override suspend fun getNotiSendValue(): Boolean {
+    override fun getNotiSendValue(): Boolean {
         return sharedPreferenceManager.getNotiSendValue()
     }
 

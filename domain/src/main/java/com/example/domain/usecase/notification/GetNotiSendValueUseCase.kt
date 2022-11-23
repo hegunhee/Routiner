@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class GetNotiSendValueUseCase @Inject constructor(private val repository: Repository) {
 
-    suspend operator fun invoke() : Boolean{
+    operator fun invoke() : Boolean{
         return repository.getNotiSendValue()
     }
 }

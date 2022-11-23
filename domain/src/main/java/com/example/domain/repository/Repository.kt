@@ -47,5 +47,5 @@ interface Repository {
 
     fun setNotiSendValue(notiValue : Boolean)
 
-    suspend fun getNotiSendValue() : Boolean
+    fun getNotiSendValue() : Boolean
 }
