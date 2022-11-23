@@ -1,8 +1,9 @@
 package com.example.data.di
 
+import com.example.data.db.SharedPreferenceManager
 import com.example.data.db.dao.*
 import com.example.domain.repository.Repository
-import com.hegunhee.routiner.model.DefaultRepository
+import com.example.data.repository.DefaultRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,8 +21,9 @@ class RepositoryModule {
         dateDao : DateDao,
         reviewDao: ReviewDao,
         repeatRoutineDao: RepeatRoutineDao,
-        categoryDao: CategoryDao
+        categoryDao: CategoryDao,
+        sharedPreferenceManager: SharedPreferenceManager
     ) : Repository {
-        return DefaultRepository(routineDao,dateDao,reviewDao,repeatRoutineDao,categoryDao)
+        return DefaultRepository(routineDao,dateDao,reviewDao,repeatRoutineDao,categoryDao,sharedPreferenceManager)
     }
 }

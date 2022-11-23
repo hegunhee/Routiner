@@ -38,4 +38,10 @@ interface Repository {
     suspend fun insertCategory(categoryEntity: Category)
 
     suspend fun getAllCategory() : List<Category>
+
+    suspend fun getCurrentDate() : Int
+
+    suspend fun setCurrentDate(date : Int)
+
+    suspend fun getDefaultCurrentDate() : Int
 }
