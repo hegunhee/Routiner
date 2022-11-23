@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.domain
+package com.example.domain.usecase
 
 interface UseCase {
 }

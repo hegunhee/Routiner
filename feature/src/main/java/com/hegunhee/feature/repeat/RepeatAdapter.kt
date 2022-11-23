@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.RepeatRoutine
 import com.hegunhee.feature.databinding.RepeatRecordItemBinding
-import com.hegunhee.routiner.util.addChip
+import com.hegunhee.feature.util.addChip
 
 class RepeatAdapter(
     private var repeatRoutineList: List<RepeatRoutine>,
