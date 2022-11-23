@@ -44,4 +44,8 @@ interface Repository {
     suspend fun setCurrentDate(date : Int)
 
     suspend fun getDefaultCurrentDate() : Int
+
+    suspend fun setNotiSendValue(notiValue : Boolean)
+
+    suspend fun getNotiSendValue() : Boolean
 }
