@@ -8,7 +8,7 @@ import com.example.domain.usecase.review.DeleteReviewUseCase
 import com.example.domain.usecase.review.GetReviewUseCase
 import com.example.domain.usecase.review.InsertReviewUseCase
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
-import com.hegunhee.routiner.util.getTodayDate
+import com.hegunhee.feature.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

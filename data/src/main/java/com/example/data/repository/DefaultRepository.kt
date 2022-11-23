@@ -1,5 +1,6 @@
-package com.hegunhee.routiner.model
+package com.example.data.repository
 
+import com.example.data.db.SharedPreferenceManager
 import com.example.data.db.dao.*
 import com.example.domain.model.*
 import com.example.domain.repository.Repository
@@ -11,7 +12,8 @@ class DefaultRepository(
     private val dateDao: DateDao,
     private val reviewDao: ReviewDao,
     private val repeatRoutineDao: RepeatRoutineDao,
-    private val categoryDao: CategoryDao
+    private val categoryDao: CategoryDao,
+    private val sharedPreferenceManager: SharedPreferenceManager
 ) : Repository {
     override fun getAllDailyRoutineByFlow(date: Int): Flow<List<Routine>> {
         return routineDao.getDailyRoutineByFlow(date).map { it.toRoutineList() }
@@ -79,6 +81,26 @@ class DefaultRepository(
 
     override suspend fun getAllCategory(): List<Category> {
         return categoryDao.getAllCategory().toCategory()
+    }
+
+    override suspend fun getCurrentDate(): Int {
+        return sharedPreferenceManager.getCurrentDate()
+    }
+
+    override suspend fun setCurrentDate(date: Int) {
+        sharedPreferenceManager.setCurrentDate(date)
+    }
+
+    override suspend fun getDefaultCurrentDate(): Int {
+        return SharedPreferenceManager.CURRENT_DATE_DEFAULT_DATE
+    }
+
+    override fun setNotiSendValue(notiValue: Boolean) {
+        return sharedPreferenceManager.setNofiSendValue(notiValue)
+    }
+
+    override fun getNotiSendValue(): Boolean {
+        return sharedPreferenceManager.getNotiSendValue()
     }
 
 

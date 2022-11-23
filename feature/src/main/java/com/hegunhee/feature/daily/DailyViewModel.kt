@@ -8,7 +8,7 @@ import com.example.domain.usecase.category.InsertCategoryUseCase
 import com.example.domain.usecase.routine.DeleteRoutineUseCase
 import com.example.domain.usecase.routine.GetAllDailyRoutineByFlowUseCase
 import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
-import com.hegunhee.routiner.util.getTodayDate
+import com.hegunhee.feature.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,7 +23,9 @@ class DailyViewModel @Inject constructor(
     private val getAllCategoryListUseCase: GetAllCategoryListUseCase
 ) : ViewModel() {
 
-    val dailyRoutineEntityListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(getTodayDate()).asLiveData()
+    val dailyRoutineEntityListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(
+        getTodayDate()
+    ).asLiveData()
 
     val recyclerViewVisible: LiveData<Boolean> = Transformations.map(dailyRoutineEntityListLiveData) { dailyRoutineEntityListLiveData.value?.isNotEmpty() }
 

@@ -1,5 +1,7 @@
 package com.hegunhee.feature.mainActivity
 
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -7,17 +9,24 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.date.InsertDateUseCase
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.example.domain.usecase.routine.InsertAllDailyRoutineFromRepeatRoutineUseCase
-import com.example.data.db.SharedPreferenceManager
-import com.hegunhee.routiner.util.getTodayDate
-import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
+import com.example.domain.usecase.date.GetCurrentDateUseCase
+import com.example.domain.usecase.date.GetDefaultCurrentDateUseCase
+import com.example.domain.usecase.date.SetCurrentDateUseCase
+import com.example.domain.usecase.notification.SetNotiSendValueUseCase
+import com.hegunhee.feature.util.getTodayDate
+import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class MainViewModel @Inject constructor(
-    private val sharedPreferenceManager: SharedPreferenceManager,
+    private val getCurrentDateUseCase: GetCurrentDateUseCase,
+    private val getDefaultCurrentDateUseCase: GetDefaultCurrentDateUseCase,
+    private val setCurrentDateUseCase: SetCurrentDateUseCase,
+    private val setNotiSendValueUseCase: SetNotiSendValueUseCase,
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
     private val insertDateUseCase: InsertDateUseCase,
     private val insertAllDailyRoutineFromRepeatRoutineUseCase: InsertAllDailyRoutineFromRepeatRoutineUseCase
@@ -31,9 +40,10 @@ class MainViewModel @Inject constructor(
     val firstAppOpenEvent : LiveData<FirstAppOpenEvent>
     get() = _firstAppOpenEvent
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
-        val sharedPreferenceCurrentDate = sharedPreferenceManager.getCurrentDate()
-        if (sharedPreferenceCurrentDate == SharedPreferenceManager.CURRENT_DATE_DEFAULT_DATE) {
+        val sharedPreferenceCurrentDate = getCurrentDateUseCase()
+        if (sharedPreferenceCurrentDate == getDefaultCurrentDateUseCase()){
             _firstAppOpenEvent.postValue(FirstAppOpenEvent.OpenDialog)
         } else if (sharedPreferenceCurrentDate != getTodayDate()) {
             insertAllDailyRoutineFromRepeatRoutineUseCase(getTodayDayOfWeekFormatedKorean())
@@ -42,7 +52,7 @@ class MainViewModel @Inject constructor(
                 insertDateUseCase(sharedPreferenceCurrentDate)
             }
         }
-        sharedPreferenceManager.setCurrentDate(getTodayDate())
+        setCurrentDateUseCase(getTodayDate())
     }
 
     fun setEventFinish() = viewModelScope.launch {
@@ -50,7 +60,7 @@ class MainViewModel @Inject constructor(
     }
 
     fun setInitNotiValue(notiValue : Boolean){
-        sharedPreferenceManager.setNofiSendValue(notiValue)
+        setNotiSendValueUseCase(notiValue)
     }
 
 
