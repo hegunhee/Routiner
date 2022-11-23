@@ -5,7 +5,7 @@ import javax.inject.Inject
 
 class SetNotiSendValueUseCase @Inject constructor(private val repository: Repository) {
 
-    suspend operator fun invoke(notiValue : Boolean){
+    operator fun invoke(notiValue : Boolean){
         repository.setNotiSendValue(notiValue)
     }
 }

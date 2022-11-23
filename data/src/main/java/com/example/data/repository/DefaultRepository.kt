@@ -95,7 +95,7 @@ class DefaultRepository(
         return SharedPreferenceManager.CURRENT_DATE_DEFAULT_DATE
     }
 
-    override suspend fun setNotiSendValue(notiValue: Boolean) {
+    override fun setNotiSendValue(notiValue: Boolean) {
         return sharedPreferenceManager.setNofiSendValue(notiValue)
     }
 
