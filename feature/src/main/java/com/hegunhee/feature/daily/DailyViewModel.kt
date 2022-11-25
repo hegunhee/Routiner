@@ -21,7 +21,7 @@ class DailyViewModel @Inject constructor(
     private val deleteRoutineUseCase: DeleteRoutineUseCase,
     private val insertCategoryUseCase: InsertCategoryUseCase,
     private val getAllCategoryListUseCase: GetAllCategoryListUseCase
-) : ViewModel() {
+) : ViewModel(), DailyActionHandler {
 
     val dailyRoutineEntityListLiveData: LiveData<List<Routine>> = getAllDailyRoutineByFlowUseCase(
         getTodayDate()
@@ -84,6 +84,18 @@ class DailyViewModel @Inject constructor(
 
     }
 
+    override fun deleteRoutine(routineNum: Int) {
+        viewModelScope.launch{
+            deleteRoutineUseCase(routineNum)
+        }
+    }
+
+    override fun toggleFinishRoutine(routine: Routine) {
+        viewModelScope.launch {
+            insertDailyRoutineUseCase(routine)
+        }
+
+    }
 
 
 }

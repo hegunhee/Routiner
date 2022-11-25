@@ -9,8 +9,7 @@ import com.hegunhee.feature.databinding.DailyItemBinding
 
 class DailyAdapter(
     private var routineList : List<Routine>,
-    val deleteRoutine : (Int) -> Unit,
-    val toggleFinishedRoutine : (Routine) -> Unit
+    val eventHandler : DailyActionHandler,
 ) : RecyclerView.Adapter<DailyAdapter.DailyViewHolder>() {
 
     inner class DailyViewHolder(private val binding : DailyItemBinding) : RecyclerView.ViewHolder(binding.root){
@@ -18,11 +17,11 @@ class DailyAdapter(
         fun bindView(routine: Routine) = with(binding){
             title.text = routine.text
             deleteButton.setOnClickListener {
-                deleteRoutine(routine.id)
+                eventHandler.deleteRoutine(routine.id)
             }
             check.visibility = if(routine.isFinished) View.VISIBLE else View.INVISIBLE
             title.setOnClickListener{
-                toggleFinishedRoutine(routine.copy(isFinished = !routine.isFinished))
+                eventHandler.toggleFinishRoutine((routine.copy(isFinished = !routine.isFinished)))
             }
             if(routine.category.isNotBlank()){
                 categoryChip.visibility = View.VISIBLE

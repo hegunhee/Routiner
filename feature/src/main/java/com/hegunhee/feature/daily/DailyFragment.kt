@@ -20,16 +20,13 @@ import dagger.hilt.android.AndroidEntryPoint
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
 
     private val viewModel : DailyViewModel by viewModels()
-    private val adapter : DailyAdapter by lazy {DailyAdapter(
-        listOf(),
-        deleteRoutine = { id -> viewModel.deleteData(id)},
-        toggleFinishedRoutine = { routine -> viewModel.toggleFinished(routine)}
-        )}
+    private lateinit var dailyAdapter : DailyAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dailyAdapter = DailyAdapter(listOf(),viewModel)
         binding.apply {
             viewmodel = viewModel
-            dailyRecyclerView.adapter = adapter
+            dailyRecyclerView.adapter = dailyAdapter
         }
         setActionBarTitle()
         initObserver()
@@ -50,7 +47,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             }
         }
         viewModel.dailyRoutineEntityListLiveData.observe(viewLifecycleOwner){
-            adapter.setRoutineList(it)
+            dailyAdapter.setRoutineList(it)
         }
     }
 
