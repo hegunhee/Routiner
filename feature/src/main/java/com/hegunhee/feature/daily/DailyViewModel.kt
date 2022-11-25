@@ -92,7 +92,7 @@ class DailyViewModel @Inject constructor(
 
     override fun toggleFinishRoutine(routine: Routine) {
         viewModelScope.launch {
-            insertDailyRoutineUseCase(routine)
+            insertDailyRoutineUseCase(routine.copy(isFinished = !routine.isFinished))
         }
 
     }
