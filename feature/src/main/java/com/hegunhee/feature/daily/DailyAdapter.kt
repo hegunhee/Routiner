@@ -4,15 +4,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Routine
 import com.hegunhee.feature.R
 import com.hegunhee.feature.databinding.DailyItemBinding
 
 class DailyAdapter(
-    private var routineList : List<Routine>,
     val eventHandler : DailyActionHandler,
-) : RecyclerView.Adapter<DailyAdapter.DailyViewHolder>() {
+) : ListAdapter<Routine,DailyAdapter.DailyViewHolder>(diff_util) {
 
     inner class DailyViewHolder(private val binding : DailyItemBinding) : RecyclerView.ViewHolder(binding.root){
 
@@ -29,14 +30,21 @@ class DailyAdapter(
     }
 
     override fun onBindViewHolder(holder: DailyViewHolder, position: Int) {
-        holder.bindView(routineList[position])
+        holder.bindView(getItem(position))
     }
 
-    override fun getItemCount(): Int = routineList.size
 
-    fun setRoutineList(routineList : List<Routine>){
-        this.routineList = routineList
-        notifyDataSetChanged()
+    companion object {
+        val diff_util = object : DiffUtil.ItemCallback<Routine>(){
+            override fun areItemsTheSame(oldItem: Routine, newItem: Routine): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Routine, newItem: Routine): Boolean {
+                return oldItem == newItem
+            }
+
+        }
     }
 
 }
