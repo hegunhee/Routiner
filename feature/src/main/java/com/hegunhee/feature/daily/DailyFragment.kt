@@ -23,7 +23,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
     private lateinit var dailyAdapter : DailyAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dailyAdapter = DailyAdapter(listOf(),viewModel)
+        dailyAdapter = DailyAdapter(viewModel)
         binding.apply {
             viewmodel = viewModel
             dailyRecyclerView.adapter = dailyAdapter
@@ -47,7 +47,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             }
         }
         viewModel.dailyRoutineEntityListLiveData.observe(viewLifecycleOwner){
-            dailyAdapter.setRoutineList(it)
+            dailyAdapter.submitList(it)
         }
     }
 
