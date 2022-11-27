@@ -19,6 +19,10 @@
 * Hilt  
 * SharedPreference  
 ## 기술 정보  
+* **Multi-Module** 적용  
+ Android Clean Architecture에 따라 data, domain, presentation layer로 분류하였습니다.  
+ Multi-Module을 사용하므로서 의존성을 확실히 분리할 수 있고 layer분리를 시각적으로 볼 수 있습니다.  
+ 빌드 시간을 줄일 수 있습니다.  
 * **AAC-ViewModel** 적용  
  Activity나 Fragment에 보여줄 data를 가지고있습니다.  
  Activity나 Fragment가 화면 회전 등의 이유로 Destroy 상태가 되어도  
