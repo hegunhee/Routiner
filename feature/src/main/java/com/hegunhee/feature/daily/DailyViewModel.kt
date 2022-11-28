@@ -48,8 +48,10 @@ class DailyViewModel @Inject constructor(
     init {
         setCategory()
     }
-    fun onClickRoutineInsert() = viewModelScope.launch{
-        _onClickEvent.postValue(Event.Clicked)
+    override fun onClickRoutineInsert() {
+        viewModelScope.launch{
+            _onClickEvent.postValue(Event.Clicked)
+        }
     }
 
     fun insertRoutine(text : String,category : String = "") = viewModelScope.launch(Dispatchers.IO) {
