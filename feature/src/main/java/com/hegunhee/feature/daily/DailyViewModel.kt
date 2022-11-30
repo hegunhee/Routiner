@@ -11,6 +11,7 @@ import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
 import com.hegunhee.feature.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -33,8 +34,8 @@ class DailyViewModel @Inject constructor(
     val categoryEntityList : LiveData<List<Category>>
     get() = _categoryEntityList
 
-    private var _onClickEvent : MutableLiveData<Event> = MutableLiveData(Event.Uninitalized)
-    val onClickEvent : LiveData<Event>
+    private var _onClickEvent : MutableSharedFlow<Boolean> = MutableSharedFlow()
+    val onClickEvent : MutableSharedFlow<Boolean>
     get() = _onClickEvent
 
     val dailyRoutineProgress : LiveData<String> = Transformations.map(dailyRoutineEntityListLiveData){
@@ -50,7 +51,7 @@ class DailyViewModel @Inject constructor(
     }
     override fun onClickRoutineInsert() {
         viewModelScope.launch{
-            _onClickEvent.postValue(Event.Clicked)
+            _onClickEvent.emit(true)
         }
     }
 
@@ -71,9 +72,6 @@ class DailyViewModel @Inject constructor(
         insertDailyRoutineUseCase(routine)
     }
 
-    fun endClick() {
-        _onClickEvent.postValue(Event.EndClick)
-    }
 
     fun insertCategory(category : String) = viewModelScope.launch(Dispatchers.IO) {
         insertCategoryUseCase(Category(category))

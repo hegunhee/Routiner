@@ -5,6 +5,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.hegunhee.feature.R
@@ -15,6 +16,8 @@ import com.hegunhee.feature.databinding.FragmentDailyBinding
 import com.hegunhee.feature.mainActivity.MainActivity
 import com.hegunhee.feature.util.addCheckableChip
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
@@ -37,13 +40,9 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
     }
 
     private fun initObserver(){
-        viewModel.onClickEvent.observe(viewLifecycleOwner){
-            when(it){
-                Event.Uninitalized -> {}
-                Event.Clicked -> {
-                    insertData()
-                }
-                Event.EndClick -> {}
+        lifecycleScope.launch{
+            viewModel.onClickEvent.collect{ isClick ->
+                if(isClick) insertData()
             }
         }
         viewModel.dailyRoutineEntityListLiveData.observe(viewLifecycleOwner){
@@ -78,7 +77,6 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                 insertCategory(categoryGroup)
             }
         }
-        viewModel.endClick()
     }
 
     private fun insertCategory(chipGroup: ChipGroup){
