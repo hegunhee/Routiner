@@ -62,7 +62,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             succeedButton.setOnClickListener {
                 val routineText = routineEditText.text.toString()
                 if(routineText.isBlank()){
-                    Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.empty_input), Toast.LENGTH_SHORT).show()
                 }else{
                     val categoryText = if(categoryGroup.checkedChipId == View.NO_ID){
                         ""
@@ -89,7 +89,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             succeedButton.setOnClickListener {
                 val categoryText = categoryEditText.text.toString().trim()
                 if(categoryText.isBlank()){
-                    Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), getString(R.string.empty_input), Toast.LENGTH_SHORT).show()
                 }else{
                     chipGroup.addCheckableChip(categoryText)
                     viewModel.insertCategory(categoryText)
