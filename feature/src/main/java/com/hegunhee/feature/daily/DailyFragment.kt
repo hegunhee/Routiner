@@ -6,11 +6,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.hegunhee.feature.R
 import com.hegunhee.feature.base.BaseFragment
-import com.hegunhee.feature.databinding.DialogDailyRoutineBinding
+import com.hegunhee.feature.daily.insert.InsertRoutineDialogFragment
 import com.hegunhee.feature.databinding.DialogInsertCategoryBinding
 import com.hegunhee.feature.databinding.FragmentDailyBinding
 import com.hegunhee.feature.mainActivity.MainActivity
@@ -42,41 +41,11 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
     private fun initObserver(){
         lifecycleScope.launch{
             viewModel.onClickEvent.collect{ isClick ->
-                if(isClick) insertData()
+                if(isClick) InsertRoutineDialogFragment().show(childFragmentManager,"insert_routine")
             }
         }
         viewModel.dailyRoutineEntityListLiveData.observe(viewLifecycleOwner){
             dailyAdapter.submitList(it)
-        }
-    }
-
-    private fun insertData(){
-        DialogDailyRoutineBinding.inflate(layoutInflater).run {
-            val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
-            viewModel.categoryEntityList.value?.forEach {
-                categoryGroup.addCheckableChip(it.name)
-            }
-            cancelButton.setOnClickListener {
-                dialog.dismiss()
-            }
-            succeedButton.setOnClickListener {
-                val routineText = routineEditText.text.toString()
-                if(routineText.isBlank()){
-                    Toast.makeText(requireContext(), getString(R.string.empty_input), Toast.LENGTH_SHORT).show()
-                }else{
-                    val categoryText = if(categoryGroup.checkedChipId == View.NO_ID){
-                        ""
-                    }else{
-                        categoryGroup.findViewById<Chip>(categoryGroup.checkedChipId).text.toString()
-                    }
-                    viewModel.insertRoutine(routineText, category = categoryText)
-                    dialog.dismiss()
-                }
-            }
-            insertCategoryChip.setOnClickListener {
-                insertCategory(categoryGroup)
-            }
-
         }
     }
 
@@ -98,5 +67,4 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             }
         }
     }
-
 }
