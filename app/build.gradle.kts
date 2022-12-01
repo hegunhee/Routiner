@@ -56,6 +56,7 @@ dependencies {
     implementation(libs.fragment.ktx)
 
     implementation(libs.lifecycle.livedata)
+    implementation(libs.lifecycle.scope)
 
     //Room DB
     implementation(libs.bundles.room)
