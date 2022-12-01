@@ -76,7 +76,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             insertCategoryChip.setOnClickListener {
                 insertCategory(categoryGroup)
             }
-            
+
         }
     }
 
