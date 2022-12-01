@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity() {
         customDialogBinding.alertAcceptButton.setOnClickListener {
             val isChecked = customDialogBinding.alertSwitch.isChecked
             viewModel.setInitNotiValue(isChecked)
-            Toast.makeText(this@MainActivity, "알람 설정이 ${if(isChecked) "승인" else "해제"} 되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this@MainActivity, getString(R.string.notification_setting,if(isChecked) "승인" else "해제"), Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
     }

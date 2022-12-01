@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Routiner</string>
     <string name="empty_input">입력칸이 비어있습니다.</string>
+    <string name="notification_setting">알람 설정이 %1$s 되었습니다.</string>
 </resources>
