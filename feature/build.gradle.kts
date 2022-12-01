@@ -57,7 +57,7 @@ dependencies {
     implementation(libs.fragment.ktx)
 
     implementation(libs.lifecycle.livedata)
-
+    implementation(libs.lifecycle.scope)
     //Hilt
     implementation(libs.bundles.hilt)
     kapt(libs.hilt.compiler)
