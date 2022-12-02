@@ -13,7 +13,6 @@ import com.hegunhee.feature.R
 import com.hegunhee.feature.base.BaseDialog
 import com.hegunhee.feature.databinding.DialogInsertCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
