@@ -39,21 +39,10 @@ dependencies {
 
     implementation(project(":domain"))
 
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    implementation(libs.constraintlayout)
-    implementation(libs.junit)
-
-
     //Room DB
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)
-
-    //Hilt
-    implementation(libs.bundles.hilt)
-    kapt(libs.hilt.compiler)
-
+    
     implementation(libs.gson)
 
 }
