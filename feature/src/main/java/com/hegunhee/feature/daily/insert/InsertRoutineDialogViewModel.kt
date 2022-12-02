@@ -19,8 +19,8 @@ class InsertRoutineDialogViewModel @Inject constructor(
 
     val routineText : MutableStateFlow<String> = MutableStateFlow<String>("")
 
-    private val _dismissDialog : MutableSharedFlow<Unit> = MutableSharedFlow<Unit>()
-    val dismissDialog : SharedFlow<Unit> = _dismissDialog.asSharedFlow()
+    private val _navigateActions = MutableSharedFlow<InsertRoutineNavigationAction>()
+    val navigateActions : SharedFlow<InsertRoutineNavigationAction> = _navigateActions.asSharedFlow()
 
     private val _toastMessage : MutableSharedFlow<String> = MutableSharedFlow<String>()
     val toastMessage : SharedFlow<String> = _toastMessage.asSharedFlow()
@@ -30,7 +30,7 @@ class InsertRoutineDialogViewModel @Inject constructor(
 
     override fun cancelRoutine() {
         viewModelScope.launch {
-            _dismissDialog.emit(Unit)
+            _navigateActions.emit(InsertRoutineNavigationAction.DismissDialog)
         }
     }
 
@@ -46,9 +46,15 @@ class InsertRoutineDialogViewModel @Inject constructor(
                     _toastMessage.emit(sameRoutineMessage)
                 }else{
                     insertDailyRoutineUseCase(Routine(date= getTodayDate(),text = routineText))
-                    _dismissDialog.emit(Unit)
+                    _navigateActions.emit(InsertRoutineNavigationAction.DismissDialog)
                 }
             }
+        }
+    }
+
+    override fun openInsertCategoryDialog() {
+        viewModelScope.launch {
+            _navigateActions.emit(InsertRoutineNavigationAction.InsertCategoryDialog)
         }
     }
 }
