@@ -3,7 +3,6 @@ package com.hegunhee.feature.category.insert
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Category
-import com.example.domain.usecase.category.GetAllCategoryListUseCase
 import com.example.domain.usecase.category.InsertCategoryUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -47,6 +46,4 @@ class InsertCategoryDialogViewModel @Inject constructor(
             }
         }
     }
-
-
 }

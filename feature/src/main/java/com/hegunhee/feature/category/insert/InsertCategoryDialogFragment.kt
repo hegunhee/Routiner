@@ -1,9 +1,7 @@
 package com.hegunhee.feature.category.insert
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -24,10 +22,10 @@ class InsertCategoryDialogFragment : BaseDialog<DialogInsertCategoryBinding>(R.l
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply { viewModel = this@InsertCategoryDialogFragment.viewModel }
-        observeFlow()
+        observeData()
     }
 
-    private fun observeFlow(){
+    private fun observeData(){
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED){
                 launch {
@@ -43,8 +41,4 @@ class InsertCategoryDialogFragment : BaseDialog<DialogInsertCategoryBinding>(R.l
             }
         }
     }
-
-
-
-
 }
