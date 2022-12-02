@@ -9,7 +9,7 @@ import com.example.data.entity.CategoryEntity
 @Dao
 interface CategoryDao {
 
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCategory(categoryEntity: CategoryEntity)
 
     @Query("SELECT * FROM CategoryEntity")
