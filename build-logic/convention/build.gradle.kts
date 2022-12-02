@@ -8,5 +8,6 @@ java {
 }
 
 dependencies{
-//    compileOnly()
+    compileOnly(libs.android.gradlePlugin)
+    compileOnly(libs.kotlin.gradlePlugin)
 }
