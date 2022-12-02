@@ -21,5 +21,9 @@ gradlePlugin{
             id = "android.hilt"
             implementationClass = "com.example.convention.AndroidHiltConventionPlugin"
         }
+        register("androidFeature"){
+            id = "android.feature"
+            implementationClass = "com.example.convention.AndroidFeatureConventionPlugin"
+        }
     }
 }
