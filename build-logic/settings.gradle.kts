@@ -1,5 +1,4 @@
 pluginManagement {
-    includeBuild("build-logic")
     repositories {
         gradlePluginPortal()
         google()
@@ -12,9 +11,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
     }
+    versionCatalogs{
+        create("libs"){
+            from(files("../gradle/libs.versions.toml"))
+        }
+    }
 }
-rootProject.name = "Routiner"
-include (":app")
-include(":domain")
-include(":data")
-include(":feature")
+rootProject.name = "build-logic"
+include (":convention")
