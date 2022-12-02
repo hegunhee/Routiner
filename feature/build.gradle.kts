@@ -1,8 +1,10 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
+    id("android.library.convention")
+    id("android.hilt")
+//    id("com.android.library")
+//    id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+//    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -25,13 +27,13 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+//    compileOptions {
+//        sourceCompatibility = JavaVersion.VERSION_1_8
+//        targetCompatibility = JavaVersion.VERSION_1_8
+//    }
+//    kotlinOptions {
+//        jvmTarget = "1.8"
+//    }
     buildFeatures{
         dataBinding = true
         viewBinding = true
@@ -59,8 +61,8 @@ dependencies {
     implementation(libs.lifecycle.livedata)
     implementation(libs.lifecycle.scope)
     //Hilt
-    implementation(libs.bundles.hilt)
-    kapt(libs.hilt.compiler)
+//    implementation(libs.bundles.hilt)
+//    kapt(libs.hilt.compiler)
 
     implementation(libs.gson)
 }
