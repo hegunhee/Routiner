@@ -1,20 +1,17 @@
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    id("android.application")
+//    id("com.android.application")
+//    id("org.jetbrains.kotlin.android")
+//    id("dagger.hilt.android.plugin")
     id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
 }
 
 android {
-    compileSdkVersion (32)
 
     defaultConfig {
         applicationId = "com.hegunhee.routiner"
-        minSdkVersion(26)
-        targetSdkVersion(32)
         versionCode = (3)
         versionName = "1.2"
-
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -24,23 +21,8 @@ android {
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-    buildFeatures{
-        dataBinding = true
-        viewBinding = true
-    }
 }
 dependencies {
-
-    implementation(project(":feature"))
-    implementation(project(":data"))
-    implementation(project(":domain"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
