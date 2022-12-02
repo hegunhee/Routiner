@@ -1,4 +1,7 @@
 [versions]
+androidGradlePlugin = "7.3.1"
+kotlin = "1.5.31"
+
 core = "1.7.0"
 appcompat = "1.4.2"
 material = "1.6.1"
@@ -54,8 +57,18 @@ gson = {module ="com.squareup.retrofit2:converter-gson",version.ref ="gson"}
 javax-inject = {module ="javax.inject:javax.inject",version.ref ="javax-inject"}
 kotlin-stdlib = {module ="org.jetbrains.kotlin:kotlin-stdlib",version.ref = "kotlin-libs"}
 
+android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
+kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
+
 [bundles]
 coroutine = ["coroutine-core","coroutine-android"]
 navigation = ["navigation-fragment","navigation-ui"]
 room = ["room-runtime","room-ktx"]
 hilt = ["hilt-android"]
+
+[plugins]
+android-application = { id ="com.android.application", version.ref ="androidGradlePlugin"}
+android-library = { id = "com.android.library", version.ref ="androidGradlePlugin"}
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin"}
+hilt-android = { id="dagger.hilt.android.plugin", version.ref = "hilt"}
