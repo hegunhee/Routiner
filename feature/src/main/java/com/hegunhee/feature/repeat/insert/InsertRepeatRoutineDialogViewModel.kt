@@ -7,6 +7,7 @@ import com.example.domain.model.Category
 import com.example.domain.model.RepeatRoutine
 import com.example.domain.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
+import com.example.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
 import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
 import com.hegunhee.feature.util.getTodayDate
 import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
@@ -18,7 +19,8 @@ import javax.inject.Inject
 @HiltViewModel
 class InsertRepeatRoutineDialogViewModel @Inject constructor(
     private val allCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase,
-    private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase
+    private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
+    private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase
 ) : ViewModel() , InsertRepeatRoutineActionHandler{
 
     val repeatRoutineText : MutableStateFlow<String> = MutableStateFlow<String>("")
@@ -61,7 +63,8 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
             if(getTodayDayOfWeekFormatedKorean() in dayOfWeekList){
                 insertDailyRoutineUseCase(Routine(date = getTodayDate(), text = repeatRoutineText, category = categoryText))
             }
-
+            insertRepeatRoutineUseCase(repeatRoutine)
+            _navigationActions.emit(InsertRepeatRoutineNavigationAction.DisMissDialog)
         }
 
     }
