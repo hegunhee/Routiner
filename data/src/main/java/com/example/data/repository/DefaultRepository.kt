@@ -79,8 +79,8 @@ class DefaultRepository(
         categoryDao.insertCategory(category.toCategoryEntity())
     }
 
-    override suspend fun getAllCategory(): List<Category> {
-        return categoryDao.getAllCategory().toCategory()
+    override fun getAllCategoryByFlow(): Flow<List<Category>> {
+        return categoryDao.getAllCategoryByFlow().map { it.toCategory() }
     }
 
     override suspend fun getCurrentDate(): Int {
