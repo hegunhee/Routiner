@@ -10,6 +10,7 @@ import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
 import com.hegunhee.feature.R
 import com.hegunhee.feature.base.BaseFragment
+import com.hegunhee.feature.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.feature.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.feature.databinding.DialogInsertCategoryBinding
 import com.hegunhee.feature.databinding.DialogRepeatRoutineBinding
@@ -129,21 +130,6 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
     }
 
     private fun insertCategory(chipGroup: ChipGroup){
-        DialogInsertCategoryBinding.inflate(layoutInflater).run {
-            val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
-            cancelButton.setOnClickListener {
-                dialog.dismiss()
-            }
-            succeedButton.setOnClickListener {
-                val categoryText = categoryEditText.text.toString().trim()
-                if(categoryText == ""){
-                    Toast.makeText(requireContext(), "입력칸이 비어있습니다.", Toast.LENGTH_SHORT).show()
-                }else{
-                    chipGroup.addCheckableChip(categoryText)
-                    viewModel.insertCategory(categoryText)
-                    dialog.dismiss()
-                }
-            }
-        }
+        InsertCategoryDialogFragment().show(childFragmentManager,"insert_category")
     }
 }

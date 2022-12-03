@@ -37,7 +37,7 @@ interface Repository {
 
     suspend fun insertCategory(categoryEntity: Category)
 
-    suspend fun getAllCategory() : List<Category>
+    fun getAllCategoryByFlow() : Flow<List<Category>>
 
     suspend fun getCurrentDate() : Int
 

@@ -13,7 +13,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.DialogFragment
 
-abstract class BaseDialog<T : ViewDataBinding>(@LayoutRes private val layoutResId : Int) : DialogFragment() {
+abstract class BaseDialog<T : ViewDataBinding>(@LayoutRes private val layoutResId : Int,val widthPercent : Double,val heightPercent : Double) : DialogFragment() {
 
     private var _binding: T? = null
     val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화 되지 않았습니다.")
@@ -49,16 +49,16 @@ abstract class BaseDialog<T : ViewDataBinding>(@LayoutRes private val layoutResI
 
             val window = this@BaseDialog.dialog?.window
 
-            val x = (size.x * WIDTH_PERCENT).toInt()
-            val y = (size.y * HEIGHT_PERCENT).toInt()
+            val x = (size.x * widthPercent).toInt()
+            val y = (size.y * heightPercent).toInt()
             window?.setLayout(x,y)
         }else{
             val rect = windowManager.currentWindowMetrics.bounds
 
             val window = this@BaseDialog.dialog?.window
 
-            val x = (rect.width() * WIDTH_PERCENT).toInt()
-            val y = (rect.height() * HEIGHT_PERCENT).toInt()
+            val x = (rect.width() * widthPercent).toInt()
+            val y = (rect.height() * heightPercent).toInt()
 
             window?.setLayout(x,y)
         }

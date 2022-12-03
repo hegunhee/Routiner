@@ -5,4 +5,6 @@ interface InsertRoutineActionHandler {
     fun cancelRoutine()
 
     fun insertRoutine()
+
+    fun openInsertCategoryDialog()
 }
