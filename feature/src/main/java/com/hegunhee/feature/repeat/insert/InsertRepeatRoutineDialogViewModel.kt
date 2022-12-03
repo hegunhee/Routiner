@@ -19,7 +19,7 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
 
     var categoryText : String = ""
 
-    var dayOfWeekList : List<String> = listOf<String>()
+    var dayOfWeekList : List<String> = emptyList()
 
     private val _categoryList : Flow<List<Category>> = allCategoryListByFlowUseCase()
     val categoryList : Flow<List<Category>>
@@ -35,6 +35,9 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
     }
 
     override fun successRepeatRoutine() {
+        val repeatRoutineText = repeatRoutineText.value
+        if(repeatRoutineText.isBlank()) return
+        if(dayOfWeekList.isEmpty()) return
     }
 
     override fun openInsertCategoryDialog() {

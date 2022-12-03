@@ -73,7 +73,7 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
     private fun dayOfWeekChipGroupClickListener() {
         binding.dayOfWeekChipGroup.setOnCheckedStateChangeListener { group, checkedIdList ->
             viewModel.dayOfWeekList = if(checkedIdList.isEmpty()){
-                listOf()
+                emptyList()
             }else{
                 checkedIdList.map { group.findViewById<Chip>(it).text.toString() }.toList()
             }
