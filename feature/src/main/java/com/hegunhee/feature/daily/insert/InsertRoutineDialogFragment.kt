@@ -15,6 +15,8 @@ import com.hegunhee.feature.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.feature.databinding.DialogDailyRoutineBinding
 import com.hegunhee.feature.util.addCheckableChip
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -51,16 +53,18 @@ class InsertRoutineDialogFragment : BaseDialog<DialogDailyRoutineBinding>(R.layo
                         Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
                     }
                 }
-            }
-        }
-        viewModel.categoryList.observe(viewLifecycleOwner){
-            if(it.isEmpty()) return@observe
-            if(binding.categoryGroup.isEmpty()){
-                it.forEach{
-                    binding.categoryGroup.addCheckableChip(it.name)
+                launch {
+                    viewModel.categoryList.collectLatest {
+                        if (it.isEmpty()) return@collectLatest
+                        if (binding.categoryGroup.isEmpty()) {
+                            it.forEach {
+                                binding.categoryGroup.addCheckableChip(it.name)
+                            }
+                        } else {
+                            binding.categoryGroup.addCheckableChip(it.last().name)
+                        }
+                    }
                 }
-            }else{
-                binding.categoryGroup.addCheckableChip(it.last().name)
             }
         }
     }
