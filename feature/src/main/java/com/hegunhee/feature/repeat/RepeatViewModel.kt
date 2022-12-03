@@ -25,7 +25,6 @@ class RepeatViewModel @Inject constructor(
     private val getAllRepeatRoutineByFlowUseCase: GetAllRepeatRoutineByFlowUseCase,
     private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
     private val deleteRepeatRoutineUseCase: DeleteRepeatRoutineUseCase,
-    private val insertCategoryUseCase: InsertCategoryUseCase,
 ): ViewModel(), RepeatActionHandler {
 
     val repeatRoutineListLiveData : LiveData<List<RepeatRoutine>> = getAllRepeatRoutineByFlowUseCase().asLiveData()
@@ -53,12 +52,6 @@ class RepeatViewModel @Inject constructor(
         deleteRepeatRoutineUseCase(text)
     }
 
-
-    fun insertCategory(category : String) = viewModelScope.launch(Dispatchers.IO) {
-        insertCategoryUseCase(Category(category))
-//        setCategory()
-    }
-
     override fun openInsertRepeatRoutineDialog() {
         viewModelScope.launch {
             _navigationActions.emit(RepeatNavigationAction.InsertRepeatRoutine)
@@ -70,11 +63,4 @@ class RepeatViewModel @Inject constructor(
             _navigationActions.emit(RepeatNavigationAction.ClickRepeatRoutine(repeatRoutine = repeatRoutine))
         }
     }
-
-
-//    private fun setCategory() = viewModelScope.launch(Dispatchers.IO) {
-//        _categoryList.postValue(getAllCategoryListUseCase())
-//    }
-
-
 }
