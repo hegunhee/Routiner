@@ -54,8 +54,8 @@ class InsertRoutineDialogFragment : BaseDialog<DialogDailyRoutineBinding>(R.layo
                     }
                 }
                 launch {
-                    viewModel.categoryList.collectLatest {
-                        if (it.isEmpty()) return@collectLatest
+                    viewModel.categoryList.collect{
+                        if (it.isEmpty()) return@collect
                         if (binding.categoryGroup.isEmpty()) {
                             it.forEach {
                                 binding.categoryGroup.addCheckableChip(it.name)
