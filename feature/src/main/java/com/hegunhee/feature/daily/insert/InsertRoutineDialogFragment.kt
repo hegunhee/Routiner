@@ -3,14 +3,17 @@ package com.hegunhee.feature.daily.insert
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.material.chip.Chip
 import com.hegunhee.feature.R
 import com.hegunhee.feature.base.BaseDialog
 import com.hegunhee.feature.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.feature.databinding.DialogDailyRoutineBinding
+import com.hegunhee.feature.util.addCheckableChip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -25,6 +28,7 @@ class InsertRoutineDialogFragment : BaseDialog<DialogDailyRoutineBinding>(R.layo
             viewModel = this@InsertRoutineDialogFragment.viewModel
         }
         observeData()
+        categoryGroupClickListener()
     }
 
     private fun observeData(){
@@ -47,6 +51,26 @@ class InsertRoutineDialogFragment : BaseDialog<DialogDailyRoutineBinding>(R.layo
                         Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
                     }
                 }
+            }
+        }
+        viewModel.categoryList.observe(viewLifecycleOwner){
+            if(it.isEmpty()) return@observe
+            if(binding.categoryGroup.isEmpty()){
+                it.forEach{
+                    binding.categoryGroup.addCheckableChip(it.name)
+                }
+            }else{
+                binding.categoryGroup.addCheckableChip(it.last().name)
+            }
+        }
+    }
+
+    private fun categoryGroupClickListener() {
+        binding.categoryGroup.setOnCheckedStateChangeListener { group, checkedIdList ->
+            viewModel.categoryText = if(checkedIdList.isEmpty()){
+                ""
+            }else{
+                group.findViewById<Chip>(checkedIdList.first()).text.toString()
             }
         }
     }

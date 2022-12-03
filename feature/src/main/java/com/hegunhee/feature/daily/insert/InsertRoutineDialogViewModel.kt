@@ -1,8 +1,12 @@
 package com.hegunhee.feature.daily.insert
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.domain.model.Category
 import com.example.domain.model.Routine
+import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
 import com.example.domain.usecase.routine.getTodayDate
@@ -14,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class InsertRoutineDialogViewModel @Inject constructor(
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
-    private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase
+    private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
+    private val getAllCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase
 ) : ViewModel(), InsertRoutineActionHandler {
 
     val routineText : MutableStateFlow<String> = MutableStateFlow<String>("")
@@ -24,6 +29,10 @@ class InsertRoutineDialogViewModel @Inject constructor(
 
     private val _toastMessage : MutableSharedFlow<String> = MutableSharedFlow<String>()
     val toastMessage : SharedFlow<String> = _toastMessage.asSharedFlow()
+
+    val categoryList : LiveData<List<Category>> = getAllCategoryListByFlowUseCase().asLiveData()
+
+    var categoryText : String = ""
 
     private val emptyMessage = "입력이 비어있습니다."
     private val sameRoutineMessage = "중복된 루틴입니다."
@@ -45,7 +54,7 @@ class InsertRoutineDialogViewModel @Inject constructor(
                 if(routineList.map(Routine::text).contains(routineText)){
                     _toastMessage.emit(sameRoutineMessage)
                 }else{
-                    insertDailyRoutineUseCase(Routine(date= getTodayDate(),text = routineText))
+                    insertDailyRoutineUseCase(Routine(date= getTodayDate(),text = routineText, category = categoryText))
                     _navigateActions.emit(InsertRoutineNavigationAction.DismissDialog)
                 }
             }
