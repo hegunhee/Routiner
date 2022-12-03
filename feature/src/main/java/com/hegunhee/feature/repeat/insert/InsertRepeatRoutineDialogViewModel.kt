@@ -29,6 +29,8 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
 
     var dayOfWeekList : List<String> = emptyList()
 
+    val repeatRoutineEditTextEnabled : MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(true)
+
     private val _categoryList : Flow<List<Category>> = allCategoryListByFlowUseCase()
     val categoryList : Flow<List<Category>>
     get() = _categoryList
