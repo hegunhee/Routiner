@@ -4,7 +4,6 @@ import androidx.lifecycle.*
 import com.example.domain.model.Category
 import com.example.domain.model.RepeatRoutine
 import com.example.domain.model.Routine
-import com.example.domain.usecase.category.GetAllCategoryListUseCase
 import com.example.domain.usecase.category.InsertCategoryUseCase
 import com.example.domain.usecase.repeatRoutine.DeleteRepeatRoutineUseCase
 import com.example.domain.usecase.repeatRoutine.GetAllRepeatRoutineByFlowUseCase
@@ -23,7 +22,6 @@ class RepeatViewModel @Inject constructor(
     private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
     private val deleteRepeatRoutineUseCase: DeleteRepeatRoutineUseCase,
     private val insertCategoryUseCase: InsertCategoryUseCase,
-    private val getAllCategoryListUseCase: GetAllCategoryListUseCase
 ): ViewModel() {
 
     val repeatRoutineListLiveData : LiveData<List<RepeatRoutine>> = getAllRepeatRoutineByFlowUseCase().asLiveData()
@@ -39,9 +37,9 @@ class RepeatViewModel @Inject constructor(
     val categoryList : LiveData<List<Category>>
         get() = _categoryList
 
-    init {
-        setCategory()
-    }
+//    init {
+//        setCategory()
+//    }
     fun clickFloatingActionButton() {
         _clickEvent.value = ClickEvent.Clicked
     }
@@ -65,14 +63,13 @@ class RepeatViewModel @Inject constructor(
 
     fun insertCategory(category : String) = viewModelScope.launch(Dispatchers.IO) {
         insertCategoryUseCase(Category(category))
-        setCategory()
+//        setCategory()
     }
 
 
-    private fun setCategory() = viewModelScope.launch(Dispatchers.IO) {
-        _categoryList.postValue(getAllCategoryListUseCase())
-
-    }
+//    private fun setCategory() = viewModelScope.launch(Dispatchers.IO) {
+//        _categoryList.postValue(getAllCategoryListUseCase())
+//    }
 
 
 }
