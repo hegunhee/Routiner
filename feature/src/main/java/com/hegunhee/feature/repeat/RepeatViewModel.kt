@@ -22,7 +22,7 @@ class RepeatViewModel @Inject constructor(
     private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
     private val deleteRepeatRoutineUseCase: DeleteRepeatRoutineUseCase,
     private val insertCategoryUseCase: InsertCategoryUseCase,
-): ViewModel() {
+): ViewModel(), RepeatActionHandler {
 
     val repeatRoutineListLiveData : LiveData<List<RepeatRoutine>> = getAllRepeatRoutineByFlowUseCase().asLiveData()
 
@@ -64,6 +64,14 @@ class RepeatViewModel @Inject constructor(
     fun insertCategory(category : String) = viewModelScope.launch(Dispatchers.IO) {
         insertCategoryUseCase(Category(category))
 //        setCategory()
+    }
+
+    override fun openInsertRepeatRoutineDialog() {
+        TODO("Not yet implemented")
+    }
+
+    override fun clickRepeatRoutine() {
+        TODO("Not yet implemented")
     }
 
 
