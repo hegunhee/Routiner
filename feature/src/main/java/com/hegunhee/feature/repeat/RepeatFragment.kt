@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,7 @@ import com.hegunhee.feature.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.feature.databinding.DialogRepeatRoutineBinding
 import com.hegunhee.feature.databinding.FragmentRepeatBinding
 import com.hegunhee.feature.mainActivity.MainActivity
+import com.hegunhee.feature.repeat.insert.InsertRepeatRoutineDialogFragment
 import com.hegunhee.feature.util.addCheckableChip
 import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,7 +62,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     viewModel.navigationActions.collect{
                         when(it){
                             RepeatNavigationAction.InsertRepeatRoutine -> {
-                                showRepeatDialog()
+                                InsertRepeatRoutineDialogFragment().show(childFragmentManager,"insert_repeat_routine")
                             }
                             it as RepeatNavigationAction.ClickRepeatRoutine -> {
                                 clickAdapterItem(it.repeatRoutine)
@@ -72,72 +74,13 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
         }
     }
 
-
-    private fun showRepeatDialog(isRevise : Boolean = false, repeatRoutine: RepeatRoutine? = null) {
-        DialogRepeatRoutineBinding.inflate(layoutInflater).run {
-            val dialog = AlertDialog.Builder(requireContext()).setView(this.root).show()
-
-            repeatRoutine?.let {
-                if(isRevise){
-                    routineEditText.setText(it.text)
-                    routineEditText.isEnabled = false
-                    val chips = arrayOf<Chip>(mondayChip,tuesdayChip,wednesdayChip,thursdayChip,fridayChip,saturdayChip,sundayChip)
-                    for(chip in chips){
-                        if(chip.text in it.dayOfWeekList) chip.isChecked = true
-                    }
-
-                }
-            }
-            viewModel.categoryList.value?.forEach {
-                categoryGroup.addCheckableChip(it.name)
-            }
-
-            cancelButton.setOnClickListener { dialog.dismiss() }
-
-            succeedButton.setOnClickListener {
-                val repeatRoutineText = routineEditText.text.toString()
-                if (repeatRoutineText.isEmpty()) {
-                    Toast.makeText(requireContext(), "내용이 비어있습니다.", Toast.LENGTH_SHORT).show()
-                } else if (dayOfWeekChipGroup.checkedChipIds.isEmpty()) {
-                    Toast.makeText(requireContext(), "요일을 선택해주세요", Toast.LENGTH_SHORT).show()
-                } else {
-                    val dayOfWeekStringList = dayOfWeekChipGroup.checkedChipIds.map {
-                        dayOfWeekChipGroup.findViewById<Chip>(it).text.toString()
-                    }
-                    val categoryText = if(categoryGroup.checkedChipId == View.NO_ID){
-                        ""
-                    }else{
-                        categoryGroup.findViewById<Chip>(categoryGroup.checkedChipId).text.toString()
-                    }
-                    if (getTodayDayOfWeekFormatedKorean() in dayOfWeekStringList && !isRevise) {
-                        viewModel.insertDailyRoutine(repeatRoutineText, category = categoryText)
-                    }
-                    viewModel.insertRepeatRoutine(repeatRoutineText, dayOfWeeks = dayOfWeekStringList, category = categoryText)
-                    dialog.dismiss()
-                }
-            }
-            insertCategoryChip.setOnClickListener {
-                insertCategory(categoryGroup)
-            }
-        }
-
-    }
-
     private fun clickAdapterItem(repeatRoutine: RepeatRoutine) {
         DialogClickRepeatRecordItemBinding.inflate(layoutInflater).run {
             val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
-            reviseTextView.setOnClickListener{
-                showRepeatDialog(true,repeatRoutine)
-                dialog.dismiss()
-            }
             deleteTextView.setOnClickListener{
                 viewModel.deleteRepeatRoutine(repeatRoutine.text)
                 dialog.dismiss()
             }
         }
-    }
-
-    private fun insertCategory(chipGroup: ChipGroup){
-        InsertCategoryDialogFragment().show(childFragmentManager,"insert_category")
     }
 }
