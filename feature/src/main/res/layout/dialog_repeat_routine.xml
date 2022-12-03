@@ -33,7 +33,6 @@
             android:layout_width="0dp"
             android:textColor="@color/black"
             android:layout_height="wrap_content"
-            android:enabled="@{viewModel.repeatRoutineEditTextEnabled}"
             android:text="@={viewModel.repeatRoutineText}"
             app:layout_constraintBottom_toTopOf="@id/select_day_of_week_text_view"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
