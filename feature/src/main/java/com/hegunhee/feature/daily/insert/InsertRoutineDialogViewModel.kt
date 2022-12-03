@@ -30,7 +30,9 @@ class InsertRoutineDialogViewModel @Inject constructor(
     private val _toastMessage : MutableSharedFlow<String> = MutableSharedFlow<String>()
     val toastMessage : SharedFlow<String> = _toastMessage.asSharedFlow()
 
-    val categoryList : Flow<List<Category>> = getAllCategoryListByFlowUseCase()
+    private val _categoryList : Flow<List<Category>> = getAllCategoryListByFlowUseCase()
+    val categoryList : Flow<List<Category>>
+    get() = _categoryList
 
     var categoryText : String = ""
 
