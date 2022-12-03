@@ -19,6 +19,8 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
 
     var categoryText : String = ""
 
+    var dayOfWeekList : List<String> = listOf<String>()
+
     private val _categoryList : Flow<List<Category>> = allCategoryListByFlowUseCase()
     val categoryList : Flow<List<Category>>
     get() = _categoryList
@@ -33,8 +35,6 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
     }
 
     override fun successRepeatRoutine() {
-        println(repeatRoutineText)
-        println(categoryText)
     }
 
     override fun openInsertCategoryDialog() {
