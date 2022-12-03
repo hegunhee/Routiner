@@ -2,6 +2,7 @@ package com.hegunhee.feature.repeat.insert
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -43,6 +44,11 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
                                 InsertCategoryDialogFragment().show(childFragmentManager,"insert_category")
                             }
                         }
+                    }
+                }
+                launch {
+                    viewModel.toastMessage.collect{
+                        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
                     }
                 }
                 launch {
