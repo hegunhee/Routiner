@@ -171,6 +171,7 @@
             android:layout_height="wrap_content"
             android:text="카테고리 추가"
             android:textColor="@color/black"
+            android:onClick="@{() -> viewModel.openInsertCategoryDialog()}"
             android:backgroundTint="@color/teal_200"
 
             app:layout_constraintBottom_toTopOf="@id/cancel_button"
@@ -187,6 +188,7 @@
             android:text="취소"
             android:textColor="@color/white"
             android:textSize="20dp"
+            android:onClick="@{() -> viewModel.cancelRepeatRoutine()}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/succeed_button"
             app:layout_constraintHorizontal_chainStyle="packed"
@@ -202,6 +204,7 @@
             android:text="등록"
             android:textColor="@color/black"
             android:textSize="20dp"
+            android:onClick="@{() -> viewModel.successRepeatRoutine()}"
             app:layout_constraintBottom_toBottomOf="@id/cancel_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"
