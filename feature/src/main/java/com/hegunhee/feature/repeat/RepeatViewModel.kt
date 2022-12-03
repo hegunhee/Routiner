@@ -12,6 +12,10 @@ import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
 import com.hegunhee.feature.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,24 +33,13 @@ class RepeatViewModel @Inject constructor(
     val isRepeatRoutineListEmpty : LiveData<Boolean> = Transformations.map(repeatRoutineListLiveData){
         it.isEmpty()
     }
-    private var _clickEvent : MutableLiveData<ClickEvent> = MutableLiveData<ClickEvent>(ClickEvent.Uninitalized)
-    val clickEvent
-    get() = _clickEvent
+
+    private val _navigationActions : MutableSharedFlow<RepeatNavigationAction> = MutableSharedFlow<RepeatNavigationAction>()
+    val navigationActions : SharedFlow<RepeatNavigationAction> = _navigationActions.asSharedFlow()
 
     private var _categoryList : MutableLiveData<List<Category>> = MutableLiveData(listOf())
     val categoryList : LiveData<List<Category>>
         get() = _categoryList
-
-//    init {
-//        setCategory()
-//    }
-    fun clickFloatingActionButton() {
-        _clickEvent.value = ClickEvent.Clicked
-    }
-
-    fun finishClick() {
-        _clickEvent.value = ClickEvent.Finished
-    }
 
     fun insertDailyRoutine(text : String,category : String = "") = viewModelScope.launch(Dispatchers.IO) {
         insertDailyRoutineUseCase(Routine(getTodayDate(),text, category = category))
@@ -67,11 +60,15 @@ class RepeatViewModel @Inject constructor(
     }
 
     override fun openInsertRepeatRoutineDialog() {
-        TODO("Not yet implemented")
+        viewModelScope.launch {
+            _navigationActions.emit(RepeatNavigationAction.InsertRepeatRoutine)
+        }
     }
 
-    override fun clickRepeatRoutine() {
-        TODO("Not yet implemented")
+    override fun clickRepeatRoutine(repeatRoutine: RepeatRoutine) {
+        viewModelScope.launch {
+            _navigationActions.emit(RepeatNavigationAction.ClickRepeatRoutine(repeatRoutine = repeatRoutine))
+        }
     }
 
 

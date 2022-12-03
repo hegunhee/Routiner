@@ -1,8 +1,10 @@
 package com.hegunhee.feature.repeat
 
+import com.example.domain.model.RepeatRoutine
+
 interface RepeatActionHandler {
 
     fun openInsertRepeatRoutineDialog()
 
-    fun clickRepeatRoutine()
+    fun clickRepeatRoutine(repeatRoutine: RepeatRoutine)
 }

@@ -5,6 +5,9 @@ import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.domain.model.RepeatRoutine
 import com.google.android.material.chip.Chip
 import com.google.android.material.chip.ChipGroup
@@ -12,54 +15,59 @@ import com.hegunhee.feature.R
 import com.hegunhee.feature.base.BaseFragment
 import com.hegunhee.feature.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.feature.databinding.DialogClickRepeatRecordItemBinding
-import com.hegunhee.feature.databinding.DialogInsertCategoryBinding
 import com.hegunhee.feature.databinding.DialogRepeatRoutineBinding
 import com.hegunhee.feature.databinding.FragmentRepeatBinding
 import com.hegunhee.feature.mainActivity.MainActivity
 import com.hegunhee.feature.util.addCheckableChip
 import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_repeat) {
 
     private val viewModel: RepeatViewModel by viewModels()
 
-    private val adapter: RepeatAdapter by lazy {
-        RepeatAdapter(listOf()) { repeatRoutine ->
-            clickAdapterItem(
-                repeatRoutine
-            )
-        }
-    }
+    private lateinit var adapter: RepeatAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        adapter = RepeatAdapter(listOf(),viewModel)
         binding.apply {
             viewmodel = viewModel
             recyclerView.adapter = adapter
         }
         (requireActivity() as MainActivity).supportActionBar?.title = "반복 루틴 설정"
         initObserver()
+        observeData()
 
     }
 
     private fun initObserver() {
-        viewModel.clickEvent.observe(viewLifecycleOwner) {
-            when (it) {
-                ClickEvent.Uninitalized -> {}
-                ClickEvent.Clicked -> {
-                    showRepeatDialog()
-                    viewModel.finishClick()
-                }
-                ClickEvent.Finished -> {}
-            }
-        }
         viewModel.repeatRoutineListLiveData.observe(viewLifecycleOwner) {
             if (it.isEmpty()) {
 
             } else {
                 adapter.setList(it)
+            }
+        }
+    }
+
+    private fun observeData(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.RESUMED){
+                launch {
+                    viewModel.navigationActions.collect{
+                        when(it){
+                            RepeatNavigationAction.InsertRepeatRoutine -> {
+                                showRepeatDialog()
+                            }
+                            it as RepeatNavigationAction.ClickRepeatRoutine -> {
+                                clickAdapterItem(it.repeatRoutine)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
