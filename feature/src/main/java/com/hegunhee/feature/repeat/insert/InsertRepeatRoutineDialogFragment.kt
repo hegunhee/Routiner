@@ -1,4 +1,4 @@
-package com.hegunhee.feature.daily.insert
+package com.hegunhee.feature.repeat.insert
 
 import android.os.Bundle
 import android.view.View
@@ -12,35 +12,34 @@ import com.google.android.material.chip.Chip
 import com.hegunhee.feature.R
 import com.hegunhee.feature.base.BaseDialog
 import com.hegunhee.feature.category.insert.InsertCategoryDialogFragment
-import com.hegunhee.feature.databinding.DialogDailyRoutineBinding
+import com.hegunhee.feature.databinding.DialogRepeatRoutineBinding
 import com.hegunhee.feature.util.addCheckableChip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
-class InsertRoutineDialogFragment : BaseDialog<DialogDailyRoutineBinding>(R.layout.dialog_daily_routine, widthPercent = 0.8, heightPercent = 0.4){
+class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>(R.layout.dialog_repeat_routine, widthPercent = 0.8, heightPercent = 0.4){
 
-    private val viewModel : InsertRoutineDialogViewModel by viewModels()
+    private val viewModel : InsertRepeatRoutineDialogViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.apply {
-            viewModel = this@InsertRoutineDialogFragment.viewModel
-        }
+        binding.apply { viewModel = this@InsertRepeatRoutineDialogFragment.viewModel }
         observeData()
         categoryGroupClickListener()
+        dayOfWeekChipGroupClickListener()
     }
 
     private fun observeData(){
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.RESUMED){
                 launch {
-                    viewModel.navigateActions.collect{
+                    viewModel.navigationActions.collect{
                         when(it){
-                            InsertRoutineNavigationAction.DismissDialog -> {
+                            InsertRepeatRoutineNavigationAction.DisMissDialog -> {
                                 dismiss()
                             }
-                            InsertRoutineNavigationAction.InsertCategoryDialog -> {
+                            InsertRepeatRoutineNavigationAction.OpenInsertCategoryDialog -> {
                                 InsertCategoryDialogFragment().show(childFragmentManager,"insert_category")
                             }
                         }
@@ -66,14 +65,24 @@ class InsertRoutineDialogFragment : BaseDialog<DialogDailyRoutineBinding>(R.layo
             }
         }
     }
-
-    private fun categoryGroupClickListener() {
+    private fun categoryGroupClickListener(){
         binding.categoryGroup.setOnCheckedStateChangeListener { group, checkedIdList ->
             viewModel.categoryText = if(checkedIdList.isEmpty()){
                 ""
             }else{
                 group.findViewById<Chip>(checkedIdList.first()).text.toString()
             }
+        }
+    }
+
+    private fun dayOfWeekChipGroupClickListener() {
+        binding.dayOfWeekChipGroup.setOnCheckedStateChangeListener { group, checkedIdList ->
+            viewModel.dayOfWeekList = if(checkedIdList.isEmpty()){
+                emptyList()
+            }else{
+                checkedIdList.map { group.findViewById<Chip>(it).text.toString() }.toList()
+            }
+
         }
     }
 }

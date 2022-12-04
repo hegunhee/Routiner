@@ -1,8 +1,6 @@
 package com.hegunhee.feature.daily.insert
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Category
 import com.example.domain.model.Routine
@@ -30,7 +28,9 @@ class InsertRoutineDialogViewModel @Inject constructor(
     private val _toastMessage : MutableSharedFlow<String> = MutableSharedFlow<String>()
     val toastMessage : SharedFlow<String> = _toastMessage.asSharedFlow()
 
-    val categoryList : Flow<List<Category>> = getAllCategoryListByFlowUseCase()
+    private val _categoryList : Flow<List<Category>> = getAllCategoryListByFlowUseCase()
+    val categoryList : Flow<List<Category>>
+    get() = _categoryList
 
     var categoryText : String = ""
 

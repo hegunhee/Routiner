@@ -1,203 +1,216 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:background="@color/white"
-    android:layout_height="match_parent">
+<layout>
 
-    <TextView
-        android:id="@+id/title_text_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="루틴을 적어주세요"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/routine_edit_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed" />
+    <data>
 
-    <EditText
-        android:id="@+id/routine_edit_text"
-        android:layout_width="0dp"
-        android:textColor="@color/black"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/select_day_of_week_text_view"
-        app:layout_constraintEnd_toEndOf="@id/title_text_view"
-        app:layout_constraintStart_toStartOf="@id/title_text_view"
-        app:layout_constraintTop_toBottomOf="@id/title_text_view"
-        app:layout_constraintVertical_chainStyle="packed" />
+        <variable
+            name="viewModel"
+            type="com.hegunhee.feature.repeat.insert.InsertRepeatRoutineDialogViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/select_day_of_week_text_view"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="요일을 선택해주세요"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/day_of_week_chip_group"
-        app:layout_constraintEnd_toEndOf="@id/title_text_view"
-        app:layout_constraintStart_toStartOf="@id/title_text_view"
-        app:layout_constraintTop_toBottomOf="@id/routine_edit_text"
-        app:layout_constraintVertical_chainStyle="packed" />
+        <TextView
+            android:id="@+id/title_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="루틴을 적어주세요"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/routine_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/day_of_week_chip_group"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/categoryTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/select_day_of_week_text_view"
-        app:layout_constraintVertical_chainStyle="packed">
+        <EditText
+            android:id="@+id/routine_edit_text"
+            android:layout_width="0dp"
+            android:textColor="@color/black"
+            android:layout_height="wrap_content"
+            android:text="@={viewModel.repeatRoutineText}"
+            app:layout_constraintBottom_toTopOf="@id/select_day_of_week_text_view"
+            app:layout_constraintEnd_toEndOf="@id/title_text_view"
+            app:layout_constraintStart_toStartOf="@id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/title_text_view"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <TextView
+            android:id="@+id/select_day_of_week_text_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="요일을 선택해주세요"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/day_of_week_chip_group"
+            app:layout_constraintEnd_toEndOf="@id/title_text_view"
+            app:layout_constraintStart_toStartOf="@id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/routine_edit_text"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/day_of_week_chip_group"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/categoryTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/select_day_of_week_text_view"
+            app:layout_constraintVertical_chainStyle="packed">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/monday_chip"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="월"
+                app:chipBackgroundColor="@color/teal_200"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tuesday_chip"
+                app:chipBackgroundColor="@color/teal_200"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="화"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <com.google.android.material.chip.Chip
+                app:chipBackgroundColor="@color/teal_200"
+                android:id="@+id/wednesday_chip"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="수"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/thursday_chip"
+                app:chipBackgroundColor="@color/teal_200"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="목"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/friday_chip"
+                app:chipBackgroundColor="@color/teal_200"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="금"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/saturday_chip"
+                app:chipBackgroundColor="@color/teal_200"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="토"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/sunday_chip"
+                app:chipBackgroundColor="@color/teal_200"
+                style="@style/Widget.MaterialComponents.Chip.Filter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="일"
+                android:textColor="@color/black"
+                android:textSize="15dp" />
+
+
+        </com.google.android.material.chip.ChipGroup>
+
+
+        <TextView
+            android:id="@+id/categoryTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="카테고리를 설정해주세요"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toTopOf="@id/categoryGroup"
+            app:layout_constraintEnd_toEndOf="@id/title_text_view"
+            app:layout_constraintStart_toStartOf="@id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/day_of_week_chip_group"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/categoryGroup"
+            android:layout_width="0dp"
+            app:singleSelection="true"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/insertCategoryChip"
+            app:layout_constraintEnd_toEndOf="@id/title_text_view"
+            app:layout_constraintStart_toStartOf="@id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/categoryTextView"
+            app:layout_constraintVertical_chainStyle="packed">
+
+
+        </com.google.android.material.chip.ChipGroup>
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/monday_chip"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
+            android:id="@+id/insertCategoryChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="월"
-            app:chipBackgroundColor="@color/teal_200"
+            android:text="카테고리 추가"
             android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:onClick="@{() -> viewModel.openInsertCategoryDialog()}"
+            android:backgroundTint="@color/teal_200"
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/tuesday_chip"
-            app:chipBackgroundColor="@color/teal_200"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
+            app:layout_constraintBottom_toTopOf="@id/cancel_button"
+            app:layout_constraintStart_toStartOf="@id/title_text_view"
+            app:layout_constraintTop_toBottomOf="@id/categoryGroup"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+
+        <Button
+            android:id="@+id/cancel_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="화"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:backgroundTint="@color/black"
+            android:text="취소"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:onClick="@{() -> viewModel.cancelRepeatRoutine()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/succeed_button"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/insertCategoryChip"
+            app:layout_constraintVertical_chainStyle="packed" />
 
-        <com.google.android.material.chip.Chip
-            app:chipBackgroundColor="@color/teal_200"
-            android:id="@+id/wednesday_chip"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/succeed_button"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="수"
+            android:backgroundTint="@color/light_pink"
+            android:text="등록"
             android:textColor="@color/black"
-            android:textSize="15dp" />
+            android:textSize="20dp"
+            android:onClick="@{() -> viewModel.insertRepeatRoutine()}"
+            app:layout_constraintBottom_toBottomOf="@id/cancel_button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="packed"
+            app:layout_constraintStart_toEndOf="@id/cancel_button"
+            app:layout_constraintTop_toTopOf="@id/cancel_button" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/thursday_chip"
-            app:chipBackgroundColor="@color/teal_200"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="목"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/friday_chip"
-            app:chipBackgroundColor="@color/teal_200"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="금"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/saturday_chip"
-            app:chipBackgroundColor="@color/teal_200"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="토"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/sunday_chip"
-            app:chipBackgroundColor="@color/teal_200"
-            style="@style/Widget.MaterialComponents.Chip.Filter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="일"
-            android:textColor="@color/black"
-            android:textSize="15dp" />
-
-
-    </com.google.android.material.chip.ChipGroup>
-
-
-    <TextView
-        android:id="@+id/categoryTextView"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:text="카테고리를 설정해주세요"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@id/categoryGroup"
-        app:layout_constraintEnd_toEndOf="@id/title_text_view"
-        app:layout_constraintStart_toStartOf="@id/title_text_view"
-        app:layout_constraintTop_toBottomOf="@id/day_of_week_chip_group"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/categoryGroup"
-        android:layout_width="0dp"
-        app:singleSelection="true"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@id/insertCategoryChip"
-        app:layout_constraintEnd_toEndOf="@id/title_text_view"
-        app:layout_constraintStart_toStartOf="@id/title_text_view"
-        app:layout_constraintTop_toBottomOf="@id/categoryTextView"
-        app:layout_constraintVertical_chainStyle="packed">
-
-
-    </com.google.android.material.chip.ChipGroup>
-
-    <com.google.android.material.chip.Chip
-        android:id="@+id/insertCategoryChip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="카테고리 추가"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/teal_200"
-
-        app:layout_constraintBottom_toTopOf="@id/cancel_button"
-        app:layout_constraintStart_toStartOf="@id/title_text_view"
-        app:layout_constraintTop_toBottomOf="@id/categoryGroup"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-
-    <Button
-        android:id="@+id/cancel_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/black"
-        android:text="취소"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/succeed_button"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/insertCategoryChip"
-        app:layout_constraintVertical_chainStyle="packed" />
-
-    <Button
-        android:id="@+id/succeed_button"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:backgroundTint="@color/light_pink"
-        android:text="등록"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/cancel_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toEndOf="@id/cancel_button"
-        app:layout_constraintTop_toTopOf="@id/cancel_button" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

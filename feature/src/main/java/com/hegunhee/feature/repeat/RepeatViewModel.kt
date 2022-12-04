@@ -12,64 +12,43 @@ import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
 import com.hegunhee.feature.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class RepeatViewModel @Inject constructor(
-    private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase,
     private val getAllRepeatRoutineByFlowUseCase: GetAllRepeatRoutineByFlowUseCase,
-    private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
     private val deleteRepeatRoutineUseCase: DeleteRepeatRoutineUseCase,
-    private val insertCategoryUseCase: InsertCategoryUseCase,
-): ViewModel() {
+): ViewModel(), RepeatActionHandler {
 
     val repeatRoutineListLiveData : LiveData<List<RepeatRoutine>> = getAllRepeatRoutineByFlowUseCase().asLiveData()
 
     val isRepeatRoutineListEmpty : LiveData<Boolean> = Transformations.map(repeatRoutineListLiveData){
         it.isEmpty()
     }
-    private var _clickEvent : MutableLiveData<ClickEvent> = MutableLiveData<ClickEvent>(ClickEvent.Uninitalized)
-    val clickEvent
-    get() = _clickEvent
 
-    private var _categoryList : MutableLiveData<List<Category>> = MutableLiveData(listOf())
-    val categoryList : LiveData<List<Category>>
-        get() = _categoryList
+    private val _navigationActions : MutableSharedFlow<RepeatNavigationAction> = MutableSharedFlow<RepeatNavigationAction>()
+    val navigationActions : SharedFlow<RepeatNavigationAction> = _navigationActions.asSharedFlow()
 
-//    init {
-//        setCategory()
-//    }
-    fun clickFloatingActionButton() {
-        _clickEvent.value = ClickEvent.Clicked
+    fun deleteRepeatRoutine(text : String) {
+        viewModelScope.launch {
+            deleteRepeatRoutineUseCase(text)
+        }
     }
 
-    fun finishClick() {
-        _clickEvent.value = ClickEvent.Finished
+    override fun openInsertRepeatRoutineDialog() {
+        viewModelScope.launch {
+            _navigationActions.emit(RepeatNavigationAction.InsertRepeatRoutine)
+        }
     }
 
-    fun insertDailyRoutine(text : String,category : String = "") = viewModelScope.launch(Dispatchers.IO) {
-        insertDailyRoutineUseCase(Routine(getTodayDate(),text, category = category))
+    override fun clickRepeatRoutine(repeatRoutine: RepeatRoutine) {
+        viewModelScope.launch {
+            _navigationActions.emit(RepeatNavigationAction.ClickRepeatRoutine(repeatRoutine = repeatRoutine))
+        }
     }
-
-    fun insertRepeatRoutine(text : String, dayOfWeeks : List<String>,category : String = "")= viewModelScope.launch(Dispatchers.IO){
-        insertRepeatRoutineUseCase(RepeatRoutine(text,dayOfWeeks,category = category))
-    }
-
-    fun deleteRepeatRoutine(text : String) = viewModelScope.launch(Dispatchers.IO){
-        deleteRepeatRoutineUseCase(text)
-    }
-
-
-    fun insertCategory(category : String) = viewModelScope.launch(Dispatchers.IO) {
-        insertCategoryUseCase(Category(category))
-//        setCategory()
-    }
-
-
-//    private fun setCategory() = viewModelScope.launch(Dispatchers.IO) {
-//        _categoryList.postValue(getAllCategoryListUseCase())
-//    }
-
-
 }

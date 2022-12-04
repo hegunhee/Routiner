@@ -10,27 +10,24 @@ import com.hegunhee.feature.util.addChip
 
 class RepeatAdapter(
     private var repeatRoutineList: List<RepeatRoutine>,
-    val clickRoot : (RepeatRoutine) -> Unit
+    val eventHandler : RepeatActionHandler,
 ) : RecyclerView.Adapter<RepeatAdapter.RepeatViewHolder>() {
 
     inner class RepeatViewHolder(private val binding: RepeatRecordItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(repeatRoutineEntity: RepeatRoutine) = with(binding) {
+            eventHandler = this@RepeatAdapter.eventHandler
+            repeatRoutine = repeatRoutineEntity
             title.text = repeatRoutineEntity.text
             chipGroup.removeAllViews()
             addChip(repeatRoutineEntity.dayOfWeekList)
-            chipGroup.setOnClickListener{
-                clickRoot(repeatRoutineEntity)
-            }
 
-            root.setOnClickListener{
-                clickRoot(repeatRoutineEntity)
-            }
             if(repeatRoutineEntity.category != ""){
                 categoryChip.visibility = View.VISIBLE
                 categoryChip.text = repeatRoutineEntity.category
             }
+            binding.executePendingBindings()
         }
 
 
