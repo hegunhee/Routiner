@@ -23,14 +23,6 @@ class RepeatAdapter(
             chipGroup.removeAllViews()
             addChip(repeatRoutineEntity.dayOfWeekList)
 
-
-//            chipGroup.setOnClickListener{
-//                clickRoot(repeatRoutineEntity)
-//            }
-
-//            root.setOnClickListener{
-//                clickRoot(repeatRoutineEntity)
-//            }
             if(repeatRoutineEntity.category != ""){
                 categoryChip.visibility = View.VISIBLE
                 categoryChip.text = repeatRoutineEntity.category

@@ -47,7 +47,7 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
         }
     }
 
-    override fun successRepeatRoutine() {
+    override fun insertRepeatRoutine() {
         val repeatRoutineText = repeatRoutineText.value
         viewModelScope.launch {
             if(repeatRoutineText.isBlank()){

@@ -2,26 +2,18 @@ package com.hegunhee.feature.repeat
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
-import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.example.domain.model.RepeatRoutine
-import com.google.android.material.chip.Chip
-import com.google.android.material.chip.ChipGroup
 import com.hegunhee.feature.R
 import com.hegunhee.feature.base.BaseFragment
-import com.hegunhee.feature.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.feature.databinding.DialogClickRepeatRecordItemBinding
-import com.hegunhee.feature.databinding.DialogRepeatRoutineBinding
 import com.hegunhee.feature.databinding.FragmentRepeatBinding
 import com.hegunhee.feature.mainActivity.MainActivity
 import com.hegunhee.feature.repeat.insert.InsertRepeatRoutineDialogFragment
-import com.hegunhee.feature.util.addCheckableChip
-import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

@@ -21,9 +21,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RepeatViewModel @Inject constructor(
-    private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase,
     private val getAllRepeatRoutineByFlowUseCase: GetAllRepeatRoutineByFlowUseCase,
-    private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
     private val deleteRepeatRoutineUseCase: DeleteRepeatRoutineUseCase,
 ): ViewModel(), RepeatActionHandler {
 
@@ -36,20 +34,10 @@ class RepeatViewModel @Inject constructor(
     private val _navigationActions : MutableSharedFlow<RepeatNavigationAction> = MutableSharedFlow<RepeatNavigationAction>()
     val navigationActions : SharedFlow<RepeatNavigationAction> = _navigationActions.asSharedFlow()
 
-    private var _categoryList : MutableLiveData<List<Category>> = MutableLiveData(listOf())
-    val categoryList : LiveData<List<Category>>
-        get() = _categoryList
-
-    fun insertDailyRoutine(text : String,category : String = "") = viewModelScope.launch(Dispatchers.IO) {
-        insertDailyRoutineUseCase(Routine(getTodayDate(),text, category = category))
-    }
-
-    fun insertRepeatRoutine(text : String, dayOfWeeks : List<String>,category : String = "")= viewModelScope.launch(Dispatchers.IO){
-        insertRepeatRoutineUseCase(RepeatRoutine(text,dayOfWeeks,category = category))
-    }
-
-    fun deleteRepeatRoutine(text : String) = viewModelScope.launch(Dispatchers.IO){
-        deleteRepeatRoutineUseCase(text)
+    fun deleteRepeatRoutine(text : String) {
+        viewModelScope.launch {
+            deleteRepeatRoutineUseCase(text)
+        }
     }
 
     override fun openInsertRepeatRoutineDialog() {

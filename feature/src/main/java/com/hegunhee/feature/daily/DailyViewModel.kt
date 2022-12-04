@@ -1,14 +1,12 @@
 package com.hegunhee.feature.daily
 
 import androidx.lifecycle.*
-import com.example.domain.model.Category
 import com.example.domain.model.Routine
 import com.example.domain.usecase.routine.DeleteRoutineUseCase
 import com.example.domain.usecase.routine.GetAllDailyRoutineByFlowUseCase
 import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
 import com.hegunhee.feature.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject

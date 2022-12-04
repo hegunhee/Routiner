@@ -4,7 +4,7 @@ interface InsertRepeatRoutineActionHandler {
 
     fun cancelRepeatRoutine()
 
-    fun successRepeatRoutine()
+    fun insertRepeatRoutine()
 
     fun openInsertCategoryDialog()
 }

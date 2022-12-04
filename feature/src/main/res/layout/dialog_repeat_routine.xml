@@ -205,7 +205,7 @@
             android:text="등록"
             android:textColor="@color/black"
             android:textSize="20dp"
-            android:onClick="@{() -> viewModel.successRepeatRoutine()}"
+            android:onClick="@{() -> viewModel.insertRepeatRoutine()}"
             app:layout_constraintBottom_toBottomOf="@id/cancel_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_chainStyle="packed"

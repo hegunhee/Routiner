@@ -1,8 +1,6 @@
 package com.hegunhee.feature.daily.insert
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Category
 import com.example.domain.model.Routine
