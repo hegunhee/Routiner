@@ -3,15 +3,17 @@ package com.hegunhee.feature.repeat
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.RepeatRoutine
+import com.example.domain.model.Routine
 import com.hegunhee.feature.databinding.RepeatRecordItemBinding
 import com.hegunhee.feature.util.addChip
 
 class RepeatAdapter(
-    private var repeatRoutineList: List<RepeatRoutine>,
     val eventHandler : RepeatActionHandler,
-) : RecyclerView.Adapter<RepeatAdapter.RepeatViewHolder>() {
+) : ListAdapter<RepeatRoutine,RepeatAdapter.RepeatViewHolder>(diff_util) {
 
     inner class RepeatViewHolder(private val binding: RepeatRecordItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -45,13 +47,22 @@ class RepeatAdapter(
     }
 
     override fun onBindViewHolder(holder: RepeatViewHolder, position: Int) {
-        holder.bind(repeatRoutineList[position])
+        holder.bind(getItem(position))
     }
 
-    override fun getItemCount(): Int = repeatRoutineList.size
+    companion object {
+        val diff_util = object : DiffUtil.ItemCallback<RepeatRoutine>(){
+            override fun areItemsTheSame(oldItem: RepeatRoutine, newItem: RepeatRoutine): Boolean {
+                return oldItem.text == newItem.text
+            }
 
-    fun setList(list: List<RepeatRoutine>) {
-        repeatRoutineList = list
-        notifyDataSetChanged()
+            override fun areContentsTheSame(
+                oldItem: RepeatRoutine,
+                newItem: RepeatRoutine
+            ): Boolean {
+                return oldItem == newItem
+            }
+
+        }
     }
 }

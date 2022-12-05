@@ -26,7 +26,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = RepeatAdapter(listOf(),viewModel)
+        adapter = RepeatAdapter(viewModel)
         binding.apply {
             viewmodel = viewModel
             recyclerView.adapter = adapter
@@ -42,7 +42,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
             if (it.isEmpty()) {
 
             } else {
-                adapter.setList(it)
+                adapter.submitList(it)
             }
         }
     }
