@@ -15,6 +15,7 @@ import com.hegunhee.feature.databinding.FragmentRepeatBinding
 import com.hegunhee.feature.mainActivity.MainActivity
 import com.hegunhee.feature.repeat.insert.InsertRepeatRoutineDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
@@ -44,17 +45,15 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
     }
 
     private fun observeData(){
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.RESUMED){
-                launch {
-                    viewModel.navigationActions.collect{
-                        when(it){
-                            RepeatNavigationAction.InsertRepeatRoutine -> {
-                                InsertRepeatRoutineDialogFragment().show(childFragmentManager,"insert_repeat_routine")
-                            }
-                            it as RepeatNavigationAction.ClickRepeatRoutine -> {
-                                clickAdapterItem(it.repeatRoutine)
-                            }
+        lifecycleScope.launchWhenResumed {
+            launch {
+                viewModel.navigationActions.collect {
+                    when (it) {
+                        RepeatNavigationAction.InsertRepeatRoutine -> {
+                            InsertRepeatRoutineDialogFragment().show(childFragmentManager, "insert_repeat_routine")
+                        }
+                        it as RepeatNavigationAction.ClickRepeatRoutine -> {
+                            clickAdapterItem(it.repeatRoutine)
                         }
                     }
                 }
