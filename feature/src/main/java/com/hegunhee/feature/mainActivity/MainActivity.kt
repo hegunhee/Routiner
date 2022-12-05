@@ -7,12 +7,15 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.hegunhee.feature.R
 import com.hegunhee.feature.databinding.ActivityMainBinding
 import com.hegunhee.feature.databinding.DialogFirstOpenBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -27,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         initActionBar()
         setNavigation()
-        initObserver()
+        observeData()
     }
 
     private fun initActionBar() = with(binding) {
@@ -45,14 +48,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun initObserver() = viewModel.firstAppOpenEvent.observe(this){
-        when(it){
-            FirstAppOpenEvent.UnInitalized -> {}
-            FirstAppOpenEvent.OpenDialog -> {
+    private fun observeData() {
+        lifecycleScope.launchWhenResumed{
+            viewModel.firstAppOpenEvent.collect{
                 openDialog()
-                viewModel.setEventFinish()
             }
-            FirstAppOpenEvent.Finished -> {}
         }
     }
 

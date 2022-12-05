@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.domain.model.Routine
 import com.example.domain.usecase.date.InsertDateUseCase
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.example.domain.usecase.routine.InsertAllDailyRoutineFromRepeatRoutineUseCase
@@ -17,6 +18,9 @@ import com.hegunhee.feature.util.getTodayDate
 import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -36,15 +40,14 @@ class MainViewModel @Inject constructor(
         checkDate()
     }
 
-    private var _firstAppOpenEvent = MutableLiveData<FirstAppOpenEvent>(FirstAppOpenEvent.UnInitalized)
-    val firstAppOpenEvent : LiveData<FirstAppOpenEvent>
-    get() = _firstAppOpenEvent
+    private val _firstAppOpenEvent : MutableSharedFlow<Unit> = MutableSharedFlow<Unit>()
+    val firstAppOpenEvent : SharedFlow<Unit> = _firstAppOpenEvent.asSharedFlow()
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
+    private fun checkDate() = viewModelScope.launch {
         val sharedPreferenceCurrentDate = getCurrentDateUseCase()
         if (sharedPreferenceCurrentDate == getDefaultCurrentDateUseCase()){
-            _firstAppOpenEvent.postValue(FirstAppOpenEvent.OpenDialog)
+            _firstAppOpenEvent.emit(Unit)
         } else if (sharedPreferenceCurrentDate != getTodayDate()) {
             insertAllDailyRoutineFromRepeatRoutineUseCase(getTodayDayOfWeekFormatedKorean())
             val currentDateRoutineList = getRoutineListByDateUseCase(sharedPreferenceCurrentDate)
@@ -52,11 +55,12 @@ class MainViewModel @Inject constructor(
                 insertDateUseCase(sharedPreferenceCurrentDate)
             }
         }
-        setCurrentDateUseCase(getTodayDate())
-    }
 
-    fun setEventFinish() = viewModelScope.launch {
-        _firstAppOpenEvent.postValue(FirstAppOpenEvent.Finished)
+        // 지금 현재 조건이
+        // 오늘이 만약에 처음 앱을 킨 날짜인지
+        // 오늘 날짜와 앱을 가장 최근에 킨 날짜가 같은지
+        // 그리고 오늘 날짜로 저장된 예약을 불러오는것에 관련됨
+        setCurrentDateUseCase(getTodayDate())
     }
 
     fun setInitNotiValue(notiValue : Boolean){
