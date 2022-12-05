@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import com.example.domain.model.RepeatRoutine
 import com.hegunhee.feature.R
 import com.hegunhee.feature.base.BaseFragment
@@ -15,7 +13,6 @@ import com.hegunhee.feature.databinding.FragmentRepeatBinding
 import com.hegunhee.feature.mainActivity.MainActivity
 import com.hegunhee.feature.repeat.insert.InsertRepeatRoutineDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
