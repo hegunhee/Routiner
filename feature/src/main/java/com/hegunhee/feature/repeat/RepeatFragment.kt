@@ -39,11 +39,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
 
     private fun initObserver() {
         viewModel.repeatRoutineListLiveData.observe(viewLifecycleOwner) {
-            if (it.isEmpty()) {
-
-            } else {
-                adapter.submitList(it)
-            }
+            adapter.submitList(it)
         }
     }
 
