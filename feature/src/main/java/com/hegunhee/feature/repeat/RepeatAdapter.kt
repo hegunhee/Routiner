@@ -16,14 +16,15 @@ class RepeatAdapter(
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(repeatRoutineEntity: RepeatRoutine) = with(binding) {
-            eventHandler = this@RepeatAdapter.eventHandler
             repeatRoutine = repeatRoutineEntity
             binding.executePendingBindings()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepeatViewHolder {
-        return RepeatViewHolder(RepeatRecordItemBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return RepeatViewHolder(RepeatRecordItemBinding.inflate(LayoutInflater.from(parent.context), parent, false).apply {
+            eventHandler = this@RepeatAdapter.eventHandler
+        })
     }
 
     override fun onBindViewHolder(holder: RepeatViewHolder, position: Int) {
