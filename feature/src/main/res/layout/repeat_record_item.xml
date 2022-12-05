@@ -28,6 +28,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:ellipsize="end"
+            android:text="@{repeatRoutine.text}"
             android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="20dp"
@@ -46,6 +47,7 @@
             app:layout_constraintTop_toTopOf="@id/title"
             app:layout_constraintBottom_toBottomOf="@id/title"
             app:layout_constraintStart_toEndOf="@id/title"
+            app:setCategory="@{repeatRoutine.category}"
             app:layout_constraintEnd_toStartOf="@id/scrollView"
             app:layout_constraintVertical_chainStyle="packed"
             android:textColor="@color/black"
@@ -76,6 +78,7 @@
                 android:id="@+id/chip_group"
                 android:layout_width="match_parent"
                 app:singleLine="true"
+                app:setDayOfWeekCategory="@{repeatRoutine.dayOfWeekList}"
                 android:layout_height="match_parent">
 
             </com.google.android.material.chip.ChipGroup>

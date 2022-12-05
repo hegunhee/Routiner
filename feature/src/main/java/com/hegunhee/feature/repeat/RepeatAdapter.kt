@@ -21,24 +21,7 @@ class RepeatAdapter(
         fun bind(repeatRoutineEntity: RepeatRoutine) = with(binding) {
             eventHandler = this@RepeatAdapter.eventHandler
             repeatRoutine = repeatRoutineEntity
-            title.text = repeatRoutineEntity.text
-            chipGroup.removeAllViews()
-            addChip(repeatRoutineEntity.dayOfWeekList)
-
-            if(repeatRoutineEntity.category != ""){
-                categoryChip.visibility = View.VISIBLE
-                categoryChip.text = repeatRoutineEntity.category
-            }
             binding.executePendingBindings()
-        }
-
-
-        private fun addChip(list : List<String>){
-            binding.run {
-                list.forEach {
-                    chipGroup.addChip(it)
-                }
-            }
         }
     }
 
@@ -56,10 +39,7 @@ class RepeatAdapter(
                 return oldItem.text == newItem.text
             }
 
-            override fun areContentsTheSame(
-                oldItem: RepeatRoutine,
-                newItem: RepeatRoutine
-            ): Boolean {
+            override fun areContentsTheSame(oldItem: RepeatRoutine, newItem: RepeatRoutine): Boolean {
                 return oldItem == newItem
             }
 
