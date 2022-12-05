@@ -55,11 +55,6 @@ class MainViewModel @Inject constructor(
                 insertDateUseCase(sharedPreferenceCurrentDate)
             }
         }
-
-        // 지금 현재 조건이
-        // 오늘이 만약에 처음 앱을 킨 날짜인지
-        // 오늘 날짜와 앱을 가장 최근에 킨 날짜가 같은지
-        // 그리고 오늘 날짜로 저장된 예약을 불러오는것에 관련됨
         setCurrentDateUseCase(getTodayDate())
     }
 
