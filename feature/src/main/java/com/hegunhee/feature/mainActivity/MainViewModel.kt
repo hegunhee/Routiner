@@ -2,11 +2,8 @@ package com.hegunhee.feature.mainActivity
 
 import android.os.Build
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.Routine
 import com.example.domain.usecase.date.InsertDateUseCase
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.example.domain.usecase.routine.InsertAllDailyRoutineFromRepeatRoutineUseCase
@@ -17,7 +14,6 @@ import com.example.domain.usecase.notification.SetNotiSendValueUseCase
 import com.hegunhee.feature.util.getTodayDate
 import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -45,14 +41,14 @@ class MainViewModel @Inject constructor(
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun checkDate() = viewModelScope.launch {
-        val sharedPreferenceCurrentDate = getCurrentDateUseCase()
-        if (sharedPreferenceCurrentDate == getDefaultCurrentDateUseCase()){
+        val currentLoadedDate = getCurrentDateUseCase()
+        if (currentLoadedDate == getDefaultCurrentDateUseCase()){
             _firstAppOpenEvent.emit(Unit)
-        } else if (sharedPreferenceCurrentDate != getTodayDate()) {
+        } else if (currentLoadedDate != getTodayDate()) {
             insertAllDailyRoutineFromRepeatRoutineUseCase(getTodayDayOfWeekFormatedKorean())
-            val currentDateRoutineList = getRoutineListByDateUseCase(sharedPreferenceCurrentDate)
+            val currentDateRoutineList = getRoutineListByDateUseCase(currentLoadedDate)
             if (currentDateRoutineList.isNotEmpty()) {
-                insertDateUseCase(sharedPreferenceCurrentDate)
+                insertDateUseCase(currentLoadedDate)
             }
         }
         setCurrentDateUseCase(getTodayDate())
