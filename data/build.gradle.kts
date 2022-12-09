@@ -1,11 +1,9 @@
-
 plugins {
     id("android.library.convention")
     id("android.hilt")
 }
 
 android {
-
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -18,12 +16,10 @@ android {
 }
 
 dependencies {
-
     implementation(project(":domain"))
     
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)
 
     implementation(libs.gson)
-
 }

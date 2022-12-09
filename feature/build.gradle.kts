@@ -10,7 +10,3 @@ android {
         }
     }
 }
-
-dependencies {
-
-}

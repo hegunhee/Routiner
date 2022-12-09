@@ -3,7 +3,6 @@ plugins {
 }
 
 android {
-
     defaultConfig {
         applicationId = "com.hegunhee.routiner"
         versionCode = (3)
@@ -18,7 +17,6 @@ android {
     }
 }
 dependencies {
-
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":feature"))
@@ -27,5 +25,4 @@ dependencies {
     implementation(libs.room.compiler)
 
     implementation(libs.gson)
-
 }
