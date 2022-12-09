@@ -35,15 +35,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 add("implementation",project(":data"))
                 add("implementation",project(":feature"))
 
-
-                add("implementation",libs.findBundle("navigation").get())
-
-                add("implementation",libs.findLibrary("activity-ktx").get())
-                add("implementation",libs.findLibrary("fragment-ktx").get())
-
-                add("implementation",libs.findLibrary("lifecycle-livedata").get())
-                add("implementation",libs.findLibrary("lifecycle-scope").get())
-
                 add("implementation",libs.findBundle("room").get())
                 add("kapt",libs.findLibrary("room-compiler").get())
 
