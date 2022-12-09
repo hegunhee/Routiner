@@ -28,18 +28,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                     viewBinding = true
                 }
             }
-            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-
-            dependencies{
-                add("implementation",project(":domain"))
-                add("implementation",project(":data"))
-                add("implementation",project(":feature"))
-
-                add("implementation",libs.findBundle("room").get())
-                add("kapt",libs.findLibrary("room-compiler").get())
-
-                add("implementation",libs.findLibrary("gson").get())
-            }
         }
     }
 }
