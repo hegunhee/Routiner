@@ -22,7 +22,7 @@ dependencies {
     implementation(project(":feature"))
 
     implementation(libs.bundles.room)
-    implementation(libs.room.compiler)
+    kapt(libs.room.compiler)
 
     implementation(libs.gson)
 }
