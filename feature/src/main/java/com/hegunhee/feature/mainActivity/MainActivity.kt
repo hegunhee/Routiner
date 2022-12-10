@@ -14,19 +14,19 @@ import com.hegunhee.feature.R
 import com.hegunhee.feature.databinding.ActivityMainBinding
 import com.hegunhee.feature.databinding.DialogFirstOpenBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val viewModel: MainViewModel by viewModels()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).apply {
             viewmodel = viewModel
-            lifecycleOwner = this@MainActivity
         }
+        viewModel.checkDate()
         setContentView(binding.root)
         initActionBar()
         setNavigation()
@@ -50,8 +50,10 @@ class MainActivity : AppCompatActivity() {
 
     private fun observeData() {
         lifecycleScope.launchWhenResumed{
-            viewModel.firstAppOpenEvent.collect{
-                openDialog()
+            launch {
+                viewModel.firstAppOpenEvent.collect{
+                    openDialog()
+                }
             }
         }
     }
