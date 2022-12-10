@@ -39,10 +39,7 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
                             dismiss()
                         }
                         InsertRepeatRoutineNavigationAction.OpenInsertCategoryDialog -> {
-                            InsertCategoryDialogFragment().show(
-                                childFragmentManager,
-                                "insert_category"
-                            )
+                            InsertCategoryDialogFragment().show(childFragmentManager, "insert_category")
                         }
                     }
                 }
