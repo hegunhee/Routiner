@@ -30,36 +30,37 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
         dayOfWeekChipGroupClickListener()
     }
 
-    private fun observeData(){
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.RESUMED){
-                launch {
-                    viewModel.navigationActions.collect{
-                        when(it){
-                            InsertRepeatRoutineNavigationAction.DisMissDialog -> {
-                                dismiss()
-                            }
-                            InsertRepeatRoutineNavigationAction.OpenInsertCategoryDialog -> {
-                                InsertCategoryDialogFragment().show(childFragmentManager,"insert_category")
-                            }
+    private fun observeData() {
+        lifecycleScope.launchWhenResumed {
+            launch {
+                viewModel.navigationActions.collect {
+                    when (it) {
+                        InsertRepeatRoutineNavigationAction.DisMissDialog -> {
+                            dismiss()
+                        }
+                        InsertRepeatRoutineNavigationAction.OpenInsertCategoryDialog -> {
+                            InsertCategoryDialogFragment().show(
+                                childFragmentManager,
+                                "insert_category"
+                            )
                         }
                     }
                 }
-                launch {
-                    viewModel.toastMessage.collect{
-                        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
-                    }
+            }
+            launch {
+                viewModel.toastMessage.collect {
+                    Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
                 }
-                launch {
-                    viewModel.categoryList.collect{
-                        if (it.isEmpty()) return@collect
-                        if (binding.categoryGroup.isEmpty()) {
-                            it.forEach {
-                                binding.categoryGroup.addCheckableChip(it.name)
-                            }
-                        } else {
-                            binding.categoryGroup.addCheckableChip(it.last().name)
+            }
+            launch {
+                viewModel.categoryList.collect {
+                    if (it.isEmpty()) return@collect
+                    if (binding.categoryGroup.isEmpty()) {
+                        it.forEach {
+                            binding.categoryGroup.addCheckableChip(it.name)
                         }
+                    } else {
+                        binding.categoryGroup.addCheckableChip(it.last().name)
                     }
                 }
             }
@@ -82,7 +83,6 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
             }else{
                 checkedIdList.map { group.findViewById<Chip>(it).text.toString() }.toList()
             }
-
         }
     }
 }
