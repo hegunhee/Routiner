@@ -73,7 +73,6 @@ class RecordViewModel @Inject constructor(
 
     private fun initFun() = viewModelScope.launch(Dispatchers.IO) {
         val allDate = getAllDateUseCase()
-        Log.d("allDate", allDate.toString())
         if (allDate.isEmpty()) {
             _recordIsEmpty.postValue(true)
         } else {
@@ -88,7 +87,6 @@ class RecordViewModel @Inject constructor(
                 getAllDateUseCase().map { it.date }.filter { it < getTodayDate() }.maxOrNull()
             if (leftDate == null) {
                 Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. INIT")
-                // 존재하지 않습니다~
             } else {
                 _currentDate.postValue(leftDate.toString())
                 setRecordRoutine(leftDate)
@@ -114,8 +112,7 @@ class RecordViewModel @Inject constructor(
             val rightDate =
                 getAllDateUseCase().map { it.date }.filter { it > getTodayDate() }.minOrNull()
             if (rightDate == null) {
-                Log.d("currentDateTest", "조회할 이후 데이터가 없습니다. INIT")
-                // 존재하지 않습니다~
+
             } else {
                 _currentDate.postValue(rightDate.toString())
                 setRecordRoutine(rightDate)
@@ -126,7 +123,6 @@ class RecordViewModel @Inject constructor(
                 getAllDateUseCase().map { it.date }.filter { it > currentDate.value!!.toInt() }
                     .minOrNull()
             if (rightDate == null) {
-                Log.d("currentDateTest", "조회할 이후 데이터가 없습니다.")
                 // 존재하지 않습니다.
             } else {
                 _currentDate.postValue(rightDate.toString())
@@ -154,9 +150,7 @@ class RecordViewModel @Inject constructor(
 
     fun addReview() = viewModelScope.launch(Dispatchers.IO) {
         review_editText.value?.toString()?.let { review_text ->
-            if (review_text == "") {
-                // 빈칸일경우
-            } else {
+            if (review_text.isNotBlank()) {
                 currentDate.value?.let { date ->
                     Review(date.toInt(),review_text).let {
                         insertReviewUseCase(it)
