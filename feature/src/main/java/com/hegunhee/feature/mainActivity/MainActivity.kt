@@ -26,7 +26,6 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater).apply {
             viewmodel = viewModel
         }
-        viewModel.checkDate()
         setContentView(binding.root)
         initActionBar()
         setNavigation()
