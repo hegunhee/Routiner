@@ -14,6 +14,7 @@ import com.example.domain.usecase.notification.SetNotiSendValueUseCase
 import com.hegunhee.feature.util.getTodayDate
 import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -37,7 +38,7 @@ class MainViewModel @Inject constructor(
     val firstAppOpenEvent : SharedFlow<Unit> = _firstAppOpenEvent.asSharedFlow()
 
     @RequiresApi(Build.VERSION_CODES.O)
-    fun checkDate() = viewModelScope.launch {
+    fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
         val currentLoadedDate = getCurrentDateUseCase()
         if (currentLoadedDate == getDefaultCurrentDateUseCase()){
             _firstAppOpenEvent.emit(Unit)
@@ -45,7 +46,7 @@ class MainViewModel @Inject constructor(
             insertAllDailyRoutineFromRepeatRoutineUseCase(getTodayDayOfWeekFormatedKorean())
             val currentDateRoutineList = getRoutineListByDateUseCase(currentLoadedDate)
             if (currentDateRoutineList.isNotEmpty()) {
-                insertDateUseCase(currentLoadedDate)
+                    insertDateUseCase(currentLoadedDate)
             }
         }
         setCurrentDateUseCase(getTodayDate())
