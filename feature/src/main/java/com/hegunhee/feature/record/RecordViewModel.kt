@@ -11,6 +11,7 @@ import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.hegunhee.feature.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -68,10 +69,10 @@ class RecordViewModel @Inject constructor(
     val review_editText: MutableLiveData<String> = MutableLiveData("")
 
     init {
-        initFun()
+        initRecordDate()
     }
 
-    private fun initFun() = viewModelScope.launch(Dispatchers.IO) {
+    private fun initRecordDate() = viewModelScope.launch(Dispatchers.IO) {
         val allDate = getAllDateUseCase()
         if (allDate.isEmpty()) {
             _recordIsEmpty.postValue(true)
