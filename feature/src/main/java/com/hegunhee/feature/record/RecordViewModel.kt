@@ -84,17 +84,14 @@ class RecordViewModel @Inject constructor(
 
     fun setLeftData() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
-            val leftDate =
-                getAllDateUseCase().map { it.date }.filter { it < getTodayDate() }.maxOrNull()
+            val leftDate = getAllDateUseCase().map { it.date }.filter { it < getTodayDate() }.maxOrNull()
             if (leftDate != null) {
                 _currentDate.emit(leftDate.toString())
                 setRecordRoutine(leftDate)
                 setReviewExist(leftDate)
             }
         } else {
-            val leftDate =
-                getAllDateUseCase().map { it.date }.filter { it < currentDate.value!!.toInt() }
-                    .maxOrNull()
+            val leftDate = getAllDateUseCase().map { it.date }.filter { it < currentDate.value!!.toInt() }.maxOrNull()
             if (leftDate != null) {
                 _currentDate.emit(leftDate.toString())
                 setRecordRoutine(leftDate)
@@ -105,17 +102,14 @@ class RecordViewModel @Inject constructor(
 
     fun setRightDate() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
-            val rightDate =
-                getAllDateUseCase().map { it.date }.filter { it > getTodayDate() }.minOrNull()
+            val rightDate = getAllDateUseCase().map { it.date }.filter { it > getTodayDate() }.minOrNull()
             if (rightDate != null) {
                 _currentDate.emit(rightDate.toString())
                 setRecordRoutine(rightDate)
                 setReviewExist(rightDate)
             }
         } else {
-            val rightDate =
-                getAllDateUseCase().map { it.date }.filter { it > currentDate.value!!.toInt() }
-                    .minOrNull()
+            val rightDate = getAllDateUseCase().map { it.date }.filter { it > currentDate.value!!.toInt() }.minOrNull()
             if (rightDate != null) {
                 _currentDate.emit(rightDate.toString())
                 setRecordRoutine(rightDate)
