@@ -16,16 +16,7 @@ class RecordAdapter : ListAdapter<Routine,RecordAdapter.RecordViewHolder>(diff_u
     inner class RecordViewHolder(private val binding : RecordItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bindView(routine: Routine) = with(binding){
-            title.text = routine.text
-            root.backgroundTintList = if(routine.isFinished){
-                ColorStateList.valueOf(ContextCompat.getColor(root.context, R.color.success_color))
-            }else{
-                ColorStateList.valueOf(ContextCompat.getColor(root.context,R.color.fail_color))
-            }
-            if(routine.category.isNotBlank()){
-                category.visibility = View.VISIBLE
-                category.text = routine.category
-            }
+            this.routine = routine
         }
     }
 
