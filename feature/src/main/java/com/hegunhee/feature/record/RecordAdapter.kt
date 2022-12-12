@@ -5,14 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Routine
 import com.hegunhee.feature.R
 import com.hegunhee.feature.databinding.RecordItemBinding
 
-class RecordAdapter(
-    private var recordRoutineList : List<Routine>
-) : RecyclerView.Adapter<RecordAdapter.RecordViewHolder>(){
+class RecordAdapter() : ListAdapter<Routine,RecordAdapter.RecordViewHolder>(diff_util){
+
 
     inner class RecordViewHolder(private val binding : RecordItemBinding) : RecyclerView.ViewHolder(binding.root){
 
@@ -35,15 +36,20 @@ class RecordAdapter(
     }
 
     override fun onBindViewHolder(holder: RecordViewHolder, position: Int) {
-        holder.bindView(recordRoutineList[position])
+        holder.bindView(getItem(position))
     }
 
-    override fun getItemCount(): Int {
-        return recordRoutineList.size
-    }
 
-    fun setList(recordList : List<Routine>){
-        this.recordRoutineList = recordList
-        notifyDataSetChanged()
+    companion object {
+        val diff_util = object : DiffUtil.ItemCallback<Routine>(){
+            override fun areItemsTheSame(oldItem: Routine, newItem: Routine): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Routine, newItem: Routine): Boolean {
+                return oldItem == newItem
+            }
+
+        }
     }
 }

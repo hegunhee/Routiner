@@ -37,7 +37,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 RoutineListState.Uninitalized -> {
                 }
                 is RoutineListState.Success -> {
-                    adapter.setList(it.routineList)
+                    adapter.submitList(it.routineList)
                 }
             }
         }
