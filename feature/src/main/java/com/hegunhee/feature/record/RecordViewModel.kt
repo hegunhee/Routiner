@@ -86,9 +86,7 @@ class RecordViewModel @Inject constructor(
         if (currentDate.value == DATE_INITALVALUE) {
             val leftDate =
                 getAllDateUseCase().map { it.date }.filter { it < getTodayDate() }.maxOrNull()
-            if (leftDate == null) {
-                Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. INIT")
-            } else {
+            if (leftDate != null) {
                 _currentDate.emit(leftDate.toString())
                 setRecordRoutine(leftDate)
                 setReviewExist(leftDate)
@@ -97,10 +95,7 @@ class RecordViewModel @Inject constructor(
             val leftDate =
                 getAllDateUseCase().map { it.date }.filter { it < currentDate.value!!.toInt() }
                     .maxOrNull()
-            if (leftDate == null) {
-                Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. ")
-                // 존재하지 않습니다~
-            } else {
+            if (leftDate != null) {
                 _currentDate.emit(leftDate.toString())
                 setRecordRoutine(leftDate)
                 setReviewExist(leftDate)
@@ -112,9 +107,7 @@ class RecordViewModel @Inject constructor(
         if (currentDate.value == DATE_INITALVALUE) {
             val rightDate =
                 getAllDateUseCase().map { it.date }.filter { it > getTodayDate() }.minOrNull()
-            if (rightDate == null) {
-
-            } else {
+            if (rightDate != null) {
                 _currentDate.emit(rightDate.toString())
                 setRecordRoutine(rightDate)
                 setReviewExist(rightDate)
@@ -123,9 +116,7 @@ class RecordViewModel @Inject constructor(
             val rightDate =
                 getAllDateUseCase().map { it.date }.filter { it > currentDate.value!!.toInt() }
                     .minOrNull()
-            if (rightDate == null) {
-                // 존재하지 않습니다.
-            } else {
+            if (rightDate != null) {
                 _currentDate.emit(rightDate.toString())
                 setRecordRoutine(rightDate)
                 setReviewExist(rightDate)
