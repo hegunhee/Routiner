@@ -152,43 +152,31 @@ class RecordViewModel @Inject constructor(
     fun addReview() = viewModelScope.launch(Dispatchers.IO) {
         review_editText.value?.toString()?.let { review_text ->
             if (review_text.isNotBlank()) {
-                currentDate.value?.let { date ->
-                    Review(date.toInt(),review_text).let {
-                        insertReviewUseCase(it)
-                        _review.postValue(ReviewState.Success(it))
-                        _reviewIsEmpty.postValue(false)
-                        review_editText.postValue("")
-                    }
-                }
+                val date = currentDate.value
+                val review = Review(date.toInt(),review_text)
+                insertReviewUseCase(review)
+                _review.postValue(ReviewState.Success(review))
+                _reviewIsEmpty.postValue(false)
+                review_editText.postValue("")
             }
         }
     }
 
     fun deleteReview() = viewModelScope.launch(Dispatchers.IO){
-        with(review.value!!){
-            when(this){
-                ReviewState.Empty -> {}
-                is ReviewState.Success -> {
-                    deleteReviewUseCase(this.review)
-                    _review.postValue(ReviewState.Empty)
-                    _reviewIsEmpty.postValue(true)
-                }
-                ReviewState.Uninitalized -> {
-
-                }
+        review.value?.let { reviewState ->
+            if(reviewState is ReviewState.Success){
+                deleteReviewUseCase(reviewState.review)
+                _review.postValue(ReviewState.Empty)
+                _reviewIsEmpty.postValue(true)
             }
         }
     }
 
     fun reviseReview() = viewModelScope.launch(Dispatchers.IO){
-        with(review.value!!){
-            when(this){
-                ReviewState.Empty -> {}
-                is ReviewState.Success -> {
-                    _reviewIsEmpty.postValue(true)
-                    review_editText.postValue(reviewText.value ?: "")
-                }
-                ReviewState.Uninitalized -> {}
+        review.value?.let { reviewState ->
+            if(reviewState is ReviewState.Success){
+                _reviewIsEmpty.postValue(true)
+                review_editText.postValue(reviewText.value ?: "")
             }
         }
     }
