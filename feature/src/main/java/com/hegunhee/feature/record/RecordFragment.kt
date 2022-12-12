@@ -7,11 +7,14 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.hegunhee.feature.R
 import com.hegunhee.feature.base.BaseFragment
 import com.hegunhee.feature.databinding.FragmentRecordBinding
 import com.hegunhee.feature.mainActivity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
@@ -29,8 +32,10 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     }
 
     private fun observeData() = with(viewModel){
-        currentDate.observe(viewLifecycleOwner){
-            setActionBarTitle(it)
+        lifecycleScope.launch{
+            currentDate.collect{ date ->
+                setActionBarTitle(date)
+            }
         }
         currentRoutineListState.observe(viewLifecycleOwner){
             when(it){

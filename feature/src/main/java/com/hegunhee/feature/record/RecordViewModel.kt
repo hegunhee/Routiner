@@ -11,6 +11,9 @@ import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.hegunhee.feature.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combineTransform
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -25,13 +28,11 @@ class RecordViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    private var _recordIsEmpty: MutableLiveData<Boolean> = MutableLiveData(false)
-    val recordIsEmpty: LiveData<Boolean>
-        get() = _recordIsEmpty
+    private var _recordIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val recordIsEmpty: StateFlow<Boolean> = _recordIsEmpty.asStateFlow()
 
-    private var _currentDate: MutableLiveData<String> = MutableLiveData(DATE_INITALVALUE)
-    val currentDate: LiveData<String>
-        get() = _currentDate
+    private val _currentDate : MutableStateFlow<String> = MutableStateFlow(DATE_INITALVALUE)
+    val currentDate : StateFlow<String> = _currentDate.asStateFlow()
 
     private var _currentRoutineList: MutableLiveData<RoutineListState> = MutableLiveData(RoutineListState.Uninitalized)
     val currentRoutineListState: LiveData<RoutineListState>
@@ -53,9 +54,8 @@ class RecordViewModel @Inject constructor(
         get() = _review
 
 
-    private var _reviewIsEmpty: MutableLiveData<Boolean> = MutableLiveData(true)
-    val reviewIsEmpty: LiveData<Boolean>
-        get() = _reviewIsEmpty
+    private var _reviewIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    val reviewIsEmpty: StateFlow<Boolean> = _reviewIsEmpty.asStateFlow()
 
     val reviewText : LiveData<String> = Transformations.map(review){
         when(it){
@@ -66,7 +66,7 @@ class RecordViewModel @Inject constructor(
     }
 
 
-    val review_editText: MutableLiveData<String> = MutableLiveData("")
+    val review_editText: MutableStateFlow<String> = MutableStateFlow("")
 
     init {
         initRecordDate()
@@ -75,9 +75,9 @@ class RecordViewModel @Inject constructor(
     private fun initRecordDate() = viewModelScope.launch(Dispatchers.IO) {
         val allDate = getAllDateUseCase()
         if (allDate.isEmpty()) {
-            _recordIsEmpty.postValue(true)
+            _recordIsEmpty.emit(true)
         } else {
-            _recordIsEmpty.postValue(false)
+            _recordIsEmpty.emit(false)
             setLeftData()
         }
     }
@@ -89,7 +89,7 @@ class RecordViewModel @Inject constructor(
             if (leftDate == null) {
                 Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. INIT")
             } else {
-                _currentDate.postValue(leftDate.toString())
+                _currentDate.emit(leftDate.toString())
                 setRecordRoutine(leftDate)
                 setReviewExist(leftDate)
             }
@@ -101,7 +101,7 @@ class RecordViewModel @Inject constructor(
                 Log.d("currentDateTest", "조회할 이전 데이터가 없습니다. ")
                 // 존재하지 않습니다~
             } else {
-                _currentDate.postValue(leftDate.toString())
+                _currentDate.emit(leftDate.toString())
                 setRecordRoutine(leftDate)
                 setReviewExist(leftDate)
             }
@@ -115,7 +115,7 @@ class RecordViewModel @Inject constructor(
             if (rightDate == null) {
 
             } else {
-                _currentDate.postValue(rightDate.toString())
+                _currentDate.emit(rightDate.toString())
                 setRecordRoutine(rightDate)
                 setReviewExist(rightDate)
             }
@@ -126,7 +126,7 @@ class RecordViewModel @Inject constructor(
             if (rightDate == null) {
                 // 존재하지 않습니다.
             } else {
-                _currentDate.postValue(rightDate.toString())
+                _currentDate.emit(rightDate.toString())
                 setRecordRoutine(rightDate)
                 setReviewExist(rightDate)
             }
@@ -141,23 +141,23 @@ class RecordViewModel @Inject constructor(
         getReviewUseCase(date).let {
             if (it.isEmpty()) {
                 _review.postValue(ReviewState.Empty)
-                _reviewIsEmpty.postValue(true)
+                _reviewIsEmpty.emit(true)
             } else {
                 _review.postValue(ReviewState.Success(it.first()))
-                _reviewIsEmpty.postValue(false)
+                _reviewIsEmpty.emit(false)
             }
         }
     }
 
     fun addReview() = viewModelScope.launch(Dispatchers.IO) {
-        review_editText.value?.toString()?.let { review_text ->
+        review_editText.value.let { review_text ->
             if (review_text.isNotBlank()) {
                 val date = currentDate.value
                 val review = Review(date.toInt(),review_text)
                 insertReviewUseCase(review)
                 _review.postValue(ReviewState.Success(review))
-                _reviewIsEmpty.postValue(false)
-                review_editText.postValue("")
+                _reviewIsEmpty.emit(false)
+                review_editText.emit("")
             }
         }
     }
@@ -167,7 +167,7 @@ class RecordViewModel @Inject constructor(
             if(reviewState is ReviewState.Success){
                 deleteReviewUseCase(reviewState.review)
                 _review.postValue(ReviewState.Empty)
-                _reviewIsEmpty.postValue(true)
+                _reviewIsEmpty.emit(true)
             }
         }
     }
@@ -175,8 +175,8 @@ class RecordViewModel @Inject constructor(
     fun reviseReview() = viewModelScope.launch(Dispatchers.IO){
         review.value?.let { reviewState ->
             if(reviewState is ReviewState.Success){
-                _reviewIsEmpty.postValue(true)
-                review_editText.postValue(reviewText.value ?: "")
+                _reviewIsEmpty.emit(true)
+                review_editText.emit(reviewText.value ?: "")
             }
         }
     }
