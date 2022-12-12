@@ -17,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 
     private val viewModel: RecordViewModel by viewModels()
-    private val adapter : RecordAdapter by lazy {RecordAdapter(listOf())}
+    private val adapter : RecordAdapter by lazy {RecordAdapter()}
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {

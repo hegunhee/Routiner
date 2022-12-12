@@ -12,9 +12,7 @@ import com.example.domain.model.Routine
 import com.hegunhee.feature.R
 import com.hegunhee.feature.databinding.RecordItemBinding
 
-class RecordAdapter() : ListAdapter<Routine,RecordAdapter.RecordViewHolder>(diff_util){
-
-
+class RecordAdapter : ListAdapter<Routine,RecordAdapter.RecordViewHolder>(diff_util){
     inner class RecordViewHolder(private val binding : RecordItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bindView(routine: Routine) = with(binding){
