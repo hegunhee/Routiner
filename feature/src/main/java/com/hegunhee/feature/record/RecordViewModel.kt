@@ -56,7 +56,7 @@ class RecordViewModel @Inject constructor(
     var reviewText : StateFlow<String> = MutableStateFlow<String>("")
 
 
-    val review_editText: MutableStateFlow<String> = MutableStateFlow("")
+    val reviewEditText: MutableStateFlow<String> = MutableStateFlow("")
 
     init {
         initRecordDate()
@@ -136,14 +136,14 @@ class RecordViewModel @Inject constructor(
     }
 
     fun addReview() = viewModelScope.launch(Dispatchers.IO) {
-        val reviewText = review_editText.value
+        val reviewText = reviewEditText.value
         if(reviewText.isNotBlank()){
             val date = currentDate.value
             val review = Review(date.toInt(),reviewText)
             insertReviewUseCase(review)
             _review.emit(ReviewState.Success(review))
             _reviewIsEmpty.emit(false)
-            review_editText.emit("")
+            reviewEditText.emit("")
         }
     }
 
@@ -160,7 +160,7 @@ class RecordViewModel @Inject constructor(
         val reviewState = review.value
         if(reviewState is ReviewState.Success){
             _reviewIsEmpty.emit(true)
-            review_editText.emit(reviewText.value)
+            reviewEditText.emit(reviewText.value)
         }
     }
 
