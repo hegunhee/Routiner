@@ -2,6 +2,7 @@ package com.hegunhee.feature.record
 
 import androidx.lifecycle.*
 import com.example.domain.model.Review
+import com.example.domain.model.Routine
 import com.example.domain.usecase.date.GetAllDateUseCase
 import com.example.domain.usecase.review.DeleteReviewUseCase
 import com.example.domain.usecase.review.GetReviewUseCase
@@ -30,20 +31,10 @@ class RecordViewModel @Inject constructor(
     private val _currentDate : MutableStateFlow<String> = MutableStateFlow(DATE_INITALVALUE)
     val currentDate : StateFlow<String> = _currentDate.asStateFlow()
 
-    private var _currentRoutineList: MutableLiveData<RoutineListState> = MutableLiveData(RoutineListState.Uninitalized)
-    val currentRoutineListState: LiveData<RoutineListState>
-        get() = _currentRoutineList
+    private var _currentRoutineList: MutableStateFlow<List<Routine>> = MutableStateFlow(emptyList())
+    val currentRoutineListState: StateFlow<List<Routine>> = _currentRoutineList.asStateFlow()
 
-    val currentRoutineProgress = Transformations.map(currentRoutineListState) {
-        return@map when (it) {
-            is RoutineListState.Uninitalized -> {
-                ""
-            }
-            is RoutineListState.Success -> {
-                "${it.routineList.count { it.isFinished }} / ${it.routineList.size}"
-            }
-        }
-    }
+    var currentRoutineProgress : StateFlow<String> = MutableStateFlow<String>("")
 
     private var _review: MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Uninitalized)
     val review: StateFlow<ReviewState> = _review.asStateFlow()
@@ -79,6 +70,14 @@ class RecordViewModel @Inject constructor(
                 it.review.review
             }else{
                 ""
+            }
+        }.stateIn(viewModelScope)
+
+        currentRoutineProgress = currentRoutineListState.map {
+            return@map if(it.isEmpty()){
+                ""
+            }else{
+                "${it.count{it.isFinished}} / ${it.size}"
             }
         }.stateIn(viewModelScope)
     }
@@ -120,7 +119,7 @@ class RecordViewModel @Inject constructor(
     }
 
     private suspend fun setRecordRoutine(date: Int) {
-        _currentRoutineList.postValue(RoutineListState.Success(getRoutineListByDateUseCase(date)))
+        _currentRoutineList.emit((getRoutineListByDateUseCase(date)))
     }
 
     private suspend fun setReviewExist(date: Int) {
