@@ -37,7 +37,7 @@ class RecordViewModel @Inject constructor(
     var currentRoutineProgress : StateFlow<String> = MutableStateFlow<String>("")
 
     private var _review: MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Uninitalized)
-    val review: StateFlow<ReviewState> = _review.asStateFlow()
+    private val review: StateFlow<ReviewState> = _review.asStateFlow()
 
 
     private var _reviewIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(true)
