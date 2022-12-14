@@ -6,8 +6,11 @@ import com.example.domain.model.*
 import com.example.domain.repository.Repository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
+import javax.inject.Singleton
 
-class DefaultRepository(
+@Singleton
+class DefaultRepository @Inject constructor(
     private val routineDao: RoutineDao,
     private val dateDao: DateDao,
     private val reviewDao: ReviewDao,
