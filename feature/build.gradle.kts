@@ -12,6 +12,7 @@ android {
 }
 dependencies{
     implementation(project(":domain"))
+    implementation(project(":common"))
 
     implementation(libs.core.ktx)
     implementation(libs.appcompat)

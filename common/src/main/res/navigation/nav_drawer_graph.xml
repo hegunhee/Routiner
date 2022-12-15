@@ -9,22 +9,18 @@
     <fragment
         android:id="@+id/daily"
         android:name="com.hegunhee.feature.daily.DailyFragment"
-        android:label="DailyFragment"
-        tools:layout="@layout/fragment_daily" />
+        android:label="DailyFragment" />
     <fragment
         android:id="@+id/record"
         android:name="com.hegunhee.feature.record.RecordFragment"
-        android:label="RecordFragment"
-        tools:layout="@layout/fragment_record" />
+        android:label="RecordFragment" />
     <fragment
         android:id="@+id/setting"
         android:name="com.hegunhee.feature.setting.SettingFragment"
-        android:label="SettingFragment"
-        tools:layout="@layout/fragment_setting" />
+        android:label="SettingFragment" />
     <fragment
         android:id="@+id/repeat"
         android:name="com.hegunhee.feature.repeat.RepeatFragment"
-        tools:layout="@layout/fragment_repeat"
         android:label="RepeatFragment" />
 
 
