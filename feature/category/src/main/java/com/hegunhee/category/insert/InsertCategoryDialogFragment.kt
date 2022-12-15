@@ -1,4 +1,4 @@
-package com.hegunhee.feature.category.insert
+package com.hegunhee.category.insert
 
 import android.os.Bundle
 import android.view.View
@@ -7,9 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.hegunhee.feature.R
 import com.example.common.base.BaseDialog
-import com.hegunhee.feature.databinding.DialogInsertCategoryBinding
+import com.hegunhee.category.R
+import com.hegunhee.category.databinding.DialogInsertCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

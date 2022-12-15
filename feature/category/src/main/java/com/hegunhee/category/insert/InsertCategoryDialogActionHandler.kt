@@ -1,4 +1,4 @@
-package com.hegunhee.feature.category.insert
+package com.hegunhee.category.insert
 
 interface InsertCategoryDialogActionHandler {
 

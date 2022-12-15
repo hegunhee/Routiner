@@ -1,4 +1,4 @@
-package com.hegunhee.feature.category.insert
+package com.hegunhee.category.insert
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

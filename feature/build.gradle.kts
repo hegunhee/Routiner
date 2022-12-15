@@ -9,6 +9,7 @@ dependencies{
     implementation(project(":domain"))
     implementation(project(":common"))
     implementation(project(":feature:main"))
+    implementation(project(":feature:category"))
 
     implementation(libs.gson)
 }

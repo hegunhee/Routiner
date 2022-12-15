@@ -6,6 +6,7 @@
       <module name="Routiner.common" target="11" />
       <module name="Routiner.data" target="11" />
       <module name="Routiner.feature" target="11" />
+      <module name="Routiner.feature.category" target="11" />
       <module name="Routiner.feature.setting" target="11" />
       <module name="steohen.Routiner.feature.main" target="11" />
     </bytecodeTargetLevel>
