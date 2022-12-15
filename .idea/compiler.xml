@@ -3,6 +3,7 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
       <module name="Routiner.app" target="11" />
+      <module name="Routiner.common" target="11" />
       <module name="Routiner.data" target="11" />
       <module name="Routiner.feature" target="11" />
     </bytecodeTargetLevel>
