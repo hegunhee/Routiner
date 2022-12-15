@@ -24,31 +24,6 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                     viewBinding = true
                 }
             }
-            val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
-
-            dependencies{
-                add("implementation",project(":domain"))
-
-                add("implementation",libs.findLibrary("core-ktx").get())
-                add("implementation",libs.findLibrary("appcompat").get())
-                add("implementation",libs.findLibrary("material").get())
-                add("implementation",libs.findLibrary("constraintlayout").get())
-                add("implementation",libs.findLibrary("junit").get())
-                add("androidTestImplementation",libs.findLibrary("testext").get())
-                add("androidTestImplementation",libs.findLibrary("espresso").get())
-
-                add("implementation",libs.findBundle("navigation").get())
-
-                add("implementation",libs.findLibrary("activity-ktx").get())
-                add("implementation",libs.findLibrary("fragment-ktx").get())
-
-                add("implementation",libs.findLibrary("lifecycle-livedata").get())
-                add("implementation",libs.findLibrary("lifecycle-scope").get())
-
-                add("implementation",libs.findLibrary("gson").get())
-
-
-            }
         }
     }
 }
