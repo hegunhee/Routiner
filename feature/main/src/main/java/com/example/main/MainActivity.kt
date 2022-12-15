@@ -1,4 +1,4 @@
-package com.hegunhee.feature.mainActivity
+package com.example.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -10,9 +10,8 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
-import com.hegunhee.feature.R
-import com.hegunhee.feature.databinding.ActivityMainBinding
-import com.hegunhee.feature.databinding.DialogFirstOpenBinding
+import com.example.main.databinding.ActivityMainBinding
+import com.example.main.databinding.DialogFirstOpenBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -24,7 +23,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater).apply {
-            viewmodel = viewModel
+            this.viewmodel = viewModel
         }
         setContentView(binding.root)
         initActionBar()

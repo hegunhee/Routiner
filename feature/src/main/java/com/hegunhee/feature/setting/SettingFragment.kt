@@ -6,8 +6,8 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.hegunhee.feature.R
 import com.example.common.base.BaseFragment
+import com.example.main.MainActivity
 import com.hegunhee.feature.databinding.FragmentSettingBinding
-import com.hegunhee.feature.mainActivity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

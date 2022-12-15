@@ -6,9 +6,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.hegunhee.feature.R
 import com.example.common.base.BaseFragment
+import com.example.main.MainActivity
 import com.hegunhee.feature.daily.insert.InsertRoutineDialogFragment
 import com.hegunhee.feature.databinding.FragmentDailyBinding
-import com.hegunhee.feature.mainActivity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

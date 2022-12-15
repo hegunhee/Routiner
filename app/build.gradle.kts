@@ -20,6 +20,7 @@ dependencies {
     implementation(project(":data"))
     implementation(project(":domain"))
     implementation(project(":feature"))
+    implementation(project(":feature:main"))
 
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)

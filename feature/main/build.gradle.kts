@@ -3,14 +3,12 @@ plugins {
 }
 
 android {
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-    }
+    namespace = "com.example.main"
+
 }
-dependencies{
+
+dependencies {
+
     implementation(project(":domain"))
     implementation(project(":common"))
 
@@ -20,7 +18,6 @@ dependencies{
     implementation(libs.constraintlayout)
     implementation(libs.constraintlayout)
     implementation(libs.junit)
-    implementation(project(mapOf("path" to ":feature:main")))
     androidTestImplementation(libs.testext)
     androidTestImplementation(libs.espresso)
 

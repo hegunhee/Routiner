@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout>
+
+
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:background="@color/white"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/alert_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="저희 앱을 사용해주셔서 감사합니다."
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/alert_switch"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/alert_switch"
+        android:background="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/alert_title"
+        app:layout_constraintStart_toStartOf="@id/alert_title"
+        app:layout_constraintBottom_toTopOf="@id/alert_accept_button"
+        app:layout_constraintVertical_chainStyle="packed"
+        />
+
+
+    <TextView
+        android:id="@+id/alert_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="(선택) 알람 수신을 받겠습니다."
+        android:textColor="@color/black"
+        android:textSize="15dp"
+        android:background="@color/white"
+        app:layout_constraintEnd_toEndOf="@id/alert_title"
+        app:layout_constraintTop_toTopOf="@id/alert_switch"
+        app:layout_constraintBottom_toBottomOf="@id/alert_switch"
+        />
+
+
+    <Button
+        android:id="@+id/alert_accept_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="@id/alert_title"
+        app:layout_constraintEnd_toEndOf="@id/alert_title"
+        app:layout_constraintTop_toBottomOf="@id/alert_switch"
+        android:text="수락"
+        android:backgroundTint="@color/black"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

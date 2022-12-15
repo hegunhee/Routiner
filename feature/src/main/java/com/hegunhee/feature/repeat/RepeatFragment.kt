@@ -8,9 +8,9 @@ import androidx.lifecycle.lifecycleScope
 import com.example.domain.model.RepeatRoutine
 import com.hegunhee.feature.R
 import com.example.common.base.BaseFragment
+import com.example.main.MainActivity
 import com.hegunhee.feature.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.feature.databinding.FragmentRepeatBinding
-import com.hegunhee.feature.mainActivity.MainActivity
 import com.hegunhee.feature.repeat.insert.InsertRepeatRoutineDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
