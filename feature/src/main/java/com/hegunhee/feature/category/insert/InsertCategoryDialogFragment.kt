@@ -8,7 +8,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.feature.R
-import com.hegunhee.feature.base.BaseDialog
+import com.example.common.base.BaseDialog
 import com.hegunhee.feature.databinding.DialogInsertCategoryBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch

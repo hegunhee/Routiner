@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.domain.model.RepeatRoutine
 import com.hegunhee.feature.R
-import com.hegunhee.feature.base.BaseFragment
+import com.example.common.base.BaseFragment
 import com.hegunhee.feature.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.feature.databinding.FragmentRepeatBinding
 import com.hegunhee.feature.mainActivity.MainActivity

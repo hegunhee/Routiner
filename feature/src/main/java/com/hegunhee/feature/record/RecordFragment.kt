@@ -9,11 +9,10 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.hegunhee.feature.R
-import com.hegunhee.feature.base.BaseFragment
+import com.example.common.base.BaseFragment
 import com.hegunhee.feature.databinding.FragmentRecordBinding
 import com.hegunhee.feature.mainActivity.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.chip.Chip
 import com.hegunhee.feature.R
-import com.hegunhee.feature.base.BaseDialog
+import com.example.common.base.BaseDialog
 import com.hegunhee.feature.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.feature.databinding.DialogDailyRoutineBinding
 import com.hegunhee.feature.util.addCheckableChip
