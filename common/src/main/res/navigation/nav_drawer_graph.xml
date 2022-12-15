@@ -16,7 +16,7 @@
         android:label="RecordFragment" />
     <fragment
         android:id="@+id/setting"
-        android:name="com.hegunhee.feature.setting.SettingFragment"
+        android:name="com.hegunhee.setting.SettingFragment"
         android:label="SettingFragment" />
     <fragment
         android:id="@+id/repeat"

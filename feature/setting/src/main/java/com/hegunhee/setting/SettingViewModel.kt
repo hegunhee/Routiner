@@ -1,4 +1,4 @@
-package com.hegunhee.feature.setting
+package com.hegunhee.setting
 
 import androidx.lifecycle.ViewModel
 import com.example.domain.usecase.notification.GetNotiSendValueUseCase

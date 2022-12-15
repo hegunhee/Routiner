@@ -1,14 +1,14 @@
-package com.hegunhee.feature.setting
+package com.hegunhee.setting
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import com.hegunhee.feature.R
 import com.example.common.base.BaseFragment
 import com.example.main.MainActivity
-import com.hegunhee.feature.databinding.FragmentSettingBinding
+import com.hegunhee.setting.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {

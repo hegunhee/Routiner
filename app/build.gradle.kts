@@ -21,7 +21,7 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":feature"))
     implementation(project(":feature:main"))
-
+    implementation(project(":feature:setting"))
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)
 
