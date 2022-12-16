@@ -23,11 +23,16 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                     dataBinding = true
                     viewBinding = true
                 }
+                buildTypes {
+                    release {
+                        isMinifyEnabled = false
+                        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+                    }
+                }
             }
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
 
             dependencies{
-                add("implementation",project(":domain"))
 
                 add("implementation",libs.findLibrary("core-ktx").get())
                 add("implementation",libs.findLibrary("appcompat").get())
@@ -44,11 +49,8 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
 
                 add("implementation",libs.findLibrary("lifecycle-livedata").get())
                 add("implementation",libs.findLibrary("lifecycle-scope").get())
-
-                add("implementation",libs.findLibrary("gson").get())
-
-
             }
+
         }
     }
 }

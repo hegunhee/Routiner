@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+        <variable
+            name="eventHandler"
+            type="com.hegunhee.daily.DailyActionHandler" />
+
+        <variable
+            name="routine"
+            type="com.example.domain.model.Routine" />
+
+        <import type="android.view.View"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@{routine.text}"
+            android:onClick="@{() -> eventHandler.toggleFinishRoutine(routine)}"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:textSize="30dp"
+            android:ellipsize="end"
+            android:textColor="@color/black"
+            android:maxLines="1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/check"
+            app:layout_constraintHorizontal_weight="4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="영어 공부하기" />
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/category_chip"
+            android:layout_width="wrap_content"
+            android:visibility="invisible"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintEnd_toStartOf="@id/check"
+            tools:text="안녕"
+            app:setCategory="@{routine.category}"
+            android:textColor="@color/black"
+            android:backgroundTint="@color/teal_200"
+            android:textSize="20dp"
+            />
+
+        <View
+            android:id="@+id/check"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_check"
+            android:visibility="@{routine.finished ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintEnd_toStartOf="@id/deleteButton"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/title"
+            tools:visibility="visible" />
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/ic_delete"
+            android:backgroundTint="@color/red"
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:onClick="@{() -> eventHandler.deleteRoutine(routine.id)}"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintStart_toEndOf="@id/check"
+            app:layout_constraintVertical_chainStyle="packed"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
