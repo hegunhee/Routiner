@@ -6,6 +6,7 @@ import com.google.android.material.chip.Chip
 
 @BindingAdapter("setCategory")
 fun Chip.setCategory(categoryText : String){
+    this.visibility = View.INVISIBLE
     if(categoryText.isNotBlank()){
         visibility = View.VISIBLE
         text = categoryText
