@@ -8,7 +8,7 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.common.base.BaseFragment
+import com.hegunhee.common.base.BaseFragment
 import com.example.main.MainActivity
 import com.hegunhee.record.databinding.FragmentRecordBinding
 import dagger.hilt.android.AndroidEntryPoint

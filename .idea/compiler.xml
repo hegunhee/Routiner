@@ -3,9 +3,9 @@
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.8">
       <module name="Routiner.app" target="11" />
-      <module name="Routiner.common" target="11" />
       <module name="Routiner.data" target="11" />
       <module name="Routiner.feature.category" target="11" />
+      <module name="Routiner.feature.common" target="11" />
       <module name="Routiner.feature.daily" target="11" />
       <module name="Routiner.feature.record" target="11" />
       <module name="Routiner.feature.repeat" target="11" />

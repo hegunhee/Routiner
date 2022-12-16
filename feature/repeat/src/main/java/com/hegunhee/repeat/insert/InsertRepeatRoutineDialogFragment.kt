@@ -7,8 +7,8 @@ import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
-import com.example.common.base.BaseDialog
-import com.example.common.util.addCheckableChip
+import com.hegunhee.common.base.BaseDialog
+import com.hegunhee.common.util.addCheckableChip
 import com.hegunhee.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.repeat.R
 import com.hegunhee.repeat.databinding.DialogRepeatRoutineBinding

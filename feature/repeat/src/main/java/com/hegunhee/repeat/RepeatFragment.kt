@@ -6,7 +6,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.domain.model.RepeatRoutine
-import com.example.common.base.BaseFragment
+import com.hegunhee.common.base.BaseFragment
 import com.example.main.MainActivity
 import com.hegunhee.repeat.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.repeat.databinding.FragmentRepeatBinding

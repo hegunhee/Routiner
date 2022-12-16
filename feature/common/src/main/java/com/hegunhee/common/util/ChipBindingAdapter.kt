@@ -1,4 +1,4 @@
-package com.example.common.util
+package com.hegunhee.common.util
 
 import android.view.View
 import androidx.databinding.BindingAdapter

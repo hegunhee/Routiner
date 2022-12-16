@@ -1,4 +1,4 @@
-package com.example.common
+package com.hegunhee.common
 
 import org.junit.Test
 

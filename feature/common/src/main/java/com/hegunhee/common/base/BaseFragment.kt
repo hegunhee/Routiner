@@ -1,4 +1,4 @@
-package com.example.common.base
+package com.hegunhee.common.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

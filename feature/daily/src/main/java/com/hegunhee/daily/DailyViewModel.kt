@@ -5,7 +5,7 @@ import com.example.domain.model.Routine
 import com.example.domain.usecase.routine.DeleteRoutineUseCase
 import com.example.domain.usecase.routine.GetAllDailyRoutineByFlowUseCase
 import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
-import com.example.common.util.getTodayDate
+import com.hegunhee.common.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch

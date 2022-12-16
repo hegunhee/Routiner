@@ -1,4 +1,4 @@
-package com.example.common.base
+package com.hegunhee.common.base
 
 import android.content.Context
 import android.graphics.Point

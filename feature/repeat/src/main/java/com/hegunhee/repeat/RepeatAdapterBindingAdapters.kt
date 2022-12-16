@@ -2,7 +2,7 @@ package com.hegunhee.repeat
 
 import androidx.databinding.BindingAdapter
 import com.google.android.material.chip.ChipGroup
-import com.example.common.util.addChip
+import com.hegunhee.common.util.addChip
 
 @BindingAdapter("setDayOfWeekCategory")
 fun ChipGroup.setDayOfWeekCategory(dayOfWeekList : List<String>){

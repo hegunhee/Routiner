@@ -9,11 +9,11 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.chip.Chip
-import com.example.common.base.BaseDialog
+import com.hegunhee.common.base.BaseDialog
 import com.hegunhee.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.daily.R
 import com.hegunhee.daily.databinding.DialogDailyRoutineBinding
-import com.example.common.util.addCheckableChip
+import com.hegunhee.common.util.addCheckableChip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

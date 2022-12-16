@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.common.base.BaseFragment
+import com.hegunhee.common.base.BaseFragment
 import com.example.main.MainActivity
 import com.hegunhee.daily.databinding.FragmentDailyBinding
 import com.hegunhee.daily.insert.InsertRoutineDialogFragment

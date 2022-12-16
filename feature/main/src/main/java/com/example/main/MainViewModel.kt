@@ -11,8 +11,8 @@ import com.example.domain.usecase.date.GetCurrentDateUseCase
 import com.example.domain.usecase.date.GetDefaultCurrentDateUseCase
 import com.example.domain.usecase.date.SetCurrentDateUseCase
 import com.example.domain.usecase.notification.SetNotiSendValueUseCase
-import com.example.common.util.getTodayDate
-import com.example.common.util.getTodayDayOfWeekFormatedKorean
+import com.hegunhee.common.util.getTodayDate
+import com.hegunhee.common.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableSharedFlow
