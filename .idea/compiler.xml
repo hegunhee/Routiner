@@ -5,7 +5,6 @@
       <module name="Routiner.app" target="11" />
       <module name="Routiner.common" target="11" />
       <module name="Routiner.data" target="11" />
-      <module name="Routiner.feature" target="11" />
       <module name="Routiner.feature.category" target="11" />
       <module name="Routiner.feature.daily" target="11" />
       <module name="Routiner.feature.record" target="11" />
