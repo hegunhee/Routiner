@@ -11,7 +11,7 @@ import com.hegunhee.feature.R
 import com.example.common.base.BaseDialog
 import com.hegunhee.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.feature.databinding.DialogRepeatRoutineBinding
-import com.hegunhee.feature.util.addCheckableChip
+import com.example.common.util.addCheckableChip
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

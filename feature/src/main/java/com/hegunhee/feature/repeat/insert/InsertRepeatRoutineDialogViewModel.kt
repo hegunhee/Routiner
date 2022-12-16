@@ -8,8 +8,8 @@ import com.example.domain.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
 import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
-import com.hegunhee.feature.util.getTodayDate
-import com.hegunhee.feature.util.getTodayDayOfWeekFormatedKorean
+import com.example.common.util.getTodayDate
+import com.example.common.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch

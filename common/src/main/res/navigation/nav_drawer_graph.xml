@@ -8,11 +8,11 @@
 
     <fragment
         android:id="@+id/daily"
-        android:name="com.hegunhee.feature.daily.DailyFragment"
+        android:name="com.hegunhee.daily.DailyFragment"
         android:label="DailyFragment" />
     <fragment
         android:id="@+id/record"
-        android:name="com.hegunhee.feature.record.RecordFragment"
+        android:name="com.hegunhee.record.RecordFragment"
         android:label="RecordFragment" />
     <fragment
         android:id="@+id/setting"

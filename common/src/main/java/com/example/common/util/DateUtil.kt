@@ -1,4 +1,4 @@
-package com.hegunhee.feature.util
+package com.example.common.util
 
 import android.os.Build
 import androidx.annotation.RequiresApi

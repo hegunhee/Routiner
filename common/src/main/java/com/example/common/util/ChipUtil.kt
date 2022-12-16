@@ -1,4 +1,4 @@
-package com.hegunhee.feature.util
+package com.example.common.util
 
 import android.content.res.ColorStateList
 import androidx.core.content.ContextCompat

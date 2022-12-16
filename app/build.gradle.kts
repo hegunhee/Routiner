@@ -22,6 +22,8 @@ dependencies {
     implementation(project(":feature"))
     implementation(project(":feature:main"))
     implementation(project(":feature:setting"))
+    implementation(project(":feature:daily"))
+    implementation(project(":feature:record"))
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)
 
