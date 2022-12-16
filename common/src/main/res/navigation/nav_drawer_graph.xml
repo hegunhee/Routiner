@@ -20,7 +20,7 @@
         android:label="SettingFragment" />
     <fragment
         android:id="@+id/repeat"
-        android:name="com.hegunhee.feature.repeat.RepeatFragment"
+        android:name="com.hegunhee.repeat.RepeatFragment"
         android:label="RepeatFragment" />
 
 

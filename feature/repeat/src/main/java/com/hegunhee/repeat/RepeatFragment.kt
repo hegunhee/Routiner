@@ -1,4 +1,4 @@
-package com.hegunhee.feature.repeat
+package com.hegunhee.repeat
 
 import android.os.Bundle
 import android.view.View
@@ -6,12 +6,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.domain.model.RepeatRoutine
-import com.hegunhee.feature.R
 import com.example.common.base.BaseFragment
 import com.example.main.MainActivity
-import com.hegunhee.feature.databinding.DialogClickRepeatRecordItemBinding
-import com.hegunhee.feature.databinding.FragmentRepeatBinding
-import com.hegunhee.feature.repeat.insert.InsertRepeatRoutineDialogFragment
+import com.hegunhee.repeat.databinding.DialogClickRepeatRecordItemBinding
+import com.hegunhee.repeat.databinding.FragmentRepeatBinding
+import com.hegunhee.repeat.insert.InsertRepeatRoutineDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

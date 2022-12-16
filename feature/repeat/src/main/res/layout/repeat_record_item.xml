@@ -9,7 +9,7 @@
 
         <variable
             name="eventHandler"
-            type="com.hegunhee.feature.repeat.RepeatActionHandler" />
+            type="com.hegunhee.repeat.RepeatActionHandler" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

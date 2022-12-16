@@ -34,6 +34,7 @@
             <option value="$PROJECT_DIR$/feature/daily" />
             <option value="$PROJECT_DIR$/feature/main" />
             <option value="$PROJECT_DIR$/feature/record" />
+            <option value="$PROJECT_DIR$/feature/repeat" />
             <option value="$PROJECT_DIR$/feature/setting" />
           </set>
         </option>

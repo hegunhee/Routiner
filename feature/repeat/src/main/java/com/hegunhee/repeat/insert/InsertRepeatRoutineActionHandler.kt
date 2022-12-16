@@ -1,4 +1,4 @@
-package com.hegunhee.feature.repeat.insert
+package com.hegunhee.repeat.insert
 
 interface InsertRepeatRoutineActionHandler {
 

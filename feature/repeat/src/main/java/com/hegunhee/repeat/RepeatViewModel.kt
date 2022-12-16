@@ -1,4 +1,4 @@
-package com.hegunhee.feature.repeat
+package com.hegunhee.repeat
 
 import androidx.lifecycle.*
 import com.example.domain.model.RepeatRoutine

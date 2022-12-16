@@ -6,7 +6,7 @@
 
         <variable
             name="viewmodel"
-            type="com.hegunhee.feature.repeat.RepeatViewModel" />
+            type="com.hegunhee.repeat.RepeatViewModel" />
 
         <import type="android.view.View" />
     </data>

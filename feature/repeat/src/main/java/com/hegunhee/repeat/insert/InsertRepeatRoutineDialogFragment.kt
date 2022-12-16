@@ -1,4 +1,4 @@
-package com.hegunhee.feature.repeat.insert
+package com.hegunhee.repeat.insert
 
 import android.os.Bundle
 import android.view.View
@@ -7,11 +7,11 @@ import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
-import com.hegunhee.feature.R
 import com.example.common.base.BaseDialog
-import com.hegunhee.category.insert.InsertCategoryDialogFragment
-import com.hegunhee.feature.databinding.DialogRepeatRoutineBinding
 import com.example.common.util.addCheckableChip
+import com.hegunhee.category.insert.InsertCategoryDialogFragment
+import com.hegunhee.repeat.R
+import com.hegunhee.repeat.databinding.DialogRepeatRoutineBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 

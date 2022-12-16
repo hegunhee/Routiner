@@ -1,4 +1,4 @@
-package com.hegunhee.feature.repeat
+package com.hegunhee.repeat
 
 import androidx.databinding.BindingAdapter
 import com.google.android.material.chip.ChipGroup

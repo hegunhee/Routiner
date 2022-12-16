@@ -1,4 +1,4 @@
-package com.hegunhee.feature.repeat
+package com.hegunhee.repeat
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.RepeatRoutine
-import com.hegunhee.feature.databinding.RepeatRecordItemBinding
+import com.hegunhee.repeat.databinding.RepeatRecordItemBinding
 
 class RepeatAdapter(
     val eventHandler : RepeatActionHandler,

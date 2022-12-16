@@ -1,4 +1,4 @@
-package com.hegunhee.feature.repeat.insert
+package com.hegunhee.repeat.insert
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
