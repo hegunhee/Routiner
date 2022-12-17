@@ -7,7 +7,7 @@ interface Repository {
 
     fun getAllDailyRoutineByFlow(date : Int) : Flow<List<Routine>>
 
-    suspend fun insertDailyRoutine(routineEntity: Routine)
+    suspend fun insertDailyRoutine(routine: Routine)
 
     suspend fun deleteAllRoutineByDate(date : Int)
 
@@ -15,17 +15,17 @@ interface Repository {
 
     suspend fun getRoutineListByDate(date :Int) : List<Routine>
 
-    suspend fun insertDate(dateEntity : Date)
+    suspend fun insertDate(date : Date)
 
     suspend fun getAllDate() : List<Date>
 
     suspend fun getReview(date : Int) : List<Review>
 
-    suspend fun insertReview(reviewEntity : Review)
+    suspend fun insertReview(review : Review)
 
-    suspend fun deleteReview(reviewEntity: Review)
+    suspend fun deleteReview(review: Review)
 
-    suspend fun insertRepeatRoutine(repeatRoutineEntity: RepeatRoutine)
+    suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutine)
 
     fun getAllRepeatRoutineByFlow() : Flow<List<RepeatRoutine>>
 
@@ -33,9 +33,9 @@ interface Repository {
 
     suspend fun deleteRepeatRoutine(text: String)
 
-    suspend fun insertAllRoutine(routineEntityList: List<Routine>)
+    suspend fun insertAllRoutine(routineList: List<Routine>)
 
-    suspend fun insertCategory(categoryEntity: Category)
+    suspend fun insertCategory(category: Category)
 
     fun getAllCategoryByFlow() : Flow<List<Category>>
 
