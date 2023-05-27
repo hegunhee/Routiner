@@ -13,5 +13,5 @@ interface DateDao {
     fun insertDate(dateEntity : DateEntity)
 
     @Query("SELECT * FROM DateEntity")
-    suspend fun getAllDate() : List<DateEntity>
+    suspend fun getAllDateList() : List<DateEntity>
 }

@@ -3,10 +3,7 @@ package com.example.data.dataSource.local
 import com.example.data.db.SharedPreferenceManager
 import com.example.data.db.dao.*
 import com.example.data.entity.*
-import com.example.data.mapper.*
-import com.example.domain.model.*
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -21,11 +18,11 @@ class DefaultLocalDataSource @Inject constructor(
 ) : LocalDataSource {
 
     override fun getAllDailyRoutineByFlow(date: Int): Flow<List<RoutineEntity>> {
-        return routineDao.getDailyRoutineByFlow(date)
+        return routineDao.getAllDailyRoutineListByFlow(date)
     }
 
     override suspend fun insertRoutine(routineEntity: RoutineEntity) {
-        routineDao.insertDailyRoutine(routineEntity)
+        routineDao.insertRoutine(routineEntity)
     }
 
     override suspend fun deleteAllRoutineByDate(date: Int) {
@@ -45,15 +42,15 @@ class DefaultLocalDataSource @Inject constructor(
     }
 
     override suspend fun getAllDateList(): List<DateEntity> {
-        return dateDao.getAllDate()
+        return dateDao.getAllDateList()
     }
 
     override suspend fun getReviewListByDate(date: Int): List<ReviewEntity> {
-        return reviewDao.getReview(date)
+        return reviewDao.getReviewListByDate(date)
     }
 
     override suspend fun insertReview(review: ReviewEntity) {
-        reviewDao.insertDate(review)
+        reviewDao.insertReview(review)
     }
 
     override suspend fun deleteReview(review: ReviewEntity) {
@@ -65,11 +62,11 @@ class DefaultLocalDataSource @Inject constructor(
     }
 
     override fun getAllRepeatRoutineListByFlow(): Flow<List<RepeatRoutineEntity>> {
-        return repeatRoutineDao.getAllRepeatRoutineByFlow()
+        return repeatRoutineDao.getAllRepeatRoutineListByFlow()
     }
 
     override suspend fun getAllRepeatRoutineList(): List<RepeatRoutineEntity> {
-        return repeatRoutineDao.getAllRepeatRoutine()
+        return repeatRoutineDao.getAllRepeatRoutineList()
     }
 
     override suspend fun deleteRepeatRoutine(text: String) {
@@ -77,7 +74,7 @@ class DefaultLocalDataSource @Inject constructor(
     }
 
     override suspend fun insertAllRoutine(routineList: List<RoutineEntity>) {
-        routineDao.insertAllDailyRoutine(routineList)
+        routineDao.insertAllRoutine(routineList)
     }
 
     override suspend fun insertCategory(category: CategoryEntity) {
@@ -85,7 +82,7 @@ class DefaultLocalDataSource @Inject constructor(
     }
 
     override fun getAllCategoryListByFlow(): Flow<List<CategoryEntity>> {
-        return categoryDao.getAllCategoryByFlow()
+        return categoryDao.getAllCategoryListByFlow()
     }
 
     override suspend fun getCurrentDate(): Int {
@@ -101,7 +98,7 @@ class DefaultLocalDataSource @Inject constructor(
     }
 
     override fun setNotiSendValue(notiValue: Boolean) {
-        sharedPreferenceManager.setNofiSendValue(notiValue)
+        sharedPreferenceManager.setNotiSendValue(notiValue)
     }
 
     override fun getNotiSendValue(): Boolean {
