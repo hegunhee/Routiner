@@ -7,7 +7,7 @@ interface LocalDataSource {
 
     fun getAllDailyRoutineByFlow(date : Int) : Flow<List<Routine>>
 
-    suspend fun insertDailyRoutine(routine: Routine)
+    suspend fun insertRoutine(routine: Routine)
 
     suspend fun deleteAllRoutineByDate(date : Int)
 
@@ -17,7 +17,7 @@ interface LocalDataSource {
 
     suspend fun insertDate(date : Date)
 
-    suspend fun getAllDate() : List<Date>
+    suspend fun getAllDateList() : List<Date>
 
     suspend fun getReviewListByDate(date : Int) : List<Review>
 
@@ -27,7 +27,7 @@ interface LocalDataSource {
 
     suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutine)
 
-    fun getAllRepeatRoutineByFlow() : Flow<List<RepeatRoutine>>
+    fun getAllRepeatRoutineListByFlow() : Flow<List<RepeatRoutine>>
 
     suspend fun getAllRepeatRoutineList() : List<RepeatRoutine>
 
@@ -37,7 +37,7 @@ interface LocalDataSource {
 
     suspend fun insertCategory(category: Category)
 
-    fun getAllCategoryByFlow() : Flow<List<Category>>
+    fun getAllCategoryListByFlow() : Flow<List<Category>>
 
     suspend fun getCurrentDate() : Int
 
