@@ -1,4 +1,8 @@
 package com.example.data.dataSource.local
 
-class DefaultLocalDataSource() : LocalDataSource {
+import javax.inject.Inject
+
+class DefaultLocalDataSource @Inject constructor(
+
+) : LocalDataSource {
 }
