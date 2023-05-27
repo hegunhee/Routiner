@@ -6,7 +6,7 @@ import com.example.domain.usecase.UseCase
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-class GetAllRepeatRoutineByFlowUseCase @Inject constructor(private val repository: Repository) :
+class GetAllRepeatRoutineListByFlowUseCase @Inject constructor(private val repository: Repository) :
     UseCase {
 
     operator fun invoke(): Flow<List<RepeatRoutine>> {

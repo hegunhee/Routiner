@@ -3,7 +3,7 @@ package com.hegunhee.repeat
 import androidx.lifecycle.*
 import com.example.domain.model.RepeatRoutine
 import com.example.domain.usecase.repeatRoutine.DeleteRepeatRoutineUseCase
-import com.example.domain.usecase.repeatRoutine.GetAllRepeatRoutineByFlowUseCase
+import com.example.domain.usecase.repeatRoutine.GetAllRepeatRoutineListByFlowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -13,11 +13,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RepeatViewModel @Inject constructor(
-    private val getAllRepeatRoutineByFlowUseCase: GetAllRepeatRoutineByFlowUseCase,
+    private val getAllRepeatRoutineListByFlowUseCase: GetAllRepeatRoutineListByFlowUseCase,
     private val deleteRepeatRoutineUseCase: DeleteRepeatRoutineUseCase,
 ): ViewModel(), RepeatActionHandler {
 
-    val repeatRoutineListLiveData : LiveData<List<RepeatRoutine>> = getAllRepeatRoutineByFlowUseCase().asLiveData()
+    val repeatRoutineListLiveData : LiveData<List<RepeatRoutine>> = getAllRepeatRoutineListByFlowUseCase().asLiveData()
 
     val isRepeatRoutineListEmpty : LiveData<Boolean> = Transformations.map(repeatRoutineListLiveData){
         it.isEmpty()

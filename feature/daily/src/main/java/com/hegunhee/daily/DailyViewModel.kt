@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import com.example.domain.model.Routine
 import com.example.domain.usecase.routine.DeleteRoutineUseCase
 import com.example.domain.usecase.routine.GetAllDailyRoutineByFlowUseCase
-import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
+import com.example.domain.usecase.routine.InsertRoutineUseCase
 import com.hegunhee.common.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -14,7 +14,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DailyViewModel @Inject constructor(
     private val getAllDailyRoutineByFlowUseCase: GetAllDailyRoutineByFlowUseCase,
-    private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
+    private val insertRoutineUseCase: InsertRoutineUseCase,
     private val deleteRoutineUseCase: DeleteRoutineUseCase,
 ) : ViewModel(), DailyActionHandler {
 
@@ -50,7 +50,7 @@ class DailyViewModel @Inject constructor(
 
     override fun toggleFinishRoutine(routine: Routine) {
         viewModelScope.launch {
-            insertDailyRoutineUseCase(routine.copy(isFinished = !routine.isFinished))
+            insertRoutineUseCase(routine.copy(isFinished = !routine.isFinished))
         }
     }
 }

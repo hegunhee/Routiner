@@ -6,7 +6,7 @@ import com.example.domain.usecase.UseCase
 import javax.inject.Inject
 
 
-class GetAllDateUseCase @Inject constructor(private val repository: Repository) : UseCase {
+class GetAllDateListUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
     suspend operator fun invoke() : List<Date> {
         return repository.getAllDateList()

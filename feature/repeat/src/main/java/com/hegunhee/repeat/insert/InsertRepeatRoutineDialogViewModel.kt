@@ -7,7 +7,7 @@ import com.example.domain.model.RepeatRoutine
 import com.example.domain.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
-import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
+import com.example.domain.usecase.routine.InsertRoutineUseCase
 import com.hegunhee.common.util.getTodayDate
 import com.hegunhee.common.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,7 +18,7 @@ import javax.inject.Inject
 @HiltViewModel
 class InsertRepeatRoutineDialogViewModel @Inject constructor(
     private val allCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase,
-    private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
+    private val insertRoutineUseCase: InsertRoutineUseCase,
     private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase
 ) : ViewModel() , InsertRepeatRoutineActionHandler{
 
@@ -60,7 +60,7 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
             }
             val repeatRoutine = RepeatRoutine(repeatRoutineText,dayOfWeekList,categoryText)
             if(getTodayDayOfWeekFormatedKorean() in dayOfWeekList){
-                insertDailyRoutineUseCase(Routine(date = getTodayDate(), text = repeatRoutineText, category = categoryText))
+                insertRoutineUseCase(Routine(date = getTodayDate(), text = repeatRoutineText, category = categoryText))
             }
             insertRepeatRoutineUseCase(repeatRoutine)
             _navigationActions.emit(InsertRepeatRoutineNavigationAction.DisMissDialog)

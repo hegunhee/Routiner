@@ -6,7 +6,7 @@ import com.example.domain.model.Category
 import com.example.domain.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
-import com.example.domain.usecase.routine.InsertDailyRoutineUseCase
+import com.example.domain.usecase.routine.InsertRoutineUseCase
 import com.example.domain.usecase.routine.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -16,7 +16,7 @@ import javax.inject.Inject
 @HiltViewModel
 class InsertRoutineDialogViewModel @Inject constructor(
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
-    private val insertDailyRoutineUseCase: InsertDailyRoutineUseCase,
+    private val insertRoutineUseCase: InsertRoutineUseCase,
     private val getAllCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase
 ) : ViewModel(), InsertRoutineActionHandler {
 
@@ -54,7 +54,7 @@ class InsertRoutineDialogViewModel @Inject constructor(
                 if(routineList.map(Routine::text).contains(routineText)){
                     _toastMessage.emit(sameRoutineMessage)
                 }else{
-                    insertDailyRoutineUseCase(Routine(date= getTodayDate(),text = routineText, category = categoryText))
+                    insertRoutineUseCase(Routine(date= getTodayDate(),text = routineText, category = categoryText))
                     _navigateActions.emit(InsertRoutineNavigationAction.DismissDialog)
                 }
             }
