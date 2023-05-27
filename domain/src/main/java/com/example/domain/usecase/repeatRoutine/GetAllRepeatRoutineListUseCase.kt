@@ -8,6 +8,6 @@ import javax.inject.Inject
 class GetAllRepeatRoutineUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
     suspend operator fun invoke() : List<RepeatRoutine>{
-        return repository.getAllRepeatRoutine()
+        return repository.getAllRepeatRoutineList()
     }
 }

@@ -23,7 +23,7 @@ class DefaultRepository @Inject constructor(
         return routineDao.getDailyRoutineByFlow(date).map { it.toRoutineList() }
     }
 
-    override suspend fun insertDailyRoutine(routine: Routine) {
+    override suspend fun insertRoutine(routine: Routine) {
         routineDao.insertDailyRoutine(routine.toRoutineEntity())
     }
 
@@ -43,11 +43,11 @@ class DefaultRepository @Inject constructor(
         return dateDao.insertDate(date.toDateEntity())
     }
 
-    override suspend fun getAllDate(): List<Date> {
+    override suspend fun getAllDateList(): List<Date> {
         return dateDao.getAllDate().toDateList()
     }
 
-    override suspend fun getReview(date: Int): List<Review> {
+    override suspend fun getReviewListByDate(date: Int): List<Review> {
         return reviewDao.getReview(date).toReviewList()
     }
 
@@ -63,11 +63,11 @@ class DefaultRepository @Inject constructor(
         repeatRoutineDao.insertRepeatRoutine(repeatRoutine.toRepeatRoutineEntity())
     }
 
-    override fun getAllRepeatRoutineByFlow(): Flow<List<RepeatRoutine>> {
+    override fun getAllRepeatRoutineListByFlow(): Flow<List<RepeatRoutine>> {
         return repeatRoutineDao.getAllRepeatRoutineByFlow().map { it.toRepeatRoutineList() }
     }
 
-    override suspend fun getAllRepeatRoutine(): List<RepeatRoutine> {
+    override suspend fun getAllRepeatRoutineList(): List<RepeatRoutine> {
         return repeatRoutineDao.getAllRepeatRoutine().toRepeatRoutineList()
     }
 
@@ -83,7 +83,7 @@ class DefaultRepository @Inject constructor(
         categoryDao.insertCategory(category.toCategoryEntity())
     }
 
-    override fun getAllCategoryByFlow(): Flow<List<Category>> {
+    override fun getAllCategoryListByFlow(): Flow<List<Category>> {
         return categoryDao.getAllCategoryByFlow().map { it.toCategory() }
     }
 
