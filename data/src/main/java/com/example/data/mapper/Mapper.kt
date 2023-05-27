@@ -1,4 +1,4 @@
-package com.example.data.db.dao
+package com.example.data.mapper
 
 import com.example.data.entity.CategoryEntity
 import com.example.data.entity.*
