@@ -10,6 +10,6 @@ class GetAllRepeatRoutineByFlowUseCase @Inject constructor(private val repositor
     UseCase {
 
     operator fun invoke(): Flow<List<RepeatRoutine>> {
-        return repository.getAllRepeatRoutineByFlow()
+        return repository.getAllRepeatRoutineListByFlow()
     }
 }

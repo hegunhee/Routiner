@@ -9,6 +9,6 @@ import javax.inject.Inject
 class GetAllCategoryListByFlowUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
     operator fun invoke() : Flow<List<Category>> {
-        return repository.getAllCategoryByFlow()
+        return repository.getAllCategoryListByFlow()
     }
 }

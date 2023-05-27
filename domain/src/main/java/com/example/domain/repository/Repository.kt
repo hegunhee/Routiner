@@ -7,7 +7,7 @@ interface Repository {
 
     fun getAllDailyRoutineByFlow(date : Int) : Flow<List<Routine>>
 
-    suspend fun insertDailyRoutine(routine: Routine)
+    suspend fun insertRoutine(routine: Routine)
 
     suspend fun deleteAllRoutineByDate(date : Int)
 
@@ -17,9 +17,9 @@ interface Repository {
 
     suspend fun insertDate(date : Date)
 
-    suspend fun getAllDate() : List<Date>
+    suspend fun getAllDateList() : List<Date>
 
-    suspend fun getReview(date : Int) : List<Review>
+    suspend fun getReviewListByDate(date : Int) : List<Review>
 
     suspend fun insertReview(review : Review)
 
@@ -27,9 +27,9 @@ interface Repository {
 
     suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutine)
 
-    fun getAllRepeatRoutineByFlow() : Flow<List<RepeatRoutine>>
+    fun getAllRepeatRoutineListByFlow() : Flow<List<RepeatRoutine>>
 
-    suspend fun getAllRepeatRoutine() : List<RepeatRoutine>
+    suspend fun getAllRepeatRoutineList() : List<RepeatRoutine>
 
     suspend fun deleteRepeatRoutine(text: String)
 
@@ -37,7 +37,7 @@ interface Repository {
 
     suspend fun insertCategory(category: Category)
 
-    fun getAllCategoryByFlow() : Flow<List<Category>>
+    fun getAllCategoryListByFlow() : Flow<List<Category>>
 
     suspend fun getCurrentDate() : Int
 

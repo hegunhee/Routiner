@@ -8,6 +8,6 @@ import javax.inject.Inject
 class InsertDailyRoutineUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
     suspend operator fun invoke(routineEntity: Routine){
-        repository.insertDailyRoutine(routineEntity)
+        repository.insertRoutine(routineEntity)
     }
 }
