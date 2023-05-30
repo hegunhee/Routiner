@@ -51,6 +51,7 @@ class MainActivity : AppCompatActivity() {
     private fun openGuideDialog() {
         val customDialogBinding = DialogFirstOpenBinding.inflate(layoutInflater)
         val dialog = AlertDialog.Builder(this).setView(customDialogBinding.root).show()
+        dialog.setCancelable(false)
         customDialogBinding.alertAcceptButton.setOnClickListener {
             val isChecked = customDialogBinding.alertSwitch.isChecked
             viewModel.setAppFirstOpened()
