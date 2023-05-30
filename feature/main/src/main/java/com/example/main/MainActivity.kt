@@ -1,13 +1,11 @@
 package com.example.main
 
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -66,7 +64,7 @@ class MainActivity : AppCompatActivity() {
         val dialog = AlertDialog.Builder(this).setView(customDialogBinding.root).show()
         customDialogBinding.alertAcceptButton.setOnClickListener {
             val isChecked = customDialogBinding.alertSwitch.isChecked
-            viewModel.setInitNotiValue(isChecked)
+            viewModel.setAppFirstOpened()
             Toast.makeText(this@MainActivity, getString(R.string.notification_setting,if(isChecked) "승인" else "해제"), Toast.LENGTH_SHORT).show()
             dialog.dismiss()
         }
