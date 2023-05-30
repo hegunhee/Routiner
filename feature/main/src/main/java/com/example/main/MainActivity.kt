@@ -12,6 +12,7 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.main.databinding.ActivityMainBinding
 import com.example.main.databinding.DialogFirstOpenBinding
+import com.example.main.databinding.DialogGuideBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openGuideDialog() {
-        val customDialogBinding = DialogFirstOpenBinding.inflate(layoutInflater)
+        val customDialogBinding = DialogGuideBinding.inflate(layoutInflater)
         val dialog = AlertDialog.Builder(this).setView(customDialogBinding.root).show()
         dialog.setCancelable(false)
         customDialogBinding.alertAcceptButton.setOnClickListener {
