@@ -101,5 +101,13 @@ class DefaultRepository @Inject constructor(
         return localDataSource.getNotiSendValue()
     }
 
+    override fun isAppFirstOpened(): Boolean {
+        return localDataSource.isAppFirstOpened()
+    }
+
+    override fun setAppFirstOpened() {
+        localDataSource.setAppFirstOpened()
+    }
+
 
 }
