@@ -93,10 +93,6 @@ class DefaultLocalDataSource @Inject constructor(
         sharedPreferenceManager.setCurrentDate(date)
     }
 
-    override suspend fun getDefaultCurrentDate(): Int {
-        return SharedPreferenceManager.CURRENT_DATE_DEFAULT_DATE
-    }
-
     override fun setNotiSendValue(notiValue: Boolean) {
         sharedPreferenceManager.setNotiSendValue(notiValue)
     }
