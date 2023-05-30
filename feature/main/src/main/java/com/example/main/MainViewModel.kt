@@ -4,12 +4,9 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.date.InsertDateUseCase
+import com.example.domain.usecase.date.*
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.example.domain.usecase.routine.InsertAllDailyRoutineFromRepeatRoutineUseCase
-import com.example.domain.usecase.date.GetCurrentDateUseCase
-import com.example.domain.usecase.date.GetDefaultCurrentDateUseCase
-import com.example.domain.usecase.date.SetCurrentDateUseCase
 import com.example.domain.usecase.notification.SetNotiSendValueUseCase
 import com.hegunhee.common.util.getTodayDate
 import com.hegunhee.common.util.getTodayDayOfWeekFormatedKorean
@@ -30,7 +27,8 @@ class MainViewModel @Inject constructor(
     private val setNotiSendValueUseCase: SetNotiSendValueUseCase,
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
     private val insertDateUseCase: InsertDateUseCase,
-    private val insertAllDailyRoutineFromRepeatRoutineUseCase: InsertAllDailyRoutineFromRepeatRoutineUseCase
+    private val insertAllDailyRoutineFromRepeatRoutineUseCase: InsertAllDailyRoutineFromRepeatRoutineUseCase,
+    private val isAppFirstOpenUseCase: IsAppFirstOpenUseCase
 ) : ViewModel() {
 
     init {
@@ -40,6 +38,10 @@ class MainViewModel @Inject constructor(
 
     private val _firstAppOpenEvent : MutableSharedFlow<Unit> = MutableSharedFlow<Unit>()
     val firstAppOpenEvent : SharedFlow<Unit> = _firstAppOpenEvent.asSharedFlow()
+
+    fun isAppFirstOpen() : Boolean {
+        return isAppFirstOpenUseCase()
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun checkDate() = viewModelScope.launch(Dispatchers.IO){
