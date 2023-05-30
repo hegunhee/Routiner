@@ -28,7 +28,8 @@ class MainViewModel @Inject constructor(
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
     private val insertDateUseCase: InsertDateUseCase,
     private val insertAllDailyRoutineFromRepeatRoutineUseCase: InsertAllDailyRoutineFromRepeatRoutineUseCase,
-    private val isAppFirstOpenUseCase: IsAppFirstOpenUseCase
+    private val isAppFirstOpenUseCase: IsAppFirstOpenUseCase,
+    private val setAppFirstOpenedUseCase: SetAppFirstOpenedUseCase
 ) : ViewModel() {
 
     init {
@@ -58,8 +59,8 @@ class MainViewModel @Inject constructor(
         setCurrentDateUseCase(getTodayDate())
     }
 
-    fun setInitNotiValue(notiValue : Boolean){
-        setNotiSendValueUseCase(notiValue)
+    fun setAppFirstOpened(){
+        setAppFirstOpenedUseCase()
     }
 
 
