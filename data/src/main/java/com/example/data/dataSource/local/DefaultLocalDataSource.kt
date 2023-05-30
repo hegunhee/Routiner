@@ -105,4 +105,12 @@ class DefaultLocalDataSource @Inject constructor(
         return sharedPreferenceManager.getNotiSendValue()
     }
 
+    override fun isAppFirstOpened(): Boolean {
+        return sharedPreferenceManager.isAppFirstOpened()
+    }
+
+    override fun setAppFirstOpened() {
+        return sharedPreferenceManager.setAppFirstOpened()
+    }
+
 }
