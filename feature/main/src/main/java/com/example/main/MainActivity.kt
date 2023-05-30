@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
         }
         initActionBar()
         setNavigation()
-        observeData()
     }
 
     private fun initActionBar() = with(binding) {
@@ -46,16 +45,6 @@ class MainActivity : AppCompatActivity() {
         (supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment).let {
             val navController = it.navController
             navView.setupWithNavController(navController)
-        }
-    }
-
-    private fun observeData() {
-        lifecycleScope.launchWhenResumed{
-            launch {
-                viewModel.firstAppOpenEvent.collect{
-                    openGuideDialog()
-                }
-            }
         }
     }
 
