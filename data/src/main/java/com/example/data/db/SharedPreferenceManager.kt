@@ -30,7 +30,7 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext private va
     }
 
     fun setAppFirstOpened() {
-        prefs.edit().putBoolean(FIRST_APP_ENTER_KEY,true).apply()
+        prefs.edit().putBoolean(FIRST_APP_ENTER_KEY,false).apply()
     }
 
 
@@ -44,7 +44,7 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext private va
         const val CURRENT_NOTI_DEFAULT = false
 
         const val FIRST_APP_ENTER_KEY = "firstAppEnterKey"
-        const val FIRST_APP_ENTER_KEY_DEFAULT = false
+        const val FIRST_APP_ENTER_KEY_DEFAULT = true
 
     }
 
