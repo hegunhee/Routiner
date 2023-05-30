@@ -35,6 +35,8 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext private va
         const val CURRENT_NOTI_KEY = "notiKey"
         const val CURRENT_NOTI_DEFAULT = false
 
+        const val FIRST_APP_ENTER_KEY = "firstAppEnterKey"
+        const val FIRST_APP_ENTER_KEY_DEFAULT = false
 
     }
 
