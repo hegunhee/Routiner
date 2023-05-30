@@ -12,9 +12,6 @@ import com.hegunhee.common.util.getTodayDate
 import com.hegunhee.common.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -22,7 +19,6 @@ import javax.inject.Inject
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getCurrentDateUseCase: GetCurrentDateUseCase,
-    private val getDefaultCurrentDateUseCase: GetDefaultCurrentDateUseCase,
     private val setCurrentDateUseCase: SetCurrentDateUseCase,
     private val setNotiSendValueUseCase: SetNotiSendValueUseCase,
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
