@@ -89,10 +89,6 @@ class DefaultRepository @Inject constructor(
         localDataSource.setCurrentDate(date)
     }
 
-    override suspend fun getDefaultCurrentDate(): Int {
-        return localDataSource.getDefaultCurrentDate()
-    }
-
     override fun setNotiSendValue(notiValue: Boolean) {
         return localDataSource.setNotiSendValue(notiValue)
     }

@@ -44,8 +44,6 @@ interface LocalDataSource {
 
     suspend fun setCurrentDate(date : Int)
 
-    suspend fun getDefaultCurrentDate() : Int
-
     fun setNotiSendValue(notiValue : Boolean)
 
     fun getNotiSendValue() : Boolean
