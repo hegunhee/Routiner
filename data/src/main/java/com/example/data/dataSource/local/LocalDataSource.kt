@@ -49,4 +49,8 @@ interface LocalDataSource {
     fun setNotiSendValue(notiValue : Boolean)
 
     fun getNotiSendValue() : Boolean
+
+    fun isAppFirstOpened() : Boolean
+
+    fun setAppFirstOpened()
 }
