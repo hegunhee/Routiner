@@ -25,6 +25,14 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext private va
         prefs.edit().putBoolean(CURRENT_NOTI_KEY,notiValue).apply()
     }
 
+    fun isAppFirstOpened() : Boolean {
+        return prefs.getBoolean(FIRST_APP_ENTER_KEY,FIRST_APP_ENTER_KEY_DEFAULT)
+    }
+
+    fun setAppFirstOpened() {
+        prefs.edit().putBoolean(FIRST_APP_ENTER_KEY,true).apply()
+    }
+
 
     companion object{
         const val PRES_NAME = "routiner_pref"
