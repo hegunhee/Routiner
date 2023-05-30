@@ -1,11 +1,13 @@
 package com.example.main
 
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
@@ -26,6 +28,9 @@ class MainActivity : AppCompatActivity() {
             this.viewmodel = viewModel
         }
         setContentView(binding.root)
+        if(viewModel.isAppFirstOpen()){
+            openGuideDialog()
+        }
         initActionBar()
         setNavigation()
         observeData()
@@ -50,13 +55,13 @@ class MainActivity : AppCompatActivity() {
         lifecycleScope.launchWhenResumed{
             launch {
                 viewModel.firstAppOpenEvent.collect{
-                    openDialog()
+                    openGuideDialog()
                 }
             }
         }
     }
 
-    private fun openDialog() {
+    private fun openGuideDialog() {
         val customDialogBinding = DialogFirstOpenBinding.inflate(layoutInflater)
         val dialog = AlertDialog.Builder(this).setView(customDialogBinding.root).show()
         customDialogBinding.alertAcceptButton.setOnClickListener {
