@@ -35,10 +35,6 @@ class MainViewModel @Inject constructor(
     init {
         checkDate()
     }
-    
-    fun isAppFirstOpen() : Boolean {
-        return isAppFirstOpenUseCase()
-    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
@@ -51,6 +47,10 @@ class MainViewModel @Inject constructor(
             }
         }
         setCurrentDateUseCase(getTodayDate())
+    }
+
+    fun isAppFirstOpen() : Boolean {
+        return isAppFirstOpenUseCase()
     }
 
     fun setAppFirstOpened(){
