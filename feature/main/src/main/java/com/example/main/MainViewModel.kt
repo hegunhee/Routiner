@@ -35,21 +35,15 @@ class MainViewModel @Inject constructor(
     init {
         checkDate()
     }
-
-
-    private val _firstAppOpenEvent : MutableSharedFlow<Unit> = MutableSharedFlow<Unit>()
-    val firstAppOpenEvent : SharedFlow<Unit> = _firstAppOpenEvent.asSharedFlow()
-
+    
     fun isAppFirstOpen() : Boolean {
         return isAppFirstOpenUseCase()
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun checkDate() = viewModelScope.launch(Dispatchers.IO){
+    private fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
         val currentLoadedDate = getCurrentDateUseCase()
-        if (currentLoadedDate == getDefaultCurrentDateUseCase()){
-            _firstAppOpenEvent.emit(Unit)
-        } else if (currentLoadedDate != getTodayDate()) {
+        if (currentLoadedDate != getTodayDate()) {
             insertAllDailyRoutineFromRepeatRoutineUseCase(getTodayDayOfWeekFormatedKorean())
             val currentDateRoutineList = getRoutineListByDateUseCase(currentLoadedDate)
             if (currentDateRoutineList.isNotEmpty()) {
