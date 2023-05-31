@@ -11,6 +11,8 @@ class GuideViewModel @Inject constructor(): ViewModel() {
 
     val isAllowNotification : MutableStateFlow<Boolean> = MutableStateFlow<Boolean>(false)
 
+    private val _navigateDismissDialog : MutableSharedFlow<Unit> = MutableSharedFlow()
+    val navigateDismissDialog : SharedFlow<Unit> = _navigateDismissDialog.asSharedFlow()
 
     fun onClickDismissDialogButton() {
         Log.d("TEST!!!",isAllowNotification.value.toString())
