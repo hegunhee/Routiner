@@ -4,13 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.main.databinding.ActivityMainBinding
-import com.example.main.databinding.DialogGuideBinding
 import com.example.main.guide.GuideDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -48,17 +45,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun openGuideDialog() {
-        val guideDialogFragment = GuideDialogFragment.getInstance()
-        guideDialogFragment.show(supportFragmentManager,GuideDialogFragment.TAG)
-//        val customDialogBinding = DialogGuideBinding.inflate(layoutInflater)
-//        val dialog = AlertDialog.Builder(this).setView(customDialogBinding.root).show()
-//        dialog.setCancelable(false)
-//        customDialogBinding.alertAcceptButton.setOnClickListener {
-//            val isChecked = customDialogBinding.alertSwitch.isChecked
-//            viewModel.setAppFirstOpened()
-//            Toast.makeText(this@MainActivity, getString(R.string.notification_setting,if(isChecked) "승인" else "해제"), Toast.LENGTH_SHORT).show()
-//            dialog.dismiss()
-//        }
+        GuideDialogFragment.getInstance().show(supportFragmentManager,GuideDialogFragment.TAG)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
