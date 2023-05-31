@@ -6,7 +6,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import com.hegunhee.common.base.BaseFragment
-import com.example.main.MainActivity
 import com.hegunhee.setting.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
 
