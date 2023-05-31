@@ -8,7 +8,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.domain.model.RepeatRoutine
 import com.hegunhee.common.base.BaseFragment
-import com.example.main.MainActivity
 import com.hegunhee.repeat.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.repeat.databinding.FragmentRepeatBinding
 import com.hegunhee.repeat.insert.InsertRepeatRoutineDialogFragment
