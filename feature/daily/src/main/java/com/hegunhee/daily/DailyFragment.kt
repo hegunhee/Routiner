@@ -2,10 +2,10 @@ package com.hegunhee.daily
 
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.hegunhee.common.base.BaseFragment
-import com.example.main.MainActivity
 import com.hegunhee.daily.databinding.FragmentDailyBinding
 import com.hegunhee.daily.insert.InsertRoutineDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,7 +28,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
     }
 
     private fun setActionBarTitle(){
-        (requireActivity() as MainActivity).supportActionBar?.title = "오늘의 루틴"
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "오늘의 루틴"
     }
 
     private fun initObserver(){
