@@ -3,6 +3,7 @@ package com.hegunhee.repeat
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.domain.model.RepeatRoutine
@@ -28,10 +29,13 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
             viewmodel = viewModel
             recyclerView.adapter = adapter
         }
-        (requireActivity() as MainActivity).supportActionBar?.title = "반복 루틴 설정"
+        setActionBarTitle()
         initObserver()
         observeData()
+    }
 
+    private fun setActionBarTitle(){
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = "반복 루틴 설정"
     }
 
     private fun initObserver() {
