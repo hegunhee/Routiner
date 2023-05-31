@@ -40,6 +40,7 @@
             app:layout_constraintBottom_toTopOf="@id/alert_accept_button"
             app:layout_constraintStart_toStartOf="@id/alert_title"
             app:layout_constraintTop_toBottomOf="@id/alert_title"
+            android:checked="@={viewModel.isAllowNotification}"
             app:layout_constraintVertical_chainStyle="packed" />
 
 
@@ -67,6 +68,7 @@
             app:layout_constraintEnd_toEndOf="@id/alert_title"
             app:layout_constraintStart_toStartOf="@id/alert_title"
             app:layout_constraintTop_toBottomOf="@id/alert_switch"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            android:onClick="@{() -> viewModel.onClickDismissDialogButton()}"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
