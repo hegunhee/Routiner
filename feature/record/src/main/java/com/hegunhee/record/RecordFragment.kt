@@ -6,10 +6,10 @@ import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.hegunhee.common.base.BaseFragment
-import com.example.main.MainActivity
 import com.hegunhee.record.databinding.FragmentRecordBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -45,7 +45,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     }
 
     private fun setActionBarTitle(title : String){
-        (requireActivity() as MainActivity).supportActionBar?.title = title
+        (requireActivity() as AppCompatActivity).supportActionBar?.title = title
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
