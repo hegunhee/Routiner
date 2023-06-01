@@ -14,6 +14,8 @@ interface LocalDataSource {
 
     suspend fun deleteRoutine(id : Int)
 
+    suspend fun updateRoutine(routineEntity: RoutineEntity)
+
     suspend fun getRoutineListByDate(date :Int) : List<RoutineEntity>
 
     suspend fun insertDate(date : DateEntity)
