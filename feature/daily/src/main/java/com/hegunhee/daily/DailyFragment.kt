@@ -32,9 +32,11 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
     }
 
     private fun initObserver(){
-        lifecycleScope.launch{
-            viewModel.onClickEvent.collect{ isClick ->
-                if(isClick) InsertRoutineDialogFragment().show(childFragmentManager,"insert_routine")
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            launch {
+                viewModel.onClickEvent.collect{ isClick ->
+                    if(isClick) InsertRoutineDialogFragment().show(childFragmentManager,"insert_routine")
+                }
             }
         }
         viewModel.dailyRoutineEntityListLiveData.observe(viewLifecycleOwner){
