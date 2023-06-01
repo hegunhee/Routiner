@@ -8,6 +8,8 @@ import com.example.domain.usecase.routine.InsertRoutineUseCase
 import com.hegunhee.common.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.asSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,9 +26,8 @@ class DailyViewModel @Inject constructor(
 
     val recyclerViewVisible: LiveData<Boolean> = Transformations.map(dailyRoutineEntityListLiveData) { dailyRoutineEntityListLiveData.value?.isNotEmpty() }
 
-    private var _onClickEvent : MutableSharedFlow<Boolean> = MutableSharedFlow()
-    val onClickEvent : MutableSharedFlow<Boolean>
-    get() = _onClickEvent
+    private val _onClickInsertRoutineButton : MutableSharedFlow<Unit> = MutableSharedFlow()
+    val onClickInsertRoutineButton : SharedFlow<Unit> = _onClickInsertRoutineButton.asSharedFlow()
 
     val dailyRoutineProgress : LiveData<String> = Transformations.map(dailyRoutineEntityListLiveData){
         return@map if(it.isEmpty()){
@@ -38,7 +39,7 @@ class DailyViewModel @Inject constructor(
 
     override fun onClickRoutineInsert() {
         viewModelScope.launch{
-            _onClickEvent.emit(true)
+            _onClickInsertRoutineButton.emit(Unit)
         }
     }
 
