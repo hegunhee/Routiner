@@ -25,5 +25,8 @@ interface RoutineDao {
     @Query("DELETE FROM RoutineEntity WHERE id = :id")
     suspend fun deleteRoutine(id : Int)
 
+    @Update
+    suspend fun updateRoutine(routineEntity: RoutineEntity)
+
 
 }
