@@ -33,6 +33,10 @@ class DefaultLocalDataSource @Inject constructor(
         routineDao.deleteRoutine(id)
     }
 
+    override suspend fun updateRoutine(routineEntity: RoutineEntity) {
+        routineDao.updateRoutine(routineEntity)
+    }
+
     override suspend fun getRoutineListByDate(date: Int): List<RoutineEntity> {
         return routineDao.getRoutineListByDate(date)
     }
