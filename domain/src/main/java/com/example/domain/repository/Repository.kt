@@ -13,6 +13,8 @@ interface Repository {
 
     suspend fun deleteRoutine(id : Int)
 
+    suspend fun updateRoutine(routine : Routine)
+
     suspend fun getRoutineListByDate(date :Int) : List<Routine>
 
     suspend fun insertDate(date : Date)
