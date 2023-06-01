@@ -29,6 +29,10 @@ class DefaultRepository @Inject constructor(
         localDataSource.deleteRoutine(id)
     }
 
+    override suspend fun updateRoutine(routine: Routine) {
+        localDataSource.updateRoutine(routine.toRoutineEntity())
+    }
+
     override suspend fun getRoutineListByDate(date: Int): List<Routine> {
         return localDataSource.getRoutineListByDate(date).toRoutineList()
     }
