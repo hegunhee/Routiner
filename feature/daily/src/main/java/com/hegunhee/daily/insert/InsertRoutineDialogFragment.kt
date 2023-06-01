@@ -76,4 +76,7 @@ class InsertRoutineDialogFragment : BaseDialog<DialogDailyRoutineBinding>(R.layo
             }
         }
     }
+    companion object {
+        const val TAG = "insert_routine_dialog"
+    }
 }
