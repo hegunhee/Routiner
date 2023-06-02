@@ -41,7 +41,7 @@ class InsertRoutineDialogFragment : BaseDialog<DialogDailyRoutineBinding>(R.layo
                                 dismiss()
                             }
                             InsertRoutineNavigationAction.InsertCategoryDialog -> {
-                                InsertCategoryDialogFragment().show(childFragmentManager,"insert_category")
+                                InsertCategoryDialogFragment().show(childFragmentManager,InsertCategoryDialogFragment.TAG)
                             }
                         }
                     }
