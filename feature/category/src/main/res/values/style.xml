@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name="category_padding_10dp">10dp</dimen>
+    <dimen name="category_padding_8dp">8dp</dimen>
 
     <dimen name="category_text_size">15sp</dimen>
 
