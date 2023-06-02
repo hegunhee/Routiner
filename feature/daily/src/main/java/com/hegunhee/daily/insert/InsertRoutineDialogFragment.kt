@@ -33,12 +33,12 @@ class InsertRoutineDialogFragment : BaseDialog<DialogDailyRoutineBinding>(R.layo
 
     private fun observeData(){
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.RESUMED){
+            repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
                     viewModel.navigateActions.collect{
                         when(it){
                             InsertRoutineNavigationAction.DismissDialog -> {
-                                dismiss()
+                                dismissAllowingStateLoss()
                             }
                             InsertRoutineNavigationAction.InsertCategoryDialog -> {
                                 InsertCategoryDialogFragment().show(childFragmentManager,InsertCategoryDialogFragment.TAG)
