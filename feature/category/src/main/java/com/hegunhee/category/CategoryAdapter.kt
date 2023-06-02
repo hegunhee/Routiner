@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Category
 import com.hegunhee.category.databinding.ItemCategoryBinding
 
-class CategoryAdapter() : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(diff_util){
+class CategoryAdapter(private val actionHandler: CategoryActionHandler) : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(diff_util){
 
     inner class CategoryViewHolder(private val binding : ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -18,7 +18,9 @@ class CategoryAdapter() : ListAdapter<Category, CategoryAdapter.CategoryViewHold
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        return CategoryViewHolder(ItemCategoryBinding.inflate(LayoutInflater.from(parent.context),parent,false))
+        return CategoryViewHolder(ItemCategoryBinding.inflate(LayoutInflater.from(parent.context),parent,false).apply {
+            actionHandler = this@CategoryAdapter.actionHandler
+        })
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
