@@ -9,6 +9,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.google.android.material.chip.Chip
+import com.hegunhee.category.CategoryAdapter
 import com.hegunhee.common.base.BaseDialog
 import com.hegunhee.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.daily.R

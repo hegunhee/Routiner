@@ -1,4 +1,4 @@
-package com.hegunhee.category.insert
+package com.hegunhee.category
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Category
 import com.hegunhee.category.databinding.ItemCategoryBinding
 
-class CategoryAdapter() : ListAdapter<Category,CategoryAdapter.CategoryViewHolder>(diff_util){
+class CategoryAdapter() : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(diff_util){
 
     inner class CategoryViewHolder(private val binding : ItemCategoryBinding) : RecyclerView.ViewHolder(binding.root) {
 
