@@ -27,10 +27,10 @@ class InsertCategoryDialogFragment : BaseDialog<DialogInsertCategoryBinding>(R.l
 
     private fun observeData(){
         viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.RESUMED){
+            repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
                     viewModel.dismissDialog.collect{
-                        dismiss()
+                        dismissAllowingStateLoss()
                     }
                 }
                 launch {
