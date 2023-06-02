@@ -22,11 +22,11 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintVertical_chainStyle="packed"
+            app:layout_constraintBottom_toTopOf="@id/routine_edit_text"/>
 
         <EditText
             android:id="@+id/routine_edit_text"
@@ -47,40 +47,39 @@
             android:text="카테고리를 설정해주세요"
             android:textColor="@color/black"
             android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@id/categoryGroup"
+            app:layout_constraintBottom_toTopOf="@id/category_recycler_view"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
             app:layout_constraintTop_toBottomOf="@id/routine_edit_text"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/categoryGroup"
-            android:layout_width="0dp"
-            app:singleSelection="true"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_recycler_view"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/insertCategoryChip"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toTopOf="@id/insert_category_button"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
             app:layout_constraintTop_toBottomOf="@id/categoryTextView"
-            app:layout_constraintVertical_chainStyle="packed">
+            android:orientation="horizontal"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
-
-
-
-        </com.google.android.material.chip.ChipGroup>
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/insertCategoryChip"
+        <Button
+            android:id="@+id/insert_category_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="카테고리 추가"
-            android:textColor="@color/black"
-            android:backgroundTint="@color/teal_200"
+            android:textColor="@color/white"
             android:onClick="@{() -> viewModel.openInsertCategoryDialog()}"
             app:layout_constraintBottom_toTopOf="@id/cancel_button"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
-            app:layout_constraintTop_toBottomOf="@id/categoryGroup"
-            app:layout_constraintVertical_chainStyle="packed" />
+            app:layout_constraintTop_toBottomOf="@id/category_recycler_view"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:background="@drawable/category_round_shape"
+            android:backgroundTint="@color/teal_200"/>
 
         <Button
             android:id="@+id/cancel_button"
