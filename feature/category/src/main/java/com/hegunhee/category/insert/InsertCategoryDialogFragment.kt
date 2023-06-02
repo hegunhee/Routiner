@@ -41,4 +41,8 @@ class InsertCategoryDialogFragment : BaseDialog<DialogInsertCategoryBinding>(R.l
             }
         }
     }
+
+    companion object{
+        val TAG = "insertCategory"
+    }
 }
