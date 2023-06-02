@@ -6,8 +6,14 @@
     <data>
 
         <variable
+            name="actionHandler"
+            type="com.hegunhee.category.CategoryActionHandler"/>
+
+        <variable
             name="category"
             type="com.example.domain.model.Category" />
+
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -16,8 +22,17 @@
         android:background="@drawable/category_round_shape"
         android:backgroundTint="@color/teal_200"
         android:padding="@dimen/category_padding_8dp"
-        android:layout_marginEnd="2dp">
+        android:layout_marginEnd="2dp"
+        android:onClick="@{() -> actionHandler.onClickCategory(category.name,category.isSelected)}">
 
+        <TextView
+            android:id="@+id/test"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="asd"
+            android:visibility="@{category.selected ? View.VISIBLE : View.GONE}"/>
         <TextView
             android:id="@+id/category_text"
             android:layout_width="wrap_content"
