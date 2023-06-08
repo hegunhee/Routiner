@@ -33,28 +33,29 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/category_chip"
+            app:layout_constraintEnd_toStartOf="@id/category_tag"
             app:layout_constraintHorizontal_weight="2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
             tools:text="영어 공부하기" />
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/category_chip"
+        <TextView
+            android:id="@+id/category_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="@id/repeat_routine_title_text"
             app:layout_constraintBottom_toBottomOf="@id/repeat_routine_title_text"
             app:layout_constraintStart_toEndOf="@id/repeat_routine_title_text"
-            app:setCategory="@{repeatRoutine.category}"
-            app:layout_constraintEnd_toStartOf="@id/scrollView"
+            app:layout_constraintEnd_toStartOf="@id/date_recycler_view"
             app:layout_constraintVertical_chainStyle="packed"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
+            android:text="@{repeatRoutine.category}"
             android:backgroundTint="@color/teal_200"
+            android:background="@drawable/category_round_shape"
+            android:padding="5dp"
             tools:text="영어"
-            android:visibility="invisible"
             />
 
 
