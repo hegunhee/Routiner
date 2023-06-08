@@ -16,13 +16,13 @@
         android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
+            android:id="@+id/repeat_routine_recycler_view"
             android:visibility="@{viewmodel.isRepeatRoutineListEmpty ? View.GONE : View.VISIBLE}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/white"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/floating_button"
+            app:layout_constraintBottom_toTopOf="@id/insert_repeat_routine_button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,7 +55,7 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/floating_button"
+            android:id="@+id/insert_repeat_routine_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
@@ -63,9 +63,7 @@
             android:src="@drawable/ic_add"
             android:onClick="@{() -> viewmodel.openInsertRepeatRoutineDialog()}"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            />
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

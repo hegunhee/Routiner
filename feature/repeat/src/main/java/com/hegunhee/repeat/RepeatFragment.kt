@@ -28,7 +28,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
         adapter = RepeatAdapter(viewModel)
         binding.apply {
             viewmodel = viewModel
-            recyclerView.adapter = adapter
+            repeatRoutineRecyclerView.adapter = adapter
         }
         setActionBarTitle()
         initObserver()
