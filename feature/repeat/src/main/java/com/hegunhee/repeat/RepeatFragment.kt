@@ -42,13 +42,13 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
-                    viewModel.navigationActions.collect {
-                        when (it) {
+                    viewModel.navigationActions.collect { action ->
+                        when (action) {
                             RepeatNavigationAction.InsertRepeatRoutine -> {
                                 InsertRepeatRoutineDialogFragment().show(childFragmentManager, "insert_repeat_routine")
                             }
                             is RepeatNavigationAction.ClickRepeatRoutine -> {
-                                clickAdapterItem(it.repeatRoutine)
+                                clickAdapterItem(action.repeatRoutine)
                             }
                         }
                     }
