@@ -5,7 +5,9 @@ import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.domain.model.RepeatRoutine
 import com.hegunhee.common.base.BaseFragment
 import com.hegunhee.repeat.databinding.DialogClickRepeatRecordItemBinding
@@ -37,15 +39,17 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
     }
 
     private fun initObserver() {
-        lifecycleScope.launchWhenResumed {
-            launch {
-                viewModel.navigationActions.collect {
-                    when (it) {
-                        RepeatNavigationAction.InsertRepeatRoutine -> {
-                            InsertRepeatRoutineDialogFragment().show(childFragmentManager, "insert_repeat_routine")
-                        }
-                        it as RepeatNavigationAction.ClickRepeatRoutine -> {
-                            clickAdapterItem(it.repeatRoutine)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                launch {
+                    viewModel.navigationActions.collect {
+                        when (it) {
+                            RepeatNavigationAction.InsertRepeatRoutine -> {
+                                InsertRepeatRoutineDialogFragment().show(childFragmentManager, "insert_repeat_routine")
+                            }
+                            it as RepeatNavigationAction.ClickRepeatRoutine -> {
+                                clickAdapterItem(it.repeatRoutine)
+                            }
                         }
                     }
                 }
