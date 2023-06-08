@@ -21,14 +21,14 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
 
     private val viewModel: RepeatViewModel by viewModels()
 
-    private lateinit var adapter: RepeatAdapter
+    private lateinit var repeatAdapter: RepeatAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = RepeatAdapter(viewModel)
+        repeatAdapter = RepeatAdapter(viewModel)
         binding.apply {
             viewmodel = viewModel
-            repeatRoutineRecyclerView.adapter = adapter
+            repeatRoutineRecyclerView.adapter = repeatAdapter
         }
         setActionBarTitle()
         initObserver()
@@ -56,7 +56,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
             }
         }
         viewModel.repeatRoutineListLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
+            repeatAdapter.submitList(it)
         }
     }
 
