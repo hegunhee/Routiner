@@ -30,7 +30,6 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
         }
         setActionBarTitle()
         initObserver()
-        observeData()
     }
 
     private fun setActionBarTitle(){
@@ -38,12 +37,6 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
     }
 
     private fun initObserver() {
-        viewModel.repeatRoutineListLiveData.observe(viewLifecycleOwner) {
-            adapter.submitList(it)
-        }
-    }
-
-    private fun observeData(){
         lifecycleScope.launchWhenResumed {
             launch {
                 viewModel.navigationActions.collect {
@@ -57,6 +50,9 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     }
                 }
             }
+        }
+        viewModel.repeatRoutineListLiveData.observe(viewLifecycleOwner) {
+            adapter.submitList(it)
         }
     }
 
