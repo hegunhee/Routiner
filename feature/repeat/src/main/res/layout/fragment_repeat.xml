@@ -10,6 +10,7 @@
 
         <import type="android.view.View" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
@@ -17,10 +18,10 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/repeat_routine_recycler_view"
-            android:visibility="@{viewmodel.isRepeatRoutineListEmpty ? View.GONE : View.VISIBLE}"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/white"
+            android:visibility="@{viewmodel.isRepeatRoutineListEmpty ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/insert_repeat_routine_button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -35,10 +36,10 @@
             android:text="저장되어있는 정보가 없습니다."
             android:textColor="@color/black"
             android:textSize="30dp"
+            android:visibility="@{viewmodel.isRepeatRoutineListEmpty ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            android:visibility="@{viewmodel.isRepeatRoutineListEmpty ? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toTopOf="parent" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -47,8 +48,8 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:src="@drawable/ic_add"
             android:onClick="@{() -> viewmodel.openInsertRepeatRoutineDialog()}"
+            android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
