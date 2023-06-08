@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="empty_repeat_routine_text">저장되어있는 정보가 없습니다.</string>
+
+    <dimen name="empty_repeat_routine_text_size">30sp</dimen>
+</resources>
