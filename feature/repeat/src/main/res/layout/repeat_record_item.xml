@@ -61,33 +61,47 @@
             android:visibility="@{repeatRoutine.category.empty ? View.INVISIBLE : View.VISIBLE}"
             />
 
-
-        <HorizontalScrollView
-            android:id="@+id/scrollView"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/date_recycler_view"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:overScrollMode="never"
-            android:scrollbars="none"
+            android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="3"
-            app:layout_constraintStart_toEndOf="@id/category_chip"
+            app:layout_constraintStart_toEndOf="@id/category_tag"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            android:onClick="@{() -> eventHandler.clickRepeatRoutine(repeatRoutine)}"
-            >
+            android:orientation="horizontal"
+            app:setDayOfWeekCategory="@{repeatRoutine.dayOfWeekList}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
 
 
-            <com.google.android.material.chip.ChipGroup
-                android:id="@+id/chip_group"
-                android:layout_width="match_parent"
-                app:singleLine="true"
-                app:setDayOfWeekCategory="@{repeatRoutine.dayOfWeekList}"
-                android:layout_height="match_parent">
+<!--        <HorizontalScrollView-->
+<!--            android:id="@+id/scrollView"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="0dp"-->
+<!--            android:overScrollMode="never"-->
+<!--            android:scrollbars="none"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintHorizontal_weight="3"-->
+<!--            app:layout_constraintStart_toEndOf="@id/category_chip"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintVertical_chainStyle="packed"-->
+<!--            android:onClick="@{() -> eventHandler.clickRepeatRoutine(repeatRoutine)}"-->
+<!--            >-->
 
-            </com.google.android.material.chip.ChipGroup>
 
-        </HorizontalScrollView>
+<!--            <com.google.android.material.chip.ChipGroup-->
+<!--                android:id="@+id/chip_group"-->
+<!--                android:layout_width="match_parent"-->
+<!--                app:singleLine="true"-->
+<!--                app:setDayOfWeekCategory="@{repeatRoutine.dayOfWeekList}"-->
+<!--                android:layout_height="match_parent">-->
+
+<!--            </com.google.android.material.chip.ChipGroup>-->
+
+<!--        </HorizontalScrollView>-->
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
