@@ -55,7 +55,7 @@
             android:textSize="20sp"
             android:text="@{repeatRoutine.category}"
             android:backgroundTint="@color/teal_200"
-            android:background="@drawable/category_round_shape"
+            android:background="@drawable/round_shape_20dp"
             android:padding="5dp"
             tools:text="영어"
             android:visibility="@{repeatRoutine.category.empty ? View.INVISIBLE : View.VISIBLE}"

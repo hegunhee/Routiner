@@ -78,7 +78,7 @@
             app:layout_constraintStart_toStartOf="@id/title_text_view"
             app:layout_constraintTop_toBottomOf="@id/category_recycler_view"
             app:layout_constraintVertical_chainStyle="packed"
-            android:background="@drawable/category_round_shape"
+            android:background="@drawable/round_shape_20dp"
             android:backgroundTint="@color/teal_200"/>
 
         <Button
