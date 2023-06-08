@@ -21,7 +21,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/repeat_routine_title_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -44,9 +44,9 @@
             android:id="@+id/category_chip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/title"
-            app:layout_constraintBottom_toBottomOf="@id/title"
-            app:layout_constraintStart_toEndOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/repeat_routine_title_text"
+            app:layout_constraintBottom_toBottomOf="@id/repeat_routine_title_text"
+            app:layout_constraintStart_toEndOf="@id/repeat_routine_title_text"
             app:setCategory="@{repeatRoutine.category}"
             app:layout_constraintEnd_toStartOf="@id/scrollView"
             app:layout_constraintVertical_chainStyle="packed"
