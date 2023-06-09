@@ -155,7 +155,7 @@
             android:layout_width="0dp"
             app:singleSelection="true"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/insertCategoryChip"
+            app:layout_constraintBottom_toTopOf="@id/insert_category_button"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
             app:layout_constraintTop_toBottomOf="@id/categoryTextView"
@@ -164,15 +164,16 @@
 
         </com.google.android.material.chip.ChipGroup>
 
-        <com.google.android.material.chip.Chip
-            android:id="@+id/insertCategoryChip"
+        <TextView
+            android:id="@+id/insert_category_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="카테고리 추가"
-            android:textColor="@color/black"
-            android:onClick="@{() -> viewModel.openInsertCategoryDialog()}"
+            android:background="@drawable/round_shape_20dp"
             android:backgroundTint="@color/teal_200"
-
+            android:onClick="@{() -> viewModel.openInsertCategoryDialog()}"
+            android:padding="10dp"
+            android:text="@string/insert_category"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/cancel_button"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
             app:layout_constraintTop_toBottomOf="@id/categoryGroup"
@@ -192,7 +193,7 @@
             app:layout_constraintEnd_toStartOf="@id/succeed_button"
             app:layout_constraintHorizontal_chainStyle="packed"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/insertCategoryChip"
+            app:layout_constraintTop_toBottomOf="@id/insert_category_button"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <Button
