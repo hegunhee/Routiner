@@ -3,12 +3,11 @@ package com.hegunhee.repeat.insert
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
-import androidx.core.view.isEmpty
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.chip.Chip
+import com.hegunhee.category.CategoryAdapter
 import com.hegunhee.common.base.BaseDialog
-import com.hegunhee.common.util.addCheckableChip
 import com.hegunhee.category.insert.InsertCategoryDialogFragment
 import com.hegunhee.repeat.R
 import com.hegunhee.repeat.databinding.DialogRepeatRoutineBinding
@@ -19,12 +18,16 @@ import kotlinx.coroutines.launch
 class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>(R.layout.dialog_repeat_routine, widthPercent = 1.0, heightPercent = 0.8){
 
     private val viewModel : InsertRepeatRoutineDialogViewModel by viewModels()
+    private lateinit var categoryAdapter : CategoryAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.apply { viewModel = this@InsertRepeatRoutineDialogFragment.viewModel }
+        categoryAdapter = CategoryAdapter(viewModel)
+        binding.apply {
+            viewModel = this@InsertRepeatRoutineDialogFragment.viewModel
+            categoryRecyclerView.adapter = categoryAdapter
+        }
         observeData()
-        categoryGroupClickListener()
         dayOfWeekChipGroupClickListener()
     }
 
@@ -49,24 +52,8 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
             }
             launch {
                 viewModel.categoryList.collect {
-                    if (it.isEmpty()) return@collect
-                    if (binding.categoryGroup.isEmpty()) {
-                        it.forEach {
-                            binding.categoryGroup.addCheckableChip(it.name)
-                        }
-                    } else {
-                        binding.categoryGroup.addCheckableChip(it.last().name)
-                    }
+                    categoryAdapter.submitList(it)
                 }
-            }
-        }
-    }
-    private fun categoryGroupClickListener(){
-        binding.categoryGroup.setOnCheckedStateChangeListener { group, checkedIdList ->
-            viewModel.categoryText = if(checkedIdList.isEmpty()){
-                ""
-            }else{
-                group.findViewById<Chip>(checkedIdList.first()).text.toString()
             }
         }
     }
