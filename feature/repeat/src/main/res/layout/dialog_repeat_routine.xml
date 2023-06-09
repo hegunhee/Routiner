@@ -150,19 +150,17 @@
             app:layout_constraintTop_toBottomOf="@id/day_of_week_chip_group"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/categoryGroup"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/category_recycler_view"
             android:layout_width="0dp"
-            app:singleSelection="true"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/insert_category_button"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
             app:layout_constraintTop_toBottomOf="@id/categoryTextView"
-            app:layout_constraintVertical_chainStyle="packed">
-
-
-        </com.google.android.material.chip.ChipGroup>
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintVertical_chainStyle="packed"/>
 
         <TextView
             android:id="@+id/insert_category_button"
@@ -176,7 +174,7 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/cancel_button"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
-            app:layout_constraintTop_toBottomOf="@id/categoryGroup"
+            app:layout_constraintTop_toBottomOf="@id/category_recycler_view"
             app:layout_constraintVertical_chainStyle="packed" />
 
 
