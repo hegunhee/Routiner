@@ -6,4 +6,10 @@
     <dimen name="empty_repeat_routine_text_size">30sp</dimen>
 
     <string name="insert_category">카테고리 추가</string>
+
+    <dimen name="text_size_20sp">20sp</dimen>
+
+    <dimen name="cancel_text_size">@dimen/text_size_20sp</dimen>
+
+    <dimen name="succeed_text_size">@dimen/text_size_20sp</dimen>
 </resources>
