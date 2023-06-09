@@ -57,7 +57,7 @@
             android:id="@+id/day_of_week_chip_group"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@id/categoryTextView"
+            app:layout_constraintBottom_toTopOf="@id/category_description_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/select_day_of_week_text_view"
@@ -138,13 +138,15 @@
 
 
         <TextView
-            android:id="@+id/categoryTextView"
+            android:id="@+id/category_description_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:gravity="center"
             android:text="카테고리를 설정해주세요"
             android:textColor="@color/black"
-            android:textSize="20dp"
-            app:layout_constraintBottom_toTopOf="@id/categoryGroup"
+            android:textSize="@dimen/text_size_20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@id/category_recycler_view"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
             app:layout_constraintTop_toBottomOf="@id/day_of_week_chip_group"
@@ -157,7 +159,7 @@
             app:layout_constraintBottom_toTopOf="@id/insert_category_button"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
-            app:layout_constraintTop_toBottomOf="@id/categoryTextView"
+            app:layout_constraintTop_toBottomOf="@id/category_description_text"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
             app:layout_constraintVertical_chainStyle="packed"/>
