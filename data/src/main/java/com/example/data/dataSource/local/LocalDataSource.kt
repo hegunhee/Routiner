@@ -53,4 +53,8 @@ interface LocalDataSource {
     fun isAppFirstOpened() : Boolean
 
     fun setAppFirstOpened()
+
+    fun getAllDayOfWeekListByFlow() : Flow<List<DayOfWeekEntity>>
+
+    suspend fun insertDefaultDayOfWeekList(dayOfWeekList : List<DayOfWeekEntity>)
 }
