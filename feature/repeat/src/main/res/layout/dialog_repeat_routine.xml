@@ -48,95 +48,24 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/day_of_week_chip_group"
+            app:layout_constraintBottom_toTopOf="@id/day_of_week_recycler_view"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
             app:layout_constraintTop_toBottomOf="@id/routine_edit_text"
             app:layout_constraintVertical_chainStyle="packed" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/day_of_week_chip_group"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/day_of_week_recycler_view"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@id/category_description_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/select_day_of_week_text_view"
-            app:layout_constraintVertical_chainStyle="packed">
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/monday_chip"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="월"
-                app:chipBackgroundColor="@color/teal_200"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/tuesday_chip"
-                app:chipBackgroundColor="@color/teal_200"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="화"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.chip.Chip
-                app:chipBackgroundColor="@color/teal_200"
-                android:id="@+id/wednesday_chip"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="수"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/thursday_chip"
-                app:chipBackgroundColor="@color/teal_200"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="목"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/friday_chip"
-                app:chipBackgroundColor="@color/teal_200"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="금"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/saturday_chip"
-                app:chipBackgroundColor="@color/teal_200"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="토"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-            <com.google.android.material.chip.Chip
-                android:id="@+id/sunday_chip"
-                app:chipBackgroundColor="@color/teal_200"
-                style="@style/Widget.MaterialComponents.Chip.Filter"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="일"
-                android:textColor="@color/black"
-                android:textSize="15dp" />
-
-
-        </com.google.android.material.chip.ChipGroup>
-
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:listitem="@layout/item_day_of_week"/>
 
         <TextView
             android:id="@+id/category_description_text"
@@ -150,7 +79,7 @@
             app:layout_constraintBottom_toTopOf="@id/category_recycler_view"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
-            app:layout_constraintTop_toBottomOf="@id/day_of_week_chip_group"
+            app:layout_constraintTop_toBottomOf="@id/day_of_week_recycler_view"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <androidx.recyclerview.widget.RecyclerView
@@ -163,7 +92,8 @@
             app:layout_constraintTop_toBottomOf="@id/category_description_text"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:orientation="horizontal"
-            app:layout_constraintVertical_chainStyle="packed"/>
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:listitem="@layout/item_category"/>
 
         <TextView
             android:id="@+id/insert_category_button"
