@@ -36,3 +36,9 @@ fun List<Routine>.toRoutineEntity() : List<RoutineEntity> =
 
 fun List<CategoryEntity>.toCategory() : List<Category> =
     this.map { Category(it.name) }
+
+fun List<DayOfWeekEntity>.toDayOfWeekList() : List<DayOfWeek> =
+    this.map {DayOfWeek(it.date,it.isSelected)}
+
+fun List<DayOfWeek>.toDayOfWeekEntityList() : List<DayOfWeekEntity> =
+    this.map {DayOfWeekEntity(it.date,it.isSelected)}
