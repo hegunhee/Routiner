@@ -20,6 +20,8 @@ abstract class RoutinerDatabase : RoomDatabase(){
 
     abstract fun categoryDao() : CategoryDao
 
+    abstract fun dayOfWeekDao() : DayOfWeekDao
+
     companion object{
         const val APP_NAME = "routinerDatabase.db"
     }
