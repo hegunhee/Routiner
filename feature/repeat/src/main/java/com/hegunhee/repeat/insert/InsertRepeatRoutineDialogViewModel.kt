@@ -3,12 +3,16 @@ package com.hegunhee.repeat.insert
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Category
+import com.example.domain.model.DayOfWeek
 import com.example.domain.model.RepeatRoutine
 import com.example.domain.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
+import com.example.domain.usecase.date.GetAllDayOfWeekListByFlowUseCase
+import com.example.domain.usecase.date.InsertDefaultDayOfWeekListUseCase
 import com.example.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
 import com.example.domain.usecase.routine.InsertRoutineUseCase
 import com.hegunhee.category.CategoryActionHandler
+import com.hegunhee.common.dayOfWeek.DayOfWeekActionHandler
 import com.hegunhee.common.util.getTodayDate
 import com.hegunhee.common.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,16 +24,38 @@ import javax.inject.Inject
 class InsertRepeatRoutineDialogViewModel @Inject constructor(
     private val getAllCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase,
     private val insertRoutineUseCase: InsertRoutineUseCase,
-    private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase
-) : ViewModel() , InsertRepeatRoutineActionHandler,CategoryActionHandler {
+    private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase,
+    private val getAllDayOfWeekListByFlowUseCase: GetAllDayOfWeekListByFlowUseCase,
+    private val insertDefaultDayOfWeekListUseCase: InsertDefaultDayOfWeekListUseCase
+) : ViewModel() , InsertRepeatRoutineActionHandler,CategoryActionHandler, DayOfWeekActionHandler {
 
     val repeatRoutineText : MutableStateFlow<String> = MutableStateFlow<String>("")
 
-    var dayOfWeekList : List<String> = emptyList()
-
-
     private val _navigationActions : MutableSharedFlow<InsertRepeatRoutineNavigationAction> = MutableSharedFlow<InsertRepeatRoutineNavigationAction>()
     val navigationActions : SharedFlow<InsertRepeatRoutineNavigationAction> = _navigationActions.asSharedFlow()
+
+    private val _selectedDayOfWeekList : MutableStateFlow<List<String>> = MutableStateFlow(emptyList())
+    private val selectedDayOfWeekList : StateFlow<List<String>> = _selectedDayOfWeekList.asStateFlow()
+
+    private val sortedDayOfWeekList : List<String> = listOf("월","화","수","목","금","토","일")
+
+    private val _dayOfWeekList : Flow<List<DayOfWeek>> = getAllDayOfWeekListByFlowUseCase().combine(selectedDayOfWeekList) { dayOfWeekList, selectedDayOfWeekList ->
+        if(dayOfWeekList.isEmpty()) {
+            insertDefaultDayOfWeekListUseCase()
+            emptyList()
+        }else{
+            dayOfWeekList.map {
+                if(selectedDayOfWeekList.contains(it.date)) {
+                    DayOfWeek(it.date, isSelected = true)
+                } else {
+                    it
+                }
+            }
+        }
+    }
+
+    val dayOfWeekList : Flow<List<DayOfWeek>>
+    get() = _dayOfWeekList
 
     private val _selectedCategory : MutableStateFlow<Category> = MutableStateFlow(Category(""))
     private val selectedCategory : StateFlow<Category> = _selectedCategory.asStateFlow()
@@ -69,7 +95,8 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
                 _toastMessage.emit(emptyRepeatRoutineMessage)
                 return@launch
             }
-            if(dayOfWeekList.isEmpty()) {
+            val sortedDayOfWeekList = sortedDayOfWeekList.filter { selectedDayOfWeekList.value.contains(it) }
+            if(sortedDayOfWeekList.isEmpty()) {
                 _toastMessage.emit(emptyDayOfWeekMessage)
                 return@launch
             }
@@ -79,8 +106,8 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
                 ""
             }
 
-            val repeatRoutine = RepeatRoutine(repeatRoutineText,dayOfWeekList,categoryText)
-            if(getTodayDayOfWeekFormatedKorean() in dayOfWeekList){
+            val repeatRoutine = RepeatRoutine(repeatRoutineText,sortedDayOfWeekList,categoryText)
+            if(getTodayDayOfWeekFormatedKorean() in sortedDayOfWeekList){
                 insertRoutineUseCase(Routine(date = getTodayDate(), text = repeatRoutineText, category = categoryText))
             }
             insertRepeatRoutineUseCase(repeatRoutine)
@@ -98,6 +125,14 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
     override fun onClickCategory(categoryText: String, isCategorySelected: Boolean) {
         viewModelScope.launch {
             _selectedCategory.value = Category(categoryText,!isCategorySelected)
+        }
+    }
+
+    override fun onClickDayOfWeek(date : String) {
+        if(selectedDayOfWeekList.value.contains(date)){
+            _selectedDayOfWeekList.value = selectedDayOfWeekList.value.filter { it != date }
+        }else{
+            _selectedDayOfWeekList.value = selectedDayOfWeekList.value + date
         }
     }
 }
