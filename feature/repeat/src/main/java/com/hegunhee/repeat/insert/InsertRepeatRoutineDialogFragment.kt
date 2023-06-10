@@ -5,10 +5,10 @@ import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.chip.Chip
 import com.hegunhee.category.CategoryAdapter
 import com.hegunhee.common.base.BaseDialog
 import com.hegunhee.category.insert.InsertCategoryDialogFragment
+import com.hegunhee.common.dayOfWeek.DayOfWeekAdapter
 import com.hegunhee.repeat.R
 import com.hegunhee.repeat.databinding.DialogRepeatRoutineBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -19,16 +19,18 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
 
     private val viewModel : InsertRepeatRoutineDialogViewModel by viewModels()
     private lateinit var categoryAdapter : CategoryAdapter
+    private lateinit var dayOfWeekAdapter : DayOfWeekAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         categoryAdapter = CategoryAdapter(viewModel)
+        dayOfWeekAdapter = DayOfWeekAdapter(viewModel)
         binding.apply {
             viewModel = this@InsertRepeatRoutineDialogFragment.viewModel
             categoryRecyclerView.adapter = categoryAdapter
+            dayOfWeekRecyclerView.adapter = dayOfWeekAdapter
         }
         observeData()
-        dayOfWeekChipGroupClickListener()
     }
 
     private fun observeData() {
@@ -55,15 +57,10 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
                     categoryAdapter.submitList(it)
                 }
             }
-        }
-    }
-
-    private fun dayOfWeekChipGroupClickListener() {
-        binding.dayOfWeekChipGroup.setOnCheckedStateChangeListener { group, checkedIdList ->
-            viewModel.dayOfWeekList = if(checkedIdList.isEmpty()){
-                emptyList()
-            }else{
-                checkedIdList.map { group.findViewById<Chip>(it).text.toString() }.toList()
+            launch {
+                viewModel.dayOfWeekList.collect{
+                    dayOfWeekAdapter.submitList(it)
+                }
             }
         }
     }
