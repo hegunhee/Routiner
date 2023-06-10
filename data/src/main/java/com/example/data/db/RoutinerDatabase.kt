@@ -6,7 +6,7 @@ import androidx.room.TypeConverters
 import com.example.data.db.dao.*
 import com.example.data.entity.*
 
-@Database(entities = [RoutineEntity::class,DateEntity::class,ReviewEntity::class,RepeatRoutineEntity::class, CategoryEntity::class], version = 1)
+@Database(entities = [RoutineEntity::class,DateEntity::class,ReviewEntity::class,RepeatRoutineEntity::class, CategoryEntity::class,DayOfWeekEntity::class], version = 1)
 @TypeConverters(MyTypeConverters::class)
 abstract class RoutinerDatabase : RoomDatabase(){
 
