@@ -42,10 +42,10 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
                     viewModel.navigationActions.collect {
                         when (it) {
                             InsertRepeatRoutineNavigationAction.DisMissDialog -> {
-                                dismiss()
+                                dismissAllowingStateLoss()
                             }
                             InsertRepeatRoutineNavigationAction.OpenInsertCategoryDialog -> {
-                                InsertCategoryDialogFragment().show(childFragmentManager, "insert_category")
+                                InsertCategoryDialogFragment().show(childFragmentManager, InsertCategoryDialogFragment.TAG)
                             }
                         }
                     }
