@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.category.CategoryAdapter
 import com.hegunhee.common.base.BaseDialog
 import com.hegunhee.category.insert.InsertCategoryDialogFragment
@@ -34,32 +36,34 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
     }
 
     private fun observeData() {
-        lifecycleScope.launchWhenResumed {
-            launch {
-                viewModel.navigationActions.collect {
-                    when (it) {
-                        InsertRepeatRoutineNavigationAction.DisMissDialog -> {
-                            dismiss()
-                        }
-                        InsertRepeatRoutineNavigationAction.OpenInsertCategoryDialog -> {
-                            InsertCategoryDialogFragment().show(childFragmentManager, "insert_category")
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                launch {
+                    viewModel.navigationActions.collect {
+                        when (it) {
+                            InsertRepeatRoutineNavigationAction.DisMissDialog -> {
+                                dismiss()
+                            }
+                            InsertRepeatRoutineNavigationAction.OpenInsertCategoryDialog -> {
+                                InsertCategoryDialogFragment().show(childFragmentManager, "insert_category")
+                            }
                         }
                     }
                 }
-            }
-            launch {
-                viewModel.toastMessage.collect {
-                    Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                launch {
+                    viewModel.toastMessage.collect {
+                        Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
+                    }
                 }
-            }
-            launch {
-                viewModel.categoryList.collect {
-                    categoryAdapter.submitList(it)
+                launch {
+                    viewModel.categoryList.collect {
+                        categoryAdapter.submitList(it)
+                    }
                 }
-            }
-            launch {
-                viewModel.dayOfWeekList.collect{
-                    dayOfWeekAdapter.submitList(it)
+                launch {
+                    viewModel.dayOfWeekList.collect{
+                        dayOfWeekAdapter.submitList(it)
+                    }
                 }
             }
         }
