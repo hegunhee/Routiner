@@ -45,7 +45,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     viewModel.navigationActions.collect { action ->
                         when (action) {
                             RepeatNavigationAction.InsertRepeatRoutine -> {
-                                InsertRepeatRoutineDialogFragment().show(childFragmentManager, "insert_repeat_routine")
+                                InsertRepeatRoutineDialogFragment().show(childFragmentManager, InsertRepeatRoutineDialogFragment.TAG)
                             }
                             is RepeatNavigationAction.ClickRepeatRoutine -> {
                                 clickAdapterItem(action.repeatRoutine)

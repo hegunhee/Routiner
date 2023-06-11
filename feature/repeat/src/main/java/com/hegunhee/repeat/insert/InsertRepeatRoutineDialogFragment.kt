@@ -68,4 +68,8 @@ class InsertRepeatRoutineDialogFragment : BaseDialog<DialogRepeatRoutineBinding>
             }
         }
     }
+
+    companion object {
+        val TAG = "insert_repeat_routine"
+    }
 }
