@@ -134,7 +134,7 @@ class RecordViewModel @Inject constructor(
     }
 
     private fun getNextIndex() : Int{
-        return _currentDateListIndex.value + 1
+        return currentDateListIndex.value + 1
     }
 
     private suspend fun setRecordRoutine(date: Int) {
