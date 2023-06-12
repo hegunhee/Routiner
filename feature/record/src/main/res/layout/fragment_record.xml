@@ -64,7 +64,6 @@
                 android:layout_height="0dp"
                 android:layout_marginTop="10dp"
                 android:background="@color/white"
-                android:elevation="10dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintBottom_toTopOf="@id/record_bottom_layout"
                 app:layout_constraintEnd_toEndOf="parent"
