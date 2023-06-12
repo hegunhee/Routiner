@@ -89,22 +89,28 @@ class RecordViewModel @Inject constructor(
         }.stateIn(viewModelScope)
     }
 
-    fun setPreviousDate() = viewModelScope.launch(Dispatchers.IO) {
-        if (currentDate.value == DATE_INITALVALUE) {
-            val leftDate = dateList.value.map { it.date }.filter { it < getTodayDate() }.maxOrNull()
-            if (leftDate != null) {
-                _currentDate.emit(leftDate.toString())
-                setRecordRoutine(leftDate)
-                setReviewExist(leftDate)
+    fun setPreviousDate() = viewModelScope.launch {
+        if (currentDateListIndex.value == DEFAULT_DATE_INDEX) {
+            val previousDate = dateList.value.filter { it.date < getTodayDate() }.maxByOrNull { it.date }
+            previousDate?.let { previousDate ->
+                _currentDate.emit(previousDate.date.toString())
+                _currentDateListIndex.value = dateList.value.indexOf(previousDate)
+                setRecordRoutine(previousDate.date)
+                setReviewExist(previousDate.date)
             }
         } else {
-            val leftDate = dateList.value.map { it.date }.filter { it < currentDate.value!!.toInt() }.maxOrNull()
-            if (leftDate != null) {
-                _currentDate.emit(leftDate.toString())
-                setRecordRoutine(leftDate)
-                setReviewExist(leftDate)
+            if(currentDateListIndex.value > 0){
+                val previousIndex = getPreviousIndex()
+                _currentDate.emit(dateList.value[previousIndex].date.toString())
+                setRecordRoutine(dateList.value[previousIndex].date)
+                setReviewExist(dateList.value[previousIndex].date)
+                _currentDateListIndex.value = previousIndex
             }
         }
+    }
+
+    private fun getPreviousIndex() : Int {
+        return _currentDateListIndex.value-1
     }
 
     fun setNextDate() = viewModelScope.launch(Dispatchers.IO) {
@@ -172,5 +178,6 @@ class RecordViewModel @Inject constructor(
 
     companion object {
         const val DATE_INITALVALUE = "기록이 존재하지 않습니다."
+        const val DEFAULT_DATE_INDEX = 0
     }
 }
