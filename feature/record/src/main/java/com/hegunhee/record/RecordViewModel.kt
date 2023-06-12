@@ -184,6 +184,6 @@ class RecordViewModel @Inject constructor(
 
     companion object {
         const val DATE_INITALVALUE = "기록이 존재하지 않습니다."
-        const val DEFAULT_DATE_INDEX = 0
+        const val DEFAULT_DATE_INDEX = -1
     }
 }
