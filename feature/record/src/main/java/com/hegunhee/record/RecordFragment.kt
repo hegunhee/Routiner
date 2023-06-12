@@ -47,26 +47,4 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     private fun setActionBarTitle(title : String){
         (requireActivity() as AppCompatActivity).supportActionBar?.title = title
     }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.record_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean = with(viewModel){
-        if (recordIsEmpty.value) {
-            Toast.makeText(requireContext(), "기록이 존재하지않습니다.", Toast.LENGTH_SHORT).show()
-        } else {
-            when (item.itemId) {
-                R.id.click_left -> {
-                    setPreviousDate()
-                }
-                R.id.click_right -> {
-                    setNextDate()
-                }
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
 }
