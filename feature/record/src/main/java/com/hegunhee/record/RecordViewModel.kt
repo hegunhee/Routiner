@@ -114,22 +114,12 @@ class RecordViewModel @Inject constructor(
     }
 
     fun setNextDate() = viewModelScope.launch(Dispatchers.IO) {
-        if (currentDateListIndex.value == DEFAULT_DATE_INDEX) {
-            val nextDate = dateList.value.filter { it.date > getTodayDate() }.minByOrNull { it.date }
-            nextDate?.let {  nextDate ->
-                _currentDate.emit(nextDate.date.toString())
-                _currentDateListIndex.value = dateList.value.indexOf(nextDate)
-                setRecordRoutine(nextDate.date)
-                setReviewExist(nextDate.date)
-            }
-        } else {
-            if(currentDateListIndex.value < dateList.value.size - 1){
-                val nextIndex = getNextIndex()
-                _currentDate.emit(dateList.value[nextIndex].date.toString())
-                setRecordRoutine(dateList.value[nextIndex].date)
-                setReviewExist(dateList.value[nextIndex].date)
-                _currentDateListIndex.value = nextIndex
-            }
+        if (currentDateListIndex.value < dateList.value.size - 1) {
+            val nextIndex = getNextIndex()
+            _currentDate.emit(dateList.value[nextIndex].date.toString())
+            setRecordRoutine(dateList.value[nextIndex].date)
+            setReviewExist(dateList.value[nextIndex].date)
+            _currentDateListIndex.value = nextIndex
         }
     }
 
