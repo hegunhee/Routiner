@@ -79,7 +79,8 @@
                 app:layout_constraintBottom_toBottomOf="@id/recyclerView"
                 app:layout_constraintEnd_toEndOf="@id/recyclerView"
                 android:onClick="@{() -> viewmodel.setNextDate()}"
-                app:layout_constraintTop_toTopOf="@id/recyclerView" />
+                app:layout_constraintTop_toTopOf="@id/recyclerView"
+                android:visibility="@{viewmodel.currentDateListIndex == (viewmodel.dateList.size -1) ? View.GONE : View.VISIBLE}"/>
 
 
             <androidx.recyclerview.widget.RecyclerView
