@@ -59,10 +59,10 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         } else {
             when (item.itemId) {
                 R.id.click_left -> {
-                    setLeftData()
+                    setPreviousDate()
                 }
                 R.id.click_right -> {
-                    setRightDate()
+                    setNextDate()
                 }
             }
         }

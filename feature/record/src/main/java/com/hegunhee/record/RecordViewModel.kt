@@ -60,7 +60,7 @@ class RecordViewModel @Inject constructor(
             _recordIsEmpty.emit(true)
         } else {
             _recordIsEmpty.emit(false)
-            setLeftData()
+            setPreviousDate()
         }
     }
 
@@ -82,7 +82,7 @@ class RecordViewModel @Inject constructor(
         }.stateIn(viewModelScope)
     }
 
-    fun setLeftData() = viewModelScope.launch(Dispatchers.IO) {
+    fun setPreviousDate() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
             val leftDate = getAllDateListUseCase().map { it.date }.filter { it < getTodayDate() }.maxOrNull()
             if (leftDate != null) {
@@ -100,7 +100,7 @@ class RecordViewModel @Inject constructor(
         }
     }
 
-    fun setRightDate() = viewModelScope.launch(Dispatchers.IO) {
+    fun setNextDate() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
             val rightDate = getAllDateListUseCase().map { it.date }.filter { it > getTodayDate() }.minOrNull()
             if (rightDate != null) {
