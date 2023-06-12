@@ -1,6 +1,7 @@
 package com.hegunhee.record
 
 import androidx.lifecycle.*
+import com.example.domain.model.Date
 import com.example.domain.model.Review
 import com.example.domain.model.Routine
 import com.example.domain.usecase.date.GetAllDateListUseCase
@@ -49,14 +50,17 @@ class RecordViewModel @Inject constructor(
 
     val reviewEditText: MutableStateFlow<String> = MutableStateFlow("")
 
+    private val _dateList : MutableStateFlow<List<Date>> = MutableStateFlow(emptyList())
+    val dateList : StateFlow<List<Date>> = _dateList.asStateFlow()
+
     init {
         initRecordDate()
         initCombine()
     }
 
     private fun initRecordDate() = viewModelScope.launch(Dispatchers.IO) {
-        val allDate = getAllDateListUseCase()
-        if (allDate.isEmpty()) {
+        _dateList.value = getAllDateListUseCase()
+        if (dateList.value.isEmpty()) {
             _recordIsEmpty.emit(true)
         } else {
             _recordIsEmpty.emit(false)
@@ -84,14 +88,14 @@ class RecordViewModel @Inject constructor(
 
     fun setPreviousDate() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
-            val leftDate = getAllDateListUseCase().map { it.date }.filter { it < getTodayDate() }.maxOrNull()
+            val leftDate = dateList.value.map { it.date }.filter { it < getTodayDate() }.maxOrNull()
             if (leftDate != null) {
                 _currentDate.emit(leftDate.toString())
                 setRecordRoutine(leftDate)
                 setReviewExist(leftDate)
             }
         } else {
-            val leftDate = getAllDateListUseCase().map { it.date }.filter { it < currentDate.value!!.toInt() }.maxOrNull()
+            val leftDate = dateList.value.map { it.date }.filter { it < currentDate.value!!.toInt() }.maxOrNull()
             if (leftDate != null) {
                 _currentDate.emit(leftDate.toString())
                 setRecordRoutine(leftDate)
@@ -102,14 +106,14 @@ class RecordViewModel @Inject constructor(
 
     fun setNextDate() = viewModelScope.launch(Dispatchers.IO) {
         if (currentDate.value == DATE_INITALVALUE) {
-            val rightDate = getAllDateListUseCase().map { it.date }.filter { it > getTodayDate() }.minOrNull()
+            val rightDate = dateList.value.map { it.date }.filter { it > getTodayDate() }.minOrNull()
             if (rightDate != null) {
                 _currentDate.emit(rightDate.toString())
                 setRecordRoutine(rightDate)
                 setReviewExist(rightDate)
             }
         } else {
-            val rightDate = getAllDateListUseCase().map { it.date }.filter { it > currentDate.value!!.toInt() }.minOrNull()
+            val rightDate = dateList.value.map { it.date }.filter { it > currentDate.value!!.toInt() }.minOrNull()
             if (rightDate != null) {
                 _currentDate.emit(rightDate.toString())
                 setRecordRoutine(rightDate)
