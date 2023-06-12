@@ -67,7 +67,8 @@
                 app:layout_constraintBottom_toBottomOf="@id/recyclerView"
                 app:layout_constraintStart_toStartOf="@id/recyclerView"
                 android:onClick="@{() -> viewmodel.setPreviousDate()}"
-                app:layout_constraintTop_toTopOf="@id/recyclerView" />
+                app:layout_constraintTop_toTopOf="@id/recyclerView"
+                android:visibility="@{viewmodel.currentDateListIndex == 0 ? View.GONE : View.VISIBLE}"/>
 
             <ImageButton
                 android:id="@+id/next_button"
