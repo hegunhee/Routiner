@@ -32,6 +32,9 @@ class RecordViewModel @Inject constructor(
     private val _currentDate : MutableStateFlow<String> = MutableStateFlow(DATE_INITALVALUE)
     val currentDate : StateFlow<String> = _currentDate.asStateFlow()
 
+    private val _currentDateListIndex : MutableStateFlow<Int> = MutableStateFlow(DEFAULT_DATE_INDEX)
+    val currentDateListIndex : StateFlow<Int> = _currentDateListIndex.asStateFlow()
+
     private var _currentRoutineList: MutableStateFlow<List<Routine>> = MutableStateFlow(emptyList())
     val currentRoutineListState: StateFlow<List<Routine>> = _currentRoutineList.asStateFlow()
 
