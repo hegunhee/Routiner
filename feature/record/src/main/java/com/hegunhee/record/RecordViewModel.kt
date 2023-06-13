@@ -128,14 +128,12 @@ class RecordViewModel @Inject constructor(
     }
 
     private suspend fun setReviewExist(date: Int) {
-        getReviewListByDateUseCase(date).let {
-            if (it.isEmpty()) {
-                _review.emit(ReviewState.Empty)
-                _reviewIsEmpty.emit(true)
-            } else {
-                _review.emit(ReviewState.Success(it.first()))
-                _reviewIsEmpty.emit(false)
-            }
+        getReviewOrNullByDateUseCase(date)?.let { review ->
+            _review.emit(ReviewState.Success(review))
+            _reviewIsEmpty.emit(false)
+        } ?: kotlin.run {
+            _review.emit(ReviewState.Empty)
+            _reviewIsEmpty.emit(true)
         }
     }
 
