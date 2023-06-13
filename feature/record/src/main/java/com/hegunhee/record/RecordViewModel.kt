@@ -63,11 +63,9 @@ class RecordViewModel @Inject constructor(
 
     private fun initRecordDate() = viewModelScope.launch(Dispatchers.IO) {
         _dateList.value = getAllDateListUseCase()
-        if (dateList.value.isEmpty()) {
-            _recordIsEmpty.emit(true)
-        } else {
-            _recordIsEmpty.emit(false)
-            setPreviousDate()
+        _recordIsEmpty.emit(dateList.value.isEmpty())
+        if (dateList.value.isNotEmpty()) {
+            initRecentRecord()
         }
     }
 
