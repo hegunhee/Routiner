@@ -46,8 +46,8 @@ class DefaultRepository @Inject constructor(
         return localDataSource.getAllDateList().toDateList()
     }
 
-    override suspend fun getReviewListByDate(date: Int): List<Review> {
-        return localDataSource.getReviewListByDate(date).toReviewList()
+    override suspend fun getReviewOrNullByDate(date: Int): Review? {
+        return localDataSource.getReviewOrNullByDate(date).toReviewOrNull()
     }
 
     override suspend fun insertReview(review: Review) {

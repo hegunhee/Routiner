@@ -21,7 +21,7 @@ interface Repository {
 
     suspend fun getAllDateList() : List<Date>
 
-    suspend fun getReviewListByDate(date : Int) : List<Review>
+    suspend fun getReviewOrNullByDate(date : Int) : Review?
 
     suspend fun insertReview(review : Review)
 
