@@ -27,15 +27,17 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
     }
 
     private fun observeData() = with(viewModel){
-        lifecycleScope.launchWhenResumed{
-            launch {
-                currentDate.collect{ date ->
-                    setActionBarTitle(date)
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                launch {
+                    currentDate.collect{ date ->
+                        setActionBarTitle(date)
+                    }
                 }
-            }
-            launch {
-                currentRoutineListState.collect{
-                    adapter.submitList(it)
+                launch {
+                    currentRoutineListState.collect{
+                        adapter.submitList(it)
+                    }
                 }
             }
         }
