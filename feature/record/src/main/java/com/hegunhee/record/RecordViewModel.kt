@@ -26,7 +26,7 @@ class RecordViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    private var _recordIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    private val _recordIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(false)
     val recordIsEmpty: StateFlow<Boolean> = _recordIsEmpty.asStateFlow()
 
     private val _currentDate : MutableStateFlow<String> = MutableStateFlow(DATE_INITALVALUE)
@@ -35,16 +35,16 @@ class RecordViewModel @Inject constructor(
     private val _currentDateListIndex : MutableStateFlow<Int> = MutableStateFlow(DEFAULT_DATE_INDEX)
     val currentDateListIndex : StateFlow<Int> = _currentDateListIndex.asStateFlow()
 
-    private var _currentRoutineList: MutableStateFlow<List<Routine>> = MutableStateFlow(emptyList())
+    private val _currentRoutineList: MutableStateFlow<List<Routine>> = MutableStateFlow(emptyList())
     val currentRoutineListState: StateFlow<List<Routine>> = _currentRoutineList.asStateFlow()
 
     var currentRoutineProgress : StateFlow<String> = MutableStateFlow<String>("")
 
-    private var _review: MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Uninitalized)
+    private val _review: MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Uninitalized)
     private val review: StateFlow<ReviewState> = _review.asStateFlow()
 
 
-    private var _reviewIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(true)
+    private val _reviewIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(true)
     val reviewIsEmpty: StateFlow<Boolean> = _reviewIsEmpty.asStateFlow()
 
 
