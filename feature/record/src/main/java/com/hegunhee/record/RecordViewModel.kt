@@ -113,7 +113,7 @@ class RecordViewModel @Inject constructor(
         return _currentDateListIndex.value-1
     }
 
-    fun setNextDate() = viewModelScope.launch(Dispatchers.IO) {
+    fun setNextDate() = viewModelScope.launch {
         if (currentDateListIndex.value < dateList.value.size - 1) {
             val nextIndex = getNextIndex()
             _currentDate.emit(dateList.value[nextIndex].date.toString())
