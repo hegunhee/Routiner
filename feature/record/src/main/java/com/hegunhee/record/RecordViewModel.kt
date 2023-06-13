@@ -161,8 +161,7 @@ class RecordViewModel @Inject constructor(
     }
 
     fun reviseReview() = viewModelScope.launch(Dispatchers.IO){
-        val reviewState = review.value
-        if(reviewState is ReviewState.Success){
+        (review.value as? ReviewState.Success)?.let {  _ ->
             _reviewIsEmpty.emit(true)
             reviewEditText.emit(reviewText.value)
         }
