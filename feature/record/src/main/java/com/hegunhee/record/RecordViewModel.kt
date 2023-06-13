@@ -152,9 +152,8 @@ class RecordViewModel @Inject constructor(
     }
 
     fun deleteReview() = viewModelScope.launch(Dispatchers.IO){
-        val reviewState = review.value
-        if(reviewState is ReviewState.Success){
-            deleteReviewUseCase(reviewState.review)
+        (review.value as? ReviewState.Success)?.let { successReview ->
+            deleteReviewUseCase(successReview.review)
             _review.emit(ReviewState.Empty)
             _reviewIsEmpty.emit(true)
         }
