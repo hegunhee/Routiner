@@ -1,7 +1,6 @@
 package com.example.data.dataSource.local
 
 import com.example.data.entity.*
-import com.example.domain.model.*
 import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource {
@@ -22,7 +21,7 @@ interface LocalDataSource {
 
     suspend fun getAllDateList() : List<DateEntity>
 
-    suspend fun getReviewListByDate(date : Int) : List<ReviewEntity>
+    suspend fun getReviewOrNullByDate(date : Int) : ReviewEntity?
 
     suspend fun insertReview(review : ReviewEntity)
 

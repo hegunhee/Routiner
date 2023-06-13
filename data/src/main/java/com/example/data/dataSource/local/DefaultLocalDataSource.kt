@@ -50,8 +50,8 @@ class DefaultLocalDataSource @Inject constructor(
         return dateDao.getAllDateList()
     }
 
-    override suspend fun getReviewListByDate(date: Int): List<ReviewEntity> {
-        return reviewDao.getReviewListByDate(date)
+    override suspend fun getReviewOrNullByDate(date: Int): ReviewEntity? {
+        return reviewDao.getReviewOrNullByDate(date)
     }
 
     override suspend fun insertReview(review: ReviewEntity) {
