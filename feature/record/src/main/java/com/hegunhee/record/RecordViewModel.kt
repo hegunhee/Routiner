@@ -6,7 +6,7 @@ import com.example.domain.model.Review
 import com.example.domain.model.Routine
 import com.example.domain.usecase.date.GetAllDateListUseCase
 import com.example.domain.usecase.review.DeleteReviewUseCase
-import com.example.domain.usecase.review.GetReviewListByDateUseCase
+import com.example.domain.usecase.review.GetReviewOrNullByDateUseCase
 import com.example.domain.usecase.review.InsertReviewUseCase
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.hegunhee.common.util.getTodayDate
@@ -20,7 +20,7 @@ import javax.inject.Inject
 class RecordViewModel @Inject constructor(
     private val getAllDateListUseCase: GetAllDateListUseCase,
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
-    private val getReviewListByDateUseCase: GetReviewListByDateUseCase,
+    private val getReviewOrNullByDateUseCase: GetReviewOrNullByDateUseCase,
     private val insertReviewUseCase: InsertReviewUseCase,
     private val deleteReviewUseCase: DeleteReviewUseCase
 
