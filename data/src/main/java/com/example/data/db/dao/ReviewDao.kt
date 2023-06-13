@@ -9,7 +9,7 @@ interface ReviewDao {
     fun insertReview(reviewEntity: ReviewEntity)
 
     @Query("SELECT * FROM ReviewEntity WHERE date == :date")
-    suspend fun getReviewListByDate(date : Int) : List<ReviewEntity>
+    suspend fun getReviewOrNullByDate(date : Int) : ReviewEntity?
 
     @Delete
     fun deleteReview(reviewEntity : ReviewEntity)
