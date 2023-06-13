@@ -25,6 +25,14 @@ fun List<RoutineEntity>.toRoutineList() : List<Routine> =
 fun List<DateEntity>.toDateList() : List<Date> =
     this.map { Date(it.date) }
 
+fun ReviewEntity?.toReviewOrNull() : Review? {
+    return if(this == null){
+        null
+    }else{
+        Review(date,review)
+    }
+}
+
 fun List<ReviewEntity>.toReviewList() : List<Review> =
     this.map { Review(it.date,it.review) }
 
