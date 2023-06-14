@@ -19,24 +19,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/empty_layout"
+        <TextView
+            android:id="@+id/empty_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{viewmodel.recordIsEmpty ? View.VISIBLE : View.GONE}">
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:gravity="center"
-                android:text="이전 기록이\n존재하지 않습니다."
-                android:textSize="30dp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            android:gravity="center"
+            android:text="이전 기록이\n존재하지 않습니다."
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:visibility="@{viewmodel.recordIsEmpty ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/record_layout"
