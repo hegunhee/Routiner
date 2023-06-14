@@ -59,14 +59,12 @@ class RecordViewModel @Inject constructor(
     init {
         initRecordDateList()
         initCombine()
+        initRecentRecord()
     }
 
     private fun initRecordDateList() = viewModelScope.launch {
         _dateList.value = getAllDateListUseCase()
         _recordIsEmpty.emit(dateList.value.isEmpty())
-        if (dateList.value.isNotEmpty()) {
-            initRecentRecord()
-        }
     }
 
     private fun initCombine() = viewModelScope.launch {
@@ -88,6 +86,7 @@ class RecordViewModel @Inject constructor(
     }
 
     private fun initRecentRecord() = viewModelScope.launch {
+        if(dateList.value.isEmpty()) return@launch
         if(currentDateListIndex.value == DEFAULT_DATE_INDEX) {
             val recentDate = dateList.value.filter {it.date < getTodayDate() }.maxByOrNull { it.date }
             recentDate?.let { date ->
