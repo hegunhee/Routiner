@@ -27,7 +27,7 @@
             app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintEnd_toStartOf="@id/title"
             android:src="@drawable/ic_check"
-            android:visibility="@{routine.finished ? View.GONE : View.VISIBLE}"
+            android:visibility="@{routine.finished ? View.VISIBLE : View.GONE}"
             />
 
         <TextView
