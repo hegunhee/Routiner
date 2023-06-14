@@ -40,8 +40,8 @@ class RecordViewModel @Inject constructor(
 
     var currentRoutineProgress : StateFlow<String> = MutableStateFlow<String>("")
 
-    private val _review: MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Uninitalized)
-    private val review: StateFlow<ReviewState> = _review.asStateFlow()
+    private val _reviewState: MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Uninitalized)
+    private val reviewState: StateFlow<ReviewState> = _reviewState.asStateFlow()
 
 
     private val _reviewIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(true)
@@ -70,7 +70,7 @@ class RecordViewModel @Inject constructor(
     }
 
     private suspend fun initCombine() {
-        reviewText = review.map {
+        reviewText = reviewState.map {
             return@map if(it is ReviewState.Success){
                 it.review.review
             }else{
@@ -130,10 +130,10 @@ class RecordViewModel @Inject constructor(
 
     private suspend fun setReviewExist(date: Int) {
         getReviewOrNullByDateUseCase(date)?.let { review ->
-            _review.emit(ReviewState.Success(review))
+            _reviewState.emit(ReviewState.Success(review))
             _reviewIsEmpty.emit(false)
         } ?: kotlin.run {
-            _review.emit(ReviewState.Empty)
+            _reviewState.emit(ReviewState.Empty)
             _reviewIsEmpty.emit(true)
         }
     }
@@ -144,21 +144,21 @@ class RecordViewModel @Inject constructor(
         val date = currentDate.value
         val review = Review(date.toInt(), reviewText)
         insertReviewUseCase(review)
-        _review.emit(ReviewState.Success(review))
+        _reviewState.emit(ReviewState.Success(review))
         _reviewIsEmpty.emit(false)
         reviewEditText.emit("")
     }
 
     fun deleteReview() = viewModelScope.launch(Dispatchers.IO){
-        (review.value as? ReviewState.Success)?.let { successReview ->
+        (reviewState.value as? ReviewState.Success)?.let { successReview ->
             deleteReviewUseCase(successReview.review)
-            _review.emit(ReviewState.Empty)
+            _reviewState.emit(ReviewState.Empty)
             _reviewIsEmpty.emit(true)
         }
     }
 
     fun reviseReview() = viewModelScope.launch{
-        (review.value as? ReviewState.Success)?.let {  _ ->
+        (reviewState.value as? ReviewState.Success)?.let { _ ->
             _reviewIsEmpty.emit(true)
             reviewEditText.emit(reviewText.value)
         }
