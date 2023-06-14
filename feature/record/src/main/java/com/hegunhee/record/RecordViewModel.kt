@@ -57,11 +57,11 @@ class RecordViewModel @Inject constructor(
     val dateList : StateFlow<List<Date>> = _dateList.asStateFlow()
 
     init {
-        initRecordDate()
+        initRecordDateList()
         initCombine()
     }
 
-    private fun initRecordDate() = viewModelScope.launch {
+    private fun initRecordDateList() = viewModelScope.launch {
         _dateList.value = getAllDateListUseCase()
         _recordIsEmpty.emit(dateList.value.isEmpty())
         if (dateList.value.isNotEmpty()) {
