@@ -139,15 +139,14 @@ class RecordViewModel @Inject constructor(
     }
 
     fun addReview() = viewModelScope.launch(Dispatchers.IO) {
+        if(reviewEditText.value.isBlank()) return@launch
         val reviewText = reviewEditText.value
-        if(reviewText.isNotBlank()){
-            val date = currentDate.value
-            val review = Review(date.toInt(),reviewText)
-            insertReviewUseCase(review)
-            _review.emit(ReviewState.Success(review))
-            _reviewIsEmpty.emit(false)
-            reviewEditText.emit("")
-        }
+        val date = currentDate.value
+        val review = Review(date.toInt(), reviewText)
+        insertReviewUseCase(review)
+        _review.emit(ReviewState.Success(review))
+        _reviewIsEmpty.emit(false)
+        reviewEditText.emit("")
     }
 
     fun deleteReview() = viewModelScope.launch(Dispatchers.IO){
