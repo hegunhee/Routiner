@@ -57,17 +57,19 @@ class RecordViewModel @Inject constructor(
     val dateList : StateFlow<List<Date>> = _dateList.asStateFlow()
 
     init {
-        initRecordDateList()
-        initCombine()
-        initRecentRecord()
+        viewModelScope.launch {
+            initRecordDateList()
+            initCombine()
+            initRecentRecord()
+        }
     }
 
-    private fun initRecordDateList() = viewModelScope.launch {
+    private suspend fun initRecordDateList() {
         _dateList.value = getAllDateListUseCase()
         _recordIsEmpty.emit(dateList.value.isEmpty())
     }
 
-    private fun initCombine() = viewModelScope.launch {
+    private suspend fun initCombine() {
         reviewText = review.map {
             return@map if(it is ReviewState.Success){
                 it.review.review
@@ -85,8 +87,8 @@ class RecordViewModel @Inject constructor(
         }.stateIn(viewModelScope)
     }
 
-    private fun initRecentRecord() = viewModelScope.launch {
-        if(dateList.value.isEmpty()) return@launch
+    private suspend fun initRecentRecord() {
+        if(dateList.value.isEmpty()) return
         if(currentDateListIndex.value == DEFAULT_DATE_INDEX) {
             val recentDate = dateList.value.filter {it.date < getTodayDate() }.maxByOrNull { it.date }
             recentDate?.let { date ->
