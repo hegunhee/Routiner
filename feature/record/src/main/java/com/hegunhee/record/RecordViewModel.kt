@@ -61,7 +61,7 @@ class RecordViewModel @Inject constructor(
         initCombine()
     }
 
-    private fun initRecordDate() = viewModelScope.launch(Dispatchers.IO) {
+    private fun initRecordDate() = viewModelScope.launch {
         _dateList.value = getAllDateListUseCase()
         _recordIsEmpty.emit(dateList.value.isEmpty())
         if (dateList.value.isNotEmpty()) {
@@ -157,7 +157,7 @@ class RecordViewModel @Inject constructor(
         }
     }
 
-    fun reviseReview() = viewModelScope.launch(Dispatchers.IO){
+    fun reviseReview() = viewModelScope.launch{
         (review.value as? ReviewState.Success)?.let {  _ ->
             _reviewIsEmpty.emit(true)
             reviewEditText.emit(reviewText.value)
