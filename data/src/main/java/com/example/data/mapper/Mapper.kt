@@ -3,6 +3,7 @@ package com.example.data.mapper
 import com.example.data.entity.CategoryEntity
 import com.example.data.entity.*
 import com.example.domain.model.*
+import com.example.data.util.getTodayDate
 
 fun Category.toCategoryEntity() : CategoryEntity =
     CategoryEntity(name)
