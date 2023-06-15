@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="routine"
             type="com.example.domain.model.Routine" />
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -19,34 +22,33 @@
             android:id="@+id/finish_image"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/title"
-            app:layout_constraintBottom_toBottomOf="@id/title"
-            app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="10dp"
-            app:layout_constraintVertical_chainStyle="packed"
-            app:layout_constraintEnd_toStartOf="@id/title"
             android:src="@drawable/ic_check"
             android:visibility="@{routine.finished ? View.VISIBLE : View.GONE}"
-            />
+            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintEnd_toStartOf="@id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
-            android:textColor="@color/white"
-            app:layout_constraintVertical_chainStyle="packed"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:ellipsize="end"
             android:maxLines="1"
             android:text="@{routine.text}"
+            android:textColor="@color/white"
             android:textSize="30dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/finish_image"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
             tools:text="영어 공부하기" />
 
         <TextView
