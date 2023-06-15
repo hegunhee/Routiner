@@ -3,8 +3,6 @@ package com.example.domain.usecase.routine
 import com.example.domain.model.Routine
 import com.example.domain.repository.Repository
 import com.example.domain.usecase.repeatRoutine.GetAllRepeatRoutineListUseCase
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter
 import javax.inject.Inject
 
 class InsertAllDailyRoutineFromRepeatRoutineUseCase @Inject constructor(
@@ -18,6 +16,4 @@ class InsertAllDailyRoutineFromRepeatRoutineUseCase @Inject constructor(
         }
     }
 }
-//TODO 리팩터링 필요
-fun getTodayDate(): Int =
-    LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")).toInt()
+}
