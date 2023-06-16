@@ -34,11 +34,11 @@ fun ReviewEntity?.toReviewOrNull() : Review? {
     }
 }
 
-fun List<ReviewEntity>.toReviewList() : List<Review> =
-    this.map { Review(it.date,it.review) }
-
 fun List<RepeatRoutineEntity>.toRepeatRoutineList() : List<RepeatRoutine> =
     this.map { RepeatRoutine(it.text,it.dayOfWeekList,it.category) }
+
+fun List<RepeatRoutineEntity>.toRoutineEntityList() : List<RoutineEntity> =
+    this.map { RoutineEntity(date = getTodayDate(),text = it.text, category = it.category) }
 
 fun List<Routine>.toRoutineEntity() : List<RoutineEntity> =
     this.map { it.toRoutineEntity() }
@@ -48,6 +48,3 @@ fun List<CategoryEntity>.toCategory() : List<Category> =
 
 fun List<DayOfWeekEntity>.toDayOfWeekList() : List<DayOfWeek> =
     this.map {DayOfWeek(it.date,it.isSelected)}
-
-fun List<DayOfWeek>.toDayOfWeekEntityList() : List<DayOfWeekEntity> =
-    this.map {DayOfWeekEntity(it.date,it.isSelected)}
