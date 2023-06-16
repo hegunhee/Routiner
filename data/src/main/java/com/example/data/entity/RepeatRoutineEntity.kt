@@ -5,7 +5,8 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class RepeatRoutineEntity(
-    @PrimaryKey var text : String = "",
+    @PrimaryKey
+    val text : String = "",
     val dayOfWeekList: List<String>,
     val category : String = ""
 )
