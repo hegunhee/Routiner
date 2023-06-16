@@ -17,7 +17,7 @@ interface Repository {
 
     suspend fun getRoutineListByDate(date :Int) : List<Routine>
 
-    suspend fun insertDate(date : Date)
+    suspend fun insertDate(date : Int)
 
     suspend fun getAllDateList() : List<Date>
 
