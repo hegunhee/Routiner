@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class InsertReviewUseCase @Inject constructor(private val repository: Repository): UseCase {
 
-    suspend operator fun invoke(reviewEntity:Review){
-        repository.insertReview(reviewEntity)
+    suspend operator fun invoke(review:Review){
+        repository.insertReview(review)
     }
 }
