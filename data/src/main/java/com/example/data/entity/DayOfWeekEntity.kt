@@ -5,5 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class DayOfWeekEntity(
-    @PrimaryKey val date : String,
-    val isSelected : Boolean = false)
+    @PrimaryKey
+    val date : String,
+    val isSelected : Boolean = false
+)
