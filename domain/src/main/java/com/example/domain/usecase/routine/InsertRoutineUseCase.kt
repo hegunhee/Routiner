@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class InsertRoutineUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
-    suspend operator fun invoke(routineEntity: Routine){
-        repository.insertRoutine(routineEntity)
+    suspend operator fun invoke(routine: Routine){
+        repository.insertRoutine(routine)
     }
 }

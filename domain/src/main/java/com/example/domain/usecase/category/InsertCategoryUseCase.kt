@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class InsertCategoryUseCase @Inject constructor(private val repository: Repository)  : UseCase {
 
-    suspend operator fun invoke(categoryEntity: Category){
-        repository.insertCategory(categoryEntity)
+    suspend operator fun invoke(category: Category){
+        repository.insertCategory(category)
     }
 }

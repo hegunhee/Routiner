@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class DeleteReviewUseCase @Inject constructor(private val repository: Repository) : UseCase {
 
-    suspend operator fun invoke(reviewEntity : Review) {
-        repository.deleteReview(reviewEntity)
+    suspend operator fun invoke(review : Review) {
+        repository.deleteReview(review)
     }
 }
