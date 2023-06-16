@@ -78,6 +78,13 @@ class DefaultRepository @Inject constructor(
         localDataSource.insertAllRoutine(routineList.toRoutineEntity())
     }
 
+    override suspend fun insertAllDailyRoutineFromRepeatRoutine(dayOfWeek: String) {
+        val repeatRoutineList = localDataSource.getAllRepeatRoutineList()
+        repeatRoutineList.filter { it.dayOfWeekList.contains(dayOfWeek) }.toRoutineEntityList().let { routineEntityList ->
+            localDataSource.insertAllRoutine(routineEntityList)
+        }
+    }
+
     override suspend fun insertCategory(category: Category) {
         localDataSource.insertCategory(category.toCategoryEntity())
     }
