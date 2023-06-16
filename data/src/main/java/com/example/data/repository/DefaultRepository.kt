@@ -38,8 +38,8 @@ class DefaultRepository @Inject constructor(
         return localDataSource.getRoutineListByDate(date).toRoutineList()
     }
 
-    override suspend fun insertDate(date: Date) {
-        return localDataSource.insertDate(date.toDateEntity())
+    override suspend fun insertDate(date: Int) {
+        return localDataSource.insertDate(Date(date).toDateEntity())
     }
 
     override suspend fun getAllDateList(): List<Date> {
