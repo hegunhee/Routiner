@@ -37,6 +37,8 @@ interface Repository {
 
     suspend fun insertAllRoutine(routineList: List<Routine>)
 
+    suspend fun insertAllDailyRoutineFromRepeatRoutine(dayOfWeek : String)
+
     suspend fun insertCategory(category: Category)
 
     fun getAllCategoryListByFlow() : Flow<List<Category>>
