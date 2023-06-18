@@ -66,6 +66,8 @@
    * https://github.com/hegunhee/Routiner/issues/2  
 3. test Branch가 존재하는 이유  
    * https://github.com/hegunhee/Routiner/issues/3  
+4. Chip Widget을 제거한 이유  
+   * https://github.com/hegunhee/Routiner/issues/37
    
 ## 느낀점  
 처음으로 미니프로젝트를 진행하면서 에뮬레이션이 아닌 실제 기기에서 테스트해봤고 앱을 배포해봤습니다.  
