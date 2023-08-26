@@ -20,7 +20,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/empty_text"
+            android:id="@+id/record_empty_text"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
@@ -40,7 +40,7 @@
             android:visibility="@{viewmodel.currentRoutineList.isEmpty() ? View.GONE : View.VISIBLE}">
 
             <TextView
-                android:id="@+id/record_progress_textview"
+                android:id="@+id/record_progress_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="10dp"
@@ -59,11 +59,11 @@
                 android:layout_height="48dp"
                 android:background="@drawable/ic_arrow_left_24"
                 android:elevation="10dp"
-                app:layout_constraintBottom_toBottomOf="@id/recyclerView"
-                app:layout_constraintStart_toStartOf="@id/recyclerView"
+                app:layout_constraintBottom_toBottomOf="@id/record_recyclerView"
+                app:layout_constraintStart_toStartOf="@id/record_recyclerView"
                 android:onClick="@{() -> viewmodel.setPreviousDate()}"
                 android:backgroundTint="@color/teal_200"
-                app:layout_constraintTop_toTopOf="@id/recyclerView"
+                app:layout_constraintTop_toTopOf="@id/record_recyclerView"
                 android:visibility="@{viewmodel.currentDateListIndex == 0 ? View.GONE : View.VISIBLE}"/>
 
             <ImageButton
@@ -72,16 +72,16 @@
                 android:layout_height="48dp"
                 android:background="@drawable/ic_arrow_right_24"
                 android:elevation="10dp"
-                app:layout_constraintBottom_toBottomOf="@id/recyclerView"
-                app:layout_constraintEnd_toEndOf="@id/recyclerView"
+                app:layout_constraintBottom_toBottomOf="@id/record_recyclerView"
+                app:layout_constraintEnd_toEndOf="@id/record_recyclerView"
                 android:onClick="@{() -> viewmodel.setNextDate()}"
                 android:backgroundTint="@color/teal_200"
-                app:layout_constraintTop_toTopOf="@id/recyclerView"
+                app:layout_constraintTop_toTopOf="@id/record_recyclerView"
                 android:visibility="@{viewmodel.currentDateListIndex == (viewmodel.dateList.size -1) ? View.GONE : View.VISIBLE}"/>
 
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/record_recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@color/white"
@@ -99,7 +99,7 @@
                 app:layout_constraintBottom_toBottomOf="parent">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/bottom_no_review_layout"
+                    android:id="@+id/review_add_layout"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_margin="10dp"
@@ -139,7 +139,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/bottom_review_layout"
+                    android:id="@+id/review_layout"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:layout_margin="10dp"
@@ -151,7 +151,7 @@
                     android:visibility="@{viewmodel.reviewState.isReviewEmpty() ? View.GONE : View.VISIBLE}">
 
                     <TextView
-                        android:id="@+id/review_textView"
+                        android:id="@+id/review_text"
                         android:layout_width="0dp"
                         android:layout_height="0dp"
                         android:textColor="@color/black"
@@ -171,8 +171,8 @@
                         android:textColor="@color/black"
                         android:onClick="@{() -> viewmodel.reviseReview()}"
                         android:backgroundTint="@color/teal_200"
-                        app:layout_constraintBottom_toBottomOf="@id/bottom_review_layout"
-                        app:layout_constraintTop_toBottomOf="@id/review_textView"
+                        app:layout_constraintBottom_toBottomOf="@id/review_layout"
+                        app:layout_constraintTop_toBottomOf="@id/review_text"
                         app:layout_constraintEnd_toStartOf="@id/delete_review_button"
                         />
                     <Button
@@ -190,11 +190,7 @@
 
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
