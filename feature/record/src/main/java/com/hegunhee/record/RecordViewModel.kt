@@ -124,6 +124,7 @@ class RecordViewModel @Inject constructor(
         } ?: kotlin.run {
             _reviewState.emit(ReviewState.Empty)
         }
+        reviewEditText.emit("")
     }
 
     fun addReview() = viewModelScope.launch(Dispatchers.IO) {
