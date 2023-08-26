@@ -27,7 +27,7 @@
             android:text="이전 기록이\n존재하지 않습니다."
             android:textSize="30dp"
             android:textStyle="bold"
-            android:visibility="@{viewmodel.recordIsEmpty ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewmodel.currentRoutineList.isEmpty() ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +37,7 @@
             android:id="@+id/record_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:visibility="@{viewmodel.recordIsEmpty ? View.GONE : View.VISIBLE}">
+            android:visibility="@{viewmodel.currentRoutineList.isEmpty() ? View.GONE : View.VISIBLE}">
 
             <TextView
                 android:id="@+id/record_progress_textview"
@@ -107,7 +107,7 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:visibility="@{viewmodel.reviewIsEmpty ? View.VISIBLE : View.GONE}"
+                    android:visibility="@{viewmodel.reviewState.isReviewEmpty() ? View.VISIBLE : View.GONE}"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <EditText
@@ -148,8 +148,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="@{viewmodel.reviewIsEmpty ? View.GONE : View.VISIBLE}"
-                    >
+                    android:visibility="@{viewmodel.reviewState.isReviewEmpty() ? View.GONE : View.VISIBLE}">
 
                     <TextView
                         android:id="@+id/review_textView"

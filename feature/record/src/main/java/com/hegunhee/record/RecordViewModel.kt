@@ -26,67 +26,57 @@ class RecordViewModel @Inject constructor(
 
 ) : ViewModel() {
 
-    private val _recordIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(false)
-    val recordIsEmpty: StateFlow<Boolean> = _recordIsEmpty.asStateFlow()
-
-    private val _currentDate : MutableStateFlow<String> = MutableStateFlow(DATE_INITALVALUE)
-    val currentDate : StateFlow<String> = _currentDate.asStateFlow()
+    private val _dateList : MutableStateFlow<List<Date>> = MutableStateFlow(emptyList())
+    val dateList : StateFlow<List<Date>> = _dateList.asStateFlow()
 
     private val _currentDateListIndex : MutableStateFlow<Int> = MutableStateFlow(DEFAULT_DATE_INDEX)
     val currentDateListIndex : StateFlow<Int> = _currentDateListIndex.asStateFlow()
 
-    private val _currentRoutineList: MutableStateFlow<List<Routine>> = MutableStateFlow(emptyList())
-    val currentRoutineListState: StateFlow<List<Routine>> = _currentRoutineList.asStateFlow()
+    private val _currentDate : MutableStateFlow<String> = MutableStateFlow(DATE_INITALVALUE)
+    val currentDate : StateFlow<String> = _currentDate.asStateFlow()
 
-    var currentRoutineProgress : StateFlow<String> = MutableStateFlow<String>("")
+    private val _currentRoutineList: MutableStateFlow<List<Routine>> = MutableStateFlow(emptyList())
+    val currentRoutineList: StateFlow<List<Routine>> = _currentRoutineList.asStateFlow()
+
+    val currentRoutineProgress : StateFlow<String> = currentRoutineList.map {
+        if(it.isEmpty()) {
+            ""
+        }else {
+            "${it.count{it.isFinished}} / ${it.size}"
+        }
+    }.stateIn(
+        scope = viewModelScope,
+        initialValue = "",
+        started = SharingStarted.WhileSubscribed(5000L),
+    )
 
     private val _reviewState: MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Uninitalized)
-    private val reviewState: StateFlow<ReviewState> = _reviewState.asStateFlow()
+    val reviewState: StateFlow<ReviewState> = _reviewState.asStateFlow()
 
-
-    private val _reviewIsEmpty: MutableStateFlow<Boolean> = MutableStateFlow(true)
-    val reviewIsEmpty: StateFlow<Boolean> = _reviewIsEmpty.asStateFlow()
-
-
-    var reviewText : StateFlow<String> = MutableStateFlow<String>("")
-
+    val reviewText : StateFlow<String> = reviewState.map {
+        if(it is ReviewState.Success) {
+            it.review.review
+        }else {
+            ""
+        }
+    }.stateIn(
+        scope = viewModelScope,
+        initialValue = "",
+        started = SharingStarted.WhileSubscribed(5000L),
+    )
 
     val reviewEditText: MutableStateFlow<String> = MutableStateFlow("")
-
-    private val _dateList : MutableStateFlow<List<Date>> = MutableStateFlow(emptyList())
-    val dateList : StateFlow<List<Date>> = _dateList.asStateFlow()
 
     init {
         viewModelScope.launch {
             initRecordDateList()
-            initCombine()
             initRecentRecord()
         }
     }
 
     private suspend fun initRecordDateList() {
         _dateList.value = getAllDateListUseCase()
-        _recordIsEmpty.emit(dateList.value.isEmpty())
     }
-
-    private suspend fun initCombine() {
-        reviewText = reviewState.map {
-            return@map if(it is ReviewState.Success){
-                it.review.review
-            }else{
-                ""
-            }
-        }.stateIn(viewModelScope)
-
-        currentRoutineProgress = currentRoutineListState.map {
-            return@map if(it.isEmpty()){
-                ""
-            }else{
-                "${it.count{it.isFinished}} / ${it.size}"
-            }
-        }.stateIn(viewModelScope)
-    }
-
     private suspend fun initRecentRecord() {
         if(dateList.value.isEmpty()) return
         if(currentDateListIndex.value == DEFAULT_DATE_INDEX) {
@@ -131,21 +121,17 @@ class RecordViewModel @Inject constructor(
     private suspend fun setReviewExist(date: Int) {
         getReviewOrNullByDateUseCase(date)?.let { review ->
             _reviewState.emit(ReviewState.Success(review))
-            _reviewIsEmpty.emit(false)
         } ?: kotlin.run {
             _reviewState.emit(ReviewState.Empty)
-            _reviewIsEmpty.emit(true)
         }
     }
 
     fun addReview() = viewModelScope.launch(Dispatchers.IO) {
         if(reviewEditText.value.isBlank()) return@launch
-        val reviewText = reviewEditText.value
         val date = currentDate.value
-        val review = Review(date.toInt(), reviewText)
+        val review = Review(date.toInt(), reviewEditText.value)
         insertReviewUseCase(review)
         _reviewState.emit(ReviewState.Success(review))
-        _reviewIsEmpty.emit(false)
         reviewEditText.emit("")
     }
 
@@ -153,14 +139,14 @@ class RecordViewModel @Inject constructor(
         (reviewState.value as? ReviewState.Success)?.let { successReview ->
             deleteReviewUseCase(successReview.review)
             _reviewState.emit(ReviewState.Empty)
-            _reviewIsEmpty.emit(true)
         }
     }
 
     fun reviseReview() = viewModelScope.launch{
-        (reviewState.value as? ReviewState.Success)?.let { _ ->
-            _reviewIsEmpty.emit(true)
-            reviewEditText.emit(reviewText.value)
+        val currentReviewState = reviewState.value
+        (currentReviewState as? ReviewState.Success)?.let { _ ->
+            _reviewState.emit(ReviewState.Revise)
+            reviewEditText.emit(currentReviewState.review.review)
         }
     }
 

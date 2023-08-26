@@ -35,7 +35,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                     }
                 }
                 launch {
-                    currentRoutineListState.collect{
+                    currentRoutineList.collect{
                         adapter.submitList(it)
                     }
                 }

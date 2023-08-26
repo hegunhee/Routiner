@@ -3,10 +3,23 @@ package com.hegunhee.record
 import com.example.domain.model.Review
 
 
-sealed class ReviewState {
-    object Uninitalized : ReviewState()
+sealed interface ReviewState {
 
-    data class Success(val review: Review) : ReviewState()
+    fun isReviewEmpty() : Boolean
 
-    object Empty : ReviewState()
+    object Uninitalized : ReviewState {
+        override fun isReviewEmpty(): Boolean = true
+    }
+
+    data class Success(val review: Review) : ReviewState {
+        override fun isReviewEmpty(): Boolean = false
+    }
+
+    object Empty : ReviewState {
+        override fun isReviewEmpty(): Boolean = true
+    }
+
+    object Revise: ReviewState {
+        override fun isReviewEmpty(): Boolean = true
+    }
 }
