@@ -21,7 +21,7 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
             viewmodel = viewModel
-            recyclerView.adapter = adapter
+            recordRecyclerView.adapter = adapter
         }
         observeData()
     }
