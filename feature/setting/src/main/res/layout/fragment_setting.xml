@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.hegunhee.setting.SettingViewModel" />
     </data>
 
@@ -31,8 +31,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:checked="@{viewmodel.notiSendValue}"
-            android:onCheckedChanged="@{(switch, checked) -> viewmodel.onNotiCheckedChanged(checked)}"
+            android:checked="@{viewModel.notiSendValue}"
+            android:onCheckedChanged="@{(switch, checked) -> viewModel.onNotiCheckedChanged(checked)}"
             app:layout_constraintBottom_toBottomOf="@id/noti_text_view"
             app:layout_constraintStart_toEndOf="@id/noti_text_view"
             app:layout_constraintTop_toTopOf="@id/noti_text_view" />

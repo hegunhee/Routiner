@@ -15,7 +15,7 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
-            viewmodel = viewModel
+            this.viewModel = this@SettingFragment.viewModel
         }
         setActionBarTitle()
     }
