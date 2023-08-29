@@ -39,7 +39,7 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
 
     private val sortedDayOfWeekList : List<String> = listOf("월","화","수","목","금","토","일")
 
-    private val _dayOfWeekList : Flow<List<DayOfWeek>> = getAllDayOfWeekListByFlowUseCase().combine(selectedDayOfWeekList) { dayOfWeekList, selectedDayOfWeekList ->
+    val dayOfWeekList : StateFlow<List<DayOfWeek>> = getAllDayOfWeekListByFlowUseCase().combine(selectedDayOfWeekList) { dayOfWeekList, selectedDayOfWeekList ->
         if(dayOfWeekList.isEmpty()) {
             insertDefaultDayOfWeekListUseCase()
             emptyList()
@@ -52,29 +52,32 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
                 }
             }
         }
-    }
-
-    val dayOfWeekList : Flow<List<DayOfWeek>>
-    get() = _dayOfWeekList
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000L),
+        initialValue = emptyList()
+    )
 
     private val _selectedCategory : MutableStateFlow<Category> = MutableStateFlow(Category(""))
     private val selectedCategory : StateFlow<Category> = _selectedCategory.asStateFlow()
 
-    private val _categoryList : Flow<List<Category>> = getAllCategoryListByFlowUseCase().combine(selectedCategory) { categoryList, category ->
-        if(category.name.isBlank()){
+    val categoryList : StateFlow<List<Category>> = getAllCategoryListByFlowUseCase().combine(selectedCategory) { categoryList, selectedCategory ->
+        if(selectedCategory.name.isBlank()){
             categoryList
         }else{
             categoryList.map {
-                if(it.name == category.name){
-                    Category(it.name,category.isSelected)
+                if(it.name == selectedCategory.name){
+                    Category(it.name,selectedCategory.isSelected)
                 }else{
                     Category(it.name)
                 }
             }
         }
-    }
-    val categoryList : Flow<List<Category>>
-        get() = _categoryList
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000L),
+        initialValue = emptyList()
+    )
 
     private val _toastMessage : MutableSharedFlow<String> = MutableSharedFlow<String>()
     val toastMessage : SharedFlow<String> = _toastMessage.asSharedFlow()
