@@ -53,10 +53,12 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                         }
                     }
                 }
+                launch {
+                    viewModel.repeatRoutineList.collect {
+                        repeatAdapter.submitList(it)
+                    }
+                }
             }
-        }
-        viewModel.repeatRoutineListLiveData.observe(viewLifecycleOwner) {
-            repeatAdapter.submitList(it)
         }
     }
 
