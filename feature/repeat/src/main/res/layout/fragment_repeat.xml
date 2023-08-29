@@ -5,7 +5,7 @@
     <data>
 
         <variable
-            name="viewmodel"
+            name="viewModel"
             type="com.hegunhee.repeat.RepeatViewModel" />
 
         <import type="android.view.View" />
@@ -21,7 +21,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@color/white"
-            android:visibility="@{viewmodel.isRepeatRoutineListEmpty ? View.GONE : View.VISIBLE}"
+            android:visibility="@{viewModel.isRepeatRoutineListEmpty ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toTopOf="@id/insert_repeat_routine_button"
             app:layout_constraintEnd_toEndOf="parent"
@@ -36,7 +36,7 @@
             android:text="@string/empty_repeat_routine_text"
             android:textColor="@color/black"
             android:textSize="@dimen/empty_repeat_routine_text_size"
-            android:visibility="@{viewmodel.isRepeatRoutineListEmpty ? View.VISIBLE : View.GONE}"
+            android:visibility="@{viewModel.isRepeatRoutineListEmpty ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
-            android:onClick="@{() -> viewmodel.openInsertRepeatRoutineDialog()}"
+            android:onClick="@{() -> viewModel.openInsertRepeatRoutineDialog()}"
             android:src="@drawable/ic_add"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
