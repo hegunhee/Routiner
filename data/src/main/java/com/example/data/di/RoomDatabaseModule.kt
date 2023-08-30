@@ -50,10 +50,4 @@ class RoomDatabaseModule {
     fun provideCategoryDao(database: RoutinerDatabase) : CategoryDao {
         return database.categoryDao()
     }
-
-    @Singleton
-    @Provides
-    fun provideDayOfWeekDao(database: RoutinerDatabase) : DayOfWeekDao {
-        return database.dayOfWeekDao()
-    }
 }
