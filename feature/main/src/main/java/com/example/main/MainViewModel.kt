@@ -1,7 +1,5 @@
 package com.example.main
 
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.date.*
@@ -13,8 +11,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-
-@RequiresApi(Build.VERSION_CODES.O)
 @HiltViewModel
 class MainViewModel @Inject constructor(
     private val getCurrentDateUseCase: GetCurrentDateUseCase,
@@ -29,7 +25,6 @@ class MainViewModel @Inject constructor(
         checkDate()
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
         val currentLoadedDate = getCurrentDateUseCase()
         if (currentLoadedDate != getTodayDate()) {
