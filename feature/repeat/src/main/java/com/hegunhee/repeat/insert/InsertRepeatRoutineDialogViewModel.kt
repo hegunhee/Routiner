@@ -34,8 +34,6 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
     private val _selectedDayOfWeekList : MutableStateFlow<List<String>> = MutableStateFlow(emptyList())
     private val selectedDayOfWeekList : StateFlow<List<String>> = _selectedDayOfWeekList.asStateFlow()
 
-    private val sortedDayOfWeekList : List<String> = listOf("월","화","수","목","금","토","일")
-
     val dayOfWeekList : StateFlow<List<DayOfWeek>> = selectedDayOfWeekList.map { selectedList ->
         DayOfWeekUtil.sortedDayOfWeekList.map { sortedDayOfWeek ->
             DayOfWeek(sortedDayOfWeek,selectedList.contains(sortedDayOfWeek))
