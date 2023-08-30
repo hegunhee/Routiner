@@ -81,13 +81,13 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
 
     override fun insertRepeatRoutine() {
         val repeatRoutineText = repeatRoutineText.value
+        val currentDayOfWeekList = dayOfWeekList.value.filter { it.isSelected }.map { it.date }
         viewModelScope.launch {
             if(repeatRoutineText.isBlank()){
                 _toastMessage.emit(emptyRepeatRoutineMessage)
                 return@launch
             }
-            val sortedDayOfWeekList = sortedDayOfWeekList.filter { selectedDayOfWeekList.value.contains(it) }
-            if(sortedDayOfWeekList.isEmpty()) {
+            if(currentDayOfWeekList.isEmpty()) {
                 _toastMessage.emit(emptyDayOfWeekMessage)
                 return@launch
             }
@@ -96,14 +96,13 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
             }else{
                 ""
             }
-            val repeatRoutine = RepeatRoutine(repeatRoutineText,sortedDayOfWeekList,categoryText)
-            if(getTodayDayOfWeekFormatedKorean() in sortedDayOfWeekList){
+            val repeatRoutine = RepeatRoutine(repeatRoutineText,currentDayOfWeekList,categoryText)
+            if(getTodayDayOfWeekFormatedKorean() in currentDayOfWeekList){
                 insertRoutineUseCase(Routine(date = getTodayDate(), text = repeatRoutineText, category = categoryText))
             }
             insertRepeatRoutineUseCase(repeatRoutine)
             _navigationActions.emit(InsertRepeatRoutineNavigationAction.DisMissDialog)
         }
-
     }
 
     override fun openInsertCategoryDialog() {
