@@ -32,7 +32,7 @@ class InsertRoutineDialogViewModel @Inject constructor(
     private val _selectedCategory : MutableStateFlow<Category> = MutableStateFlow(Category(""))
     private val selectedCategory : StateFlow<Category> = _selectedCategory.asStateFlow()
 
-    private val _categoryList : Flow<List<Category>> = getAllCategoryListByFlowUseCase().combine(selectedCategory) { categoryList, category ->
+    val categoryList : StateFlow<List<Category>> = getAllCategoryListByFlowUseCase().combine(selectedCategory) { categoryList, category ->
         if(category.name.isBlank()){
             categoryList
         }else{
@@ -44,9 +44,11 @@ class InsertRoutineDialogViewModel @Inject constructor(
                 }
             }
         }
-    }
-    val categoryList : Flow<List<Category>>
-    get() = _categoryList
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(5000L),
+        initialValue = emptyList()
+    )
 
     private val emptyMessage = "입력이 비어있습니다."
     private val sameRoutineMessage = "중복된 루틴입니다."
