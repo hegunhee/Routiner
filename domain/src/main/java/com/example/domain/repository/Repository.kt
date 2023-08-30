@@ -54,8 +54,4 @@ interface Repository {
     fun isAppFirstOpened() : Boolean
 
     fun setAppFirstOpened()
-
-    fun getAllDayOfWeekListByFlow() : Flow<List<DayOfWeek>>
-
-    suspend fun insertDefaultDayOfWeekList()
 }

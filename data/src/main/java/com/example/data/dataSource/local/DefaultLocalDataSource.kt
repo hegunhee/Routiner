@@ -14,7 +14,6 @@ class DefaultLocalDataSource @Inject constructor(
     private val reviewDao: ReviewDao,
     private val repeatRoutineDao: RepeatRoutineDao,
     private val categoryDao: CategoryDao,
-    private val dayOfWeekDao: DayOfWeekDao,
     private val sharedPreferenceManager: SharedPreferenceManager
 ) : LocalDataSource {
 
@@ -113,13 +112,4 @@ class DefaultLocalDataSource @Inject constructor(
     override fun setAppFirstOpened() {
         return sharedPreferenceManager.setAppFirstOpened()
     }
-
-    override fun getAllDayOfWeekListByFlow(): Flow<List<DayOfWeekEntity>> {
-        return dayOfWeekDao.getAllDayOfWeekListByFlow()
-    }
-
-    override suspend fun insertDefaultDayOfWeekList(dayOfWeekList: List<DayOfWeekEntity>) {
-        dayOfWeekDao.insertDefaultDayOfWeekList(dayOfWeekList)
-    }
-
 }

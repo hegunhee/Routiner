@@ -1,7 +1,6 @@
 package com.example.data.repository
 
 import com.example.data.dataSource.local.LocalDataSource
-import com.example.data.entity.DayOfWeekEntity
 import com.example.data.mapper.*
 import com.example.domain.model.*
 import com.example.domain.repository.Repository
@@ -116,18 +115,4 @@ class DefaultRepository @Inject constructor(
     override fun setAppFirstOpened() {
         localDataSource.setAppFirstOpened()
     }
-
-    override fun getAllDayOfWeekListByFlow(): Flow<List<DayOfWeek>> {
-        return localDataSource.getAllDayOfWeekListByFlow().map { it.toDayOfWeekList() }
-    }
-
-    override suspend fun insertDefaultDayOfWeekList() {
-        localDataSource.insertDefaultDayOfWeekList(getDefaultDayOfWeekList())
-    }
-
-    private fun getDefaultDayOfWeekList() : List<DayOfWeekEntity>{
-        return listOf<DayOfWeekEntity>(DayOfWeekEntity("월"), DayOfWeekEntity("화"),DayOfWeekEntity("수"),DayOfWeekEntity("목"),DayOfWeekEntity("금"),DayOfWeekEntity("토"),DayOfWeekEntity("일"))
-    }
-
-
 }
