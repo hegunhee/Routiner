@@ -11,27 +11,27 @@
             name="eventHandler"
             type="com.hegunhee.repeat.RepeatActionHandler" />
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:onClick="@{() -> eventHandler.clickRepeatRoutine(repeatRoutine)}"
+        android:layout_height="48dp"
         android:background="@color/white"
-        android:layout_height="wrap_content">
+        android:onClick="@{() -> eventHandler.clickRepeatRoutine(repeatRoutine)}">
 
         <TextView
             android:id="@+id/repeat_routine_title_text"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
+            android:layout_height="48dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:ellipsize="end"
-            android:text="@{repeatRoutine.text}"
+            android:gravity="center"
             android:maxLines="1"
+            android:text="@{repeatRoutine.text}"
             android:textColor="@color/black"
             android:textSize="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -46,33 +46,33 @@
             android:id="@+id/category_tag"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="@id/repeat_routine_title_text"
-            app:layout_constraintBottom_toBottomOf="@id/repeat_routine_title_text"
-            app:layout_constraintStart_toEndOf="@id/repeat_routine_title_text"
-            app:layout_constraintEnd_toStartOf="@id/date_recycler_view"
-            app:layout_constraintVertical_chainStyle="packed"
+            android:background="@drawable/round_shape_20dp"
+            android:backgroundTint="@color/teal_200"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@{repeatRoutine.category}"
             android:textColor="@color/black"
             android:textSize="20sp"
-            android:text="@{repeatRoutine.category}"
-            android:backgroundTint="@color/teal_200"
-            android:background="@drawable/round_shape_20dp"
-            android:padding="5dp"
-            tools:text="영어"
             android:visibility="@{repeatRoutine.category.empty ? View.INVISIBLE : View.VISIBLE}"
-            />
+            app:layout_constraintEnd_toStartOf="@id/date_recycler_view"
+            app:layout_constraintStart_toEndOf="@id/repeat_routine_title_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed"
+            tools:text="영어" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/date_recycler_view"
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_weight="3"
             app:layout_constraintStart_toEndOf="@id/category_tag"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed"
-            android:orientation="horizontal"
-            app:setDayOfWeekCategory="@{repeatRoutine.dayOfWeekList}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"/>
+            app:setDayOfWeekCategory="@{repeatRoutine.dayOfWeekList}" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
