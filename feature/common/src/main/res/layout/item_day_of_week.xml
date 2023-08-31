@@ -7,23 +7,23 @@
 
         <variable
             name="actionHandler"
-            type="com.hegunhee.common.dayOfWeek.DayOfWeekActionHandler"/>
+            type="com.hegunhee.common.dayOfWeek.DayOfWeekActionHandler" />
 
         <variable
             name="dayOfWeek"
             type="com.example.domain.model.DayOfWeek" />
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginEnd="2dp"
         android:background="@drawable/round_shape_20dp"
         android:backgroundTint="@color/teal_200"
-        android:padding="8dp"
-        android:layout_marginEnd="2dp"
-        android:onClick="@{() -> actionHandler.onClickDayOfWeek(dayOfWeek.date)}">
+        android:onClick="@{() -> actionHandler.onClickDayOfWeek(dayOfWeek.date)}"
+        android:padding="8dp">
 
         <ImageView
             android:id="@+id/select_image_view"
@@ -32,6 +32,7 @@
             android:layout_marginEnd="2dp"
             android:src="@drawable/ic_check_circle_24"
             android:visibility="@{dayOfWeek.isSelected ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -39,10 +40,12 @@
             android:id="@+id/date_text"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:gravity="center"
             android:text="@{dayOfWeek.date}"
             android:textColor="@color/black"
             android:textSize="15sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@id/select_image_view"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="월" />

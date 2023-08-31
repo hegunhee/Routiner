@@ -2,6 +2,7 @@
 <layout>
 
     <data>
+
         <variable
             name="eventHandler"
             type="com.hegunhee.daily.DailyActionHandler" />
@@ -10,8 +11,9 @@
             name="routine"
             type="com.example.domain.model.Routine" />
 
-        <import type="android.view.View"/>
+        <import type="android.view.View" />
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -21,16 +23,16 @@
         <TextView
             android:id="@+id/routine_title"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:layout_marginStart="10dp"
-            android:text="@{routine.text}"
-            android:onClick="@{() -> eventHandler.toggleFinishRoutine(routine)}"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:textSize="30dp"
             android:ellipsize="end"
-            android:textColor="@color/black"
             android:maxLines="1"
+            android:onClick="@{() -> eventHandler.toggleFinishRoutine(routine)}"
+            android:text="@{routine.text}"
+            android:textColor="@color/black"
+            android:textSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@id/check"
             app:layout_constraintHorizontal_weight="4"
@@ -42,7 +44,7 @@
         <TextView
             android:id="@+id/category_text"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="48dp"
             android:background="@drawable/round_shape_20dp"
             android:backgroundTint="@color/teal_200"
             android:padding="8dp"
@@ -58,7 +60,7 @@
         <View
             android:id="@+id/check"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="48dp"
             android:background="@drawable/ic_check"
             android:visibility="@{routine.finished ? View.VISIBLE : View.INVISIBLE}"
             app:layout_constraintBottom_toBottomOf="@id/routine_title"
@@ -71,7 +73,7 @@
         <ImageButton
             android:id="@+id/deleteButton"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="48dp"
             android:background="@drawable/ic_delete"
             android:backgroundTint="@color/red"
             android:contentDescription="@string/delete_routine"
