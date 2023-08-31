@@ -21,20 +21,22 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/routine_edit_text"
+            app:layout_constraintBottom_toTopOf="@id/repeat_routine_edit_text"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <EditText
-            android:id="@+id/routine_edit_text"
+            android:id="@+id/repeat_routine_edit_text"
             android:layout_width="0dp"
-            android:textColor="@color/black"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/write_routine"
             android:text="@={viewModel.repeatRoutineText}"
+            android:textColor="@color/black"
             app:layout_constraintBottom_toTopOf="@id/select_day_of_week_text_view"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
             app:layout_constraintTop_toBottomOf="@id/title_text_view"
             app:layout_constraintVertical_chainStyle="packed" />
@@ -51,7 +53,7 @@
             app:layout_constraintBottom_toTopOf="@id/day_of_week_recycler_view"
             app:layout_constraintEnd_toEndOf="@id/title_text_view"
             app:layout_constraintStart_toStartOf="@id/title_text_view"
-            app:layout_constraintTop_toBottomOf="@id/routine_edit_text"
+            app:layout_constraintTop_toBottomOf="@id/repeat_routine_edit_text"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <androidx.recyclerview.widget.RecyclerView

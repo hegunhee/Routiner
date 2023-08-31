@@ -25,14 +25,14 @@
             android:layout_marginStart="10dp"
             android:src="@drawable/ic_check"
             android:visibility="@{routine.finished ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="@id/title"
-            app:layout_constraintEnd_toStartOf="@id/title"
+            app:layout_constraintBottom_toBottomOf="@id/routine_title"
+            app:layout_constraintEnd_toStartOf="@id/routine_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/routine_title"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
-            android:id="@+id/title"
+            android:id="@+id/routine_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
@@ -63,9 +63,9 @@
             android:textColor="@color/black"
             android:textSize="20dp"
             android:visibility="@{routine.category.length() == 0 ? View.INVISIBLE : View.VISIBLE}"
-            app:layout_constraintBottom_toBottomOf="@id/title"
+            app:layout_constraintBottom_toBottomOf="@id/routine_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/title"
+            app:layout_constraintTop_toTopOf="@id/routine_title"
             tools:text="영어" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
