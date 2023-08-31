@@ -76,10 +76,9 @@
             android:layout_marginBottom="30dp"
             android:onClick="@{() -> viewmodel.onClickRoutineInsert()}"
             android:src="@drawable/ic_add"
+            android:contentDescription="@string/add_routine"
             app:layout_constraintBottom_toTopOf="@id/bottomLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-
-            />
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/bottomLayout"
