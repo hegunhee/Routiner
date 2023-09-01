@@ -28,6 +28,10 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
                         isMinifyEnabled = false
                         proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
                     }
+                    debug {
+                        isMinifyEnabled = false
+                        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+                    }
                 }
             }
             val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
