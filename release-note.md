@@ -1,3 +1,33 @@
+Routiner 1.3.1 release note
+=========================
+접근성 개선, 앱 크기 축소 및 난독화, android 8.0 이전 버전에서 간헐적으로 앱이 죽는 현상 수정
+
+- 오류 수정  
+현재 시간 측정시 android 8.0 이전 버전에서 앱이 죽는 현상 수정
+
+- 접근성 개선  
+클릭 가능한 위젯 크기 변경, 글자 크기 기기별 동일하게 변경
+
+- 앱 크기 축소  
+proguard 적용으로 인해 크기 축소 및 난독화
+
+개발자 노트
+--- 
+viewModel 단의 UI event 및 UI State 수정  
+https://github.com/hegunhee/Routiner/pull/40
+
+android 8.0 이전에서는 시간 함수가 작동하지못하고 앱이 죽었지만
+8.0 이전 버전에서 작동하는 시간 코드를 추가해 앱이 죽지않게 변경  
+https://github.com/hegunhee/Routiner/pull/41
+
+proguard 적용으로 인해 앱 크기가 4MB에서 2MB로 축소 및 난독화  
+https://github.com/hegunhee/Routiner/pull/43
+
+접근성 개선 (구글 권고사항)  
+https://github.com/hegunhee/Routiner/pull/42
+
+
+
 Routiner 1.3 release note
 =========================  
 최소 sdk 버전 상승으로 인해 android 7버전 이하 기기들은 설치가 불가능합니다.
