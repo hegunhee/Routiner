@@ -12,7 +12,6 @@
 ## 사용된 라이브러리  
 * JetPack  
   * AAC-ViewModel  
-  * LiveData  
   * Room  
 * Coroutine  
   * Flow  
@@ -29,7 +28,7 @@
  AAC-ViewModel은 재 생성되지 않기때문에 데이터를 쉽게 관리할 수 있습니다.
  그리고 ViewModelScope를 사용해 비동기 코드를 쉽게 작성할 수 있습니다.  
 * **Flow** 적용  
- 지속적으로 데이터를 받을 수 있는 Flow를 사용해 오늘의 루틴을 받을 수 있습니다.  
+  UI State로 Flow 사용중  
 * **DataBinding** 적용  
  dataBinding을 사용하여 findViewById를 사용하지 않으며 xml 파일과 데이터 객체를 연결해줍니다.  
 * **Hilt** 적용  
