@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.8">
-      <module name="Routiner.app" target="11" />
-      <module name="Routiner.data" target="11" />
-      <module name="Routiner.feature.category" target="11" />
-      <module name="Routiner.feature.common" target="11" />
-      <module name="Routiner.feature.daily" target="11" />
-      <module name="Routiner.feature.record" target="11" />
-      <module name="Routiner.feature.repeat" target="11" />
-      <module name="Routiner.feature.setting" target="11" />
+    <bytecodeTargetLevel target="11">
       <module name="steohen.Routiner.feature.main" target="11" />
     </bytecodeTargetLevel>
   </component>
