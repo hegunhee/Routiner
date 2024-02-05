@@ -8,7 +8,6 @@ android {
 
 dependencies {
 
-    implementation(project(":domain"))
     implementation(project(":feature:common"))
     implementation(project(":feature:category"))
 }
