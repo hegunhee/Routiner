@@ -9,8 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 
-abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val layoutResId: Int) :
-    Fragment() {
+abstract class BaseFragment<T : ViewDataBinding>(@LayoutRes private val layoutResId: Int) : Fragment() {
     private var _binding: T? = null
     val binding get() = _binding ?: error("View를 참조하기 위해 binding이 초기화 되지 않았습니다.")
 

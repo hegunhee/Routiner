@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.DayOfWeek
 import com.hegunhee.common.databinding.ItemDayOfWeekBinding
 
-class DayOfWeekAdapter(private val actionHandler: DayOfWeekActionHandler) : ListAdapter<DayOfWeek, DayOfWeekAdapter.DayOfWeekViewHolder>(diff_util){
+class DayOfWeekAdapter(private val actionHandler: DayOfWeekActionHandler) : ListAdapter<DayOfWeek, DayOfWeekAdapter.DayOfWeekViewHolder>(diffUtil){
 
     inner class DayOfWeekViewHolder(private val binding : ItemDayOfWeekBinding) : RecyclerView.ViewHolder(binding.root) {
 
@@ -27,9 +27,8 @@ class DayOfWeekAdapter(private val actionHandler: DayOfWeekActionHandler) : List
         holder.bindView(getItem(position))
     }
 
-
     companion object {
-        val diff_util = object : DiffUtil.ItemCallback<DayOfWeek>() {
+        private val diffUtil = object : DiffUtil.ItemCallback<DayOfWeek>() {
             override fun areItemsTheSame(oldItem: DayOfWeek, newItem: DayOfWeek): Boolean {
                 return oldItem.date == newItem.date
             }
@@ -37,7 +36,6 @@ class DayOfWeekAdapter(private val actionHandler: DayOfWeekActionHandler) : List
             override fun areContentsTheSame(oldItem: DayOfWeek, newItem: DayOfWeek): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 }
