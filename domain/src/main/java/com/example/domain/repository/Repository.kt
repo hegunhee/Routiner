@@ -54,4 +54,6 @@ interface Repository {
     fun isAppFirstOpened() : Boolean
 
     fun setAppFirstOpened()
+
+    fun getSortedDayOfWeekList() : List<String>
 }
