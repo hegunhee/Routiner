@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.common.base.BaseFragment
 import com.hegunhee.daily.databinding.FragmentDailyBinding
 import com.hegunhee.daily.insert.InsertRoutineDialogFragment
@@ -24,23 +26,27 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
             dailyRecyclerView.adapter = dailyAdapter
         }
         setActionBarTitle()
-        initObserver()
+        observeData()
     }
 
     private fun setActionBarTitle(){
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "오늘의 루틴"
     }
 
-    private fun initObserver(){
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            launch {
-                viewModel.onClickInsertRoutineButton.collect{
-                    InsertRoutineDialogFragment().show(childFragmentManager,InsertRoutineDialogFragment.TAG)
+    private fun observeData(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.onClickInsertRoutineButton.collect{
+                        InsertRoutineDialogFragment().show(childFragmentManager,InsertRoutineDialogFragment.TAG)
+                    }
+                }
+                launch {
+                    viewModel.dailyRoutineEntityList.collect{
+                        dailyAdapter.submitList(it)
+                    }
                 }
             }
-        }
-        viewModel.dailyRoutineEntityListLiveData.observe(viewLifecycleOwner){
-            dailyAdapter.submitList(it)
         }
     }
 }
