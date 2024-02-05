@@ -9,9 +9,6 @@ fun getTodayDate(): Int {
     return LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd")).toInt()
 }
 
-
-
-
 fun getTodayDayOfWeekFormatedKorean(): String  {
     return LocalDateTime.now().dayOfWeek.getDisplayName(TextStyle.NARROW, Locale.KOREAN)
 }
