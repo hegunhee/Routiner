@@ -63,9 +63,4 @@ abstract class BaseDialog<T : ViewDataBinding>(@LayoutRes private val layoutResI
             window?.setLayout(x,y)
         }
     }
-
-    companion object {
-        private const val WIDTH_PERCENT = 0.8
-        private const val HEIGHT_PERCENT = 0.4
-    }
 }
