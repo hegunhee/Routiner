@@ -1,6 +1,6 @@
 plugins {
     id("android.library.convention")
-    id("android.hilt")
+    id("android.routiner.hilt")
 }
 
 android {

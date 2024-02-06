@@ -1,5 +1,6 @@
 plugins {
     `kotlin-dsl`
+    `kotlin-dsl-precompiled-script-plugins`
 }
 
 java {
@@ -18,8 +19,8 @@ gradlePlugin{
             implementationClass = "com.example.convention.AndroidLibraryConventionPlugin"
         }
         register("androidHilt"){
-            id = "android.hilt"
-            implementationClass = "com.example.convention.AndroidHiltConventionPlugin"
+            id = "android.routiner.hilt"
+            implementationClass = "com.example.convention.project.HiltKotlinPlugin"
         }
         register("androidApplication"){
             id = "android.application"

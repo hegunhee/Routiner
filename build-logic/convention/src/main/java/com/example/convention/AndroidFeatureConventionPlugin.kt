@@ -13,7 +13,7 @@ class AndroidFeatureConventionPlugin : Plugin<Project> {
         with(target){
             with(pluginManager){
                 apply("android.library.convention")
-                apply("android.hilt")
+                apply("android.routiner.hilt")
             }
             extensions.configure<LibraryExtension>{
                 defaultConfig{
