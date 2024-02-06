@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-
+    namespace = "com.hegunhee.common"
 }
 
 dependencies {

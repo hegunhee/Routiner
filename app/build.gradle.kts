@@ -3,6 +3,7 @@ plugins {
 }
 
 android {
+    namespace = "com.hegunhee.routiner"
     defaultConfig {
         applicationId = "com.hegunhee.routiner"
         versionCode = (5)

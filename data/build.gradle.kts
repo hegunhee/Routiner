@@ -4,6 +4,7 @@ plugins {
 }
 
 android {
+    namespace = "com.example.data"
     buildTypes {
         release {
             isMinifyEnabled = true
