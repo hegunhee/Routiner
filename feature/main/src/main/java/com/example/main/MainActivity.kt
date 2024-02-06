@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             openGuideDialog()
         }
         initActionBar()
-        setNavigation()
+        initNavigation()
     }
 
     private fun initActionBar() = with(binding) {
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun setNavigation() = with(binding) {
+    private fun initNavigation() = with(binding) {
         (supportFragmentManager.findFragmentById(R.id.fragment_container) as NavHostFragment).let {
             val navController = it.navController
             navView.setupWithNavController(navController)

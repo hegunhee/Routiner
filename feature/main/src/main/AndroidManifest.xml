@@ -3,7 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <application>
-
         <activity
             android:name="MainActivity"
             android:exported="true">
@@ -14,5 +13,4 @@
             </intent-filter>
         </activity>
     </application>
-
 </manifest>
