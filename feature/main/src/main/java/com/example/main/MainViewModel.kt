@@ -22,10 +22,10 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     init {
-        checkDate()
+        checkDayFirstOpen()
     }
 
-    private fun checkDate() = viewModelScope.launch(Dispatchers.IO) {
+    private fun checkDayFirstOpen() = viewModelScope.launch(Dispatchers.IO) {
         val currentLoadedDate = getCurrentDateUseCase()
         if (currentLoadedDate != getTodayDate()) {
             insertAllDailyRoutineFromRepeatRoutineUseCase(getTodayDayOfWeekFormatedKorean())

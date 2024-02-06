@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.example.main.R
 import com.example.main.databinding.DialogGuideBinding
 import com.hegunhee.common.base.BaseDialog
@@ -23,8 +25,8 @@ class GuideDialogFragment() : BaseDialog<DialogGuideBinding>(layoutResId = R.lay
     }
 
     private fun observeData() {
-        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
-            launch {
+        viewLifecycleOwner.lifecycleScope.launch{
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.navigateDismissDialog.collect{
                     Toast.makeText(requireActivity(), getString(R.string.notification_setting,if(viewModel.isAllowNotification.value) "승인" else "해제"), Toast.LENGTH_SHORT).show()
                     dismissAllowingStateLoss()
