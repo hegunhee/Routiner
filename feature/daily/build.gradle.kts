@@ -1,5 +1,5 @@
 plugins {
-    id("android.feature")
+    id("routiner.android.feature")
 }
 
 android {
