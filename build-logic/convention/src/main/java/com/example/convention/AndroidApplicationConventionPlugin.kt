@@ -4,10 +4,7 @@ import com.android.build.api.dsl.ApplicationExtension
 import com.example.convention.project.configureKotlinAndroid
 import org.gradle.api.Plugin
 import org.gradle.api.Project
-import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.dependencies
-import org.gradle.kotlin.dsl.getByType
 
 class AndroidApplicationConventionPlugin : Plugin<Project> {
     override fun apply(target: Project) {
@@ -18,7 +15,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 apply("android.hilt")
             }
             extensions.configure<ApplicationExtension>{
-                configureKotlinAndroid(this)
+                configureKotlinAndroid()
                 defaultConfig{
                     targetSdk = 33
                     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -26,17 +23,6 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
                 buildFeatures{
                     dataBinding = true
                     viewBinding = true
-                }
-                buildTypes {
-                    release {
-                        signingConfig = signingConfigs.getByName("debug")
-                        isMinifyEnabled = true
-                        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-                    }
-                    debug {
-                        isMinifyEnabled = false
-                        proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-                    }
                 }
             }
         }
