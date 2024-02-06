@@ -12,7 +12,7 @@ class AndroidApplicationConventionPlugin : Plugin<Project> {
             with(pluginManager){
                 apply("com.android.application")
                 apply("org.jetbrains.kotlin.android")
-                apply("android.hilt")
+                apply("android.routiner.hilt")
             }
             extensions.configure<ApplicationExtension>{
                 configureKotlinAndroid()
