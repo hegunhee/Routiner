@@ -18,9 +18,5 @@ gradlePlugin{
             id = "routiner.android.hilt"
             implementationClass = "com.example.convention.project.HiltKotlinPlugin"
         }
-        register("androidApplication"){
-            id = "android.application"
-            implementationClass = "com.example.convention.AndroidApplicationConventionPlugin"
-        }
     }
 }

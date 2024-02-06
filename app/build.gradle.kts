@@ -1,5 +1,5 @@
 plugins {
-    id("android.application")
+    id("routiner.android.application")
 }
 
 android {
