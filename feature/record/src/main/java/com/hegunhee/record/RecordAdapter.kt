@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Routine
 import com.hegunhee.record.databinding.RecordItemBinding
 
-class RecordAdapter : ListAdapter<Routine,RecordAdapter.RecordViewHolder>(diff_util){
+class RecordAdapter : ListAdapter<Routine,RecordAdapter.RecordViewHolder>(diffUtil){
     inner class RecordViewHolder(private val binding : RecordItemBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bindView(routine: Routine) = with(binding){
@@ -26,7 +26,7 @@ class RecordAdapter : ListAdapter<Routine,RecordAdapter.RecordViewHolder>(diff_u
 
 
     companion object {
-        val diff_util = object : DiffUtil.ItemCallback<Routine>(){
+        private val diffUtil = object : DiffUtil.ItemCallback<Routine>(){
             override fun areItemsTheSame(oldItem: Routine, newItem: Routine): Boolean {
                 return oldItem.id == newItem.id
             }

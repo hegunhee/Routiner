@@ -10,7 +10,7 @@ import com.hegunhee.daily.databinding.DailyItemBinding
 
 class DailyAdapter(
     val eventHandler : DailyActionHandler,
-) : ListAdapter<Routine,DailyAdapter.DailyViewHolder>(diff_util) {
+) : ListAdapter<Routine,DailyAdapter.DailyViewHolder>(diffUtil) {
 
     inner class DailyViewHolder(private val binding : DailyItemBinding) : RecyclerView.ViewHolder(binding.root){
 
@@ -32,7 +32,7 @@ class DailyAdapter(
 
 
     companion object {
-        val diff_util = object : DiffUtil.ItemCallback<Routine>(){
+        private val diffUtil = object : DiffUtil.ItemCallback<Routine>(){
             override fun areItemsTheSame(oldItem: Routine, newItem: Routine): Boolean {
                 return oldItem.id == newItem.id
             }
