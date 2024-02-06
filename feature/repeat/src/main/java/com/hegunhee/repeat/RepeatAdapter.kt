@@ -10,7 +10,7 @@ import com.hegunhee.repeat.databinding.RepeatRecordItemBinding
 
 class RepeatAdapter(
     val eventHandler : RepeatActionHandler,
-) : ListAdapter<RepeatRoutine,RepeatAdapter.RepeatViewHolder>(diff_util) {
+) : ListAdapter<RepeatRoutine,RepeatAdapter.RepeatViewHolder>(diffUtil) {
 
     inner class RepeatViewHolder(private val binding: RepeatRecordItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -32,7 +32,7 @@ class RepeatAdapter(
     }
 
     companion object {
-        val diff_util = object : DiffUtil.ItemCallback<RepeatRoutine>(){
+        private val diffUtil = object : DiffUtil.ItemCallback<RepeatRoutine>(){
             override fun areItemsTheSame(oldItem: RepeatRoutine, newItem: RepeatRoutine): Boolean {
                 return oldItem.text == newItem.text
             }

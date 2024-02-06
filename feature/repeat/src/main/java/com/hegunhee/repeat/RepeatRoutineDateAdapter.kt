@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.hegunhee.repeat.databinding.ItemRoutineDateBinding
 
-class RepeatRoutineDateAdapter() : ListAdapter<String, RepeatRoutineDateAdapter.DateViewHolder>(diff_util) {
+class RepeatRoutineDateAdapter() : ListAdapter<String, RepeatRoutineDateAdapter.DateViewHolder>(diffUtil) {
 
     inner class DateViewHolder(private val binding : ItemRoutineDateBinding) : ViewHolder(binding.root) {
 
@@ -25,7 +25,7 @@ class RepeatRoutineDateAdapter() : ListAdapter<String, RepeatRoutineDateAdapter.
     }
 
     companion object {
-        val diff_util = object : DiffUtil.ItemCallback<String>() {
+        private val diffUtil = object : DiffUtil.ItemCallback<String>() {
             override fun areItemsTheSame(oldItem: String, newItem: String): Boolean {
                 return oldItem == newItem
             }
