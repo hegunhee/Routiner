@@ -1,29 +1,58 @@
 package com.example.convention.project
 
-import com.android.build.api.dsl.CommonExtension
+import com.example.convention.setup.androidExtension
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
-import org.gradle.api.plugins.ExtensionAware
-import org.jetbrains.kotlin.gradle.dsl.KotlinJvmOptions
+import org.gradle.kotlin.dsl.provideDelegate
+import org.gradle.kotlin.dsl.withType
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-internal fun Project.configureKotlinAndroid(
-    commonExtensions : CommonExtension<*,*,*,*>
-){
-    commonExtensions.apply {
+
+internal fun Project.configureKotlinAndroid() {
+    // Plugins
+    pluginManager.apply("org.jetbrains.kotlin.android")
+
+    // Android settings
+    androidExtension.apply {
         compileSdk = 33
 
-        defaultConfig{
+        defaultConfig {
             minSdk = 26
         }
-        compileOptions{
+
+        compileOptions {
             sourceCompatibility = JavaVersion.VERSION_17
             targetCompatibility = JavaVersion.VERSION_17
         }
-        kotlinOptions{
-            jvmTarget = JavaVersion.VERSION_17.toString()
+
+        buildTypes {
+            getByName("release") {
+                isMinifyEnabled = false
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
+            }
+            getByName("debug") {
+                isMinifyEnabled = false
+                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            }
         }
     }
+    configureKotlin()
 }
-fun CommonExtension<*,*,*,*>.kotlinOptions(block : KotlinJvmOptions.() -> Unit){
-    (this as ExtensionAware).extensions.configure("kotlinOptions",block)
+
+internal fun Project.configureKotlin() {
+    tasks.withType<KotlinCompile>().configureEach {
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_17.toString()
+            // Treat all Kotlin warnings as errors (disabled by default)
+            // Override by setting warningsAsErrors=true in your ~/.gradle/gradle.properties
+            val warningsAsErrors: String? by project
+            allWarningsAsErrors = warningsAsErrors.toBoolean()
+            freeCompilerArgs = freeCompilerArgs + listOf(
+                "-opt-in=kotlin.RequiresOptIn",
+            )
+        }
+    }
 }
