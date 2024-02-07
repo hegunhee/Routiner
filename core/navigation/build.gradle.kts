@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hegunhee.routiner.mylibrary"
+    namespace = "com.hegunhee.routiner.navigation"
 }
 
 dependencies {

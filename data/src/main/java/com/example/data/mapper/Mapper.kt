@@ -3,7 +3,7 @@ package com.example.data.mapper
 import com.example.data.entity.CategoryEntity
 import com.example.data.entity.*
 import com.example.domain.model.*
-import com.hegunhee.routiner.mylibrary.*
+import com.hegunhee.routiner.util.*
 
 fun Category.toCategoryEntity() : CategoryEntity =
     CategoryEntity(name)

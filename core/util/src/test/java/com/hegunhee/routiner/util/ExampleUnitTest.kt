@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.mylibrary
+package com.hegunhee.routiner.util
 
 import org.junit.Test
 

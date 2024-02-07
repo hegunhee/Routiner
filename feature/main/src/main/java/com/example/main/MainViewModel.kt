@@ -5,8 +5,8 @@ import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.date.*
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.example.domain.usecase.routine.InsertAllDailyRoutineFromRepeatRoutineUseCase
-import com.hegunhee.routiner.mylibrary.getTodayDate
-import com.hegunhee.routiner.mylibrary.getTodayDayOfWeekFormatedKorean
+import com.hegunhee.routiner.util.getTodayDate
+import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

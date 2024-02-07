@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.mylibrary
+package com.hegunhee.routiner.navigation
 
 import org.junit.Test
 
