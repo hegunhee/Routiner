@@ -27,6 +27,7 @@ android {
 
 dependencies{
     implementation(project(":domain"))
+    implementation(project(":core:util"))
     val libs = project.extensions.libs
 
     implementation(libs.findLibrary("core-ktx").get())
