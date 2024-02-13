@@ -37,8 +37,12 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.onClickInsertRoutineButton.collect{
-                        InsertRoutineDialogFragment().show(childFragmentManager,InsertRoutineDialogFragment.TAG)
+                    viewModel.navigationActions.collect {
+                        when(it) {
+                            DailyNavigationAction.InsertRoutine -> {
+                                InsertRoutineDialogFragment().show(childFragmentManager,InsertRoutineDialogFragment.TAG)
+                            }
+                        }
                     }
                 }
                 launch {
