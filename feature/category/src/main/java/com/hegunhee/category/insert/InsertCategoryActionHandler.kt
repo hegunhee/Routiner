@@ -1,6 +1,6 @@
 package com.hegunhee.category.insert
 
-interface InsertCategoryDialogActionHandler {
+interface InsertCategoryActionHandler {
 
     fun cancelCategory()
 
