@@ -16,7 +16,7 @@ import kotlinx.coroutines.launch
 @AndroidEntryPoint
 class InsertCategoryDialogFragment : BaseDialog<DialogInsertCategoryBinding>(R.layout.dialog_insert_category, widthPercent = 0.6, heightPercent = 0.2) {
 
-    private val viewModel : InsertCategoryDialogViewModel by viewModels()
+    private val viewModel : InsertCategoryViewModel by viewModels()
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,7 +29,12 @@ class InsertCategoryDialogFragment : BaseDialog<DialogInsertCategoryBinding>(R.l
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
-                    viewModel.dismissDialog.collect{
+                    viewModel.navigationActions.collect{
+                        when(it) {
+                            InsertCategoryNavigationAction.DismissDialog -> {
+                                dismissAllowingStateLoss()
+                            }
+                        }
                         dismissAllowingStateLoss()
                     }
                 }
