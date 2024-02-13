@@ -2,10 +2,10 @@ package com.example.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Gravity
 import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.view.GravityCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.main.databinding.ActivityMainBinding
@@ -54,7 +54,7 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
-                binding.drawerLayout.openDrawer(Gravity.LEFT)
+                binding.drawerLayout.openDrawer(GravityCompat.START)
             }
         }
         return super.onOptionsItemSelected(item)
