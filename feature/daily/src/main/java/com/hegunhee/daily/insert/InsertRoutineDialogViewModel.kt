@@ -23,12 +23,6 @@ class InsertRoutineDialogViewModel @Inject constructor(
 
     val routineText : MutableStateFlow<String> = MutableStateFlow<String>("")
 
-    private val _navigateActions = MutableSharedFlow<InsertRoutineNavigationAction>()
-    val navigateActions : SharedFlow<InsertRoutineNavigationAction> = _navigateActions.asSharedFlow()
-
-    private val _toastMessage : MutableSharedFlow<String> = MutableSharedFlow<String>()
-    val toastMessage : SharedFlow<String> = _toastMessage.asSharedFlow()
-
     private val _selectedCategory : MutableStateFlow<Category> = MutableStateFlow(Category(""))
     private val selectedCategory : StateFlow<Category> = _selectedCategory.asStateFlow()
 
@@ -50,8 +44,11 @@ class InsertRoutineDialogViewModel @Inject constructor(
         initialValue = emptyList()
     )
 
-    private val emptyMessage = "입력이 비어있습니다."
-    private val sameRoutineMessage = "중복된 루틴입니다."
+    private val _navigateActions = MutableSharedFlow<InsertRoutineNavigationAction>()
+    val navigateActions : SharedFlow<InsertRoutineNavigationAction> = _navigateActions.asSharedFlow()
+
+    private val _toastMessage : MutableSharedFlow<String> = MutableSharedFlow<String>()
+    val toastMessage : SharedFlow<String> = _toastMessage.asSharedFlow()
 
     override fun cancelRoutine() {
         viewModelScope.launch {
@@ -63,12 +60,12 @@ class InsertRoutineDialogViewModel @Inject constructor(
         viewModelScope.launch {
             val routineText = routineText.value
             if (routineText.isBlank()) {
-                _toastMessage.emit(emptyMessage)
+                _toastMessage.emit("입력이 비어있습니다.")
                 return@launch
             }
             getRoutineListByDateUseCase(getTodayDate()).let { routineList ->
                 if(routineList.map(Routine::text).contains(routineText)){
-                    _toastMessage.emit(sameRoutineMessage)
+                    _toastMessage.emit("중복된 루틴입니다.")
                 }else{
                     val categoryText = if(selectedCategory.value.isSelected){
                         selectedCategory.value.name
