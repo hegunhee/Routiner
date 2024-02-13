@@ -20,7 +20,7 @@
             android:gravity="center"
             android:text="루틴을 적어주세요"
             android:textColor="@color/black"
-            android:textSize="20dp"
+            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

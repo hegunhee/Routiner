@@ -32,17 +32,6 @@ class DailyViewModel @Inject constructor(
         initialValue = emptyList()
     )
 
-    val isDailyRoutineEmpty: StateFlow<Boolean> = dailyRoutineEntityList.map{
-        dailyRoutineEntityList.value.isEmpty()
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(500L),
-        initialValue = true
-    )
-
-    private val _onClickInsertRoutineButton : MutableSharedFlow<Unit> = MutableSharedFlow()
-    val onClickInsertRoutineButton : SharedFlow<Unit> = _onClickInsertRoutineButton.asSharedFlow()
-
     val dailyRoutineProgressText : StateFlow<String> = dailyRoutineEntityList.map {
         return@map if(it.isEmpty()){
             "0 / 0"
@@ -55,9 +44,20 @@ class DailyViewModel @Inject constructor(
         initialValue = "0 / 0"
     )
 
+    val isDailyRoutineEmpty: StateFlow<Boolean> = dailyRoutineEntityList.map{
+        dailyRoutineEntityList.value.isEmpty()
+    }.stateIn(
+        scope = viewModelScope,
+        started = SharingStarted.WhileSubscribed(500L),
+        initialValue = true
+    )
+
+    private val _navigationActions : MutableSharedFlow<DailyNavigationAction> = MutableSharedFlow()
+    val navigationActions : SharedFlow<DailyNavigationAction> = _navigationActions.asSharedFlow()
+
     override fun onClickRoutineInsert() {
         viewModelScope.launch{
-            _onClickInsertRoutineButton.emit(Unit)
+            _navigationActions.emit(DailyNavigationAction.InsertRoutine)
         }
     }
 

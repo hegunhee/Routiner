@@ -40,7 +40,6 @@ class DailyAdapter(
             override fun areContentsTheSame(oldItem: Routine, newItem: Routine): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 

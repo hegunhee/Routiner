@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="오늘 등록된 루틴이 없습니다.\n 루틴을 등록해주세요"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -71,7 +71,6 @@
             android:id="@+id/floating_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:elevation="20dp"
             android:layout_marginEnd="30dp"
             android:layout_marginBottom="30dp"
             android:onClick="@{() -> viewmodel.onClickRoutineInsert()}"
@@ -96,12 +95,10 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="30dp"
                 android:text="@{viewmodel.dailyRoutineProgressText.toString()}"
-                android:textSize="30dp"
+                android:textSize="30sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="0 / 0"
-
-                />
+                tools:text="0 / 0" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
