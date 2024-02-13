@@ -29,9 +29,6 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
 
     val repeatRoutineText : MutableStateFlow<String> = MutableStateFlow<String>("")
 
-    private val _navigationActions : MutableSharedFlow<InsertRepeatRoutineNavigationAction> = MutableSharedFlow<InsertRepeatRoutineNavigationAction>()
-    val navigationActions : SharedFlow<InsertRepeatRoutineNavigationAction> = _navigationActions.asSharedFlow()
-
     private val _selectedDayOfWeekList : MutableStateFlow<List<String>> = MutableStateFlow(emptyList())
     private val selectedDayOfWeekList : StateFlow<List<String>> = _selectedDayOfWeekList.asStateFlow()
 
@@ -66,11 +63,12 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
         initialValue = emptyList()
     )
 
+    private val _navigationActions : MutableSharedFlow<InsertRepeatRoutineNavigationAction> = MutableSharedFlow<InsertRepeatRoutineNavigationAction>()
+    val navigationActions : SharedFlow<InsertRepeatRoutineNavigationAction> = _navigationActions.asSharedFlow()
+
     private val _toastMessage : MutableSharedFlow<String> = MutableSharedFlow<String>()
     val toastMessage : SharedFlow<String> = _toastMessage.asSharedFlow()
 
-    private val emptyRepeatRoutineMessage = "입력이 비어있습니다."
-    private val emptyDayOfWeekMessage = "날짜 정보가 비어있습니다."
 
     override fun cancelRepeatRoutine() {
         viewModelScope.launch {
@@ -83,11 +81,11 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
         val currentDayOfWeekList = dayOfWeekList.value.filter { it.isSelected }.map { it.date }
         viewModelScope.launch {
             if(repeatRoutineText.isBlank()){
-                _toastMessage.emit(emptyRepeatRoutineMessage)
+                _toastMessage.emit("입력이 비어있습니다.")
                 return@launch
             }
             if(currentDayOfWeekList.isEmpty()) {
-                _toastMessage.emit(emptyDayOfWeekMessage)
+                _toastMessage.emit("날짜 정보가 비어있습니다.")
                 return@launch
             }
             val categoryText = if(selectedCategory.value.isSelected){
