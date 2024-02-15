@@ -1,3 +1,32 @@
+Routiner 1.3.2 release note
+=========================
+최소 sdk 버전 수정으로 android 8이하 버전에서 설치 불가능, android 12 이상 버전에서 첫 실행시 Guide Dialog가 두번 나오는 현상 수정
+
+- 오류 수정
+android 12 이상 버전에서 첫 실행시 Guide Dialog가 두번 나오는 현상 수정
+
+- 글자 크기 수정
+글자 크기 단위를 dp에서 sp로 변경해 해상도에 따라 글자 크기가 변경됨
+
+- 성능 개선
+앱이 백그라운드 상태에서 데이터를 수집하던걸 방지해
+메모리 누수가 방지됩니다.
+
+개발자 노트
+---
+LiveData 레거시를 모두 걷어냈습니다.
+https://github.com/hegunhee/Routiner/pull/46
+
+android 12 이상 버전에서 첫 실행시 Guide Dialog가 두번 나오는 현상 수정
+https://github.com/hegunhee/Routiner/pull/51
+
+build-logic 모듈을 리팩토링하여 feature모듈만의 gradle 파일 생성
+android 모듈용 library 모듈 생성
+https://github.com/hegunhee/Routiner/pull/47
+
+navigation, util 코드만을 위한 모듈 생성
+https://github.com/hegunhee/Routiner/pull/48
+
 Routiner 1.3.1 release note
 =========================
 접근성 개선, 앱 크기 축소 및 난독화, android 8.0 이전 버전에서 간헐적으로 앱이 죽는 현상 수정
