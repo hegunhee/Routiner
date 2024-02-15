@@ -6,11 +6,15 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.main.databinding.ActivityMainBinding
 import com.example.main.guide.GuideDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -25,7 +29,7 @@ class MainActivity : AppCompatActivity() {
             this.viewmodel = viewModel
         }
         setContentView(binding.root)
-        if(viewModel.isAppFirstOpen()){
+        if(viewModel.isAppFirstOpen() && !viewModel.isGuideDialogOpen()) {
             openGuideDialog()
         }
         initActionBar()

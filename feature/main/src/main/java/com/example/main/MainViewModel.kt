@@ -9,6 +9,7 @@ import com.hegunhee.routiner.util.getTodayDate
 import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 @HiltViewModel
@@ -20,6 +21,8 @@ class MainViewModel @Inject constructor(
     private val insertAllDailyRoutineFromRepeatRoutineUseCase: InsertAllDailyRoutineFromRepeatRoutineUseCase,
     private val isAppFirstOpenUseCase: IsAppFirstOpenUseCase,
 ) : ViewModel() {
+
+    private val isGuideDialogOpen : MutableStateFlow<Boolean> = MutableStateFlow(false)
 
     init {
         checkDayFirstOpen()
@@ -39,5 +42,14 @@ class MainViewModel @Inject constructor(
 
     fun isAppFirstOpen() : Boolean {
         return isAppFirstOpenUseCase()
+    }
+
+    fun isGuideDialogOpen() : Boolean {
+        return if(isGuideDialogOpen.value) {
+            true
+        }else {
+            isGuideDialogOpen.value = true
+            false
+        }
     }
 }
