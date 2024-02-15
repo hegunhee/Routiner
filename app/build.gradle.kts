@@ -6,8 +6,13 @@ android {
     namespace = "com.hegunhee.routiner"
     defaultConfig {
         applicationId = "com.hegunhee.routiner"
-        versionCode = (5)
-        versionName = "1.3.1"
+        versionCode = (6)
+        versionName = "1.3.2"
+    }
+    buildTypes {
+        getByName("release") {
+            signingConfig = signingConfigs.getByName("debug")
+        }
     }
 }
 dependencies {
