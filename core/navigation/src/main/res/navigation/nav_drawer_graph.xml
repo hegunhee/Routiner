@@ -8,7 +8,14 @@
     <fragment
         android:id="@+id/daily"
         android:name="com.hegunhee.daily.DailyFragment"
-        android:label="DailyFragment" />
+        android:label="DailyFragment" >
+
+
+        <action
+            android:id="@+id/daily_to_insertRoutine"
+            app:destination="@id/insertRoutine" />
+    </fragment>
+
     <fragment
         android:id="@+id/record"
         android:name="com.hegunhee.record.RecordFragment"
@@ -21,6 +28,12 @@
         android:id="@+id/repeat"
         android:name="com.hegunhee.repeat.RepeatFragment"
         android:label="RepeatFragment" />
+
+    <fragment
+        android:id="@+id/insertRoutine"
+        android:name="com.hegunhee.routiner.insertRoutine.InsertRoutineFragment"
+        android:label="InsertRoutineFragment"
+        />
 
 
 </navigation>
