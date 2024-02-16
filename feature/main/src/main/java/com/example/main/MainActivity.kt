@@ -59,12 +59,4 @@ class MainActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    override fun onBackPressed() {
-        if (binding.drawerLayout.isOpen) {
-            binding.drawerLayout.close()
-        } else {
-            finish()
-        }
-    }
 }
