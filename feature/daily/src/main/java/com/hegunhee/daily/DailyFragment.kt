@@ -7,9 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.hegunhee.common.base.BaseFragment
 import com.hegunhee.daily.databinding.FragmentDailyBinding
-import com.hegunhee.daily.insert.InsertRoutineDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -40,7 +40,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                     viewModel.navigationActions.collect {
                         when(it) {
                             DailyNavigationAction.InsertRoutine -> {
-                                InsertRoutineDialogFragment().show(childFragmentManager,InsertRoutineDialogFragment.TAG)
+                                findNavController().navigate(com.hegunhee.routiner.navigation.R.id.daily_to_insertRoutine)
                             }
                         }
                     }
