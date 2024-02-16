@@ -24,6 +24,7 @@ dependencies {
     implementation(project(":feature:daily"))
     implementation(project(":feature:record"))
     implementation(project(":feature:repeat"))
+    implementation(project(":feature:insertRoutine"))
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)
 
