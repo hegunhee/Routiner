@@ -7,6 +7,8 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -47,9 +49,15 @@ class InsertRoutineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        closeDrawer()
         setActionBarTitle()
         setEditorActionListener()
         observeData()
+    }
+
+    private fun closeDrawer() {
+        val drawerLayout : DrawerLayout? = activity?.findViewById(com.example.main.R.id.drawerLayout)
+        drawerLayout?.closeDrawer(GravityCompat.START)
     }
 
     private fun setActionBarTitle() {
@@ -85,7 +93,7 @@ class InsertRoutineFragment : Fragment() {
                     }
                 }
                 launch {
-                    viewModel.toastMessage.collect{ message ->
+                    viewModel.toastMessage.collect { message ->
                         Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
                     }
                 }

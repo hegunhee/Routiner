@@ -6,6 +6,7 @@ import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout.DrawerListener
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.main.databinding.ActivityMainBinding
