@@ -43,6 +43,7 @@ class InsertRoutineFragment : Fragment() {
                     GridLayoutManager(requireContext(), 3, GridLayoutManager.HORIZONTAL, false)
                 adapter = categoryAdapter
             }
+            lifecycleOwner = viewLifecycleOwner
         }
         return root
     }

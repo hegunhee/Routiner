@@ -101,7 +101,6 @@ class InsertRoutineViewModel @Inject constructor(
         viewModelScope.launch {
             insertCategoryUseCase(Category(name = query))
         }
-
     }
 
     override fun onSelectCategory(categoryText: String, isCategorySelected: Boolean) {
