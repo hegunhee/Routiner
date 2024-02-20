@@ -1,3 +1,6 @@
 package com.hegunhee.routiner.insertRoutine.repeat
 
-sealed interface InsertRepeatRoutineNavigationAction
+sealed interface InsertRepeatRoutineNavigationAction {
+
+    object InsertRepeatRoutine : InsertRepeatRoutineNavigationAction
+}

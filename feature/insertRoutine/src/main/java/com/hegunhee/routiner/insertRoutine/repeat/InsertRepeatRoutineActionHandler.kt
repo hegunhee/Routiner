@@ -1,4 +1,7 @@
 package com.hegunhee.routiner.insertRoutine.repeat
 
-class InsertRepeatRoutineActionHandler {
+import com.hegunhee.routiner.insertRoutine.InsertRoutineActionHandler
+
+interface InsertRepeatRoutineActionHandler : InsertRoutineActionHandler{
+
 }
