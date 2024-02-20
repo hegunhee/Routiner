@@ -92,6 +92,10 @@ class DefaultRepository @Inject constructor(
         return localDataSource.getAllCategoryListByFlow().map { it.toCategory() }
     }
 
+    override suspend fun removeCategory(category: Category) {
+        localDataSource.removeCategory(category.toCategoryEntity())
+    }
+
     override suspend fun getCurrentDate(): Int {
         return localDataSource.getCurrentDate()
     }

@@ -1,6 +1,7 @@
 package com.example.data.db.dao
 
 import androidx.room.Dao
+import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
@@ -15,4 +16,7 @@ interface CategoryDao {
 
     @Query("SELECT * FROM CategoryEntity")
     fun getAllCategoryListByFlow() : Flow<List<CategoryEntity>>
+
+    @Delete
+    suspend fun removeCategory(categoryEntity : CategoryEntity)
 }
