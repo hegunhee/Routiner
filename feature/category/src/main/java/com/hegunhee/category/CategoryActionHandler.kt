@@ -1,6 +1,10 @@
 package com.hegunhee.category
 
+import com.example.domain.model.Category
+
 interface CategoryActionHandler {
 
-    fun onClickCategory(categoryText : String,isCategorySelected : Boolean)
+    fun onSelectCategory(categoryText : String, isCategorySelected : Boolean)
+
+    fun onCategoryRemoveClick(category : Category)
 }

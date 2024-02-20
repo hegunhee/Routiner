@@ -19,40 +19,51 @@
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="wrap_content"
         android:layout_height="48dp"
+        android:layout_marginVertical="5dp"
         android:layout_marginEnd="2dp"
         android:background="@drawable/round_shape_20dp"
         android:backgroundTint="@color/teal_200"
         android:minWidth="48dp"
-        android:onClick="@{() -> actionHandler.onClickCategory(category.name,category.isSelected)}">
-
-        <ImageView
-            android:id="@+id/select_image_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="2dp"
-            android:onClick="@{() -> actionHandler.onClickCategory(category.name,category.isSelected)}"
-            android:src="@drawable/ic_check_circle_24"
-            android:visibility="@{category.selected ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+        android:onClick="@{() -> actionHandler.onSelectCategory(category.name,category.isSelected)}">
 
         <TextView
-            android:id="@+id/category_text"
+            android:id="@+id/categoryText"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
             android:gravity="center"
-            android:inputType="text"
             android:minWidth="48dp"
-            android:onClick="@{() -> actionHandler.onClickCategory(category.name,category.isSelected)}"
+            android:onClick="@{() -> actionHandler.onSelectCategory(category.name,category.isSelected)}"
             android:text="@{category.name}"
             android:textColor="@color/black"
             android:textSize="@dimen/category_text_size"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/select_image_view"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:text="영어공부" />
+
+        <ImageView
+            android:id="@+id/selectImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="2dp"
+            android:onClick="@{() -> actionHandler.onSelectCategory(category.name,category.isSelected)}"
+            android:src="@drawable/ic_check_circle_24"
+            android:visibility="@{category.selected ? View.VISIBLE : View.INVISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/categoryText"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/removeButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@drawable/ic_remove_circle_24"
+            android:onClick="@{() -> actionHandler.onCategoryRemoveClick(category)}"
+            app:layout_constraintBottom_toBottomOf="@id/categoryText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/selectImageView"
+            app:layout_constraintTop_toTopOf="@id/categoryText" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
