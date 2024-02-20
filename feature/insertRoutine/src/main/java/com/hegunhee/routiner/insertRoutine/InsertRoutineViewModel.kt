@@ -3,9 +3,13 @@ package com.hegunhee.routiner.insertRoutine
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.model.Category
+import com.example.domain.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.category.InsertCategoryUseCase
+import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
+import com.example.domain.usecase.routine.InsertRoutineUseCase
 import com.hegunhee.category.CategoryActionHandler
+import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,6 +26,8 @@ import javax.inject.Inject
 @HiltViewModel
 class InsertRoutineViewModel @Inject constructor(
     private val getAllCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase,
+    private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
+    private val insertRoutineUseCase: InsertRoutineUseCase,
     private val insertCategoryUseCase: InsertCategoryUseCase
 ) : ViewModel(), InsertRoutineActionHandler, CategoryActionHandler {
 
@@ -51,12 +57,32 @@ class InsertRoutineViewModel @Inject constructor(
         initialValue = emptyList()
     )
 
+    private val _toastMessage : MutableSharedFlow<String> = MutableSharedFlow()
+    val toastMessage : SharedFlow<String> = _toastMessage.asSharedFlow()
+
+
     private val _navigationActions : MutableSharedFlow<InsertRoutineNavigationAction> = MutableSharedFlow()
     val navigationActions : SharedFlow<InsertRoutineNavigationAction> = _navigationActions.asSharedFlow()
 
     override fun onInsertRoutineButtonClick() {
         viewModelScope.launch {
-            _navigationActions.emit(InsertRoutineNavigationAction.InsertRoutine)
+            val routineText = routineQuery.value
+            if(routineText.isBlank()) {
+                return@launch
+            }
+            getRoutineListByDateUseCase(getTodayDate()).let { routineList ->
+                if(routineList.map(Routine::text).contains(routineText)){
+                    _toastMessage.emit("중복된 루틴입니다.")
+                }else{
+                    val categoryText = if(selectedCategory.value.isSelected){
+                        selectedCategory.value.name
+                    }else{
+                        ""
+                    }
+                    insertRoutineUseCase(Routine(date= getTodayDate(),text = routineText, category = categoryText))
+                    _navigationActions.emit(InsertRoutineNavigationAction.InsertRoutine)
+                }
+            }
         }
     }
 
@@ -64,6 +90,11 @@ class InsertRoutineViewModel @Inject constructor(
         val query = categoryQuery.value
         if(query.isBlank()) {
             return
+        }
+        if(categoryList.value.map(Category::name).contains(query)) {
+            viewModelScope.launch {
+                _toastMessage.emit("이미 존재하는 카테고리입니다.")
+            }
         }
         viewModelScope.launch {
             insertCategoryUseCase(Category(name = query))
