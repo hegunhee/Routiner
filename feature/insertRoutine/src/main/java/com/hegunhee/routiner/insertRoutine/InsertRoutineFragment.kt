@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -44,11 +45,23 @@ class InsertRoutineFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setActionBarTitle()
+        setEditorActionListener()
         observeData()
     }
 
     private fun setActionBarTitle(){
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "루틴 추가"
+    }
+
+    private fun setEditorActionListener() {
+        viewDataBinding.categoryAddEditText.setOnEditorActionListener { _, actionId, _ ->
+            return@setOnEditorActionListener if(actionId == EditorInfo.IME_ACTION_DONE) {
+                viewModel.onCategoryAddClick()
+                true
+            }else {
+                false
+            }
+        }
     }
 
     private fun observeData() {

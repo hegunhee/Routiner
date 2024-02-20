@@ -63,6 +63,30 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/categoryDescFirst" />
 
+        <EditText
+            android:id="@+id/categoryAddEditText"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:text="@={viewModel.categoryQuery}"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:maxLines="1"
+            app:layout_constraintEnd_toStartOf="@id/categoryAddButton"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categoryRecyclerView" />
+
+        <ImageButton
+            android:id="@+id/categoryAddButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@drawable/ic_add_circle"
+            android:onClick="@{() -> viewModel.onCategoryAddClick()}"
+            app:layout_constraintBottom_toBottomOf="@id/categoryAddEditText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/categoryAddEditText" />
+
         <Button
             android:id="@+id/saveButton"
             android:layout_width="0dp"
