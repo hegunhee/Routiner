@@ -89,6 +89,10 @@ class DefaultLocalDataSource @Inject constructor(
         return categoryDao.getAllCategoryListByFlow()
     }
 
+    override suspend fun removeCategory(categoryEntity: CategoryEntity) {
+        categoryDao.removeCategory(categoryEntity)
+    }
+
     override suspend fun getCurrentDate(): Int {
         return sharedPreferenceManager.getCurrentDate()
     }
