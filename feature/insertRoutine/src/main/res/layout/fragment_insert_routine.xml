@@ -14,25 +14,65 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="10dp"
         tools:targetApi="33">
 
-        <TextView
-            android:id="@+id/testText"
-            android:layout_width="wrap_content"
+        <EditText
+            android:id="@+id/routineQuery"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="InsertRoutine"
+            android:hint="루틴을 입력해주세요"
+            android:inputType="text"
+            android:maxLines="1"
+            android:text="@={viewModel.routineQuery}"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/categoryDescFirst"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="카테고리를 선택해주세요"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/routineQuery" />
+
+        <TextView
+            android:id="@+id/categoryDescSecond"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="3dp"
+            android:text="(선택)"
+            android:textSize="13sp"
+            android:textStyle="bold"
+            app:layout_constraintBaseline_toBaselineOf="@id/categoryDescFirst"
+            app:layout_constraintBottom_toBottomOf="@id/categoryDescFirst"
+            app:layout_constraintStart_toEndOf="@id/categoryDescFirst" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoryRecyclerView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/categoryDescFirst" />
 
         <Button
             android:id="@+id/saveButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:onClick="@{() -> viewModel.onInsertRoutineButtonClick()}"
             android:padding="10dp"
+            android:text="등록하기"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="등록하기"/>
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
