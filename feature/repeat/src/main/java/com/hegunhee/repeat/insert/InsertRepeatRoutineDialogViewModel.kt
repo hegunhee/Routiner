@@ -7,6 +7,7 @@ import com.example.domain.model.DayOfWeek
 import com.example.domain.model.RepeatRoutine
 import com.example.domain.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
+import com.example.domain.usecase.category.RemoveCategoryUseCase
 import com.example.domain.usecase.date.GetSortedDayOfWeekListUseCase
 import com.example.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
 import com.example.domain.usecase.routine.InsertRoutineUseCase
@@ -24,7 +25,8 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
     private val getAllCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase,
     private val insertRoutineUseCase: InsertRoutineUseCase,
     private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase,
-    private val getSortedDayOfWeekListUseCase: GetSortedDayOfWeekListUseCase
+    private val getSortedDayOfWeekListUseCase: GetSortedDayOfWeekListUseCase,
+    private val removeCategoryUseCase: RemoveCategoryUseCase
 ) : ViewModel() , InsertRepeatRoutineActionHandler,CategoryActionHandler, DayOfWeekActionHandler {
 
     val repeatRoutineText : MutableStateFlow<String> = MutableStateFlow<String>("")
@@ -108,9 +110,18 @@ class InsertRepeatRoutineDialogViewModel @Inject constructor(
         }
     }
 
-    override fun onClickCategory(categoryText: String, isCategorySelected: Boolean) {
+    override fun onSelectCategory(categoryText: String, isCategorySelected: Boolean) {
         viewModelScope.launch {
             _selectedCategory.value = Category(categoryText,!isCategorySelected)
+        }
+    }
+
+    override fun onCategoryRemoveClick(category: Category) {
+        viewModelScope.launch {
+            removeCategoryUseCase(category)
+            if(selectedCategory.value.name == category.name) {
+                _selectedCategory.value = Category("")
+            }
         }
     }
 

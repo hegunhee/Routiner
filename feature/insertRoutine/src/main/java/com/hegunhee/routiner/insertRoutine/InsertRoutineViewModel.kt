@@ -6,6 +6,7 @@ import com.example.domain.model.Category
 import com.example.domain.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.category.InsertCategoryUseCase
+import com.example.domain.usecase.category.RemoveCategoryUseCase
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.example.domain.usecase.routine.InsertRoutineUseCase
 import com.hegunhee.category.CategoryActionHandler
@@ -28,7 +29,8 @@ class InsertRoutineViewModel @Inject constructor(
     private val getAllCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase,
     private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
     private val insertRoutineUseCase: InsertRoutineUseCase,
-    private val insertCategoryUseCase: InsertCategoryUseCase
+    private val insertCategoryUseCase: InsertCategoryUseCase,
+    private val removeCategoryUseCase: RemoveCategoryUseCase
 ) : ViewModel(), InsertRoutineActionHandler, CategoryActionHandler {
 
     val routineQuery : MutableStateFlow<String> = MutableStateFlow("")
@@ -102,9 +104,18 @@ class InsertRoutineViewModel @Inject constructor(
 
     }
 
-    override fun onClickCategory(categoryText: String, isCategorySelected: Boolean) {
+    override fun onSelectCategory(categoryText: String, isCategorySelected: Boolean) {
         viewModelScope.launch {
             _selectedCategory.value = Category(categoryText,!isCategorySelected)
+        }
+    }
+
+    override fun onCategoryRemoveClick(category: Category) {
+        viewModelScope.launch {
+            removeCategoryUseCase(category)
+            if(selectedCategory.value.name == category.name) {
+                _selectedCategory.value = Category("")
+            }
         }
     }
 }
