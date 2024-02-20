@@ -27,12 +27,21 @@
     <fragment
         android:id="@+id/repeat"
         android:name="com.hegunhee.repeat.RepeatFragment"
-        android:label="RepeatFragment" />
+        android:label="RepeatFragment" >
+        <action
+            android:id="@+id/repeat_to_insertRepeatRoutine"
+            app:destination="@id/insertRepeatRoutine" />
+    </fragment>
 
     <fragment
         android:id="@+id/insertRoutine"
         android:name="com.hegunhee.routiner.insertRoutine.InsertRoutineFragment"
-        android:label="InsertRoutineFragment"
+        android:label="InsertRoutineFragment" />
+
+    <fragment
+        android:id="@+id/insertRepeatRoutine"
+        android:name="com.hegunhee.routiner.insertRoutine.repeat.InsertRepeatRoutineFragment"
+        android:label="InsertRepeatRoutineFragment"
         />
 
 

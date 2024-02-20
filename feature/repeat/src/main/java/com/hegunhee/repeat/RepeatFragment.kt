@@ -8,11 +8,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import com.example.domain.model.RepeatRoutine
 import com.hegunhee.common.base.BaseFragment
 import com.hegunhee.repeat.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.repeat.databinding.FragmentRepeatBinding
-import com.hegunhee.repeat.insert.InsertRepeatRoutineDialogFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -45,7 +45,7 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                     viewModel.navigationActions.collect { action ->
                         when (action) {
                             RepeatNavigationAction.InsertRepeatRoutine -> {
-                                InsertRepeatRoutineDialogFragment().show(childFragmentManager, InsertRepeatRoutineDialogFragment.TAG)
+                                findNavController().navigate(com.hegunhee.routiner.navigation.R.id.repeat_to_insertRepeatRoutine)
                             }
                             is RepeatNavigationAction.ClickRepeatRoutine -> {
                                 clickAdapterItem(action.repeatRoutine)

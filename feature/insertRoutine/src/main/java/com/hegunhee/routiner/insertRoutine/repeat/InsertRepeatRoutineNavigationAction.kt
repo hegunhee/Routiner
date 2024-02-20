@@ -1,0 +1,3 @@
+package com.hegunhee.routiner.insertRoutine.repeat
+
+sealed interface InsertRepeatRoutineNavigationAction
