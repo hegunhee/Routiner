@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="eventHandler"
+            type="com.hegunhee.daily.DailyActionHandler" />
+
+        <variable
+            name="routine"
+            type="com.example.domain.model.Routine" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rounded_shape_gray_20dp"
+        android:layout_marginHorizontal="10dp"
+        android:backgroundTint="@color/gray"
+        android:layout_marginVertical="10dp"
+        android:onClick="@{() -> eventHandler.toggleFinishRoutine(routine)}"
+        android:paddingHorizontal="10dp">
+
+        <CheckBox
+            android:id="@+id/checkBox"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:checked="@{routine.finished ? true : false}"
+            android:onCheckedChanged="@{() -> eventHandler.toggleFinishRoutine(routine)}"/>
+
+        <TextView
+            android:id="@+id/routine_title"
+            android:layout_width="150dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:onClick="@{() -> eventHandler.toggleFinishRoutine(routine)}"
+            android:text="@{routine.text}"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@id/checkBox"
+            app:layout_constraintTop_toTopOf="@id/checkBox"
+            app:layout_constraintBottom_toBottomOf="@id/checkBox"
+            tools:text="영어 공부하기" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:background="@drawable/rounded_shape_gray_20dp"
+            android:backgroundTint="@color/sky_blue"
+            android:elevation="5dp"
+            android:onClick="@{() -> eventHandler.deleteRoutine(routine.id)}"
+            android:text="Delete"
+            android:textColor="@color/black"
+            app:layout_constraintBottom_toBottomOf="@id/checkBox"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/checkBox" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

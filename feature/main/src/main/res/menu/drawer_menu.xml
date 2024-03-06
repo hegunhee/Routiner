@@ -5,24 +5,28 @@
         android:id="@+id/daily"
         android:title="daily"
         android:icon="@drawable/ic_daily"
+        android:iconTint="@color/white"
         />
 
     <item
         android:id="@+id/record"
         android:title="record"
         android:icon="@drawable/ic_record"
+        android:iconTint="@color/white"
         />
 
     <item
         android:id="@+id/setting"
         android:title="setting"
         android:icon="@drawable/ic_setting"
+        android:iconTint="@color/white"
         />
 
     <item
         android:id="@+id/repeat"
         android:title="repeat"
         android:icon="@drawable/ic_repeat"
+        android:iconTint="@color/white"
         />
 
 
