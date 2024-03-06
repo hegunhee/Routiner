@@ -17,10 +17,10 @@ import kotlinx.coroutines.launch
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
 
     private val viewModel : DailyViewModel by viewModels()
-    private lateinit var dailyAdapter : DailyAdapter
+    private lateinit var dailyAdapter : DailyContainerAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dailyAdapter = DailyAdapter(viewModel)
+        dailyAdapter = DailyContainerAdapter(viewModel)
         binding.apply {
             viewmodel = viewModel
             dailyRecyclerView.adapter = dailyAdapter
@@ -47,7 +47,7 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                 }
                 launch {
                     viewModel.dailyRoutineEntityList.collect{
-                        dailyAdapter.submitList(it)
+                        dailyAdapter.submitList(listOf(RoutineContainer(it)))
                     }
                 }
             }
