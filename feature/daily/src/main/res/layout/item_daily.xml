@@ -54,6 +54,21 @@
             app:layout_constraintBottom_toBottomOf="@id/checkBox"
             tools:text="영어 공부하기" />
 
+        <TextView
+            android:id="@+id/category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/routine_title"
+            app:layout_constraintStart_toStartOf="@id/routine_title"
+            android:visibility="@{routine.category.empty ? View.GONE : View.VISIBLE}"
+            android:text="@{routine.category}"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            tools:text="공부"
+            android:ellipsize="end"
+            android:layout_marginStart="10dp"
+            android:paddingBottom="5dp"/>
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/deleteButton"
             android:layout_width="wrap_content"
