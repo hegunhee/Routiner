@@ -8,7 +8,10 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ConcatAdapter
 import com.hegunhee.common.base.BaseFragment
+import com.hegunhee.common.progressIndicator.ProgressIndicatorAdapter
+import com.hegunhee.common.progressIndicator.ProgressIndicatorContainer
 import com.hegunhee.daily.databinding.FragmentDailyBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -17,13 +20,20 @@ import kotlinx.coroutines.launch
 class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily) {
 
     private val viewModel : DailyViewModel by viewModels()
+    private lateinit var concatAdapter : ConcatAdapter
     private lateinit var dailyAdapter : DailyContainerAdapter
+    private lateinit var progressAdapter : ProgressIndicatorAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         dailyAdapter = DailyContainerAdapter(viewModel)
+        progressAdapter = ProgressIndicatorAdapter()
+        concatAdapter = ConcatAdapter(
+            dailyAdapter,
+            progressAdapter
+        )
         binding.apply {
             viewmodel = viewModel
-            dailyRecyclerView.adapter = dailyAdapter
+            dailyRecyclerView.adapter = concatAdapter
         }
         setActionBarTitle()
         observeData()
@@ -48,6 +58,13 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                 launch {
                     viewModel.dailyRoutineEntityList.collect{
                         dailyAdapter.submitList(listOf(RoutineContainer(it)))
+                        progressAdapter.submitList(
+                            listOf(
+                                ProgressIndicatorContainer(
+                                    finishedRoutine = it.filter { it.isFinished }.size,
+                                    totalRoutine = it.size)
+                            )
+                        )
                     }
                 }
             }
