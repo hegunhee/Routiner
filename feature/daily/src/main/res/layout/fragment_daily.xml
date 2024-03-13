@@ -22,7 +22,7 @@
             android:layout_height="0dp"
             android:visibility="@{viewmodel.isDailyRoutineEmpty ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/bottomLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:visibility="@{viewmodel.isDailyRoutineEmpty ? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@id/bottomLayout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -43,8 +43,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="오늘 등록된 루틴이 없습니다.\n 루틴을 등록해주세요"
+                android:textColor="@color/white"
                 android:textSize="30sp"
-                android:textColor="@color/black"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -60,8 +60,7 @@
                 android:text="루틴 등록하기"
                 app:layout_constraintEnd_toEndOf="@id/empty_textView"
                 app:layout_constraintStart_toStartOf="@id/empty_textView"
-                app:layout_constraintTop_toBottomOf="@id/empty_textView"
-                />
+                app:layout_constraintTop_toBottomOf="@id/empty_textView" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 
@@ -69,37 +68,15 @@
             android:id="@+id/floating_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="30dp"
-            android:layout_marginBottom="30dp"
+            android:layout_marginVertical="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="100dp"
+            android:backgroundTint="@color/sky_blue"
+            android:contentDescription="@string/add_routine"
             android:onClick="@{() -> viewmodel.onClickRoutineInsert()}"
             android:src="@drawable/ic_add"
-            android:contentDescription="@string/add_routine"
-            app:layout_constraintBottom_toTopOf="@id/bottomLayout"
-            app:layout_constraintEnd_toEndOf="parent" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/bottomLayout"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            android:background="@color/light_pink"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <TextView xmlns:tools="http://schemas.android.com/tools"
-                android:id="@+id/today_record_text_view"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="30dp"
-                android:text="@{viewmodel.dailyRoutineProgressText.toString()}"
-                android:textSize="30sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="0 / 0" />
-
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

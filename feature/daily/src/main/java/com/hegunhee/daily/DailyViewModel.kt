@@ -32,18 +32,6 @@ class DailyViewModel @Inject constructor(
         initialValue = emptyList()
     )
 
-    val dailyRoutineProgressText : StateFlow<String> = dailyRoutineEntityList.map {
-        return@map if(it.isEmpty()){
-            "0 / 0"
-        }else{
-            "${it.count { it.isFinished }} / ${it.size}"
-        }
-    }.stateIn(
-        scope = viewModelScope,
-        started = SharingStarted.WhileSubscribed(500L),
-        initialValue = "0 / 0"
-    )
-
     val isDailyRoutineEmpty: StateFlow<Boolean> = dailyRoutineEntityList.map{
         dailyRoutineEntityList.value.isEmpty()
     }.stateIn(
