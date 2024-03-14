@@ -4,14 +4,6 @@
 
     <data>
 
-        <variable
-            name="container"
-            type="com.hegunhee.daily.RoutineContainer" />
-
-        <variable
-            name="eventHandler"
-            type="com.hegunhee.daily.DailyActionHandler" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -30,16 +22,6 @@
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="5dp"
             android:layout_marginStart="5dp"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/dailyRecyclerView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/dailyTitle"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -21,11 +21,11 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
 
     private val viewModel : DailyViewModel by viewModels()
     private lateinit var concatAdapter : ConcatAdapter
-    private lateinit var dailyAdapter : DailyContainerAdapter
+    private lateinit var dailyAdapter : DailyAdapter
     private lateinit var progressAdapter : ProgressIndicatorAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dailyAdapter = DailyContainerAdapter(viewModel)
+        dailyAdapter = DailyAdapter(viewModel).apply { setHasStableIds(true) }
         progressAdapter = ProgressIndicatorAdapter()
         concatAdapter = ConcatAdapter(
             dailyAdapter,
@@ -56,13 +56,15 @@ class DailyFragment : BaseFragment<FragmentDailyBinding>(R.layout.fragment_daily
                     }
                 }
                 launch {
-                    viewModel.dailyRoutineEntityList.collect{
-                        dailyAdapter.submitList(listOf(RoutineContainer(it)))
+                    viewModel.dailyRoutineEntityList.collect{ routineList ->
+                        if(routineList.isNotEmpty()) {
+                            dailyAdapter.submitList(routineList.toViewTypeList())
+                        }
                         progressAdapter.submitList(
                             listOf(
                                 ProgressIndicatorContainer(
-                                    finishedRoutine = it.filter { it.isFinished }.size,
-                                    totalRoutine = it.size)
+                                    finishedRoutine = routineList.filter { it.isFinished }.size,
+                                    totalRoutine = routineList.size)
                             )
                         )
                     }
