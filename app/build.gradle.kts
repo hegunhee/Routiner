@@ -17,8 +17,8 @@ android {
     }
 }
 dependencies {
-    implementation(project(":data"))
-    implementation(project(":domain"))
+    implementation(project(":core:data"))
+    implementation(project(":core:domain"))
     implementation(project(":feature:main"))
     implementation(project(":feature:setting"))
     implementation(project(":feature:daily"))

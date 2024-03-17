@@ -15,8 +15,8 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Routiner"
 include (":app")
-include(":domain")
-include(":data")
+include(":core:domain")
+include(":core:data")
 include(":feature:main")
 include(":feature:setting")
 include(":feature:category")

@@ -7,7 +7,7 @@ android {
 }
 
 dependencies {
-    implementation(project(":domain"))
+    implementation(project(":core:domain"))
     implementation(project(":core:util"))
     
     implementation(libs.bundles.room)
