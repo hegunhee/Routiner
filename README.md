@@ -2,13 +2,6 @@
 ## 2022.06.21 ~ 2022.07.11(앱출시) 지속적으로 업데이트중  
 ## 소개  
 루티너는 습관을 등록하고 나중에 확인할 수 있는 앱입니다.  
-## 앱 사진  
-![routiner_main](https://user-images.githubusercontent.com/57277631/178176431-c87501f5-396b-400b-b2e5-79c754965fde.PNG)  
-오늘 루틴    
-![record_routine](https://user-images.githubusercontent.com/57277631/178176436-b04eb935-91cf-4006-bd01-6b8b316e732e.jpg)  
-지난 기록  
-![repeat_routine](https://user-images.githubusercontent.com/57277631/178176451-54c389ed-66f9-4563-a245-1360058f25f7.jpg)  
-반복 루틴  
 ## 사용된 라이브러리  
 * JetPack  
   * AAC-ViewModel  
@@ -28,7 +21,8 @@
  AAC-ViewModel은 재 생성되지 않기때문에 데이터를 쉽게 관리할 수 있습니다.
  그리고 ViewModelScope를 사용해 비동기 코드를 쉽게 작성할 수 있습니다.  
 * **Flow** 적용  
-  UI State로 Flow 사용중  
+  UI State로 Flow 사용중 안드로이드 의존성을 줄일 수 있고 다양한 연산자를 지원해  
+  더 다양한 연산을 사용 가능   
 * **DataBinding** 적용  
  dataBinding을 사용하여 findViewById를 사용하지 않으며 xml 파일과 데이터 객체를 연결해줍니다.  
 * **Hilt** 적용  
@@ -71,5 +65,13 @@
 ## 느낀점  
 처음으로 미니프로젝트를 진행하면서 에뮬레이션이 아닌 실제 기기에서 테스트해봤고 앱을 배포해봤습니다.  
 덕분에 UI, 데이터 저장 수정 관련해서 더 신경을 썼고 앞으로도 앱을 더 개선할 것입니다.  
+
+## 앱 사진  
+![routiner_main](https://user-images.githubusercontent.com/57277631/178176431-c87501f5-396b-400b-b2e5-79c754965fde.PNG)  
+오늘 루틴    
+![record_routine](https://user-images.githubusercontent.com/57277631/178176436-b04eb935-91cf-4006-bd01-6b8b316e732e.jpg)  
+지난 기록  
+![repeat_routine](https://user-images.githubusercontent.com/57277631/178176451-54c389ed-66f9-4563-a245-1360058f25f7.jpg)  
+반복 루틴  
 ## 앱 개인정보 설명  
 https://hegunhee.tistory.com/27
