@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout>
+<layout xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -15,9 +15,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:backgroundTint="@color/black">
 
         <TextView
             android:id="@+id/record_empty_text"
@@ -27,6 +27,7 @@
             android:text="이전 기록이\n존재하지 않습니다."
             android:textSize="30dp"
             android:textStyle="bold"
+            android:textColor="@color/white"
             android:visibility="@{viewmodel.currentRoutineList.isEmpty() ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,159 +38,150 @@
             android:id="@+id/record_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:backgroundTint="@color/black"
             android:visibility="@{viewmodel.currentRoutineList.isEmpty() ? View.GONE : View.VISIBLE}">
-
-            <TextView
-                android:id="@+id/record_progress_text"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:elevation="20dp"
-                android:textColor="@color/black"
-                android:text="@{viewmodel.currentRoutineProgress.toString()}"
-                android:textSize="30dp"
-                app:layout_constraintBottom_toTopOf="@id/record_bottom_layout"
-                app:layout_constraintEnd_toEndOf="parent"
-                tools:text="0 / 0" />
 
             <ImageButton
                 android:id="@+id/previous_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@drawable/ic_arrow_left_24"
+                android:backgroundTint="@color/teal_200"
                 android:elevation="10dp"
+                android:onClick="@{() -> viewmodel.setPreviousDate()}"
+                android:visibility="@{viewmodel.currentDateListIndex == 0 ? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@id/record_recyclerView"
                 app:layout_constraintStart_toStartOf="@id/record_recyclerView"
-                android:onClick="@{() -> viewmodel.setPreviousDate()}"
-                android:backgroundTint="@color/teal_200"
-                app:layout_constraintTop_toTopOf="@id/record_recyclerView"
-                android:visibility="@{viewmodel.currentDateListIndex == 0 ? View.GONE : View.VISIBLE}"/>
+                app:layout_constraintTop_toTopOf="@id/record_recyclerView" />
 
             <ImageButton
                 android:id="@+id/next_button"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
                 android:background="@drawable/ic_arrow_right_24"
+                android:backgroundTint="@color/teal_200"
                 android:elevation="10dp"
+                android:onClick="@{() -> viewmodel.setNextDate()}"
+                android:visibility="@{viewmodel.currentDateListIndex == (viewmodel.dateList.size -1) ? View.GONE : View.VISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@id/record_recyclerView"
                 app:layout_constraintEnd_toEndOf="@id/record_recyclerView"
-                android:onClick="@{() -> viewmodel.setNextDate()}"
-                android:backgroundTint="@color/teal_200"
-                app:layout_constraintTop_toTopOf="@id/record_recyclerView"
-                android:visibility="@{viewmodel.currentDateListIndex == (viewmodel.dateList.size -1) ? View.GONE : View.VISIBLE}"/>
+                app:layout_constraintTop_toTopOf="@id/record_recyclerView" />
 
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/record_recyclerView"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:background="@color/white"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toTopOf="@id/record_bottom_layout"
+                app:layout_constraintBottom_toTopOf="@id/recordBottomLayout"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/record_bottom_layout"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@color/light_pink"
-                app:layout_constraintBottom_toBottomOf="parent">
+                android:id="@+id/recordBottomLayout"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/rounded_shape_gray_20dp"
+                android:backgroundTint="@color/gray"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/review_add_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
+                <TextView
+                    android:id="@+id/reviewHeder"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="5dp"
+                    android:text="리뷰를 등록해주세요"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <EditText
+                    android:id="@+id/reviewEditText"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rounded_shape_gray_20dp"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:hint="리뷰를 입력해주세요"
+                    android:text="@={viewmodel.reviewEditText}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
                     android:visibility="@{viewmodel.reviewState.isReviewEmpty() ? View.VISIBLE : View.GONE}"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <EditText
-                        android:id="@+id/review_editText"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:gravity="start"
-                        android:hint="리뷰를 입력해주세요"
-                        android:textSize="20dp"
-                        android:textColor="@color/black"
-                        android:background="@null"
-                        android:text="@={viewmodel.reviewEditText}"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <Button
-                        android:id="@+id/add_review_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="등록하기"
-                        android:layout_marginEnd="10dp"
-                        android:onClick="@{() ->viewmodel.addReview()}"
-                        android:textColor="@color/black"
-                        android:backgroundTint="@color/teal_200"
-                        app:layout_constraintBottom_toBottomOf="@id/review_editText"
-                        app:layout_constraintEnd_toEndOf="@id/review_editText" />
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:id="@+id/review_layout"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_margin="10dp"
-                    android:background="@color/white"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="@{viewmodel.reviewState.isReviewEmpty() ? View.GONE : View.VISIBLE}">
+                    app:layout_constraintTop_toBottomOf="@id/reviewHeder" />
 
-                    <TextView
-                        android:id="@+id/review_text"
-                        android:layout_width="0dp"
-                        android:layout_height="0dp"
-                        android:textColor="@color/black"
-                        android:textSize="20dp"
-                        android:text="@{viewmodel.reviewText.toString()}"
-                        app:layout_constraintBottom_toTopOf="@id/revise_review_button"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/reviewTextView"
+                    android:layout_width="0dp"
+                    android:layout_height="150dp"
+                    android:layout_margin="10dp"
+                    android:background="@drawable/rounded_shape_gray_20dp"
+                    android:backgroundTint="@color/white"
+                    android:gravity="center"
+                    android:text="@{viewmodel.reviewText.toString()}"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:visibility="@{viewmodel.reviewState.isReviewEmpty() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/reviewHeder" />
 
-                    <Button
-                        android:id="@+id/revise_review_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="수정하기"
-                        android:layout_marginEnd="10dp"
-                        android:textColor="@color/black"
-                        android:onClick="@{() -> viewmodel.reviseReview()}"
-                        android:backgroundTint="@color/teal_200"
-                        app:layout_constraintBottom_toBottomOf="@id/review_layout"
-                        app:layout_constraintTop_toBottomOf="@id/review_text"
-                        app:layout_constraintEnd_toStartOf="@id/delete_review_button"
-                        />
-                    <Button
-                        android:id="@+id/delete_review_button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="삭제하기"
-                        android:layout_marginEnd="10dp"
-                        android:onClick="@{() -> viewmodel.deleteReview()}"
-                        android:textColor="@color/black"
-                        android:backgroundTint="@color/light_pink"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/revise_review_button"
-                        />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/addReviewButton"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rounded_shape_gray_20dp"
+                    android:backgroundTint="@color/sky_blue"
+                    android:onClick="@{() ->viewmodel.addReview()}"
+                    android:text="등록하기"
+                    android:textColor="@color/white"
+                    android:visibility="@{viewmodel.reviewState.isReviewEmpty() ? View.VISIBLE : View.GONE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/reviewHeder"
+                    app:layout_constraintTop_toBottomOf="@id/reviewEditText" />
 
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/reviseReviewButton"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/rounded_shape_gray_20dp"
+                    android:backgroundTint="@color/sky_blue"
+                    android:onClick="@{() -> viewmodel.reviseReview()}"
+                    android:text="수정하기"
+                    android:textColor="@color/white"
+                    android:visibility="@{viewmodel.reviewState.isReviewEmpty() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/deleteReviewButton"
+                    app:layout_constraintStart_toStartOf="@id/reviewHeder"
+                    app:layout_constraintTop_toBottomOf="@id/reviewTextView" />
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/deleteReviewButton"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/rounded_shape_gray_20dp"
+                    android:backgroundTint="@color/light_pink"
+                    android:onClick="@{() -> viewmodel.deleteReview()}"
+                    android:text="삭제하기"
+                    android:textColor="@color/white"
+                    android:visibility="@{viewmodel.reviewState.isReviewEmpty() ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/reviseReviewButton"
+                    app:layout_constraintTop_toBottomOf="@id/reviewTextView" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
