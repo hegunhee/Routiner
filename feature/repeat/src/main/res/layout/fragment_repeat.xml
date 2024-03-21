@@ -20,11 +20,11 @@
             android:id="@+id/repeat_routine_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:background="@color/white"
             android:visibility="@{viewModel.isRepeatRoutineListEmpty ? View.GONE : View.VISIBLE}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@id/insert_repeat_routine_button"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -34,7 +34,7 @@
             android:layout_height="0dp"
             android:gravity="center"
             android:text="@string/empty_repeat_routine_text"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:textSize="@dimen/empty_repeat_routine_text_size"
             android:visibility="@{viewModel.isRepeatRoutineListEmpty ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,6 +51,7 @@
             android:contentDescription="@string/add_repeat_routine"
             android:onClick="@{() -> viewModel.openInsertRepeatRoutineDialog()}"
             android:src="@drawable/ic_add"
+            android:backgroundTint="@color/sky_blue"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
