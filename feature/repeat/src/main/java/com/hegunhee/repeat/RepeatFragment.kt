@@ -2,16 +2,13 @@ package com.hegunhee.repeat
 
 import android.os.Bundle
 import android.view.View
-import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import com.example.domain.model.RepeatRoutine
 import com.hegunhee.common.base.BaseFragment
-import com.hegunhee.repeat.databinding.DialogClickRepeatRecordItemBinding
 import com.hegunhee.repeat.databinding.FragmentRepeatBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -47,9 +44,6 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                             RepeatNavigationAction.InsertRepeatRoutine -> {
                                 findNavController().navigate(com.hegunhee.routiner.navigation.R.id.repeat_to_insertRepeatRoutine)
                             }
-                            is RepeatNavigationAction.ClickRepeatRoutine -> {
-                                clickAdapterItem(action.repeatRoutine)
-                            }
                         }
                     }
                 }
@@ -58,16 +52,6 @@ class RepeatFragment : BaseFragment<FragmentRepeatBinding>(R.layout.fragment_rep
                         repeatAdapter.submitList(it)
                     }
                 }
-            }
-        }
-    }
-
-    private fun clickAdapterItem(repeatRoutine: RepeatRoutine) {
-        DialogClickRepeatRecordItemBinding.inflate(layoutInflater).run {
-            val dialog = AlertDialog.Builder(requireContext()).setView(root).show()
-            deleteTextView.setOnClickListener{
-                viewModel.deleteRepeatRoutine(repeatRoutine.text)
-                dialog.dismiss()
             }
         }
     }
