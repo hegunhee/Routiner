@@ -39,7 +39,7 @@ class RepeatViewModel @Inject constructor(
     private val _navigationActions : MutableSharedFlow<RepeatNavigationAction> = MutableSharedFlow<RepeatNavigationAction>()
     val navigationActions : SharedFlow<RepeatNavigationAction> = _navigationActions.asSharedFlow()
 
-    fun deleteRepeatRoutine(text : String) {
+    override fun deleteRepeatRoutine(text : String) {
         viewModelScope.launch {
             deleteRepeatRoutineUseCase(text)
         }
@@ -48,12 +48,6 @@ class RepeatViewModel @Inject constructor(
     override fun openInsertRepeatRoutineDialog() {
         viewModelScope.launch {
             _navigationActions.emit(RepeatNavigationAction.InsertRepeatRoutine)
-        }
-    }
-
-    override fun clickRepeatRoutine(repeatRoutine: RepeatRoutine) {
-        viewModelScope.launch {
-            _navigationActions.emit(RepeatNavigationAction.ClickRepeatRoutine(repeatRoutine = repeatRoutine))
         }
     }
 }

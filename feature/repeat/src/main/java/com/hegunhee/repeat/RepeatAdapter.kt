@@ -6,13 +6,13 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.RepeatRoutine
-import com.hegunhee.repeat.databinding.RepeatRecordItemBinding
+import com.hegunhee.repeat.databinding.ItemRepeatRecordBinding
 
 class RepeatAdapter(
-    val eventHandler : RepeatActionHandler,
+    private val eventHandler : RepeatActionHandler,
 ) : ListAdapter<RepeatRoutine,RepeatAdapter.RepeatViewHolder>(diffUtil) {
 
-    inner class RepeatViewHolder(private val binding: RepeatRecordItemBinding) :
+    inner class RepeatViewHolder(private val binding: ItemRepeatRecordBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(repeatRoutineEntity: RepeatRoutine) = with(binding) {
@@ -22,7 +22,7 @@ class RepeatAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RepeatViewHolder {
-        return RepeatViewHolder(RepeatRecordItemBinding.inflate(LayoutInflater.from(parent.context), parent, false).apply {
+        return RepeatViewHolder(ItemRepeatRecordBinding.inflate(LayoutInflater.from(parent.context), parent, false).apply {
             eventHandler = this@RepeatAdapter.eventHandler
         })
     }
