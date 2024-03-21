@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="repeatRoutine"
+            type="com.example.domain.model.RepeatRoutine" />
+
+        <variable
+            name="eventHandler"
+            type="com.hegunhee.repeat.RepeatActionHandler" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="5dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/rounded_shape_gray_20dp">
+
+        <TextView
+            android:id="@+id/routineName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:text="@{repeatRoutine.text}"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="첫번째 루틴" />
+
+        <TextView
+            android:id="@+id/dayHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="날짜: "
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/routineName"
+            app:layout_constraintTop_toBottomOf="@id/routineName" />
+
+        <TextView
+            android:id="@+id/dayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{repeatRoutine.dayOfWeekList.toString()}"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/dayHeader"
+            app:layout_constraintStart_toEndOf="@id/dayHeader"
+            app:layout_constraintTop_toTopOf="@id/dayHeader"
+            tools:text="월 화 수 목" />
+
+        <TextView
+            android:id="@+id/categoryHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="카태고리: "
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintStart_toStartOf="@id/routineName"
+            app:layout_constraintTop_toBottomOf="@id/dayHeader" />
+
+        <TextView
+            android:id="@+id/categoryText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{repeatRoutine.category}"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            app:layout_constraintBottom_toBottomOf="@id/categoryHeader"
+            app:layout_constraintStart_toEndOf="@id/categoryHeader"
+            app:layout_constraintTop_toTopOf="@id/categoryHeader"
+            tools:text="공부" />
+
+        <ImageButton
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:onClick="@{() -> eventHandler.deleteRepeatRoutine(repeatRoutine.text)}"
+            android:background="@drawable/ic_clear_24"
+            android:backgroundTint="@color/red"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
