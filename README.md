@@ -69,11 +69,13 @@
 덕분에 UI, 데이터 저장 수정 관련해서 더 신경을 썼고 앞으로도 앱을 더 개선할 것입니다.  
 
 ## 앱 사진  
-![routiner_main](https://user-images.githubusercontent.com/57277631/178176431-c87501f5-396b-400b-b2e5-79c754965fde.PNG)  
+![routiner_main](https://github.com/hegunhee/Routiner/assets/57277631/53fd0ae5-57f3-417a-af72-8efaac0793f6)  
 오늘 루틴    
-![record_routine](https://user-images.githubusercontent.com/57277631/178176436-b04eb935-91cf-4006-bd01-6b8b316e732e.jpg)  
+![record_routine](https://github.com/hegunhee/Routiner/assets/57277631/0865c68f-09be-4d2b-9e36-c5477c6a8b4a)  
 지난 기록  
-![repeat_routine](https://user-images.githubusercontent.com/57277631/178176451-54c389ed-66f9-4563-a245-1360058f25f7.jpg)  
+![repeat_routine](https://github.com/hegunhee/Routiner/assets/57277631/07a3e8fc-58d9-4dbc-8187-dd09525f4617)  
 반복 루틴  
+![routine_insert](https://github.com/hegunhee/Routiner/assets/57277631/0a7c7314-e141-45d7-ab7b-fc838a1b1429)  
+루틴 추가  
 ## 앱 개인정보 설명  
 https://hegunhee.tistory.com/27
