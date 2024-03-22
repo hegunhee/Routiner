@@ -32,27 +32,7 @@
 * **Uizard** 적용
   UI를 개선하기 위해 Uizard를 사용하였습니다.
 ## 진척도  
-1. DrawerLayout 등록  
-    * 오늘의 루틴, 기록  
-2. 오늘의 데일리 루틴 등록기능  
-    * SharedPreference (날짜 저장)  
-    * Room  
-3. 기록 탭  
-    * 리뷰 등록  
-    * 기록 열람  
-4. Core Routine(요일별로 자동으로 등록되는 루틴)  
-
-5. 앱 출시  
-  
-6. Category 설정  
-    * 공부, 운동 이런 카테고리들을 설정
-    * 만약 된다면 db 버전을 올려야함  
-    * **7월 29일 업데이트**  
-7. Multi Module 도입 및 리팩토링  
-  -------------------------------------------  
-8. 매일 오전 10시 오후 10시에 알람이 가는 notification  
-9. Google Login(Firebase)  
-
+https://github.com/hegunhee/Routiner/issues/55
 
 ## 정보들  
 1. Entity들  
