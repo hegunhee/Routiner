@@ -38,18 +38,6 @@ class RecordViewModel @Inject constructor(
     private val _currentRoutineList: MutableStateFlow<List<Routine>> = MutableStateFlow(emptyList())
     val currentRoutineList: StateFlow<List<Routine>> = _currentRoutineList.asStateFlow()
 
-    val currentRoutineProgress : StateFlow<String> = currentRoutineList.map {
-        if(it.isEmpty()) {
-            ""
-        }else {
-            "${it.count{it.isFinished}} / ${it.size}"
-        }
-    }.stateIn(
-        scope = viewModelScope,
-        initialValue = "",
-        started = SharingStarted.WhileSubscribed(5000L),
-    )
-
     private val _reviewState: MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Uninitalized)
     val reviewState: StateFlow<ReviewState> = _reviewState.asStateFlow()
 
