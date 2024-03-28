@@ -30,8 +30,8 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
-                    currentDate.collect{ date ->
-                        setActionBarTitle(date)
+                    currentDate.collect{ dateDesc ->
+                        setActionBarTitle(dateDesc)
                     }
                 }
                 launch {
