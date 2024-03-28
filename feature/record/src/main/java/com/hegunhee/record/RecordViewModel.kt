@@ -70,14 +70,14 @@ class RecordViewModel @Inject constructor(
         if(currentDateListIndex.value == DEFAULT_DATE_INDEX) {
             val recentDate = dateList.value.filter {it.date < getTodayDate() }.maxByOrNull { it.date }
             recentDate?.let { date ->
-                setDateInfo(date.date)
+                setDateInfo(date)
             }
         }
     }
 
     fun setPreviousDate() = viewModelScope.launch {
         if (currentDateListIndex.value > 0) {
-            setDateInfo(dateList.value[getPreviousIndex()].date)
+            setDateInfo(dateList.value[getPreviousIndex()])
         }
     }
 
@@ -87,15 +87,15 @@ class RecordViewModel @Inject constructor(
 
     fun setNextDate() = viewModelScope.launch {
         if (currentDateListIndex.value < dateList.value.size - 1) {
-            setDateInfo(dateList.value[getNextIndex()].date)
+            setDateInfo(dateList.value[getNextIndex()])
         }
     }
 
-    private suspend fun setDateInfo(date: Int) {
-        setRecordRoutine(date)
-        setReviewExist(date)
-        _currentDate.emit(date.toString())
-        _currentDateListIndex.value = dateList.value.indexOf(Date(date))
+    private suspend fun setDateInfo(date: Date) {
+        setRecordRoutine(date.date)
+        setReviewExist(date.date)
+        _currentDate.emit(date.desc)
+        _currentDateListIndex.value = dateList.value.indexOf(Date(date.date))
     }
 
     private fun getNextIndex() : Int{
