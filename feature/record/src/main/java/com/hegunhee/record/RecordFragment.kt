@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.example.domain.model.Date
 import com.hegunhee.common.base.BaseFragment
 import com.hegunhee.record.databinding.FragmentRecordBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -30,8 +31,13 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 launch {
-                    currentDate.collect{ dateDesc ->
-                        setActionBarTitle(dateDesc)
+                    currentDate.collect{ date ->
+                        val title = if(date == Date.EMPTY) {
+                            "내역이 존재하지 않습니다"
+                        }else {
+                            date.desc
+                        }
+                        setActionBarTitle(title)
                     }
                 }
                 launch {
