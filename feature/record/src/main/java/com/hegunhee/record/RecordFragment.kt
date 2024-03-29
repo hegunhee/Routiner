@@ -10,6 +10,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.example.domain.model.Date
 import com.hegunhee.common.base.BaseFragment
 import com.hegunhee.record.databinding.FragmentRecordBinding
+import com.hegunhee.record.dateSelector.DateSelectorAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -17,12 +18,16 @@ import kotlinx.coroutines.launch
 class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_record) {
 
     private val viewModel: RecordViewModel by viewModels()
-    private val adapter : RecordAdapter by lazy {RecordAdapter()}
+    private lateinit var recordAdapter : RecordAdapter
+    private lateinit var dateAdapter : DateSelectorAdapter
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        recordAdapter = RecordAdapter()
+        dateAdapter = DateSelectorAdapter(viewModel)
         binding.apply {
             viewmodel = viewModel
-            recordRecyclerView.adapter = adapter
+            recordRecyclerView.adapter = recordAdapter
+            dateSelectorRecyclerView.adapter = dateAdapter
         }
         observeData()
     }
@@ -42,7 +47,12 @@ class RecordFragment : BaseFragment<FragmentRecordBinding>(R.layout.fragment_rec
                 }
                 launch {
                     currentRoutineList.collect{
-                        adapter.submitList(it)
+                        recordAdapter.submitList(it)
+                    }
+                }
+                launch {
+                    dateList.collect {
+                        dateAdapter.submitList(it)
                     }
                 }
             }
