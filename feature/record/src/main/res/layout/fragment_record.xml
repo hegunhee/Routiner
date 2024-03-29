@@ -41,32 +41,6 @@
             android:backgroundTint="@color/black"
             android:visibility="@{viewmodel.currentRoutineList.isEmpty() ? View.GONE : View.VISIBLE}">
 
-            <ImageButton
-                android:id="@+id/previous_button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/ic_arrow_left_24"
-                android:backgroundTint="@color/teal_200"
-                android:elevation="10dp"
-                android:onClick="@{() -> viewmodel.setPreviousDate()}"
-                android:visibility="@{viewmodel.currentDateListIndex == 0 ? View.GONE : View.VISIBLE}"
-                app:layout_constraintBottom_toBottomOf="@id/record_recyclerView"
-                app:layout_constraintStart_toStartOf="@id/record_recyclerView"
-                app:layout_constraintTop_toTopOf="@id/record_recyclerView" />
-
-            <ImageButton
-                android:id="@+id/next_button"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:background="@drawable/ic_arrow_right_24"
-                android:backgroundTint="@color/teal_200"
-                android:elevation="10dp"
-                android:onClick="@{() -> viewmodel.setNextDate()}"
-                android:visibility="@{viewmodel.currentDateListIndex == (viewmodel.dateList.size -1) ? View.GONE : View.VISIBLE}"
-                app:layout_constraintBottom_toBottomOf="@id/record_recyclerView"
-                app:layout_constraintEnd_toEndOf="@id/record_recyclerView"
-                app:layout_constraintTop_toTopOf="@id/record_recyclerView" />
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/dateSelectorRecyclerView"
                 android:layout_width="match_parent"
