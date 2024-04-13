@@ -15,40 +15,107 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/noti_text_view"
+            android:id="@+id/alarmSettingHeader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="80dp"
-            android:layout_marginTop="150dp"
-            android:text="알림 수신"
+            android:layout_marginStart="20dp"
+            android:text="Alarm Settings"
             android:textColor="@color/white"
-            android:textSize="30dp"
+            android:textSize="30sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/noti_switch_button"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/alarmSettingLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:checked="@{viewModel.notiSendValue}"
-            android:backgroundTint="@color/white"
-            android:onCheckedChanged="@{(switch, checked) -> viewModel.onNotiCheckedChanged(checked)}"
-            app:layout_constraintBottom_toBottomOf="@id/noti_text_view"
-            app:layout_constraintStart_toEndOf="@id/noti_text_view"
-            app:layout_constraintTop_toTopOf="@id/noti_text_view" />
-
-        <TextView
-            android:id="@+id/noti_not_implemented"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"
-            android:text="미 구현 기능입니다."
-            android:textColor="@color/light_pink"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="@id/noti_text_view"
-            app:layout_constraintStart_toStartOf="@id/noti_text_view"
-            app:layout_constraintTop_toBottomOf="@id/noti_text_view" />
+            android:background="@drawable/rounded_shape_gray_20dp"
+            android:backgroundTint="@color/gray"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/alarmSettingHeader">
+
+            <TextView
+                android:id="@+id/enableAlarmHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="알람 설정"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/alarmEnableSwtich"
+                app:layout_constraintStart_toStartOf="@id/alarmSettingLayout"
+                app:layout_constraintTop_toTopOf="@id/alarmEnableSwtich" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/alarmEnableSwtich"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{viewModel.enableAlarm}"
+                android:onCheckedChanged="@{(switch, checked) -> viewModel.onEnableAlarmSwitchClick(checked)}"
+                app:layout_constraintEnd_toEndOf="@id/alarmSettingLayout"
+                app:layout_constraintTop_toTopOf="@id/alarmSettingLayout" />
+
+            <TextView
+                android:id="@+id/alarmTimeHeader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="시간 설정"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@id/minuteSpinner"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@id/minuteSpinner" />
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/hourSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                app:layout_constraintBottom_toBottomOf="@id/minuteSpinner"
+                app:layout_constraintEnd_toStartOf="@id/alarmColonText"
+                app:layout_constraintTop_toTopOf="@id/minuteSpinner" />
+
+            <TextView
+                android:id="@+id/alarmColonText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=":"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/minuteSpinner"
+                app:layout_constraintEnd_toStartOf="@id/minuteSpinner"
+                app:layout_constraintTop_toTopOf="@id/minuteSpinner" />
+
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/minuteSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@id/alarmSettingLayout"
+                app:layout_constraintTop_toBottomOf="@id/alarmEnableSwtich" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/alarmSaveButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/rounded_shape_gray_20dp"
+                android:backgroundTint="@color/sky_blue"
+                android:text="저장하기"
+                android:textColor="@color/black"
+                android:clickable="@{viewModel.enableAlarm}"
+                android:textSize="20sp"
+                android:onClick="@{() -> viewModel.setNotiSendValue(true)}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/alarmTimeHeader" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>
