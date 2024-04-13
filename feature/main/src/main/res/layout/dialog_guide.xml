@@ -26,34 +26,24 @@
             android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@id/alert_switch"
+            app:layout_constraintBottom_toTopOf="@id/alert_desc"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_chainStyle="packed" />
 
-
-        <androidx.appcompat.widget.SwitchCompat
-            android:id="@+id/alert_switch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="@={viewModel.isAllowNotification}"
-            app:layout_constraintBottom_toTopOf="@id/alert_accept_button"
-            app:layout_constraintStart_toStartOf="@id/alert_title"
-            app:layout_constraintTop_toBottomOf="@id/alert_title"
-            app:layout_constraintVertical_chainStyle="packed" />
-
-
         <TextView
             android:id="@+id/alert_desc"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="(선택) 알람 수신을 받겠습니다."
+            android:layout_marginVertical="5dp"
+            android:text="- setting 탭에서 알람설정이 가능합니다."
             android:textColor="@color/white"
             android:textSize="15sp"
-            app:layout_constraintBottom_toBottomOf="@id/alert_switch"
-            app:layout_constraintEnd_toEndOf="@id/alert_title"
-            app:layout_constraintTop_toTopOf="@id/alert_switch" />
+            app:layout_constraintBottom_toBottomOf="@id/alert_accept_button"
+            app:layout_constraintStart_toStartOf="@id/alert_title"
+            app:layout_constraintTop_toBottomOf="@id/alert_title"
+            app:layout_constraintVertical_chainStyle="packed" />
 
 
         <androidx.appcompat.widget.AppCompatButton
@@ -63,12 +53,12 @@
             android:layout_marginBottom="20dp"
             android:backgroundTint="@color/black"
             android:onClick="@{() -> viewModel.onClickDismissDialogButton()}"
-            android:text="수락"
+            android:text="시작하기"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@id/alert_title"
             app:layout_constraintStart_toStartOf="@id/alert_title"
-            app:layout_constraintTop_toBottomOf="@id/alert_switch"
+            app:layout_constraintTop_toBottomOf="@id/alert_desc"
             app:layout_constraintVertical_chainStyle="packed" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
