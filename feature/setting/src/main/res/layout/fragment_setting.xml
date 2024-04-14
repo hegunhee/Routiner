@@ -7,6 +7,8 @@
         <variable
             name="viewModel"
             type="com.hegunhee.setting.SettingViewModel" />
+
+        <import type="android.view.View"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -54,7 +56,7 @@
                 android:id="@+id/alarmEnableSwtich"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="@{viewModel.enableAlarm}"
+                android:checked="@{viewModel.alarmTime.enableAlarm}"
                 android:onCheckedChanged="@{(switch, checked) -> viewModel.onEnableAlarmSwitchClick(checked)}"
                 app:layout_constraintEnd_toEndOf="@id/alarmSettingLayout"
                 app:layout_constraintTop_toTopOf="@id/alarmSettingLayout" />
@@ -66,6 +68,7 @@
                 android:text="시간 설정"
                 android:textColor="@color/white"
                 android:textSize="20sp"
+                android:visibility="@{viewModel.alarmTime.enableAlarm ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintBottom_toBottomOf="@id/minuteSpinner"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/minuteSpinner" />
@@ -76,6 +79,7 @@
                 android:layout_height="50dp"
                 app:layout_constraintBottom_toBottomOf="@id/minuteSpinner"
                 app:layout_constraintEnd_toStartOf="@id/alarmColonText"
+                android:visibility="@{viewModel.alarmTime.enableAlarm ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintTop_toTopOf="@id/minuteSpinner" />
 
             <TextView
@@ -87,6 +91,7 @@
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="@id/minuteSpinner"
+                android:visibility="@{viewModel.alarmTime.enableAlarm ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintEnd_toStartOf="@id/minuteSpinner"
                 app:layout_constraintTop_toTopOf="@id/minuteSpinner" />
 
@@ -97,6 +102,7 @@
                 android:layout_height="50dp"
                 android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="@id/alarmSettingLayout"
+                android:visibility="@{viewModel.alarmTime.enableAlarm ? View.VISIBLE : View.INVISIBLE}"
                 app:layout_constraintTop_toBottomOf="@id/alarmEnableSwtich" />
 
             <androidx.appcompat.widget.AppCompatButton
@@ -108,9 +114,9 @@
                 android:backgroundTint="@color/sky_blue"
                 android:text="저장하기"
                 android:textColor="@color/black"
-                android:clickable="@{viewModel.enableAlarm}"
+                android:visibility="@{viewModel.alarmTime.enableAlarm ? View.VISIBLE : View.INVISIBLE}"
                 android:textSize="20sp"
-                android:onClick="@{() -> viewModel.setNotiSendValue(true)}"
+                android:onClick="@{() -> viewModel.onSaveAlarmClick()}"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/alarmTimeHeader" />
