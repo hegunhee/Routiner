@@ -1,3 +1,26 @@
+Routiner 1.4.0 release note
+=========================
+UI 개편 (기존의 theme에서 다크한 theme으로 변경), 기록 화면에서 상단에 날짜를 직접 클릭할 수 있도록 수정  
+지정한 시간에 매일 알람이 울리는 기능 추가 (오늘 일의 진척도마다 알림 메시지가 다름)  
+
+- UI 개선  
+기존의 theme에서 검정색과 그레이색상의 theme으로 변경, daily화면, 기록화면 변경  
+기록화면에서 날짜를 옆으로 넘기는것이 아닌 직접 선택 가능  
+  
+- 알람 기능 추가  
+setting 화면에서 설정 가능하며 지정한 시간마다 매일 알람이 울림  
+
+개발자 노트
+---
+Uizard로 UI를 개선했습니다.  
+https://github.com/hegunhee/Routiner/pull/54  
+
+기록칸 상단에 선택가능한 날짜가 보이며 선택시 해당 날짜의 기록이 보입니다.  
+https://github.com/hegunhee/Routiner/pull/56  
+
+알람 기능 추가  
+https://github.com/hegunhee/Routiner/pull/57
+
 Routiner 1.3.2 release note
 =========================
 최소 sdk 버전 수정으로 android 8이하 버전에서 설치 불가능, android 12 이상 버전에서 첫 실행시 Guide Dialog가 두번 나오는 현상 수정
