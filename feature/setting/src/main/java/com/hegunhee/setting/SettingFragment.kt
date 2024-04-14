@@ -20,7 +20,6 @@ import com.hegunhee.setting.alarm.AlarmActions
 import com.hegunhee.setting.alarm.AlarmReceiver
 import com.hegunhee.setting.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint

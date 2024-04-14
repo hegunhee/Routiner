@@ -7,14 +7,21 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
+import com.example.domain.model.Routine
+import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.example.main.MainActivity
+import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 @AndroidEntryPoint
-class AlarmReceiver : BroadcastReceiver() {
+class AlarmReceiver() : BroadcastReceiver() {
+
+    @Inject
+    lateinit var getRoutineListByDateUseCase: GetRoutineListByDateUseCase
 
     private lateinit var notificationManager : NotificationManager
 
@@ -22,7 +29,8 @@ class AlarmReceiver : BroadcastReceiver() {
         notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         createAlarmNotificationChannel()
         CoroutineScope(Dispatchers.Default).launch {
-            sendDailyAlarmNotification(context)
+            val routine = getRoutineListByDateUseCase(getTodayDate())
+            sendDailyAlarmNotification(context,getRoutineCurrentText(routine))
         }
     }
 
@@ -37,7 +45,7 @@ class AlarmReceiver : BroadcastReceiver() {
         }
     }
 
-    private fun sendDailyAlarmNotification(context : Context) {
+    private fun sendDailyAlarmNotification(context : Context,text : String) {
             val contentIntent = Intent(context,MainActivity::class.java)
             val contentPendingIntent = PendingIntent.getActivity(
                 context,
@@ -47,12 +55,22 @@ class AlarmReceiver : BroadcastReceiver() {
             )
             val builder = NotificationCompat.Builder(context, ALARM_CHANNEL_ID)
                 .setSmallIcon(com.hegunhee.common.R.drawable.ic_check)
-                .setContentTitle(" ")
-                .setContentText(" ")
+                .setContentTitle("오늘의 루틴")
+                .setContentText(text)
                 .setContentIntent(contentPendingIntent)
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT)
                 .setAutoCancel(true)
             notificationManager.notify(ALARM_NOTIFICATION_ID,builder.build())
+    }
+
+    private fun getRoutineCurrentText(routineList : List<Routine>) : String{
+        return if(routineList.isEmpty()) {
+            "오늘의 루틴을 입력해주세요"
+        }else if(routineList.any { !it.isFinished }) {
+            "${routineList.size - routineList.count { it.isFinished }}개의 루틴이 남았습니다."
+        }else {
+            "모든 루틴을 완료했습니다!"
+        }
     }
 
     companion object {
