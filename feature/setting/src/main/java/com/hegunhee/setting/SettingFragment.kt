@@ -1,5 +1,7 @@
 package com.hegunhee.setting
 
+import android.app.AlarmManager
+import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.AdapterView
@@ -13,14 +15,22 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.common.base.BaseFragment
 import com.hegunhee.routiner.util.Alarm
+import com.hegunhee.routiner.util.Time
+import com.hegunhee.setting.alarm.AlarmActions
+import com.hegunhee.setting.alarm.AlarmReceiver
 import com.hegunhee.setting.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_setting) {
 
     private val viewModel : SettingViewModel by viewModels()
+
+    private val alarmManager : AlarmManager by lazy {
+        requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+    }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.apply {
@@ -67,17 +77,36 @@ class SettingFragment : BaseFragment<FragmentSettingBinding>(R.layout.fragment_s
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
-                    viewModel.toastMessage.collect{ message ->
-                        Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
-                    }
-                }
-                launch {
                     viewModel.alarmTime.collect { alarmTime ->
                         binding.hourSpinner.setSelection(Alarm.getHourList().indexOf(alarmTime.hour))
                         binding.minuteSpinner.setSelection(Alarm.getMinuteList().indexOf(alarmTime.minute))
                     }
                 }
+                launch {
+                    viewModel.alarmActions.collect { Actions ->
+                        when(Actions) {
+                            is AlarmActions.Register -> {
+                                registerAlarm(Actions.hour.toInt(),Actions.minute.toInt())
+                            }
+                            AlarmActions.Cancel ->  {
+                                cancelAlarm()
+                            }
+                        }
+                    }
+                }
             }
         }
+    }
+
+    private fun registerAlarm(hour : Int,minute : Int) {
+        val pendingIntent = AlarmReceiver.getAlarmPendingIntent(requireContext(),AlarmReceiver.DAILY_ALARM_PENDING_INTENT_FLAG)
+        Toast.makeText(requireContext(), "${hour}시 ${minute}분에 알람이 지정되었습니다.", Toast.LENGTH_SHORT).show()
+        alarmManager.setRepeating(AlarmManager.RTC,Time.toTimeMills(hour = hour,minute = minute),AlarmManager.INTERVAL_DAY,pendingIntent)
+    }
+
+    private fun cancelAlarm() {
+        val pendingIntent = AlarmReceiver.getAlarmPendingIntent(requireContext(),AlarmReceiver.DAILY_ALARM_PENDING_INTENT_FLAG)
+        alarmManager.cancel(pendingIntent)
+        Toast.makeText(requireContext(), "알람이 취소되었습니다.", Toast.LENGTH_SHORT).show()
     }
 }
