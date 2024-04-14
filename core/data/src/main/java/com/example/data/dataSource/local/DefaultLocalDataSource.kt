@@ -101,12 +101,12 @@ class DefaultLocalDataSource @Inject constructor(
         sharedPreferenceManager.setCurrentDate(date)
     }
 
-    override fun setNotiSendValue(notiValue: Boolean) {
-        sharedPreferenceManager.setNotiSendValue(notiValue)
+    override fun setAlarmNotiTime(time: String) {
+        sharedPreferenceManager.setAlarmNotiTime(time)
     }
 
-    override fun getNotiSendValue(): Boolean {
-        return sharedPreferenceManager.getNotiSendValue()
+    override fun getAlarmNotiTime(): String {
+        return sharedPreferenceManager.getAlarmNotiTime()
     }
 
     override fun isAppFirstOpened(): Boolean {
