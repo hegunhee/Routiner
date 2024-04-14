@@ -104,12 +104,12 @@ class DefaultRepository @Inject constructor(
         localDataSource.setCurrentDate(date)
     }
 
-    override fun setNotiSendValue(notiValue: Boolean) {
-        return localDataSource.setNotiSendValue(notiValue)
+    override fun setAlarmNotiTime(time: String) {
+        return localDataSource.setAlarmNotiTime(time)
     }
 
-    override fun getNotiSendValue(): Boolean {
-        return localDataSource.getNotiSendValue()
+    override fun getAlarmNotiTime(): AlarmTime {
+        return localDataSource.getAlarmNotiTime().toNotiAlarm()
     }
 
     override fun isAppFirstOpened(): Boolean {

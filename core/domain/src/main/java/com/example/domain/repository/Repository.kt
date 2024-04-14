@@ -49,9 +49,9 @@ interface Repository {
 
     suspend fun setCurrentDate(date : Int)
 
-    fun setNotiSendValue(notiValue : Boolean)
+    fun setAlarmNotiTime(time : String)
 
-    fun getNotiSendValue() : Boolean
+    fun getAlarmNotiTime() : AlarmTime
 
     fun isAppFirstOpened() : Boolean
 

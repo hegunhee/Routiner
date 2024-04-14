@@ -34,6 +34,15 @@ fun ReviewEntity?.toReviewOrNull() : Review? {
     }
 }
 
+internal fun String.toNotiAlarm() : AlarmTime {
+    return if(this.contains(":")) {
+        val (hour, minute) = this.split(":")
+        AlarmTime(hour = hour,minute = minute)
+    }else {
+        AlarmTime.DEFAULT
+    }
+}
+
 fun List<RepeatRoutineEntity>.toRepeatRoutineList() : List<RepeatRoutine> =
     this.map { RepeatRoutine(it.text,it.dayOfWeekList,it.category) }
 
