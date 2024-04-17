@@ -33,6 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:onClick="@{() -> eventHandler.toggleFinishRoutine(routine)}"
             android:checked="@{routine.finished ? true : false}"/>
 
         <TextView
