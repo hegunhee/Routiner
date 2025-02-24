@@ -12,7 +12,7 @@ android {
             dataBinding {
                 enable = true
             }
-            viewBinding  {
+            viewBinding {
                 enable = true
             }
         }

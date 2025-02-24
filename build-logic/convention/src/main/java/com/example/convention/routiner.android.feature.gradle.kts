@@ -22,7 +22,7 @@ android {
 }
 
 
-dependencies{
+dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:util"))
     implementation(project(":core:navigation"))

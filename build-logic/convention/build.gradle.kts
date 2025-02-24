@@ -7,14 +7,14 @@ java {
     targetCompatibility = JavaVersion.VERSION_17
 }
 
-dependencies{
+dependencies {
     implementation(libs.android.gradlePlugin)
     implementation(libs.kotlin.gradlePlugin)
     implementation(libs.hilt.plugin)
 }
-gradlePlugin{
-    plugins{
-        register("kotlinHilt"){
+gradlePlugin {
+    plugins {
+        register("kotlinHilt") {
             id = "routiner.hilt"
             implementationClass = "com.example.convention.project.HiltPlugin"
         }

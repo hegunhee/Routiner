@@ -42,17 +42,20 @@ internal fun Project.configureKotlinAndroid() {
             }
             getByName("debug") {
                 isMinifyEnabled = false
-                proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+                proguardFiles(
+                    getDefaultProguardFile("proguard-android-optimize.txt"),
+                    "proguard-rules.pro"
+                )
             }
         }
     }
     configureKotlin()
 
     dependencies {
-        add("testImplementation",libs.findLibrary("junit").get())
-        add("androidTestImplementation",libs.findLibrary("ext-junit").get())
-        add("androidTestImplementation",libs.findLibrary("espresso-core").get())
-        add("testImplementation",libs.findLibrary("mockito-kotlin").get())
+        add("testImplementation", libs.findLibrary("junit").get())
+        add("androidTestImplementation", libs.findLibrary("ext-junit").get())
+        add("androidTestImplementation", libs.findLibrary("espresso-core").get())
+        add("testImplementation", libs.findLibrary("mockito-kotlin").get())
     }
 }
 
