@@ -56,12 +56,12 @@ room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
 room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 
 hilt-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
+hilt-core = { module = "com.google.dagger:hilt-core", version.ref = "hilt"}
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
-hilt-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
+hilt-compiler = { module = "com.google.dagger:hilt-compiler", version.ref = "hilt"}
 
 gson = { module = "com.squareup.retrofit2:converter-gson", version.ref = "gson" }
 
-javax-inject = { module = "javax.inject:javax.inject", version.ref = "javax-inject" }
 kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
 
 android-gradlePlugin = { group = "com.android.tools.build", name = "gradle", version.ref = "androidGradlePlugin" }
