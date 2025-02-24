@@ -11,7 +11,6 @@ internal fun Project.configureHiltKotlin() {
         apply("dagger.hilt.android.plugin")
     }
 
-    val libs = extensions.libs
     dependencies {
         "implementation"(libs.findLibrary("hilt.android").get())
         "kapt"(libs.findLibrary("hilt.compiler").get())

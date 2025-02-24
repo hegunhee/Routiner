@@ -26,7 +26,6 @@ dependencies{
     implementation(project(":core:domain"))
     implementation(project(":core:util"))
     implementation(project(":core:navigation"))
-    val libs = project.extensions.libs
 
     implementation(libs.findLibrary("core-ktx").get())
     implementation(libs.findLibrary("appcompat").get())
