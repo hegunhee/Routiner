@@ -14,9 +14,9 @@ dependencies{
 }
 gradlePlugin{
     plugins{
-        register("androidHilt"){
-            id = "routiner.android.hilt"
-            implementationClass = "com.example.convention.project.HiltKotlinPlugin"
+        register("kotlinHilt"){
+            id = "routiner.hilt"
+            implementationClass = "com.example.convention.project.HiltPlugin"
         }
     }
 }

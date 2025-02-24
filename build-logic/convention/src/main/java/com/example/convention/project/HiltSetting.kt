@@ -8,16 +8,27 @@ import org.gradle.kotlin.dsl.dependencies
 internal fun Project.configureHiltKotlin() {
     with(pluginManager) {
         apply("org.jetbrains.kotlin.kapt")
-        apply("dagger.hilt.android.plugin")
     }
 
     dependencies {
-        "implementation"(libs.findLibrary("hilt.android").get())
         "kapt"(libs.findLibrary("hilt.compiler").get())
+    }
+
+    pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
+        dependencies {
+            "implementation"(libs.findLibrary("hilt.core").get())
+        }
+    }
+
+    pluginManager.withPlugin("com.android.base") {
+        pluginManager.apply("dagger.hilt.android.plugin")
+        dependencies {
+            "implementation"(libs.findLibrary("hilt.android").get())
+        }
     }
 }
 
-internal class HiltKotlinPlugin : Plugin<Project> {
+class HiltPlugin : Plugin<Project> {
 
     override fun apply(target: Project) {
         with(target) {
