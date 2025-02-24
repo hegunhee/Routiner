@@ -1,8 +1,10 @@
 package com.example.convention.project
 
 import com.example.convention.setup.androidExtension
+import com.example.convention.setup.libs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
+import org.gradle.kotlin.dsl.dependencies
 import org.gradle.kotlin.dsl.provideDelegate
 import org.gradle.kotlin.dsl.withType
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
@@ -45,6 +47,13 @@ internal fun Project.configureKotlinAndroid() {
         }
     }
     configureKotlin()
+
+    dependencies {
+        add("testImplementation",libs.findLibrary("junit").get())
+        add("androidTestImplementation",libs.findLibrary("ext-junit").get())
+        add("androidTestImplementation",libs.findLibrary("espresso-core").get())
+        add("testImplementation",libs.findLibrary("mockito-kotlin").get())
+    }
 }
 
 internal fun Project.configureKotlin() {
