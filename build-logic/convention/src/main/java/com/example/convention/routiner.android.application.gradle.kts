@@ -8,9 +8,6 @@ plugins {
 
 android {
     androidExtension.apply {
-        defaultConfig {
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        }
         buildFeatures {
             dataBinding {
                 enable = true

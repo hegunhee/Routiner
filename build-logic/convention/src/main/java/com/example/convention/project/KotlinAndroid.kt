@@ -26,6 +26,10 @@ internal fun Project.configureKotlinAndroid() {
             targetCompatibility = JavaVersion.VERSION_11
         }
 
+        defaultConfig {
+            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        }
+
         buildTypes {
             getByName("release") {
                 isMinifyEnabled = true
