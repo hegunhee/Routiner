@@ -10,9 +10,6 @@ configureHiltKotlin()
 
 android {
     androidExtension.apply {
-        defaultConfig {
-            testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        }
         buildFeatures {
             dataBinding {
                 enable = true
@@ -25,11 +22,10 @@ android {
 }
 
 
-dependencies{
+dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:util"))
     implementation(project(":core:navigation"))
-    val libs = project.extensions.libs
 
     implementation(libs.findLibrary("core-ktx").get())
     implementation(libs.findLibrary("appcompat").get())
@@ -37,8 +33,8 @@ dependencies{
     implementation(libs.findLibrary("constraintlayout").get())
     implementation(libs.findLibrary("androidx-recyclerview").get())
     implementation(libs.findLibrary("junit").get())
-    androidTestImplementation(libs.findLibrary("testext").get())
-    androidTestImplementation(libs.findLibrary("espresso").get())
+    androidTestImplementation(libs.findLibrary("ext-junit").get())
+    androidTestImplementation(libs.findLibrary("espresso-core").get())
 
     implementation(libs.findBundle("navigation").get())
 
