@@ -33,8 +33,8 @@ dependencies{
     implementation(libs.findLibrary("constraintlayout").get())
     implementation(libs.findLibrary("androidx-recyclerview").get())
     implementation(libs.findLibrary("junit").get())
-    androidTestImplementation(libs.findLibrary("testext").get())
-    androidTestImplementation(libs.findLibrary("espresso").get())
+    androidTestImplementation(libs.findLibrary("ext-junit").get())
+    androidTestImplementation(libs.findLibrary("espresso-core").get())
 
     implementation(libs.findBundle("navigation").get())
 
