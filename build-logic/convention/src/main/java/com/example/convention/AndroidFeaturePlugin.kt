@@ -2,6 +2,7 @@ package com.example.convention
 
 import com.android.build.gradle.LibraryExtension
 import com.example.convention.project.configureHiltKotlin
+import com.example.convention.project.setupViewDataBinding
 import com.example.convention.setup.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -19,14 +20,7 @@ class AndroidFeaturePlugin : Plugin<Project> {
             configureHiltKotlin()
 
             extensions.configure<LibraryExtension> {
-                buildFeatures {
-                    dataBinding {
-                        enable = true
-                    }
-                   viewBinding {
-                       enable = true
-                   }
-                }
+                setupViewDataBinding()
             }
 
             dependencies {
