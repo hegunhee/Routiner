@@ -1,6 +1,6 @@
 package com.example.convention.project
 
-import com.example.convention.setup.androidExtension
+import com.example.convention.setup.android
 import com.example.convention.setup.libs
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
@@ -15,9 +15,8 @@ internal fun Project.configureKotlinAndroid() {
     pluginManager.apply("org.jetbrains.kotlin.android")
 
     // Android settings
-    androidExtension.apply {
-        compileSdk = 33
-
+    android {
+        compileSdkVersion(34)
 
         defaultConfig {
             minSdk = 26
@@ -48,6 +47,7 @@ internal fun Project.configureKotlinAndroid() {
                 )
             }
         }
+
     }
     configureKotlin()
 
@@ -57,6 +57,7 @@ internal fun Project.configureKotlinAndroid() {
         add("androidTestImplementation", libs.findLibrary("espresso-core").get())
         add("testImplementation", libs.findLibrary("mockito-kotlin").get())
     }
+
 }
 
 internal fun Project.configureKotlin() {
