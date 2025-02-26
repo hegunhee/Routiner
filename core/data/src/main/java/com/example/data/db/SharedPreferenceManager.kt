@@ -35,7 +35,7 @@ class SharedPreferenceManager @Inject constructor(@ApplicationContext private va
 
 
     companion object{
-        const val PRES_NAME = "routiner_pref"
+        val PRES_NAME = "routiner_pref"
 
         const val CURRENT_DATE_KEY = "currentDate"
         const val CURRENT_DATE_DEFAULT_DATE = -1
