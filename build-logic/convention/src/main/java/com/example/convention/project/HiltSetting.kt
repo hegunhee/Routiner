@@ -11,19 +11,19 @@ internal fun Project.configureHiltKotlin() {
     }
 
     dependencies {
-        "kapt"(libs.findLibrary("hilt.compiler").get())
+        add("kapt", (libs.findLibrary("hilt.compiler").get()))
     }
 
     pluginManager.withPlugin("org.jetbrains.kotlin.jvm") {
         dependencies {
-            "implementation"(libs.findLibrary("hilt.core").get())
+            add("implementation", (libs.findLibrary("hilt.core").get()))
         }
     }
 
     pluginManager.withPlugin("com.android.base") {
         pluginManager.apply("dagger.hilt.android.plugin")
         dependencies {
-            "implementation"(libs.findLibrary("hilt.android").get())
+            add("implementation", (libs.findLibrary("hilt.android").get()))
         }
     }
 }

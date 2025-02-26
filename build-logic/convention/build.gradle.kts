@@ -1,6 +1,5 @@
 plugins {
     `kotlin-dsl`
-    `kotlin-dsl-precompiled-script-plugins`
 }
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -17,6 +16,18 @@ gradlePlugin {
         register("kotlinHilt") {
             id = "routiner.hilt"
             implementationClass = "com.example.convention.project.HiltPlugin"
+        }
+        register("androidApplication") {
+            id = "routiner.android.application"
+            implementationClass = "com.example.convention.AndroidApplicationPlugin"
+        }
+        register("androidFeature") {
+            id = "routiner.android.feature"
+            implementationClass = "com.example.convention.AndroidFeaturePlugin"
+        }
+        register("androidLibrary") {
+            id = "routiner.android.library"
+            implementationClass = "com.example.convention.AndroidLibraryPlugin"
         }
     }
 }
