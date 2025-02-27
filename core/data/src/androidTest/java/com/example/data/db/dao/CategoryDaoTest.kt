@@ -32,7 +32,7 @@ class CategoryDaoTest {
     }
 
     @Test
-    fun givenCategoryEntity_whenInsertEntity_thenWorksFine() {
+    fun givenCategoryEntity_whenInserting_thenWorksFine() {
         runBlocking {
             // given
             val entity = CategoryEntity("운동")
@@ -47,7 +47,7 @@ class CategoryDaoTest {
     }
 
     @Test
-    fun givenCategoryEntity_whenInsertSecond_thenIgnoreSecondInsert() {
+    fun givenCategoryEntity_whenInsertTwice_thenIgnoreSecondInsert() {
         runBlocking {
             // given
             val entity = CategoryEntity("운동")
@@ -65,7 +65,7 @@ class CategoryDaoTest {
     }
 
     @Test
-    fun givenCategoryEntity_whenRemoveEntity_thenWorksFine() {
+    fun givenCategoryEntity_whenRemoving_thenWorksFine() {
         runBlocking {
             // given
             val entity = CategoryEntity("운동")
@@ -82,7 +82,7 @@ class CategoryDaoTest {
     }
 
     @Test
-    fun givenTwoEntities_whenDeleteEntity_thenWorksFine() {
+    fun givenTwoEntities_whenDeleting_thenWorksFine() {
         runBlocking {
             // given
             val previousEntities = listOf(CategoryEntity("운동"), CategoryEntity("게임"))

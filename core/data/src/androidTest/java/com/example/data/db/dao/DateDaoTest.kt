@@ -31,7 +31,7 @@ class DateDaoTest {
     }
 
     @Test
-    fun givenEntity_whenInsert_thenWorksFine() {
+    fun givenEntity_whenInserting_thenWorksFine() {
         runBlocking {
             // given
             val entity = DateEntity(20250227)
