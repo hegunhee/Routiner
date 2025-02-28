@@ -10,5 +10,5 @@ data class RoutineEntity(
     val isFinished : Boolean = false,
     val category : String = "",
     @PrimaryKey(autoGenerate = true)
-    var id : Int = 0
+    var id : Int = 0,
 )
