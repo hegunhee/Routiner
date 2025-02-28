@@ -54,6 +54,3 @@ fun List<Routine>.toRoutineEntity() : List<RoutineEntity> =
 
 fun List<CategoryEntity>.toCategory() : List<Category> =
     this.map { Category(it.name) }
-
-fun List<DayOfWeekEntity>.toDayOfWeekList() : List<DayOfWeek> =
-    this.map {DayOfWeek(it.date,it.isSelected)}
