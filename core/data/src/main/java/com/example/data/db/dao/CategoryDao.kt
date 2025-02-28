@@ -19,4 +19,5 @@ interface CategoryDao {
 
     @Delete
     suspend fun removeCategory(categoryEntity : CategoryEntity)
+
 }
