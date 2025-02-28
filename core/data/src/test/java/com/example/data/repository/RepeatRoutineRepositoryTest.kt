@@ -31,14 +31,14 @@ class RepeatRoutineRepositoryTest {
             // given
             val dayOfWeek = "월"
             whenever(localDateSource.getAllRepeatRoutineList()).thenReturn(listOf())
-            whenever(localDateSource.insertAllRoutine(listOf())).thenReturn(Unit)
+            whenever(localDateSource.insertRoutines(listOf())).thenReturn(listOf())
 
             // when
             sut.insertAllDailyRoutineFromRepeatRoutine(dayOfWeek)
 
             // then
             verify(localDateSource).getAllRepeatRoutineList()
-            verify(localDateSource).insertAllRoutine(listOf())
+            verify(localDateSource).insertRoutines(listOf())
         }
     }
 

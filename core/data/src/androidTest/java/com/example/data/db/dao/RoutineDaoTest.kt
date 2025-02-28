@@ -7,8 +7,8 @@ import com.example.data.db.RoutinerDatabase
 import com.example.data.entity.RoutineEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.After
-import org.junit.Assert
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -39,11 +39,11 @@ class RoutineDaoTest {
             val date = 20250227
             val text = "text"
             val entity = createRoutineEntity(date, text)
-            val previousCount = sut.getRoutineListByDate(date).size
+            val previousCount = sut.getRoutinesByDate(date).size
 
             // when
             sut.insertRoutine(entity)
-            val insertingEntities = sut.getRoutineListByDate(date)
+            val insertingEntities = sut.getRoutinesByDate(date)
 
             // then
             assertEquals(insertingEntities.size, previousCount + 1)
@@ -58,14 +58,12 @@ class RoutineDaoTest {
             val date = 20250227
             val size = 5
             val entities = createRoutineEntitiesWith(size, date)
-            val previousCount = sut.getRoutineListByDate(date).size
 
             // when
-            sut.insertAllRoutine(entities)
-            val insertingEntities = sut.getRoutineListByDate(date)
+            val insertRoutinesRowIds = sut.insertRoutines(entities)
 
             // then
-            assertEquals(insertingEntities.size, previousCount + size)
+            assertEquals(insertRoutinesRowIds.size, size)
         }
     }
 
@@ -78,13 +76,12 @@ class RoutineDaoTest {
             val date2 = 20250225
             val size2 = 3
 
-            val entities =
-                createRoutineEntitiesWith(size1, date1) + createRoutineEntitiesWith(size2, date2)
+            val entities = createRoutineEntitiesWith(size1, date1) + createRoutineEntitiesWith(size2, date2)
 
-            sut.insertAllRoutine(entities)
+            sut.insertRoutines(entities)
 
             // when
-            val entitiesByDate = sut.getRoutineListByDate(date1)
+            val entitiesByDate = sut.getRoutinesByDate(date1)
 
             // then
             assertEquals(entitiesByDate.size, size1)
@@ -100,11 +97,11 @@ class RoutineDaoTest {
             val text = "asdsd"
             val entity = createRoutineEntity(date, text)
             sut.insertRoutine(entity)
-            val previousEntities = sut.getRoutineListByDate(date)
+            val previousEntities = sut.getRoutinesByDate(date)
 
             // when
             sut.deleteRoutine(previousEntities.first { it.text == text }.id)
-            val entities = sut.getRoutineListByDate(date)
+            val entities = sut.getRoutinesByDate(date)
 
             // then
             assertEquals(entities.size, previousEntities.size - 1)
@@ -124,14 +121,13 @@ class RoutineDaoTest {
             val entities =
                 createRoutineEntitiesWith(size1, date1) + createRoutineEntitiesWith(size2, date2)
 
-            sut.insertAllRoutine(entities)
+            sut.insertRoutines(entities)
 
             // when
-            sut.deleteAllRoutineByDate(date1)
-            val deletedEntities = sut.getRoutineListByDate(date1)
+            val deleteSize = sut.deleteRoutinesByDate(date1)
 
             // then
-            assertEquals(deletedEntities.size, 0)
+            assertEquals(deleteSize, entities.filter { it.date == date1 }.size)
         }
     }
 

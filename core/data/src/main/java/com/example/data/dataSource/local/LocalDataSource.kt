@@ -5,17 +5,20 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource {
 
-    fun getAllDailyRoutineByFlow(date : Int) : Flow<List<RoutineEntity>>
-
     suspend fun insertRoutine(routineEntity: RoutineEntity)
 
-    suspend fun deleteAllRoutineByDate(date : Int)
+    suspend fun insertRoutines(routineList: List<RoutineEntity>) : List<Long>
 
-    suspend fun deleteRoutine(id : Int)
+    fun getRoutinesFlowByDate(date : Int) : Flow<List<RoutineEntity>>
+
+    suspend fun getRoutinesByDate(date :Int) : List<RoutineEntity>
+
+    suspend fun deleteRoutinesByDate(date : Int) : Int
+
+    suspend fun deleteRoutine(id : Int) : Int
 
     suspend fun updateRoutine(routineEntity: RoutineEntity)
 
-    suspend fun getRoutineListByDate(date :Int) : List<RoutineEntity>
 
     suspend fun insertDate(date : DateEntity)
 
@@ -34,8 +37,6 @@ interface LocalDataSource {
     suspend fun getAllRepeatRoutineList() : List<RepeatRoutineEntity>
 
     suspend fun deleteRepeatRoutine(text: String)
-
-    suspend fun insertAllRoutine(routineList: List<RoutineEntity>)
 
     suspend fun insertCategory(category: CategoryEntity)
 

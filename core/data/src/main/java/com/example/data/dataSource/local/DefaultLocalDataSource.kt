@@ -17,29 +17,34 @@ class DefaultLocalDataSource @Inject constructor(
     private val sharedPreferenceManager: SharedPreferenceManager
 ) : LocalDataSource {
 
-    override fun getAllDailyRoutineByFlow(date: Int): Flow<List<RoutineEntity>> {
-        return routineDao.getAllDailyRoutineListByFlow(date)
-    }
-
     override suspend fun insertRoutine(routineEntity: RoutineEntity) {
         routineDao.insertRoutine(routineEntity)
     }
 
-    override suspend fun deleteAllRoutineByDate(date: Int) {
-        routineDao.deleteAllRoutineByDate(date)
+    override suspend fun insertRoutines(routineList: List<RoutineEntity>): List<Long> {
+        return routineDao.insertRoutines(routineList)
     }
 
-    override suspend fun deleteRoutine(id: Int) {
-        routineDao.deleteRoutine(id)
+    override fun getRoutinesFlowByDate(date: Int): Flow<List<RoutineEntity>> {
+        return routineDao.getRoutinesFlowByDate(date)
+    }
+
+    override suspend fun getRoutinesByDate(date: Int): List<RoutineEntity> {
+        return routineDao.getRoutinesByDate(date)
+    }
+
+    override suspend fun deleteRoutine(id: Int): Int {
+        return routineDao.deleteRoutine(id)
+    }
+
+    override suspend fun deleteRoutinesByDate(date: Int): Int {
+        return routineDao.deleteRoutinesByDate(date)
     }
 
     override suspend fun updateRoutine(routineEntity: RoutineEntity) {
         routineDao.updateRoutine(routineEntity)
     }
 
-    override suspend fun getRoutineListByDate(date: Int): List<RoutineEntity> {
-        return routineDao.getRoutineListByDate(date)
-    }
 
     override suspend fun insertDate(date: DateEntity) {
         return dateDao.insertDate(date)
@@ -75,10 +80,6 @@ class DefaultLocalDataSource @Inject constructor(
 
     override suspend fun deleteRepeatRoutine(text: String) {
         repeatRoutineDao.deleteRepeatRoutine(text)
-    }
-
-    override suspend fun insertAllRoutine(routineList: List<RoutineEntity>) {
-        routineDao.insertAllRoutine(routineList)
     }
 
     override suspend fun insertCategory(category: CategoryEntity) {
