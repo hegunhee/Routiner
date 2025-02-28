@@ -1,6 +1,7 @@
 package com.example.data.repository
 
 import com.example.data.dataSource.local.DefaultLocalDataSource
+import com.example.data.entity.RoutineEntity
 import com.example.data.mapper.toRoutineEntity
 import com.example.domain.model.Routine
 import kotlinx.coroutines.flow.first
@@ -63,15 +64,15 @@ class RoutineRepositoryTest {
         runBlocking {
             // given
             val size = 5
-            val routines = createRoutines(size, date)
-            whenever(localDateSource.getAllDailyRoutineByFlow(date)).thenReturn(flowOf(routines.toRoutineEntity()))
+            val routineEntities = createRoutineEntities(size, date)
+            whenever(localDateSource.getAllDailyRoutineByFlow(date)).thenReturn(flowOf(routineEntities))
 
             // when
-            val dailyRoutinesByFlow = sut.getAllDailyRoutineByFlow(date)
+            val routinesByFlow = sut.getAllDailyRoutineByFlow(date)
 
             // then
-            assertThat(dailyRoutinesByFlow.first().size).isEqualTo(size)
-            assertThat(dailyRoutinesByFlow.first().all { it.date == date }).isTrue()
+            assertThat(routinesByFlow.first().size).isEqualTo(size)
+            assertThat(routinesByFlow.first().all { it.date == date }).isTrue()
             verify(localDateSource).getAllDailyRoutineByFlow(date)
         }
     }
@@ -81,15 +82,15 @@ class RoutineRepositoryTest {
         runBlocking {
             // given
             val size = 5
-            val routines = createRoutines(size, date)
-            whenever(localDateSource.getRoutineListByDate(date)).thenReturn(routines.toRoutineEntity())
+            val routineEntities = createRoutineEntities(size, date)
+            whenever(localDateSource.getRoutineListByDate(date)).thenReturn(routineEntities)
 
             // when
-            val dailyRoutines = sut.getRoutineListByDate(date)
+            val routines = sut.getRoutineListByDate(date)
 
             // then
-            assertThat(dailyRoutines.size).isEqualTo(size)
-            assertThat(dailyRoutines.all { it.date == date }).isTrue()
+            assertThat(routines.size).isEqualTo(size)
+            assertThat(routines.all { it.date == date }).isTrue()
             verify(localDateSource).getRoutineListByDate(date)
         }
     }
@@ -136,6 +137,15 @@ class RoutineRepositoryTest {
             // then
             verify(localDateSource).deleteRoutine(routineId)
         }
+    }
+
+    private fun createRoutineEntities(size: Int, date: Int) : List<RoutineEntity> {
+        return (0 until size).map { number ->
+            createRoutineEntity(date, "$number text")
+        }
+    }
+    private fun createRoutineEntity(date: Int, text: String): RoutineEntity {
+        return RoutineEntity(date, text)
     }
 
     private fun createRoutines(size: Int, date: Int): List<Routine> {
