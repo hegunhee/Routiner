@@ -14,7 +14,7 @@ interface CategoryDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertCategory(categoryEntity: CategoryEntity)
 
-    @Query("SELECT * FROM CategoryEntity")
+    @Query("SELECT * FROM category")
     fun getAllCategoryListByFlow() : Flow<List<CategoryEntity>>
 
     @Delete

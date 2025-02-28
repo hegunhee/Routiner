@@ -4,7 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 
-@Entity
+@Entity(tableName = "reviews")
 data class ReviewEntity(
     @PrimaryKey
     val date: Int,

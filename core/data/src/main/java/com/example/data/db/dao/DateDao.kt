@@ -12,6 +12,6 @@ interface DateDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertDate(dateEntity : DateEntity)
 
-    @Query("SELECT * FROM DateEntity")
+    @Query("SELECT * FROM routineDate")
     suspend fun getAllDateList() : List<DateEntity>
 }

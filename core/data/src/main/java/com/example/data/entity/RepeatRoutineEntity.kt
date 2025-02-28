@@ -3,7 +3,7 @@ package com.example.data.entity
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity
+@Entity(tableName = "repeatRoutine")
 data class RepeatRoutineEntity(
     @PrimaryKey
     val text : String = "",
