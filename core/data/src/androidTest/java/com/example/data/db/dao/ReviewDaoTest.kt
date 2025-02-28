@@ -43,7 +43,7 @@ class ReviewDaoTest {
             val insertingEntity = sut.getReviewOrNullByDate(date)
 
             // then
-            assertEquals(insertingEntity,entity)
+            assertEquals(insertingEntity, entity)
         }
     }
 
@@ -66,15 +66,14 @@ class ReviewDaoTest {
         runBlocking {
             // given
             val date = 20250227
-            val entity = createReviewEntity(date,"")
+            val entity = createReviewEntity(date, "")
             sut.insertReview(entity)
 
             // when
-            sut.deleteReview(entity)
-            val deletedEntity = sut.getReviewOrNullByDate(date)
+            val deleteCount = sut.deleteReview(entity)
 
             // then
-            assertNull(deletedEntity)
+            assertEquals(deleteCount, 1)
         }
     }
 

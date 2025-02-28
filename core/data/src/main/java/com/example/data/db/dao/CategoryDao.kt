@@ -15,9 +15,9 @@ interface CategoryDao {
     suspend fun insertCategory(categoryEntity: CategoryEntity)
 
     @Query("SELECT * FROM category")
-    fun getAllCategoryListByFlow() : Flow<List<CategoryEntity>>
+    fun getCategoriesFlow() : Flow<List<CategoryEntity>>
 
     @Delete
-    suspend fun removeCategory(categoryEntity : CategoryEntity)
+    suspend fun deleteCategory(categoryEntity : CategoryEntity) : Int
 
 }

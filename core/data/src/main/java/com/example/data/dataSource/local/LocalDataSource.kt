@@ -5,43 +5,48 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalDataSource {
 
-    fun getAllDailyRoutineByFlow(date : Int) : Flow<List<RoutineEntity>>
-
     suspend fun insertRoutine(routineEntity: RoutineEntity)
 
-    suspend fun deleteAllRoutineByDate(date : Int)
+    suspend fun insertRoutines(routineList: List<RoutineEntity>) : List<Long>
 
-    suspend fun deleteRoutine(id : Int)
+    fun getRoutinesFlowByDate(date : Int) : Flow<List<RoutineEntity>>
+
+    suspend fun getRoutinesByDate(date :Int) : List<RoutineEntity>
+
+    suspend fun deleteRoutinesByDate(date : Int) : Int
+
+    suspend fun deleteRoutine(id : Int) : Int
 
     suspend fun updateRoutine(routineEntity: RoutineEntity)
 
-    suspend fun getRoutineListByDate(date :Int) : List<RoutineEntity>
 
     suspend fun insertDate(date : DateEntity)
 
-    suspend fun getAllDateList() : List<DateEntity>
+    suspend fun getDateList() : List<DateEntity>
 
-    suspend fun getReviewOrNullByDate(date : Int) : ReviewEntity?
 
     suspend fun insertReview(review : ReviewEntity)
 
-    suspend fun deleteReview(review: ReviewEntity)
+    suspend fun getReviewOrNullByDate(date : Int) : ReviewEntity?
+
+    suspend fun deleteReview(review: ReviewEntity) : Int
+
 
     suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutineEntity)
 
-    fun getAllRepeatRoutineListByFlow() : Flow<List<RepeatRoutineEntity>>
+    fun getRepeatRoutinesFlow() : Flow<List<RepeatRoutineEntity>>
 
-    suspend fun getAllRepeatRoutineList() : List<RepeatRoutineEntity>
+    suspend fun getRepeatRoutines() : List<RepeatRoutineEntity>
 
-    suspend fun deleteRepeatRoutine(text: String)
+    suspend fun deleteRepeatRoutine(text: String) : Int
 
-    suspend fun insertAllRoutine(routineList: List<RoutineEntity>)
 
     suspend fun insertCategory(category: CategoryEntity)
 
-    fun getAllCategoryListByFlow() : Flow<List<CategoryEntity>>
+    fun getCategoriesFlow() : Flow<List<CategoryEntity>>
 
-    suspend fun deleteCategory(categoryEntity : CategoryEntity)
+    suspend fun deleteCategory(categoryEntity : CategoryEntity) : Int
+
 
     suspend fun getCurrentDate() : Int
 

@@ -47,14 +47,14 @@ class CategoryRepositoryTest {
         runBlocking {
             // given
             val categoryEntitiesByFlow = flowOf(listOf(CategoryEntity("운동")))
-            whenever(localDateSource.getAllCategoryListByFlow()).thenReturn(categoryEntitiesByFlow)
+            whenever(localDateSource.getCategoriesFlow()).thenReturn(categoryEntitiesByFlow)
 
             // when
             val categoriesByFlow = sut.getAllCategoryListByFlow()
 
             // then
             assertThat(categoriesByFlow.first().size).isEqualTo(categoryEntitiesByFlow.first().size)
-            verify(localDateSource).getAllCategoryListByFlow()
+            verify(localDateSource).getCategoriesFlow()
         }
     }
 
@@ -63,7 +63,7 @@ class CategoryRepositoryTest {
         runBlocking {
             // given
             val category = Category("운동")
-            whenever(localDateSource.deleteCategory(category.toCategoryEntity())).thenReturn(Unit)
+            whenever(localDateSource.deleteCategory(category.toCategoryEntity())).thenReturn(1)
 
             // when
             sut.deleteCategory(category)

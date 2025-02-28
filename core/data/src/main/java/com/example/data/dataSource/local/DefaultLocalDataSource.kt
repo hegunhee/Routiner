@@ -17,81 +17,86 @@ class DefaultLocalDataSource @Inject constructor(
     private val sharedPreferenceManager: SharedPreferenceManager
 ) : LocalDataSource {
 
-    override fun getAllDailyRoutineByFlow(date: Int): Flow<List<RoutineEntity>> {
-        return routineDao.getAllDailyRoutineListByFlow(date)
-    }
-
     override suspend fun insertRoutine(routineEntity: RoutineEntity) {
         routineDao.insertRoutine(routineEntity)
     }
 
-    override suspend fun deleteAllRoutineByDate(date: Int) {
-        routineDao.deleteAllRoutineByDate(date)
+    override suspend fun insertRoutines(routineList: List<RoutineEntity>): List<Long> {
+        return routineDao.insertRoutines(routineList)
     }
 
-    override suspend fun deleteRoutine(id: Int) {
-        routineDao.deleteRoutine(id)
+    override fun getRoutinesFlowByDate(date: Int): Flow<List<RoutineEntity>> {
+        return routineDao.getRoutinesFlowByDate(date)
+    }
+
+    override suspend fun getRoutinesByDate(date: Int): List<RoutineEntity> {
+        return routineDao.getRoutinesByDate(date)
+    }
+
+    override suspend fun deleteRoutine(id: Int): Int {
+        return routineDao.deleteRoutine(id)
+    }
+
+    override suspend fun deleteRoutinesByDate(date: Int): Int {
+        return routineDao.deleteRoutinesByDate(date)
     }
 
     override suspend fun updateRoutine(routineEntity: RoutineEntity) {
         routineDao.updateRoutine(routineEntity)
     }
 
-    override suspend fun getRoutineListByDate(date: Int): List<RoutineEntity> {
-        return routineDao.getRoutineListByDate(date)
-    }
 
     override suspend fun insertDate(date: DateEntity) {
         return dateDao.insertDate(date)
     }
 
-    override suspend fun getAllDateList(): List<DateEntity> {
-        return dateDao.getAllDateList()
+    override suspend fun getDateList(): List<DateEntity> {
+        return dateDao.getDateList()
+    }
+
+
+    override suspend fun insertReview(review: ReviewEntity) {
+        reviewDao.insertReview(review)
     }
 
     override suspend fun getReviewOrNullByDate(date: Int): ReviewEntity? {
         return reviewDao.getReviewOrNullByDate(date)
     }
 
-    override suspend fun insertReview(review: ReviewEntity) {
-        reviewDao.insertReview(review)
+    override suspend fun deleteReview(review: ReviewEntity): Int {
+        return reviewDao.deleteReview(review)
     }
 
-    override suspend fun deleteReview(review: ReviewEntity) {
-        reviewDao.deleteReview(review)
-    }
 
     override suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutineEntity) {
         repeatRoutineDao.insertRepeatRoutine(repeatRoutine)
     }
 
-    override fun getAllRepeatRoutineListByFlow(): Flow<List<RepeatRoutineEntity>> {
-        return repeatRoutineDao.getAllRepeatRoutineListByFlow()
+    override fun getRepeatRoutinesFlow(): Flow<List<RepeatRoutineEntity>> {
+        return repeatRoutineDao.getRepeatRoutinesFlow()
     }
 
-    override suspend fun getAllRepeatRoutineList(): List<RepeatRoutineEntity> {
-        return repeatRoutineDao.getAllRepeatRoutineList()
+    override suspend fun getRepeatRoutines(): List<RepeatRoutineEntity> {
+        return repeatRoutineDao.getRepeatRoutines()
     }
 
-    override suspend fun deleteRepeatRoutine(text: String) {
-        repeatRoutineDao.deleteRepeatRoutine(text)
+    override suspend fun deleteRepeatRoutine(text: String): Int {
+        return repeatRoutineDao.deleteRepeatRoutine(text)
     }
 
-    override suspend fun insertAllRoutine(routineList: List<RoutineEntity>) {
-        routineDao.insertAllRoutine(routineList)
-    }
 
     override suspend fun insertCategory(category: CategoryEntity) {
         categoryDao.insertCategory(category)
     }
 
-    override fun getAllCategoryListByFlow(): Flow<List<CategoryEntity>> {
-        return categoryDao.getAllCategoryListByFlow()
+    override fun getCategoriesFlow(): Flow<List<CategoryEntity>> {
+        return categoryDao.getCategoriesFlow()
     }
 
-    override suspend fun deleteCategory(categoryEntity: CategoryEntity) {
-        categoryDao.removeCategory(categoryEntity)
+    override suspend fun deleteCategory(categoryEntity: CategoryEntity): Int {
+        return categoryDao.deleteCategory(categoryEntity)
     }
+
 
     override suspend fun getCurrentDate(): Int {
         return sharedPreferenceManager.getCurrentDate()

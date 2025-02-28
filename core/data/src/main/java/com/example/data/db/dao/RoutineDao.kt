@@ -8,22 +8,22 @@ import kotlinx.coroutines.flow.Flow
 interface RoutineDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertAllRoutine(routineEntityList: List<RoutineEntity>)
+    suspend fun insertRoutines(routineEntityList: List<RoutineEntity>) : List<Long>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRoutine(routineEntity: RoutineEntity)
 
     @Query("SELECT * FROM routine WHERE date = :date")
-    fun getAllDailyRoutineListByFlow(date: Int): Flow<List<RoutineEntity>>
+    fun getRoutinesFlowByDate(date: Int): Flow<List<RoutineEntity>>
 
     @Query("SELECT * FROM routine WHERE date = :date")
-    suspend fun getRoutineListByDate(date: Int): List<RoutineEntity>
+    suspend fun getRoutinesByDate(date: Int): List<RoutineEntity>
 
     @Query("DELETE FROM routine WHERE date = :date")
-    suspend fun deleteAllRoutineByDate(date: Int)
+    suspend fun deleteRoutinesByDate(date: Int) : Int
 
     @Query("DELETE FROM routine WHERE id = :id")
-    suspend fun deleteRoutine(id: Int)
+    suspend fun deleteRoutine(id: Int) : Int
 
     @Update
     suspend fun updateRoutine(routineEntity: RoutineEntity)

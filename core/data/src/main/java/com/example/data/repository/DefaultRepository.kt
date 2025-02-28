@@ -15,7 +15,7 @@ class DefaultRepository @Inject constructor(
 ) : Repository {
 
     override suspend fun insertAllRoutine(routineList: List<Routine>) {
-        localDataSource.insertAllRoutine(routineList.toRoutineEntity())
+        localDataSource.insertRoutines(routineList.toRoutineEntity())
     }
 
     override suspend fun insertRoutine(routine: Routine) {
@@ -23,11 +23,11 @@ class DefaultRepository @Inject constructor(
     }
 
     override fun getAllDailyRoutineByFlow(date: Int): Flow<List<Routine>> {
-        return localDataSource.getAllDailyRoutineByFlow(date).map { it.toRoutineList() }
+        return localDataSource.getRoutinesFlowByDate(date).map { it.toRoutineList() }
     }
 
     override suspend fun getRoutineListByDate(date: Int): List<Routine> {
-        return localDataSource.getRoutineListByDate(date).toRoutineList()
+        return localDataSource.getRoutinesByDate(date).toRoutineList()
     }
 
     override suspend fun updateRoutine(routine: Routine) {
@@ -35,7 +35,7 @@ class DefaultRepository @Inject constructor(
     }
 
     override suspend fun deleteAllRoutineByDate(date: Int) {
-        localDataSource.deleteAllRoutineByDate(date)
+        localDataSource.deleteRoutinesByDate(date)
     }
 
     override suspend fun deleteRoutine(id: Int) {
@@ -48,7 +48,7 @@ class DefaultRepository @Inject constructor(
     }
 
     override suspend fun getAllDateList(): List<Date> {
-        return localDataSource.getAllDateList().toDateList()
+        return localDataSource.getDateList().toDateList()
     }
 
 
@@ -66,9 +66,9 @@ class DefaultRepository @Inject constructor(
 
 
     override suspend fun insertAllDailyRoutineFromRepeatRoutine(dayOfWeek: String) {
-        val repeatRoutineList = localDataSource.getAllRepeatRoutineList()
+        val repeatRoutineList = localDataSource.getRepeatRoutines()
         repeatRoutineList.filter { it.dayOfWeekList.contains(dayOfWeek) }.toRoutineEntityList().let { routineEntityList ->
-            localDataSource.insertAllRoutine(routineEntityList)
+            localDataSource.insertRoutines(routineEntityList)
         }
     }
 
@@ -77,11 +77,11 @@ class DefaultRepository @Inject constructor(
     }
 
     override fun getAllRepeatRoutineListByFlow(): Flow<List<RepeatRoutine>> {
-        return localDataSource.getAllRepeatRoutineListByFlow().map { it.toRepeatRoutineList() }
+        return localDataSource.getRepeatRoutinesFlow().map { it.toRepeatRoutineList() }
     }
 
     override suspend fun getAllRepeatRoutineList(): List<RepeatRoutine> {
-        return localDataSource.getAllRepeatRoutineList().toRepeatRoutineList()
+        return localDataSource.getRepeatRoutines().toRepeatRoutineList()
     }
 
     override suspend fun deleteRepeatRoutine(text: String) {
@@ -94,7 +94,7 @@ class DefaultRepository @Inject constructor(
     }
 
     override fun getAllCategoryListByFlow(): Flow<List<Category>> {
-        return localDataSource.getAllCategoryListByFlow().map { it.toCategory() }
+        return localDataSource.getCategoriesFlow().map { it.toCategory() }
     }
 
     override suspend fun deleteCategory(category: Category) {

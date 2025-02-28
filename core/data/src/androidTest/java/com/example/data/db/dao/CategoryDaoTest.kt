@@ -39,7 +39,7 @@ class CategoryDaoTest {
 
             // when
             sut.insertCategory(entity)
-            val insertedEntity = sut.getAllCategoryListByFlow().first()[0]
+            val insertedEntity = sut.getCategoriesFlow().first()[0]
 
             // then
             assertEquals(insertedEntity, entity)
@@ -51,13 +51,13 @@ class CategoryDaoTest {
         runBlocking {
             // given
             val entity = CategoryEntity("운동")
-            val previousCount = sut.getAllCategoryListByFlow().first().size
+            val previousCount = sut.getCategoriesFlow().first().size
 
             // when
             sut.insertCategory(entity)
             sut.insertCategory(entity)
             val entities =
-                sut.getAllCategoryListByFlow().first().filter { it.name == entity.name }
+                sut.getCategoriesFlow().first().filter { it.name == entity.name }
 
             // then
             assertEquals(entities.size, previousCount + 1)
@@ -70,14 +70,12 @@ class CategoryDaoTest {
             // given
             val entity = CategoryEntity("운동")
             sut.insertCategory(entity)
-            val previousCount = sut.getAllCategoryListByFlow().first().size
 
             // when
-            sut.removeCategory(entity)
-            val count = sut.getAllCategoryListByFlow().first().size
+            val deleteCategoryCount = sut.deleteCategory(entity)
 
             // then
-            assertEquals(count, previousCount - 1)
+            assertEquals(deleteCategoryCount, 1)
         }
     }
 
@@ -89,15 +87,15 @@ class CategoryDaoTest {
             previousEntities.forEach {
                 sut.insertCategory(it)
             }
-            val entitiesFlow = sut.getAllCategoryListByFlow()
+            val entitiesFlow = sut.getCategoriesFlow()
 
             // when
-            sut.removeCategory(previousEntities[0])
+            sut.deleteCategory(previousEntities[0])
             val entities = entitiesFlow.first()
 
             // then
             assertEquals(entities.size, previousEntities.size - 1)
-            assertEquals(entities[0],previousEntities.first { it.name == entities[0].name })
+            assertEquals(entities[0], previousEntities.first { it.name == entities[0].name })
         }
     }
 }
