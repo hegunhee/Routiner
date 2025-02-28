@@ -43,7 +43,7 @@ interface Repository {
 
     fun getAllCategoryListByFlow() : Flow<List<Category>>
 
-    suspend fun removeCategory(category : Category)
+    suspend fun deleteCategory(category : Category)
 
     suspend fun getCurrentDate() : Int
 

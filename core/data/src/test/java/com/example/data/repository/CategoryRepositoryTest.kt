@@ -63,13 +63,13 @@ class CategoryRepositoryTest {
         runBlocking {
             // given
             val category = Category("운동")
-            whenever(localDateSource.removeCategory(category.toCategoryEntity())).thenReturn(Unit)
+            whenever(localDateSource.deleteCategory(category.toCategoryEntity())).thenReturn(Unit)
 
             // when
-            sut.removeCategory(category)
+            sut.deleteCategory(category)
 
             // then
-            verify(localDateSource).removeCategory(category.toCategoryEntity())
+            verify(localDateSource).deleteCategory(category.toCategoryEntity())
         }
     }
 }

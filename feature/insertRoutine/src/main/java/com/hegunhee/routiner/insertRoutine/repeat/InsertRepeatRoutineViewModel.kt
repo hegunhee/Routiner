@@ -8,7 +8,7 @@ import com.example.domain.model.RepeatRoutine
 import com.example.domain.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.category.InsertCategoryUseCase
-import com.example.domain.usecase.category.RemoveCategoryUseCase
+import com.example.domain.usecase.category.DeleteCategoryUseCase
 import com.example.domain.usecase.date.GetSortedDayOfWeekListUseCase
 import com.example.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
 import com.example.domain.usecase.routine.InsertRoutineUseCase
@@ -36,7 +36,7 @@ class InsertRepeatRoutineViewModel @Inject constructor(
     private val insertRoutineUseCase: InsertRoutineUseCase,
     private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase,
     private val getSortedDayOfWeekListUseCase: GetSortedDayOfWeekListUseCase,
-    private val removeCategoryUseCase: RemoveCategoryUseCase,
+    private val deleteCategoryUseCase: DeleteCategoryUseCase,
     private val insertCategoryUseCase: InsertCategoryUseCase
 ) : ViewModel(), CategoryActionHandler, DayOfWeekActionHandler, InsertRepeatRoutineActionHandler {
 
@@ -126,7 +126,7 @@ class InsertRepeatRoutineViewModel @Inject constructor(
     }
     override fun onCategoryRemoveClick(category: Category) {
         viewModelScope.launch {
-            removeCategoryUseCase(category)
+            deleteCategoryUseCase(category)
             if(selectedCategory.value.name == category.name) {
                 _selectedCategory.value = Category("")
             }
