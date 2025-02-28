@@ -89,7 +89,7 @@ class DefaultLocalDataSource @Inject constructor(
         return categoryDao.getAllCategoryListByFlow()
     }
 
-    override suspend fun removeCategory(categoryEntity: CategoryEntity) {
+    override suspend fun deleteCategory(categoryEntity: CategoryEntity) {
         categoryDao.removeCategory(categoryEntity)
     }
 
@@ -116,4 +116,5 @@ class DefaultLocalDataSource @Inject constructor(
     override fun setAppFirstOpened() {
         return sharedPreferenceManager.setAppFirstOpened()
     }
+
 }

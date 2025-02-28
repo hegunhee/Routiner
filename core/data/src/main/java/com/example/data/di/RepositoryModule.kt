@@ -1,6 +1,5 @@
 package com.example.data.di
 
-import com.example.data.db.dao.*
 import com.example.domain.repository.Repository
 import com.example.data.repository.DefaultRepository
 import dagger.Binds

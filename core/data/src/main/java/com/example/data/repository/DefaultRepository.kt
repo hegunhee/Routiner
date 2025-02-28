@@ -13,12 +13,25 @@ import javax.inject.Singleton
 class DefaultRepository @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : Repository {
-    override fun getAllDailyRoutineByFlow(date: Int): Flow<List<Routine>> {
-        return localDataSource.getAllDailyRoutineByFlow(date).map { it.toRoutineList() }
+
+    override suspend fun insertAllRoutine(routineList: List<Routine>) {
+        localDataSource.insertAllRoutine(routineList.toRoutineEntity())
     }
 
     override suspend fun insertRoutine(routine: Routine) {
         localDataSource.insertRoutine(routine.toRoutineEntity())
+    }
+
+    override fun getAllDailyRoutineByFlow(date: Int): Flow<List<Routine>> {
+        return localDataSource.getAllDailyRoutineByFlow(date).map { it.toRoutineList() }
+    }
+
+    override suspend fun getRoutineListByDate(date: Int): List<Routine> {
+        return localDataSource.getRoutineListByDate(date).toRoutineList()
+    }
+
+    override suspend fun updateRoutine(routine: Routine) {
+        localDataSource.updateRoutine(routine.toRoutineEntity())
     }
 
     override suspend fun deleteAllRoutineByDate(date: Int) {
@@ -29,13 +42,6 @@ class DefaultRepository @Inject constructor(
         localDataSource.deleteRoutine(id)
     }
 
-    override suspend fun updateRoutine(routine: Routine) {
-        localDataSource.updateRoutine(routine.toRoutineEntity())
-    }
-
-    override suspend fun getRoutineListByDate(date: Int): List<Routine> {
-        return localDataSource.getRoutineListByDate(date).toRoutineList()
-    }
 
     override suspend fun insertDate(date: Int) {
         return localDataSource.insertDate(Date(date).toDateEntity())
@@ -44,6 +50,7 @@ class DefaultRepository @Inject constructor(
     override suspend fun getAllDateList(): List<Date> {
         return localDataSource.getAllDateList().toDateList()
     }
+
 
     override suspend fun getReviewOrNullByDate(date: Int): Review? {
         return localDataSource.getReviewOrNullByDate(date).toReviewOrNull()
@@ -55,6 +62,14 @@ class DefaultRepository @Inject constructor(
 
     override suspend fun deleteReview(review: Review) {
         localDataSource.deleteReview(review.toReviewEntity())
+    }
+
+
+    override suspend fun insertAllDailyRoutineFromRepeatRoutine(dayOfWeek: String) {
+        val repeatRoutineList = localDataSource.getAllRepeatRoutineList()
+        repeatRoutineList.filter { it.dayOfWeekList.contains(dayOfWeek) }.toRoutineEntityList().let { routineEntityList ->
+            localDataSource.insertAllRoutine(routineEntityList)
+        }
     }
 
     override suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutine) {
@@ -73,16 +88,6 @@ class DefaultRepository @Inject constructor(
         localDataSource.deleteRepeatRoutine(text)
     }
 
-    override suspend fun insertAllRoutine(routineList: List<Routine>) {
-        localDataSource.insertAllRoutine(routineList.toRoutineEntity())
-    }
-
-    override suspend fun insertAllDailyRoutineFromRepeatRoutine(dayOfWeek: String) {
-        val repeatRoutineList = localDataSource.getAllRepeatRoutineList()
-        repeatRoutineList.filter { it.dayOfWeekList.contains(dayOfWeek) }.toRoutineEntityList().let { routineEntityList ->
-            localDataSource.insertAllRoutine(routineEntityList)
-        }
-    }
 
     override suspend fun insertCategory(category: Category) {
         localDataSource.insertCategory(category.toCategoryEntity())
@@ -92,9 +97,10 @@ class DefaultRepository @Inject constructor(
         return localDataSource.getAllCategoryListByFlow().map { it.toCategory() }
     }
 
-    override suspend fun removeCategory(category: Category) {
-        localDataSource.removeCategory(category.toCategoryEntity())
+    override suspend fun deleteCategory(category: Category) {
+        localDataSource.deleteCategory(category.toCategoryEntity())
     }
+
 
     override suspend fun getCurrentDate(): Int {
         return localDataSource.getCurrentDate()
@@ -123,4 +129,5 @@ class DefaultRepository @Inject constructor(
     override fun getSortedDayOfWeekList(): List<String> {
         return listOf("월","화","수","목","금","토","일")
     }
+
 }

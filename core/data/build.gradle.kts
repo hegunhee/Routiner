@@ -14,4 +14,5 @@ dependencies {
     kapt(libs.room.compiler)
 
     implementation(libs.gson)
+    testImplementation(libs.assertj.core)
 }
