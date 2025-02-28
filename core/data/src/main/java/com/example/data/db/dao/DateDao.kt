@@ -13,6 +13,6 @@ interface DateDao {
     fun insertDate(dateEntity: DateEntity)
 
     @Query("SELECT * FROM routineDate")
-    suspend fun getAllDateList(): List<DateEntity>
+    suspend fun getDateList(): List<DateEntity>
 
 }

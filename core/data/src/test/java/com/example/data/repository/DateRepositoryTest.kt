@@ -42,14 +42,14 @@ class DateRepositoryTest {
         runBlocking {
             // given
             val dateEntities = listOf(DateEntity(20250228), DateEntity(20250227))
-            whenever(localDateSource.getAllDateList()).thenReturn(dateEntities)
+            whenever(localDateSource.getDateList()).thenReturn(dateEntities)
 
             // when
             val dateList = sut.getAllDateList()
 
             // then
             assertThat(dateList.size).isEqualTo(dateEntities.size)
-            verify(localDateSource).getAllDateList()
+            verify(localDateSource).getDateList()
         }
     }
 }

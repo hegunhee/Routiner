@@ -22,7 +22,7 @@ interface LocalDataSource {
 
     suspend fun insertDate(date : DateEntity)
 
-    suspend fun getAllDateList() : List<DateEntity>
+    suspend fun getDateList() : List<DateEntity>
 
 
     suspend fun insertReview(review : ReviewEntity)

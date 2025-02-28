@@ -48,7 +48,7 @@ class DefaultRepository @Inject constructor(
     }
 
     override suspend fun getAllDateList(): List<Date> {
-        return localDataSource.getAllDateList().toDateList()
+        return localDataSource.getDateList().toDateList()
     }
 
 

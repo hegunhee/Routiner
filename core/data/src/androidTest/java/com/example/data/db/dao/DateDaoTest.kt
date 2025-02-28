@@ -35,11 +35,11 @@ class DateDaoTest {
         runBlocking {
             // given
             val entity = DateEntity(20250227)
-            val previousEntities = sut.getAllDateList()
+            val previousEntities = sut.getDateList()
 
             // when
             sut.insertDate(entity)
-            val entities = sut.getAllDateList()
+            val entities = sut.getDateList()
 
             // then
             assertEquals(entities.size, previousEntities.size + 1)

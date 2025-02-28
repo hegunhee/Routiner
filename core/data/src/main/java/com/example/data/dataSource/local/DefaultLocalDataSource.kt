@@ -50,8 +50,8 @@ class DefaultLocalDataSource @Inject constructor(
         return dateDao.insertDate(date)
     }
 
-    override suspend fun getAllDateList(): List<DateEntity> {
-        return dateDao.getAllDateList()
+    override suspend fun getDateList(): List<DateEntity> {
+        return dateDao.getDateList()
     }
 
 
