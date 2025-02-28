@@ -8,9 +8,10 @@ interface ReviewDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertReview(reviewEntity: ReviewEntity)
 
-    @Query("SELECT * FROM ReviewEntity WHERE date == :date")
-    suspend fun getReviewOrNullByDate(date : Int) : ReviewEntity?
+    @Query("SELECT * FROM reviews WHERE date == :date")
+    suspend fun getReviewOrNullByDate(date: Int): ReviewEntity?
 
     @Delete
-    fun deleteReview(reviewEntity : ReviewEntity)
+    fun deleteReview(reviewEntity: ReviewEntity)
+
 }

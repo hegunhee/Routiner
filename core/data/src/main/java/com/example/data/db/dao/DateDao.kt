@@ -10,8 +10,9 @@ import com.example.data.entity.DateEntity
 interface DateDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertDate(dateEntity : DateEntity)
+    fun insertDate(dateEntity: DateEntity)
 
-    @Query("SELECT * FROM DateEntity")
-    suspend fun getAllDateList() : List<DateEntity>
+    @Query("SELECT * FROM routineDate")
+    suspend fun getAllDateList(): List<DateEntity>
+
 }
