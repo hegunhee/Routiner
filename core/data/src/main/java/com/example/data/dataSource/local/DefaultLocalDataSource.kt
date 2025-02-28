@@ -72,17 +72,18 @@ class DefaultLocalDataSource @Inject constructor(
         repeatRoutineDao.insertRepeatRoutine(repeatRoutine)
     }
 
-    override fun getAllRepeatRoutineListByFlow(): Flow<List<RepeatRoutineEntity>> {
-        return repeatRoutineDao.getAllRepeatRoutineListByFlow()
+    override fun getRepeatRoutinesFlow(): Flow<List<RepeatRoutineEntity>> {
+        return repeatRoutineDao.getRepeatRoutinesFlow()
     }
 
-    override suspend fun getAllRepeatRoutineList(): List<RepeatRoutineEntity> {
-        return repeatRoutineDao.getAllRepeatRoutineList()
+    override suspend fun getRepeatRoutines(): List<RepeatRoutineEntity> {
+        return repeatRoutineDao.getRepeatRoutines()
     }
 
-    override suspend fun deleteRepeatRoutine(text: String) {
-        repeatRoutineDao.deleteRepeatRoutine(text)
+    override suspend fun deleteRepeatRoutine(text: String) : Int {
+        return repeatRoutineDao.deleteRepeatRoutine(text)
     }
+
 
     override suspend fun insertCategory(category: CategoryEntity) {
         categoryDao.insertCategory(category)

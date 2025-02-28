@@ -35,11 +35,11 @@ class RepeatRoutineDaoTest {
         runBlocking {
             // given
             val entity = createRepeatRoutineEntity("가슴운동")
-            val previousCount = sut.getAllRepeatRoutineList().size
+            val previousCount = sut.getRepeatRoutines().size
 
             // when
             sut.insertRepeatRoutine(entity)
-            val count = sut.getAllRepeatRoutineList().size
+            val count = sut.getRepeatRoutines().size
 
             // then
             assertEquals(count, previousCount + 1)
@@ -52,12 +52,12 @@ class RepeatRoutineDaoTest {
             // given
             val text = "가슴 운동"
             val changedCategory = "진짜 운동"
-            val entity = createRepeatRoutineEntity(text,"운동")
+            val entity = createRepeatRoutineEntity(text, "운동")
             sut.insertRepeatRoutine(entity)
 
             // when
             sut.insertRepeatRoutine(entity.copy(category = changedCategory))
-            val entities = sut.getAllRepeatRoutineList()
+            val entities = sut.getRepeatRoutines()
 
             // then
             assertEquals(entities.first { it.text == text }.category, changedCategory)
@@ -71,14 +71,12 @@ class RepeatRoutineDaoTest {
             val text = "가슴 운동"
             val entity = createRepeatRoutineEntity(text)
             sut.insertRepeatRoutine(entity)
-            val previousCount = sut.getAllRepeatRoutineList().size
 
             // when
-            sut.deleteRepeatRoutine(text)
-            val count = sut.getAllRepeatRoutineList().size
+            val deleteRepeatRoutineCount = sut.deleteRepeatRoutine(text)
 
             // then
-            assertEquals(count,previousCount - 1)
+            assertEquals(deleteRepeatRoutineCount, 1)
         }
     }
 

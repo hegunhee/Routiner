@@ -34,11 +34,12 @@ interface LocalDataSource {
 
     suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutineEntity)
 
-    fun getAllRepeatRoutineListByFlow() : Flow<List<RepeatRoutineEntity>>
+    fun getRepeatRoutinesFlow() : Flow<List<RepeatRoutineEntity>>
 
-    suspend fun getAllRepeatRoutineList() : List<RepeatRoutineEntity>
+    suspend fun getRepeatRoutines() : List<RepeatRoutineEntity>
 
-    suspend fun deleteRepeatRoutine(text: String)
+    suspend fun deleteRepeatRoutine(text: String) : Int
+
 
     suspend fun insertCategory(category: CategoryEntity)
 

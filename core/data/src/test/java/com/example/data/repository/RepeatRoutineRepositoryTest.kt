@@ -30,14 +30,14 @@ class RepeatRoutineRepositoryTest {
         runBlocking {
             // given
             val dayOfWeek = "월"
-            whenever(localDateSource.getAllRepeatRoutineList()).thenReturn(listOf())
+            whenever(localDateSource.getRepeatRoutines()).thenReturn(listOf())
             whenever(localDateSource.insertRoutines(listOf())).thenReturn(listOf())
 
             // when
             sut.insertAllDailyRoutineFromRepeatRoutine(dayOfWeek)
 
             // then
-            verify(localDateSource).getAllRepeatRoutineList()
+            verify(localDateSource).getRepeatRoutines()
             verify(localDateSource).insertRoutines(listOf())
         }
     }
@@ -62,14 +62,14 @@ class RepeatRoutineRepositoryTest {
         runBlocking {
             // given
             val repeatRoutineEntitiesByFlow = flowOf(listOf(RepeatRoutineEntity(dayOfWeekList = listOf("월"))))
-            whenever(localDateSource.getAllRepeatRoutineListByFlow()).thenReturn(repeatRoutineEntitiesByFlow)
+            whenever(localDateSource.getRepeatRoutinesFlow()).thenReturn(repeatRoutineEntitiesByFlow)
 
             // when
             val repeatRoutinesByFlow = sut.getAllRepeatRoutineListByFlow()
 
             // then
             assertThat(repeatRoutinesByFlow.first().size).isEqualTo(repeatRoutineEntitiesByFlow.first().size)
-            verify(localDateSource).getAllRepeatRoutineListByFlow()
+            verify(localDateSource).getRepeatRoutinesFlow()
         }
     }
 
@@ -78,14 +78,14 @@ class RepeatRoutineRepositoryTest {
         runBlocking {
             // given
             val repeatRoutineEntities = listOf(RepeatRoutineEntity(dayOfWeekList = listOf("월")))
-            whenever(localDateSource.getAllRepeatRoutineList()).thenReturn(repeatRoutineEntities)
+            whenever(localDateSource.getRepeatRoutines()).thenReturn(repeatRoutineEntities)
 
             // when
             val repeatRoutines = sut.getAllRepeatRoutineList()
 
             // then
             assertThat(repeatRoutines.size).isEqualTo(repeatRoutineEntities.size)
-            verify(localDateSource).getAllRepeatRoutineList()
+            verify(localDateSource).getRepeatRoutines()
         }
     }
 
@@ -94,7 +94,7 @@ class RepeatRoutineRepositoryTest {
         runBlocking {
             // given
             val text = ""
-            whenever(localDateSource.deleteRepeatRoutine(text)).thenReturn(Unit)
+            whenever(localDateSource.deleteRepeatRoutine(text)).thenReturn(1)
 
             // when
             sut.deleteRepeatRoutine(text)
