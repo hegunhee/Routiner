@@ -12,6 +12,6 @@ interface ReviewDao {
     suspend fun getReviewOrNullByDate(date: Int): ReviewEntity?
 
     @Delete
-    fun deleteReview(reviewEntity: ReviewEntity)
+    fun deleteReview(reviewEntity: ReviewEntity) : Int
 
 }

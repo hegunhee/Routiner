@@ -77,7 +77,7 @@ class ReviewRepositoryTest {
         runBlocking {
             // given
             val review = Review(date, "")
-            whenever(localDateSource.deleteReview(review.toReviewEntity())).thenReturn(Unit)
+            whenever(localDateSource.deleteReview(review.toReviewEntity())).thenReturn(1)
 
             // when
             sut.deleteReview(review)

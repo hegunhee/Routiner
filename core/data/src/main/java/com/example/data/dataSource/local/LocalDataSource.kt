@@ -24,11 +24,13 @@ interface LocalDataSource {
 
     suspend fun getAllDateList() : List<DateEntity>
 
-    suspend fun getReviewOrNullByDate(date : Int) : ReviewEntity?
 
     suspend fun insertReview(review : ReviewEntity)
 
-    suspend fun deleteReview(review: ReviewEntity)
+    suspend fun getReviewOrNullByDate(date : Int) : ReviewEntity?
+
+    suspend fun deleteReview(review: ReviewEntity) : Int
+
 
     suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutineEntity)
 
