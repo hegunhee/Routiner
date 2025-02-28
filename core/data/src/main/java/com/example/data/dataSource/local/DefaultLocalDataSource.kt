@@ -63,7 +63,7 @@ class DefaultLocalDataSource @Inject constructor(
         return reviewDao.getReviewOrNullByDate(date)
     }
 
-    override suspend fun deleteReview(review: ReviewEntity) : Int {
+    override suspend fun deleteReview(review: ReviewEntity): Int {
         return reviewDao.deleteReview(review)
     }
 
@@ -80,7 +80,7 @@ class DefaultLocalDataSource @Inject constructor(
         return repeatRoutineDao.getRepeatRoutines()
     }
 
-    override suspend fun deleteRepeatRoutine(text: String) : Int {
+    override suspend fun deleteRepeatRoutine(text: String): Int {
         return repeatRoutineDao.deleteRepeatRoutine(text)
     }
 
@@ -89,13 +89,14 @@ class DefaultLocalDataSource @Inject constructor(
         categoryDao.insertCategory(category)
     }
 
-    override fun getAllCategoryListByFlow(): Flow<List<CategoryEntity>> {
-        return categoryDao.getAllCategoryListByFlow()
+    override fun getCategoriesFlow(): Flow<List<CategoryEntity>> {
+        return categoryDao.getCategoriesFlow()
     }
 
-    override suspend fun deleteCategory(categoryEntity: CategoryEntity) {
-        categoryDao.removeCategory(categoryEntity)
+    override suspend fun deleteCategory(categoryEntity: CategoryEntity): Int {
+        return categoryDao.deleteCategory(categoryEntity)
     }
+
 
     override suspend fun getCurrentDate(): Int {
         return sharedPreferenceManager.getCurrentDate()

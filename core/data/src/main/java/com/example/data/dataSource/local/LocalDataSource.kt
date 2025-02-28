@@ -43,9 +43,10 @@ interface LocalDataSource {
 
     suspend fun insertCategory(category: CategoryEntity)
 
-    fun getAllCategoryListByFlow() : Flow<List<CategoryEntity>>
+    fun getCategoriesFlow() : Flow<List<CategoryEntity>>
 
-    suspend fun deleteCategory(categoryEntity : CategoryEntity)
+    suspend fun deleteCategory(categoryEntity : CategoryEntity) : Int
+
 
     suspend fun getCurrentDate() : Int
 
