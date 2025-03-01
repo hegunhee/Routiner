@@ -8,6 +8,6 @@ import javax.inject.Inject
 class GetAllRepeatRoutineListByFlowUseCase @Inject constructor(private val repository: RepeatRoutineRepository) {
 
     operator fun invoke(): Flow<List<RepeatRoutine>> {
-        return repository.getAllRepeatRoutineListByFlow()
+        return repository.getRepeatRoutinesFlow()
     }
 }
