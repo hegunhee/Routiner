@@ -14,35 +14,6 @@ class DefaultRepository @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : Repository {
 
-    override suspend fun insertAllRoutine(routineList: List<Routine>) {
-        localDataSource.insertRoutines(routineList.toRoutineEntity())
-    }
-
-    override suspend fun insertRoutine(routine: Routine) {
-        localDataSource.insertRoutine(routine.toRoutineEntity())
-    }
-
-    override fun getAllDailyRoutineByFlow(date: Int): Flow<List<Routine>> {
-        return localDataSource.getRoutinesFlowByDate(date).map { it.toRoutineList() }
-    }
-
-    override suspend fun getRoutineListByDate(date: Int): List<Routine> {
-        return localDataSource.getRoutinesByDate(date).toRoutineList()
-    }
-
-    override suspend fun updateRoutine(routine: Routine) {
-        localDataSource.updateRoutine(routine.toRoutineEntity())
-    }
-
-    override suspend fun deleteAllRoutineByDate(date: Int) {
-        localDataSource.deleteRoutinesByDate(date)
-    }
-
-    override suspend fun deleteRoutine(id: Int) {
-        localDataSource.deleteRoutine(id)
-    }
-
-
     override suspend fun insertDate(date: Int) {
         return localDataSource.insertDate(Date(date).toDateEntity())
     }
@@ -62,14 +33,6 @@ class DefaultRepository @Inject constructor(
 
     override suspend fun deleteReview(review: Review) {
         localDataSource.deleteReview(review.toReviewEntity())
-    }
-
-
-    override suspend fun insertAllDailyRoutineFromRepeatRoutine(dayOfWeek: String) {
-        val repeatRoutineList = localDataSource.getRepeatRoutines()
-        repeatRoutineList.filter { it.dayOfWeekList.contains(dayOfWeek) }.toRoutineEntityList().let { routineEntityList ->
-            localDataSource.insertRoutines(routineEntityList)
-        }
     }
 
     override suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutine) {

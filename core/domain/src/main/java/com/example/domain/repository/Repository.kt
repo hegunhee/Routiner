@@ -5,18 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
-    fun getAllDailyRoutineByFlow(date : Int) : Flow<List<Routine>>
-
-    suspend fun insertRoutine(routine: Routine)
-
-    suspend fun deleteAllRoutineByDate(date : Int)
-
-    suspend fun deleteRoutine(id : Int)
-
-    suspend fun updateRoutine(routine : Routine)
-
-    suspend fun getRoutineListByDate(date :Int) : List<Routine>
-
     suspend fun insertDate(date : Int)
 
     suspend fun getAllDateList() : List<Date>
@@ -34,10 +22,6 @@ interface Repository {
     suspend fun getAllRepeatRoutineList() : List<RepeatRoutine>
 
     suspend fun deleteRepeatRoutine(text: String)
-
-    suspend fun insertAllRoutine(routineList: List<Routine>)
-
-    suspend fun insertAllDailyRoutineFromRepeatRoutine(dayOfWeek : String)
 
     suspend fun insertCategory(category: Category)
 
