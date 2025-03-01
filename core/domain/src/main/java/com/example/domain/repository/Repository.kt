@@ -5,10 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
-    suspend fun insertDate(date : Int)
-
-    suspend fun getAllDateList() : List<Date>
-
     suspend fun insertCategory(category: Category)
 
     fun getAllCategoryListByFlow() : Flow<List<Category>>

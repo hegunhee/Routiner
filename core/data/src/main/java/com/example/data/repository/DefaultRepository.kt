@@ -14,14 +14,6 @@ class DefaultRepository @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : Repository {
 
-    override suspend fun insertDate(date: Int) {
-        return localDataSource.insertDate(Date(date).toDateEntity())
-    }
-
-    override suspend fun getAllDateList(): List<Date> {
-        return localDataSource.getDateList().toDateList()
-    }
-
     override suspend fun insertCategory(category: Category) {
         localDataSource.insertCategory(category.toCategoryEntity())
     }
