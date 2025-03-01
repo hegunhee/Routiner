@@ -9,31 +9,31 @@ import javax.inject.Singleton
 
 @Singleton
 class DefaultSettingRepository @Inject constructor(
-    private val localDateSource: LocalDataSource
+    private val localDataSource: LocalDataSource
 ) : SettingRepository {
 
     override suspend fun getCurrentDate(): Int {
-        return localDateSource.getCurrentDate()
+        return localDataSource.getCurrentDate()
     }
 
     override suspend fun setCurrentDate(date: Int) {
-        localDateSource.setCurrentDate(date)
+        localDataSource.setCurrentDate(date)
     }
 
     override fun setAlarmNotiTime(time: String) {
-        localDateSource.setAlarmNotiTime(time)
+        localDataSource.setAlarmNotiTime(time)
     }
 
     override fun getAlarmNotiTime(): AlarmTime {
-        return localDateSource.getAlarmNotiTime().toNotiAlarm()
+        return localDataSource.getAlarmNotiTime().toNotiAlarm()
     }
 
     override fun isAppFirstOpened(): Boolean {
-        return localDateSource.isAppFirstOpened()
+        return localDataSource.isAppFirstOpened()
     }
 
     override fun setAppFirstOpened() {
-        localDateSource.setAppFirstOpened()
+        localDataSource.setAppFirstOpened()
     }
 
     override fun getSortedDayOfWeekList(): List<String> {

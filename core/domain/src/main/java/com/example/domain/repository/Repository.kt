@@ -45,17 +45,5 @@ interface Repository {
 
     suspend fun deleteCategory(category : Category)
 
-    suspend fun getCurrentDate() : Int
-
-    suspend fun setCurrentDate(date : Int)
-
-    fun setAlarmNotiTime(time : String)
-
-    fun getAlarmNotiTime() : AlarmTime
-
-    fun isAppFirstOpened() : Boolean
-
-    fun setAppFirstOpened()
-
     fun getSortedDayOfWeekList() : List<String>
 }

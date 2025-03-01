@@ -102,30 +102,6 @@ class DefaultRepository @Inject constructor(
     }
 
 
-    override suspend fun getCurrentDate(): Int {
-        return localDataSource.getCurrentDate()
-    }
-
-    override suspend fun setCurrentDate(date: Int) {
-        localDataSource.setCurrentDate(date)
-    }
-
-    override fun setAlarmNotiTime(time: String) {
-        return localDataSource.setAlarmNotiTime(time)
-    }
-
-    override fun getAlarmNotiTime(): AlarmTime {
-        return localDataSource.getAlarmNotiTime().toNotiAlarm()
-    }
-
-    override fun isAppFirstOpened(): Boolean {
-        return localDataSource.isAppFirstOpened()
-    }
-
-    override fun setAppFirstOpened() {
-        localDataSource.setAppFirstOpened()
-    }
-
     override fun getSortedDayOfWeekList(): List<String> {
         return listOf("월","화","수","목","금","토","일")
     }
