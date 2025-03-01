@@ -8,6 +8,6 @@ import javax.inject.Inject
 class GetAllDailyRoutineByFlowUseCase @Inject constructor(private val repository: RoutineRepository) {
 
     operator fun invoke(date : Int) : Flow<List<Routine>> {
-        return repository.getAllDailyRoutineByFlow(date)
+        return repository.getRoutinesFlowByDate(date)
     }
 }

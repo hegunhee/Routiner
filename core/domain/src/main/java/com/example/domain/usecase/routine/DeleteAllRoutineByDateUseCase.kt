@@ -6,6 +6,6 @@ import javax.inject.Inject
 class DeleteAllRoutineByDateUseCase @Inject constructor(private val repository: RoutineRepository) {
 
     suspend operator fun invoke(date : Int){
-        repository.deleteAllRoutineByDate(date)
+        repository.deleteRoutinesByDate(date)
     }
 }

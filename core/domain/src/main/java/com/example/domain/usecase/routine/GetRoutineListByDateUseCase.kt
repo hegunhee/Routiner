@@ -7,6 +7,6 @@ import javax.inject.Inject
 class GetRoutineListByDateUseCase @Inject constructor(private val repository: RoutineRepository) {
 
     suspend operator fun invoke(date :Int) : List<Routine>{
-        return repository.getRoutineListByDate(date)
+        return repository.getRoutinesByDate(date)
     }
 }

@@ -36,7 +36,7 @@ class RoutineRepositoryTest {
             whenever(localDateSource.insertRoutines(listOf())).thenReturn(listOf())
 
             // when
-            sut.insertAllDailyRoutineFromRepeatRoutine(dayOfWeek)
+            sut.insertRoutinesFromRepeatRoutineByDayOfWeek(dayOfWeek)
 
             // then
             verify(localDateSource).getRepeatRoutines()
@@ -52,7 +52,7 @@ class RoutineRepositoryTest {
             whenever(localDateSource.insertRoutines(routines.toRoutineEntity())).thenReturn(listOf(1,2,3,4,5))
 
             // when
-            sut.insertAllRoutine(routines)
+            sut.insertRoutines(routines)
 
             // then
             verify(localDateSource).insertRoutines(routines.toRoutineEntity())
@@ -85,7 +85,7 @@ class RoutineRepositoryTest {
             whenever(localDateSource.getRoutinesFlowByDate(date)).thenReturn(flowOf(routineEntities))
 
             // when
-            val routinesByFlow = sut.getAllDailyRoutineByFlow(date)
+            val routinesByFlow = sut.getRoutinesFlowByDate(date)
 
             // then
             assertThat(routinesByFlow.first().size).isEqualTo(size)
@@ -103,7 +103,7 @@ class RoutineRepositoryTest {
             whenever(localDateSource.getRoutinesByDate(date)).thenReturn(routineEntities)
 
             // when
-            val routines = sut.getRoutineListByDate(date)
+            val routines = sut.getRoutinesByDate(date)
 
             // then
             assertThat(routines.size).isEqualTo(size)
@@ -134,7 +134,7 @@ class RoutineRepositoryTest {
             whenever(localDateSource.deleteRoutinesByDate(date)).thenReturn(3)
 
             // when
-            sut.deleteAllRoutineByDate(date)
+            sut.deleteRoutinesByDate(date)
 
             // then
             verify(localDateSource).deleteRoutinesByDate(date)
