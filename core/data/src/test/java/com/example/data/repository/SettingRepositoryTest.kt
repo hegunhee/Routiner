@@ -16,7 +16,7 @@ import org.mockito.kotlin.whenever
 class SettingRepositoryTest {
 
     @InjectMocks
-    private lateinit var sut: DefaultRepository
+    private lateinit var sut: DefaultSettingRepository
 
     @Mock
     private lateinit var localDateSource: DefaultLocalDataSource
