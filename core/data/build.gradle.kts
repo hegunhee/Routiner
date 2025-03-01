@@ -9,6 +9,7 @@ android {
 dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:util"))
+    implementation(project(":core:model"))
     
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)

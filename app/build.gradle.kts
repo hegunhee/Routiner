@@ -25,6 +25,7 @@ dependencies {
     implementation(project(":feature:record"))
     implementation(project(":feature:repeat"))
     implementation(project(":feature:insertRoutine"))
+    implementation(project(":core:model"))
     implementation(libs.bundles.room)
     kapt(libs.room.compiler)
 

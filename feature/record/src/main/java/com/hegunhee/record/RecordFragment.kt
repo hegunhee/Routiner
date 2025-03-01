@@ -7,7 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import com.example.domain.model.Date
+import hegunhee.routiner.model.Date
 import com.hegunhee.common.base.BaseFragment
 import com.hegunhee.record.databinding.FragmentRecordBinding
 import com.hegunhee.record.dateSelector.DateSelectorAdapter

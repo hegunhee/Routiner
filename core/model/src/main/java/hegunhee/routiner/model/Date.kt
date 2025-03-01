@@ -1,4 +1,4 @@
-package com.example.domain.model
+package hegunhee.routiner.model
 
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter

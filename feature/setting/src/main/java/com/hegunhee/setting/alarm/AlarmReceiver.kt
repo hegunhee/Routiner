@@ -7,7 +7,7 @@ import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Routine
 import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
 import com.example.main.MainActivity
 import com.hegunhee.routiner.util.getTodayDate

@@ -2,8 +2,8 @@ package com.hegunhee.routiner.insertRoutine
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.Category
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Category
+import hegunhee.routiner.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.category.InsertCategoryUseCase
 import com.example.domain.usecase.category.DeleteCategoryUseCase

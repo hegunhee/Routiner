@@ -3,7 +3,7 @@ package com.example.data.repository
 import com.example.data.dataSource.local.DefaultLocalDataSource
 import com.example.data.entity.ReviewEntity
 import com.example.data.mapper.toReviewEntity
-import com.example.domain.model.Review
+import hegunhee.routiner.model.Review
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test

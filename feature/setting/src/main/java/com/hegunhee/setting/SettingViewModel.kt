@@ -2,7 +2,7 @@ package com.hegunhee.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.AlarmTime
+import hegunhee.routiner.model.AlarmTime
 import com.example.domain.usecase.notification.GetAlarmNotiTimeUseCase
 import com.example.domain.usecase.notification.SetAlarmNotiTimeUseCase
 import com.hegunhee.setting.alarm.AlarmActions

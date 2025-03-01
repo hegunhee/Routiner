@@ -11,7 +11,7 @@
 
         <variable
             name="category"
-            type="com.example.domain.model.Category" />
+            type="hegunhee.routiner.model.Category" />
 
         <import type="android.view.View" />
     </data>

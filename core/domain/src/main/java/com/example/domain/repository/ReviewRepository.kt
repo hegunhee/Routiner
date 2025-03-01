@@ -1,6 +1,6 @@
 package com.example.domain.repository
 
-import com.example.domain.model.Review
+import hegunhee.routiner.model.Review
 
 interface ReviewRepository {
 

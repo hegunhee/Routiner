@@ -16,6 +16,7 @@ dependencyResolutionManagement {
 rootProject.name = "Routiner"
 include (":app")
 include(":core:domain")
+include(":core:model")
 include(":core:data")
 include(":feature:main")
 include(":feature:setting")
@@ -27,3 +28,4 @@ include(":feature:common")
 include(":core:util")
 include(":core:navigation")
 include(":feature:insertRoutine")
+include(":core:model")

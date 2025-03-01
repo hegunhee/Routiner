@@ -1,6 +1,6 @@
 package com.hegunhee.category
 
-import com.example.domain.model.Category
+import hegunhee.routiner.model.Category
 
 interface CategoryActionHandler {
 

@@ -3,7 +3,7 @@ package com.example.data.repository
 import com.example.data.dataSource.local.LocalDataSource
 import com.example.data.mapper.toDateEntity
 import com.example.data.mapper.toDateList
-import com.example.domain.model.Date
+import hegunhee.routiner.model.Date
 import com.example.domain.repository.DateRepository
 import javax.inject.Inject
 import javax.inject.Singleton

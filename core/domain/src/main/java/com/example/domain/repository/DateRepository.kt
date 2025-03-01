@@ -1,6 +1,6 @@
 package com.example.domain.repository
 
-import com.example.domain.model.Date
+import hegunhee.routiner.model.Date
 
 interface DateRepository {
 

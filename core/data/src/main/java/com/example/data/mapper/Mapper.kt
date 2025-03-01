@@ -2,8 +2,13 @@ package com.example.data.mapper
 
 import com.example.data.entity.CategoryEntity
 import com.example.data.entity.*
-import com.example.domain.model.*
 import com.hegunhee.routiner.util.*
+import hegunhee.routiner.model.AlarmTime
+import hegunhee.routiner.model.Category
+import hegunhee.routiner.model.Date
+import hegunhee.routiner.model.RepeatRoutine
+import hegunhee.routiner.model.Review
+import hegunhee.routiner.model.Routine
 
 fun Category.toCategoryEntity() : CategoryEntity =
     CategoryEntity(name)

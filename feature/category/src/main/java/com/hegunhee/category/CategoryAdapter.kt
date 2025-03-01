@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.Category
+import hegunhee.routiner.model.Category
 import com.hegunhee.category.databinding.ItemCategoryBinding
 
 class CategoryAdapter(private val actionHandler: CategoryActionHandler) : ListAdapter<Category, CategoryAdapter.CategoryViewHolder>(diff_util){

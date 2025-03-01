@@ -10,8 +10,6 @@ java {
 }
 
 dependencies{
-    implementation(project(":core:model"))
-
     implementation(libs.kotlin.stdlib)
     implementation(libs.coroutine.core)
 }

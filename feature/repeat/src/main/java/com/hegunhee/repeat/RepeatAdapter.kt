@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.RepeatRoutine
+import hegunhee.routiner.model.RepeatRoutine
 import com.hegunhee.repeat.databinding.ItemRepeatRecordBinding
 
 class RepeatAdapter(
