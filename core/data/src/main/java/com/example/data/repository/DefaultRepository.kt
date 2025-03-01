@@ -35,23 +35,6 @@ class DefaultRepository @Inject constructor(
         localDataSource.deleteReview(review.toReviewEntity())
     }
 
-    override suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutine) {
-        localDataSource.insertRepeatRoutine(repeatRoutine.toRepeatRoutineEntity())
-    }
-
-    override fun getAllRepeatRoutineListByFlow(): Flow<List<RepeatRoutine>> {
-        return localDataSource.getRepeatRoutinesFlow().map { it.toRepeatRoutineList() }
-    }
-
-    override suspend fun getAllRepeatRoutineList(): List<RepeatRoutine> {
-        return localDataSource.getRepeatRoutines().toRepeatRoutineList()
-    }
-
-    override suspend fun deleteRepeatRoutine(text: String) {
-        localDataSource.deleteRepeatRoutine(text)
-    }
-
-
     override suspend fun insertCategory(category: Category) {
         localDataSource.insertCategory(category.toCategoryEntity())
     }

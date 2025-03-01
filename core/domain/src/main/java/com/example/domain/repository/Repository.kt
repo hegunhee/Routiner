@@ -15,14 +15,6 @@ interface Repository {
 
     suspend fun deleteReview(review: Review)
 
-    suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutine)
-
-    fun getAllRepeatRoutineListByFlow() : Flow<List<RepeatRoutine>>
-
-    suspend fun getAllRepeatRoutineList() : List<RepeatRoutine>
-
-    suspend fun deleteRepeatRoutine(text: String)
-
     suspend fun insertCategory(category: Category)
 
     fun getAllCategoryListByFlow() : Flow<List<Category>>
