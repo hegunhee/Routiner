@@ -9,12 +9,6 @@ interface Repository {
 
     suspend fun getAllDateList() : List<Date>
 
-    suspend fun getReviewOrNullByDate(date : Int) : Review?
-
-    suspend fun insertReview(review : Review)
-
-    suspend fun deleteReview(review: Review)
-
     suspend fun insertCategory(category: Category)
 
     fun getAllCategoryListByFlow() : Flow<List<Category>>
