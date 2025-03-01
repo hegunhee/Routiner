@@ -1,7 +1,6 @@
 package com.example.domain.usecase.review
 
 import com.example.domain.model.Review
-import com.example.domain.repository.Repository
 import com.example.domain.repository.ReviewRepository
 import javax.inject.Inject
 

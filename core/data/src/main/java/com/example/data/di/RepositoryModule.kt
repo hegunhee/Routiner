@@ -3,8 +3,6 @@ package com.example.data.di
 import com.example.data.repository.DefaultCategoryRepository
 import com.example.data.repository.DefaultDateRepository
 import com.example.data.repository.DefaultRepeatRoutineRepository
-import com.example.domain.repository.Repository
-import com.example.data.repository.DefaultRepository
 import com.example.data.repository.DefaultReviewRepository
 import com.example.data.repository.DefaultRoutineRepository
 import com.example.data.repository.DefaultSettingRepository
@@ -59,11 +57,5 @@ abstract class RepositoryModule {
     abstract fun provideDefaultSettingRepository(
         defaultSettingRepository: DefaultSettingRepository
     ): SettingRepository
-
-    @Singleton
-    @Binds
-    abstract fun provideDefaultRepository(
-        defaultRepository: DefaultRepository
-    ): Repository
 
 }
