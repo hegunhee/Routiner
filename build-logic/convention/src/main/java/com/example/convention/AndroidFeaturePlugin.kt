@@ -27,6 +27,7 @@ class AndroidFeaturePlugin : Plugin<Project> {
                 add("implementation", project(":core:domain"))
                 add("implementation", project(":core:util"))
                 add("implementation", project(":core:navigation"))
+                add("implementation", project(":core:model"))
 
                 add("implementation", libs.findLibrary("core-ktx").get())
                 add("implementation", libs.findLibrary("appcompat").get())
