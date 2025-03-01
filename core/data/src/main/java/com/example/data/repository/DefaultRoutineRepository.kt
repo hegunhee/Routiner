@@ -4,7 +4,7 @@ import com.example.data.dataSource.local.LocalDataSource
 import com.example.data.mapper.toRoutineEntity
 import com.example.data.mapper.toRoutineEntityList
 import com.example.data.mapper.toRoutineList
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Routine
 import com.example.domain.repository.RoutineRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

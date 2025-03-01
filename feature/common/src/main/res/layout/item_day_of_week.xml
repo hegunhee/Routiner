@@ -12,7 +12,7 @@
 
         <variable
             name="dayOfWeek"
-            type="com.example.domain.model.DayOfWeek" />
+            type="hegunhee.routiner.model.DayOfWeek" />
 
         <import type="android.view.View" />
     </data>

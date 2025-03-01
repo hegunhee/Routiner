@@ -4,7 +4,7 @@ import com.example.data.dataSource.local.DefaultLocalDataSource
 import com.example.data.entity.RepeatRoutineEntity
 import com.example.data.entity.RoutineEntity
 import com.example.data.mapper.toRoutineEntity
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Routine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking

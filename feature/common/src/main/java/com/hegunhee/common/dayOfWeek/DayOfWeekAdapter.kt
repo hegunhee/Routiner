@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.DayOfWeek
+import hegunhee.routiner.model.DayOfWeek
 import com.hegunhee.common.databinding.ItemDayOfWeekBinding
 
 class DayOfWeekAdapter(private val actionHandler: DayOfWeekActionHandler) : ListAdapter<DayOfWeek, DayOfWeekAdapter.DayOfWeekViewHolder>(diffUtil){

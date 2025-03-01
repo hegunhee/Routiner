@@ -3,7 +3,7 @@ package com.example.data.repository
 import com.example.data.dataSource.local.LocalDataSource
 import com.example.data.mapper.toReviewEntity
 import com.example.data.mapper.toReviewOrNull
-import com.example.domain.model.Review
+import hegunhee.routiner.model.Review
 import com.example.domain.repository.ReviewRepository
 import javax.inject.Inject
 import javax.inject.Singleton

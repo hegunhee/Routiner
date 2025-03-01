@@ -1,6 +1,6 @@
 package com.example.domain.usecase.category
 
-import com.example.domain.model.Category
+import hegunhee.routiner.model.Category
 import com.example.domain.repository.CategoryRepository
 import javax.inject.Inject
 

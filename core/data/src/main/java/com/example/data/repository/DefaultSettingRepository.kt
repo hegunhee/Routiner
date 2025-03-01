@@ -2,7 +2,7 @@ package com.example.data.repository
 
 import com.example.data.dataSource.local.LocalDataSource
 import com.example.data.mapper.toNotiAlarm
-import com.example.domain.model.AlarmTime
+import hegunhee.routiner.model.AlarmTime
 import com.example.domain.repository.SettingRepository
 import javax.inject.Inject
 import javax.inject.Singleton

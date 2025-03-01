@@ -1,6 +1,6 @@
 package com.hegunhee.daily
 
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Routine
 
 interface DailyActionHandler {
 

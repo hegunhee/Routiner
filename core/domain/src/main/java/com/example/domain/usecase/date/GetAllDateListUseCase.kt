@@ -1,6 +1,6 @@
 package com.example.domain.usecase.date
 
-import com.example.domain.model.Date
+import hegunhee.routiner.model.Date
 import com.example.domain.repository.DateRepository
 import javax.inject.Inject
 

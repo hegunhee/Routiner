@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.Date
+import hegunhee.routiner.model.Date
 import com.hegunhee.record.databinding.ItemDateSelectorBinding
 
 

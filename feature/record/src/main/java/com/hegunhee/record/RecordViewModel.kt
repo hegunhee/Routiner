@@ -1,9 +1,9 @@
 package com.hegunhee.record
 
 import androidx.lifecycle.*
-import com.example.domain.model.Date
-import com.example.domain.model.Review
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Date
+import hegunhee.routiner.model.Review
+import hegunhee.routiner.model.Routine
 import com.example.domain.usecase.date.GetAllDateListUseCase
 import com.example.domain.usecase.review.DeleteReviewUseCase
 import com.example.domain.usecase.review.GetReviewOrNullByDateUseCase

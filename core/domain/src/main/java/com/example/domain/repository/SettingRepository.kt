@@ -1,6 +1,6 @@
 package com.example.domain.repository
 
-import com.example.domain.model.AlarmTime
+import hegunhee.routiner.model.AlarmTime
 
 interface SettingRepository {
 

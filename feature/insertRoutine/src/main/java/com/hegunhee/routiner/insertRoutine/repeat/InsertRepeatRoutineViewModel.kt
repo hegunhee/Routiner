@@ -2,10 +2,10 @@ package com.hegunhee.routiner.insertRoutine.repeat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.model.Category
-import com.example.domain.model.DayOfWeek
-import com.example.domain.model.RepeatRoutine
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Category
+import hegunhee.routiner.model.DayOfWeek
+import hegunhee.routiner.model.RepeatRoutine
+import hegunhee.routiner.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.category.InsertCategoryUseCase
 import com.example.domain.usecase.category.DeleteCategoryUseCase

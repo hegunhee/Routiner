@@ -3,7 +3,7 @@ package com.example.data.repository
 import com.example.data.dataSource.local.DefaultLocalDataSource
 import com.example.data.entity.CategoryEntity
 import com.example.data.mapper.toCategoryEntity
-import com.example.domain.model.Category
+import hegunhee.routiner.model.Category
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.runBlocking

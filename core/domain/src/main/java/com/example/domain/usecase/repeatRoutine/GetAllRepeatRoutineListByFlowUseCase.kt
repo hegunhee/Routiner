@@ -1,6 +1,6 @@
 package com.example.domain.usecase.repeatRoutine
 
-import com.example.domain.model.RepeatRoutine
+import hegunhee.routiner.model.RepeatRoutine
 import com.example.domain.repository.RepeatRoutineRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

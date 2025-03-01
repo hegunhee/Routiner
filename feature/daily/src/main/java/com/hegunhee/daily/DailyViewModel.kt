@@ -1,7 +1,7 @@
 package com.hegunhee.daily
 
 import androidx.lifecycle.*
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Routine
 import com.example.domain.usecase.routine.DeleteRoutineUseCase
 import com.example.domain.usecase.routine.GetAllDailyRoutineByFlowUseCase
 import com.example.domain.usecase.routine.UpdateToggleRoutineUseCase

@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Routine
 import com.hegunhee.daily.databinding.ItemDailyBinding
 import com.hegunhee.daily.databinding.ItemDailyHeaderBinding
 import java.lang.IllegalArgumentException

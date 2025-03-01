@@ -1,6 +1,6 @@
 package com.example.domain.usecase.routine
 
-import com.example.domain.model.Routine
+import hegunhee.routiner.model.Routine
 import com.example.domain.repository.RoutineRepository
 import javax.inject.Inject
 

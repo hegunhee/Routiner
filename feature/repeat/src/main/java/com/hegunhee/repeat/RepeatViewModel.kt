@@ -1,7 +1,7 @@
 package com.hegunhee.repeat
 
 import androidx.lifecycle.*
-import com.example.domain.model.RepeatRoutine
+import hegunhee.routiner.model.RepeatRoutine
 import com.example.domain.usecase.repeatRoutine.DeleteRepeatRoutineUseCase
 import com.example.domain.usecase.repeatRoutine.GetAllRepeatRoutineListByFlowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
