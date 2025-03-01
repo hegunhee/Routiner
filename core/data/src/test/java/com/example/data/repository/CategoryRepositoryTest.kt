@@ -20,7 +20,7 @@ import org.mockito.kotlin.whenever
 class CategoryRepositoryTest {
 
     @InjectMocks
-    private lateinit var sut : DefaultRepository
+    private lateinit var sut : DefaultCategoryRepository
 
     @Mock
     private lateinit var localDateSource: DefaultLocalDataSource

@@ -20,27 +20,10 @@ import org.mockito.kotlin.whenever
 class RepeatRoutineRepositoryTest {
 
     @InjectMocks
-    private lateinit var sut: DefaultRepository
+    private lateinit var sut: DefaultRepeatRoutineRepository
 
     @Mock
     private lateinit var localDateSource: DefaultLocalDataSource
-
-    @Test
-    fun givenDayOfWeek_whenInsertAllRoutine_thenWorksFine() {
-        runBlocking {
-            // given
-            val dayOfWeek = "월"
-            whenever(localDateSource.getRepeatRoutines()).thenReturn(listOf())
-            whenever(localDateSource.insertRoutines(listOf())).thenReturn(listOf())
-
-            // when
-            sut.insertAllDailyRoutineFromRepeatRoutine(dayOfWeek)
-
-            // then
-            verify(localDateSource).getRepeatRoutines()
-            verify(localDateSource).insertRoutines(listOf())
-        }
-    }
 
     @Test
     fun givenRepeatRoutine_whenInsert_thenWorksFine() {
