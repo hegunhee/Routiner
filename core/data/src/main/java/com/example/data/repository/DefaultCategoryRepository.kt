@@ -19,12 +19,12 @@ class DefaultCategoryRepository @Inject constructor(
         localDataSource.insertCategory(category.toCategoryEntity())
     }
 
-    override fun getAllCategoryListByFlow(): Flow<List<Category>> {
+    override fun getCategoriesFlow(): Flow<List<Category>> {
         return localDataSource.getCategoriesFlow().map { it.toCategory() }
     }
 
-    override suspend fun deleteCategory(category: Category) {
-        localDataSource.deleteCategory(category.toCategoryEntity())
+    override suspend fun deleteCategory(category: Category): Int {
+        return localDataSource.deleteCategory(category.toCategoryEntity())
     }
 
 }

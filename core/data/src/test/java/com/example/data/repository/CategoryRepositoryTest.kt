@@ -50,7 +50,7 @@ class CategoryRepositoryTest {
             whenever(localDateSource.getCategoriesFlow()).thenReturn(categoryEntitiesByFlow)
 
             // when
-            val categoriesByFlow = sut.getAllCategoryListByFlow()
+            val categoriesByFlow = sut.getCategoriesFlow()
 
             // then
             assertThat(categoriesByFlow.first().size).isEqualTo(categoryEntitiesByFlow.first().size)
@@ -66,9 +66,10 @@ class CategoryRepositoryTest {
             whenever(localDateSource.deleteCategory(category.toCategoryEntity())).thenReturn(1)
 
             // when
-            sut.deleteCategory(category)
+            val deleteCount = sut.deleteCategory(category)
 
             // then
+            assertThat(deleteCount).isEqualTo(listOf(category).size)
             verify(localDateSource).deleteCategory(category.toCategoryEntity())
         }
     }
