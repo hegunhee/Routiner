@@ -3,9 +3,11 @@ package com.example.data.di
 import com.example.data.repository.DefaultRepeatRoutineRepository
 import com.example.domain.repository.Repository
 import com.example.data.repository.DefaultRepository
+import com.example.data.repository.DefaultReviewRepository
 import com.example.data.repository.DefaultRoutineRepository
 import com.example.data.repository.DefaultSettingRepository
 import com.example.domain.repository.RepeatRoutineRepository
+import com.example.domain.repository.ReviewRepository
 import com.example.domain.repository.RoutineRepository
 import com.example.domain.repository.SettingRepository
 import dagger.Binds
@@ -23,6 +25,12 @@ abstract class RepositoryModule {
     abstract fun provideRepeatRoutineRepository(
         defaultRepeatRoutineRepository: DefaultRepeatRoutineRepository
     ): RepeatRoutineRepository
+
+    @Singleton
+    @Binds
+    abstract fun provideReviewRepository(
+        defaultReviewRepository: DefaultReviewRepository
+    ): ReviewRepository
 
     @Singleton
     @Binds
