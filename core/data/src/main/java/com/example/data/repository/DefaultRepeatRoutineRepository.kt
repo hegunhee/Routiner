@@ -19,16 +19,16 @@ class DefaultRepeatRoutineRepository @Inject constructor(
         localDataSource.insertRepeatRoutine(repeatRoutine.toRepeatRoutineEntity())
     }
 
-    override fun getAllRepeatRoutineListByFlow(): Flow<List<RepeatRoutine>> {
+    override fun getRepeatRoutinesFlow(): Flow<List<RepeatRoutine>> {
         return localDataSource.getRepeatRoutinesFlow().map { it.toRepeatRoutineList() }
     }
 
-    override suspend fun getAllRepeatRoutineList(): List<RepeatRoutine> {
+    override suspend fun getRepeatRoutines(): List<RepeatRoutine> {
         return localDataSource.getRepeatRoutines().toRepeatRoutineList()
     }
 
-    override suspend fun deleteRepeatRoutine(text: String) {
-        localDataSource.deleteRepeatRoutine(text)
+    override suspend fun deleteRepeatRoutine(text: String) : Int {
+        return localDataSource.deleteRepeatRoutine(text)
     }
 
 }

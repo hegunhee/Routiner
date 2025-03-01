@@ -7,9 +7,9 @@ interface RepeatRoutineRepository {
 
     suspend fun insertRepeatRoutine(repeatRoutine: RepeatRoutine)
 
-    fun getAllRepeatRoutineListByFlow(): Flow<List<RepeatRoutine>>
+    fun getRepeatRoutinesFlow(): Flow<List<RepeatRoutine>>
 
-    suspend fun getAllRepeatRoutineList(): List<RepeatRoutine>
+    suspend fun getRepeatRoutines(): List<RepeatRoutine>
 
-    suspend fun deleteRepeatRoutine(text: String)
+    suspend fun deleteRepeatRoutine(text: String) : Int
 }

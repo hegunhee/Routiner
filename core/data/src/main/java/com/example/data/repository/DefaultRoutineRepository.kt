@@ -16,26 +16,27 @@ class DefaultRoutineRepository @Inject constructor(
     private val localDataSource: LocalDataSource
 ) : RoutineRepository {
 
-    override suspend fun insertAllDailyRoutineFromRepeatRoutine(dayOfWeek: String) {
+    override suspend fun insertRoutinesFromRepeatRoutineByDayOfWeek(dayOfWeek: String): List<Long> {
         val repeatRoutineList = localDataSource.getRepeatRoutines()
-        repeatRoutineList.filter { it.dayOfWeekList.contains(dayOfWeek) }.toRoutineEntityList().let { routineEntityList ->
-            localDataSource.insertRoutines(routineEntityList)
-        }
+        repeatRoutineList.filter { it.dayOfWeekList.contains(dayOfWeek) }.toRoutineEntityList()
+            .let { routineEntityList ->
+                return localDataSource.insertRoutines(routineEntityList)
+            }
     }
 
-    override suspend fun insertAllRoutine(routineList: List<Routine>) {
-        localDataSource.insertRoutines(routineList.toRoutineEntity())
+    override suspend fun insertRoutines(routineList: List<Routine>): List<Long> {
+        return localDataSource.insertRoutines(routineList.toRoutineEntity())
     }
 
     override suspend fun insertRoutine(routine: Routine) {
         localDataSource.insertRoutine(routine.toRoutineEntity())
     }
 
-    override fun getAllDailyRoutineByFlow(date: Int): Flow<List<Routine>> {
+    override fun getRoutinesFlowByDate(date: Int): Flow<List<Routine>> {
         return localDataSource.getRoutinesFlowByDate(date).map { it.toRoutineList() }
     }
 
-    override suspend fun getRoutineListByDate(date: Int): List<Routine> {
+    override suspend fun getRoutinesByDate(date: Int): List<Routine> {
         return localDataSource.getRoutinesByDate(date).toRoutineList()
     }
 
@@ -43,12 +44,12 @@ class DefaultRoutineRepository @Inject constructor(
         localDataSource.updateRoutine(routine.toRoutineEntity())
     }
 
-    override suspend fun deleteAllRoutineByDate(date: Int) {
-        localDataSource.deleteRoutinesByDate(date)
+    override suspend fun deleteRoutinesByDate(date: Int): Int {
+        return localDataSource.deleteRoutinesByDate(date)
     }
 
-    override suspend fun deleteRoutine(id: Int) {
-        localDataSource.deleteRoutine(id)
+    override suspend fun deleteRoutine(id: Int): Int {
+        return localDataSource.deleteRoutine(id)
     }
 
 }

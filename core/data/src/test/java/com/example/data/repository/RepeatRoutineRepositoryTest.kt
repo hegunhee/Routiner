@@ -48,7 +48,7 @@ class RepeatRoutineRepositoryTest {
             whenever(localDateSource.getRepeatRoutinesFlow()).thenReturn(repeatRoutineEntitiesByFlow)
 
             // when
-            val repeatRoutinesByFlow = sut.getAllRepeatRoutineListByFlow()
+            val repeatRoutinesByFlow = sut.getRepeatRoutinesFlow()
 
             // then
             assertThat(repeatRoutinesByFlow.first().size).isEqualTo(repeatRoutineEntitiesByFlow.first().size)
@@ -64,7 +64,7 @@ class RepeatRoutineRepositoryTest {
             whenever(localDateSource.getRepeatRoutines()).thenReturn(repeatRoutineEntities)
 
             // when
-            val repeatRoutines = sut.getAllRepeatRoutineList()
+            val repeatRoutines = sut.getRepeatRoutines()
 
             // then
             assertThat(repeatRoutines.size).isEqualTo(repeatRoutineEntities.size)
@@ -80,9 +80,10 @@ class RepeatRoutineRepositoryTest {
             whenever(localDateSource.deleteRepeatRoutine(text)).thenReturn(1)
 
             // when
-            sut.deleteRepeatRoutine(text)
+            val deleteCount = sut.deleteRepeatRoutine(text)
 
             // then
+            assertThat(deleteCount).isEqualTo(listOf(text).size)
             verify(localDateSource).deleteRepeatRoutine(text)
         }
     }

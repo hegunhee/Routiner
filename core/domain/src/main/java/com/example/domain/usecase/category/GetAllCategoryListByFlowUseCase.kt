@@ -8,6 +8,6 @@ import javax.inject.Inject
 class GetAllCategoryListByFlowUseCase @Inject constructor(private val repository: CategoryRepository) {
 
     operator fun invoke() : Flow<List<Category>> {
-        return repository.getAllCategoryListByFlow()
+        return repository.getCategoriesFlow()
     }
 }

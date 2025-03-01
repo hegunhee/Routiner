@@ -80,9 +80,10 @@ class ReviewRepositoryTest {
             whenever(localDateSource.deleteReview(review.toReviewEntity())).thenReturn(1)
 
             // when
-            sut.deleteReview(review)
+            val deleteCount = sut.deleteReview(review)
 
             // then
+            assertThat(deleteCount).isEqualTo(listOf(review).size)
             verify(localDateSource).deleteReview(review.toReviewEntity())
         }
     }

@@ -21,8 +21,8 @@ class DefaultReviewRepository @Inject constructor(
         localDataSource.insertReview(review.toReviewEntity())
     }
 
-    override suspend fun deleteReview(review: Review) {
-        localDataSource.deleteReview(review.toReviewEntity())
+    override suspend fun deleteReview(review: Review) : Int {
+        return localDataSource.deleteReview(review.toReviewEntity())
     }
 
 }

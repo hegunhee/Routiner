@@ -8,6 +8,6 @@ interface ReviewRepository {
 
     suspend fun insertReview(review : Review)
 
-    suspend fun deleteReview(review: Review)
+    suspend fun deleteReview(review: Review) : Int
 
 }

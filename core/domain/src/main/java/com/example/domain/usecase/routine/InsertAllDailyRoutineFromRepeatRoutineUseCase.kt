@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class InsertAllDailyRoutineFromRepeatRoutineUseCase @Inject constructor(private val repository: RoutineRepository) {
     suspend operator fun invoke(dayOfWeek: String) {
-        repository.insertAllDailyRoutineFromRepeatRoutine(dayOfWeek)
+        repository.insertRoutinesFromRepeatRoutineByDayOfWeek(dayOfWeek)
     }
 }

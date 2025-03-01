@@ -7,8 +7,8 @@ interface CategoryRepository {
 
     suspend fun insertCategory(category: Category)
 
-    fun getAllCategoryListByFlow() : Flow<List<Category>>
+    fun getCategoriesFlow() : Flow<List<Category>>
 
-    suspend fun deleteCategory(category : Category)
+    suspend fun deleteCategory(category : Category) : Int
 
 }

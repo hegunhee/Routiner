@@ -45,7 +45,7 @@ class DateRepositoryTest {
             whenever(localDateSource.getDateList()).thenReturn(dateEntities)
 
             // when
-            val dateList = sut.getAllDateList()
+            val dateList = sut.getDateList()
 
             // then
             assertThat(dateList.size).isEqualTo(dateEntities.size)
