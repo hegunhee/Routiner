@@ -20,7 +20,7 @@ import org.mockito.kotlin.whenever
 class RepeatRoutineRepositoryTest {
 
     @InjectMocks
-    private lateinit var sut: DefaultRepository
+    private lateinit var sut: DefaultRepeatRoutineRepository
 
     @Mock
     private lateinit var localDateSource: DefaultLocalDataSource
