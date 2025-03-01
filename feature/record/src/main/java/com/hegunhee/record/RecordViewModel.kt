@@ -4,7 +4,7 @@ import androidx.lifecycle.*
 import hegunhee.routiner.model.Date
 import hegunhee.routiner.model.Review
 import hegunhee.routiner.model.Routine
-import com.example.domain.usecase.date.GetAllDateListUseCase
+import com.example.domain.usecase.date.GetDateListUseCase
 import com.example.domain.usecase.review.DeleteReviewUseCase
 import com.example.domain.usecase.review.GetReviewOrNullByDateUseCase
 import com.example.domain.usecase.review.InsertReviewUseCase
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecordViewModel @Inject constructor(
-    private val getAllDateListUseCase: GetAllDateListUseCase,
+    private val getDateListUseCase: GetDateListUseCase,
     private val getRoutinesByDateUseCase: GetRoutinesByDateUseCase,
     private val getReviewOrNullByDateUseCase: GetReviewOrNullByDateUseCase,
     private val insertReviewUseCase: InsertReviewUseCase,
@@ -60,7 +60,7 @@ class RecordViewModel @Inject constructor(
     }
 
     private suspend fun initRecordDateList() {
-        _dateList.value = getAllDateListUseCase()
+        _dateList.value = getDateListUseCase()
     }
     private suspend fun initRecentRecord() {
         if(dateList.value.isEmpty()) return

@@ -8,4 +8,5 @@ class SetAppFirstOpenedUseCase @Inject constructor(private val repository: Setti
     operator fun invoke() {
         repository.setAppFirstOpened()
     }
+
 }

@@ -8,4 +8,5 @@ class GetSortedDayOfWeekListUseCase @Inject constructor(private val repository: 
     operator fun invoke() : List<String> {
         return repository.getSortedDayOfWeekList()
     }
+
 }
