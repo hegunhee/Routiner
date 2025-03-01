@@ -6,7 +6,8 @@ import javax.inject.Inject
 
 class GetReviewOrNullByDateUseCase @Inject constructor(private val repository: ReviewRepository) {
 
-    suspend operator fun invoke(date : Int) : Review?{
+    suspend operator fun invoke(date: Int): Review? {
         return repository.getReviewOrNullByDate(date)
     }
+
 }
