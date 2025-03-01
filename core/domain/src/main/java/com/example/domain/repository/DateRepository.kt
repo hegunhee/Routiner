@@ -6,6 +6,6 @@ interface DateRepository {
 
     suspend fun insertDate(date : Int)
 
-    suspend fun getAllDateList() : List<Date>
+    suspend fun getDateList() : List<Date>
 
 }

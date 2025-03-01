@@ -17,7 +17,7 @@ class DefaultDateRepository @Inject constructor(
         return localDataSource.insertDate(Date(date).toDateEntity())
     }
 
-    override suspend fun getAllDateList(): List<Date> {
+    override suspend fun getDateList(): List<Date> {
         return localDataSource.getDateList().toDateList()
     }
 

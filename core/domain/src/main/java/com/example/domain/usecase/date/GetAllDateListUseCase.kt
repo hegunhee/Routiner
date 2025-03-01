@@ -8,6 +8,6 @@ import javax.inject.Inject
 class GetAllDateListUseCase @Inject constructor(private val repository: DateRepository) {
 
     suspend operator fun invoke() : List<Date> {
-        return repository.getAllDateList()
+        return repository.getDateList()
     }
 }
