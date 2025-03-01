@@ -4,9 +4,10 @@ import hegunhee.routiner.model.Routine
 import com.example.domain.repository.RoutineRepository
 import javax.inject.Inject
 
-class GetRoutineListByDateUseCase @Inject constructor(private val repository: RoutineRepository) {
+class GetRoutinesByDateUseCase @Inject constructor(private val repository: RoutineRepository) {
 
-    suspend operator fun invoke(date :Int) : List<Routine>{
+    suspend operator fun invoke(date: Int): List<Routine> {
         return repository.getRoutinesByDate(date)
     }
+
 }

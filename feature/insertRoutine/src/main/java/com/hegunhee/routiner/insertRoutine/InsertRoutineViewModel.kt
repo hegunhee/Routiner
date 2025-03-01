@@ -7,7 +7,7 @@ import hegunhee.routiner.model.Routine
 import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
 import com.example.domain.usecase.category.InsertCategoryUseCase
 import com.example.domain.usecase.category.DeleteCategoryUseCase
-import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
+import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
 import com.example.domain.usecase.routine.InsertRoutineUseCase
 import com.hegunhee.category.CategoryActionHandler
 import com.hegunhee.routiner.util.getTodayDate
@@ -27,7 +27,7 @@ import javax.inject.Inject
 @HiltViewModel
 class InsertRoutineViewModel @Inject constructor(
     private val getAllCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase,
-    private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
+    private val getRoutinesByDateUseCase: GetRoutinesByDateUseCase,
     private val insertRoutineUseCase: InsertRoutineUseCase,
     private val insertCategoryUseCase: InsertCategoryUseCase,
     private val deleteCategoryUseCase: DeleteCategoryUseCase
@@ -72,7 +72,7 @@ class InsertRoutineViewModel @Inject constructor(
             if(routineText.isBlank()) {
                 return@launch
             }
-            getRoutineListByDateUseCase(getTodayDate()).let { routineList ->
+            getRoutinesByDateUseCase(getTodayDate()).let { routineList ->
                 if(routineList.map(Routine::text).contains(routineText)){
                     _toastMessage.emit("중복된 루틴입니다.")
                 }else{

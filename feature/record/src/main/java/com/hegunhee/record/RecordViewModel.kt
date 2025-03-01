@@ -8,7 +8,7 @@ import com.example.domain.usecase.date.GetAllDateListUseCase
 import com.example.domain.usecase.review.DeleteReviewUseCase
 import com.example.domain.usecase.review.GetReviewOrNullByDateUseCase
 import com.example.domain.usecase.review.InsertReviewUseCase
-import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
+import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
 import com.hegunhee.record.dateSelector.DateSelectorActionHandler
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -20,7 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class RecordViewModel @Inject constructor(
     private val getAllDateListUseCase: GetAllDateListUseCase,
-    private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
+    private val getRoutinesByDateUseCase: GetRoutinesByDateUseCase,
     private val getReviewOrNullByDateUseCase: GetReviewOrNullByDateUseCase,
     private val insertReviewUseCase: InsertReviewUseCase,
     private val deleteReviewUseCase: DeleteReviewUseCase
@@ -91,7 +91,7 @@ class RecordViewModel @Inject constructor(
     }
 
     private suspend fun setRecordRoutine(date: Int) {
-        _currentRoutineList.emit((getRoutineListByDateUseCase(date)))
+        _currentRoutineList.emit((getRoutinesByDateUseCase(date)))
     }
 
     private suspend fun setReviewExist(date: Int) {

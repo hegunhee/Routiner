@@ -4,9 +4,10 @@ import hegunhee.routiner.model.Routine
 import com.example.domain.repository.RoutineRepository
 import javax.inject.Inject
 
-class UpdateToggleRoutineUseCase @Inject constructor(private val repository: RoutineRepository) {
+class UpdateRoutineUseCase @Inject constructor(private val repository: RoutineRepository) {
 
-    suspend operator fun invoke(routine : Routine) {
+    suspend operator fun invoke(routine: Routine) {
         repository.updateRoutine(routine)
     }
+
 }
