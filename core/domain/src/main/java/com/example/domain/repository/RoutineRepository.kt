@@ -5,9 +5,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface RoutineRepository {
 
-    suspend fun insertRoutinesFromRepeatRoutineByDayOfWeek(dayOfWeek : String)
+    suspend fun insertRoutinesFromRepeatRoutineByDayOfWeek(dayOfWeek : String) : List<Long>
 
-    suspend fun insertRoutines(routineList: List<Routine>)
+    suspend fun insertRoutines(routineList: List<Routine>) : List<Long>
 
     suspend fun insertRoutine(routine: Routine)
 
@@ -17,8 +17,8 @@ interface RoutineRepository {
 
     suspend fun updateRoutine(routine : Routine)
 
-    suspend fun deleteRoutinesByDate(date : Int)
+    suspend fun deleteRoutinesByDate(date : Int) : Int
 
-    suspend fun deleteRoutine(id : Int)
+    suspend fun deleteRoutine(id : Int) : Int
 
 }

@@ -1,6 +1,7 @@
 package com.example.data.repository
 
 import com.example.data.dataSource.local.DefaultLocalDataSource
+import com.example.data.entity.RepeatRoutineEntity
 import com.example.data.entity.RoutineEntity
 import com.example.data.mapper.toRoutineEntity
 import com.example.domain.model.Routine
@@ -31,14 +32,16 @@ class RoutineRepositoryTest {
     fun givenDayOfWeek_whenInsertAllRoutine_thenWorksFine() {
         runBlocking {
             // given
+            val insertDataList : List<RepeatRoutineEntity> = listOf()
             val dayOfWeek = "월"
-            whenever(localDateSource.getRepeatRoutines()).thenReturn(listOf())
+            whenever(localDateSource.getRepeatRoutines()).thenReturn(insertDataList)
             whenever(localDateSource.insertRoutines(listOf())).thenReturn(listOf())
 
             // when
-            sut.insertRoutinesFromRepeatRoutineByDayOfWeek(dayOfWeek)
+            val insertRowIds = sut.insertRoutinesFromRepeatRoutineByDayOfWeek(dayOfWeek)
 
             // then
+            assertThat(insertRowIds.size).isEqualTo(insertRowIds.size)
             verify(localDateSource).getRepeatRoutines()
             verify(localDateSource).insertRoutines(listOf())
         }
@@ -48,13 +51,15 @@ class RoutineRepositoryTest {
     fun givenRoutines_whenInsertAll_thenWorksFine() {
         runBlocking {
             // given
-            val routines = createRoutines(5, date)
+            val size = 5
+            val routines = createRoutines(size, date)
             whenever(localDateSource.insertRoutines(routines.toRoutineEntity())).thenReturn(listOf(1,2,3,4,5))
 
             // when
-            sut.insertRoutines(routines)
+            val insertRowIds = sut.insertRoutines(routines)
 
             // then
+            assertThat(insertRowIds.size).isEqualTo(routines.size)
             verify(localDateSource).insertRoutines(routines.toRoutineEntity())
 
         }
@@ -131,12 +136,14 @@ class RoutineRepositoryTest {
     fun givenDate_whenDeleteRoutines_thenWorksFine() {
         runBlocking {
             // given
-            whenever(localDateSource.deleteRoutinesByDate(date)).thenReturn(3)
+            val count = 3
+            whenever(localDateSource.deleteRoutinesByDate(date)).thenReturn(count)
 
             // when
-            sut.deleteRoutinesByDate(date)
+            val deleteCount = sut.deleteRoutinesByDate(date)
 
             // then
+            assertThat(deleteCount).isEqualTo(count)
             verify(localDateSource).deleteRoutinesByDate(date)
         }
     }
@@ -149,9 +156,10 @@ class RoutineRepositoryTest {
             whenever(localDateSource.deleteRoutine(routineId)).thenReturn(1)
 
             // when
-            sut.deleteRoutine(routineId)
+            val deleteCount = sut.deleteRoutine(routineId)
 
             // then
+            assertThat(deleteCount).isEqualTo(listOf(routineId).size)
             verify(localDateSource).deleteRoutine(routineId)
         }
     }
