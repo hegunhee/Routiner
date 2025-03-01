@@ -6,7 +6,8 @@ import javax.inject.Inject
 
 class InsertRepeatRoutineUseCase @Inject constructor(private val repository: RepeatRoutineRepository) {
 
-    suspend operator fun invoke(repeatRoutine: RepeatRoutine){
+    suspend operator fun invoke(repeatRoutine: RepeatRoutine) {
         repository.insertRepeatRoutine(repeatRoutine)
     }
+
 }

@@ -8,7 +8,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.core.app.NotificationCompat
 import hegunhee.routiner.model.Routine
-import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
+import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
 import com.example.main.MainActivity
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.AndroidEntryPoint
@@ -21,7 +21,7 @@ import javax.inject.Inject
 class AlarmReceiver() : BroadcastReceiver() {
 
     @Inject
-    lateinit var getRoutineListByDateUseCase: GetRoutineListByDateUseCase
+    lateinit var getRoutinesByDateUseCase: GetRoutinesByDateUseCase
 
     private lateinit var notificationManager : NotificationManager
 
@@ -29,7 +29,7 @@ class AlarmReceiver() : BroadcastReceiver() {
         notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         createAlarmNotificationChannel()
         CoroutineScope(Dispatchers.Default).launch {
-            val routine = getRoutineListByDateUseCase(getTodayDate())
+            val routine = getRoutinesByDateUseCase(getTodayDate())
             sendDailyAlarmNotification(context,getRoutineCurrentText(routine))
         }
     }

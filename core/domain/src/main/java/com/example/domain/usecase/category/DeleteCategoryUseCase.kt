@@ -8,7 +8,8 @@ class DeleteCategoryUseCase @Inject constructor(
     private val repository: CategoryRepository
 ) {
 
-    suspend operator fun invoke(category : Category) {
-        repository.deleteCategory(category)
+    suspend operator fun invoke(category: Category): Int {
+        return repository.deleteCategory(category)
     }
+
 }

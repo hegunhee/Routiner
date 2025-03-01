@@ -3,8 +3,8 @@ package com.example.main
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.date.*
-import com.example.domain.usecase.routine.GetRoutineListByDateUseCase
-import com.example.domain.usecase.routine.InsertAllDailyRoutineFromRepeatRoutineUseCase
+import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
+import com.example.domain.usecase.routine.InsertRoutinesFromRepeatByDayOfWeekRoutineUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -16,9 +16,9 @@ import javax.inject.Inject
 class MainViewModel @Inject constructor(
     private val getCurrentDateUseCase: GetCurrentDateUseCase,
     private val setCurrentDateUseCase: SetCurrentDateUseCase,
-    private val getRoutineListByDateUseCase: GetRoutineListByDateUseCase,
+    private val getRoutinesByDateUseCase: GetRoutinesByDateUseCase,
     private val insertDateUseCase: InsertDateUseCase,
-    private val insertAllDailyRoutineFromRepeatRoutineUseCase: InsertAllDailyRoutineFromRepeatRoutineUseCase,
+    private val insertRoutinesFromRepeatByDayOfWeekRoutineUseCase: InsertRoutinesFromRepeatByDayOfWeekRoutineUseCase,
     private val isAppFirstOpenUseCase: IsAppFirstOpenUseCase,
 ) : ViewModel() {
 
@@ -31,8 +31,8 @@ class MainViewModel @Inject constructor(
     private fun checkDayFirstOpen() = viewModelScope.launch(Dispatchers.IO) {
         val currentLoadedDate = getCurrentDateUseCase()
         if (currentLoadedDate != getTodayDate()) {
-            insertAllDailyRoutineFromRepeatRoutineUseCase(getTodayDayOfWeekFormatedKorean())
-            val currentDateRoutineList = getRoutineListByDateUseCase(currentLoadedDate)
+            insertRoutinesFromRepeatByDayOfWeekRoutineUseCase(getTodayDayOfWeekFormatedKorean())
+            val currentDateRoutineList = getRoutinesByDateUseCase(currentLoadedDate)
             if (currentDateRoutineList.isNotEmpty()) {
                 insertDateUseCase(currentLoadedDate)
             }

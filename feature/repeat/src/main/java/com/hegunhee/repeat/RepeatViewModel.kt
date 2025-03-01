@@ -3,7 +3,7 @@ package com.hegunhee.repeat
 import androidx.lifecycle.*
 import hegunhee.routiner.model.RepeatRoutine
 import com.example.domain.usecase.repeatRoutine.DeleteRepeatRoutineUseCase
-import com.example.domain.usecase.repeatRoutine.GetAllRepeatRoutineListByFlowUseCase
+import com.example.domain.usecase.repeatRoutine.GetRepeatRoutinesFlowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
@@ -17,11 +17,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RepeatViewModel @Inject constructor(
-    private val getAllRepeatRoutineListByFlowUseCase: GetAllRepeatRoutineListByFlowUseCase,
+    private val getRepeatRoutinesFlowUseCase: GetRepeatRoutinesFlowUseCase,
     private val deleteRepeatRoutineUseCase: DeleteRepeatRoutineUseCase,
 ): ViewModel(), RepeatActionHandler {
 
-    val repeatRoutineList : StateFlow<List<RepeatRoutine>> = getAllRepeatRoutineListByFlowUseCase()
+    val repeatRoutineList : StateFlow<List<RepeatRoutine>> = getRepeatRoutinesFlowUseCase()
         .stateIn(
             scope = viewModelScope,
             started = SharingStarted.WhileSubscribed(5000L),

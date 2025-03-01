@@ -5,7 +5,8 @@ import javax.inject.Inject
 
 class GetCurrentDateUseCase @Inject constructor(private val repository: SettingRepository) {
 
-    suspend operator fun invoke() : Int{
+    suspend operator fun invoke(): Int {
         return repository.getCurrentDate()
     }
+
 }

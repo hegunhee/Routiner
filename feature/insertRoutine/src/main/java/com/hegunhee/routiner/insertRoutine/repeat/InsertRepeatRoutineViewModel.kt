@@ -6,7 +6,7 @@ import hegunhee.routiner.model.Category
 import hegunhee.routiner.model.DayOfWeek
 import hegunhee.routiner.model.RepeatRoutine
 import hegunhee.routiner.model.Routine
-import com.example.domain.usecase.category.GetAllCategoryListByFlowUseCase
+import com.example.domain.usecase.category.GetCategoriesFlowUseCase
 import com.example.domain.usecase.category.InsertCategoryUseCase
 import com.example.domain.usecase.category.DeleteCategoryUseCase
 import com.example.domain.usecase.date.GetSortedDayOfWeekListUseCase
@@ -32,7 +32,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class InsertRepeatRoutineViewModel @Inject constructor(
-    private val getAllCategoryListByFlowUseCase: GetAllCategoryListByFlowUseCase,
+    private val getCategoriesFlowUseCase: GetCategoriesFlowUseCase,
     private val insertRoutineUseCase: InsertRoutineUseCase,
     private val insertRepeatRoutineUseCase: InsertRepeatRoutineUseCase,
     private val getSortedDayOfWeekListUseCase: GetSortedDayOfWeekListUseCase,
@@ -59,7 +59,7 @@ class InsertRepeatRoutineViewModel @Inject constructor(
     private val _selectedCategory : MutableStateFlow<Category> = MutableStateFlow(Category(""))
     private val selectedCategory : StateFlow<Category> = _selectedCategory.asStateFlow()
 
-    val categoryList : StateFlow<List<Category>> = getAllCategoryListByFlowUseCase().combine(selectedCategory) { categoryList, selectedCategory ->
+    val categoryList : StateFlow<List<Category>> = getCategoriesFlowUseCase().combine(selectedCategory) { categoryList, selectedCategory ->
         if(selectedCategory.name.isBlank()){
             categoryList
         }else{

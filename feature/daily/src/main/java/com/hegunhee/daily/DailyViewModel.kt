@@ -3,8 +3,8 @@ package com.hegunhee.daily
 import androidx.lifecycle.*
 import hegunhee.routiner.model.Routine
 import com.example.domain.usecase.routine.DeleteRoutineUseCase
-import com.example.domain.usecase.routine.GetAllDailyRoutineByFlowUseCase
-import com.example.domain.usecase.routine.UpdateToggleRoutineUseCase
+import com.example.domain.usecase.routine.GetRoutinesFlowByDateUseCase
+import com.example.domain.usecase.routine.UpdateRoutineUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -19,12 +19,12 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DailyViewModel @Inject constructor(
-    private val getAllDailyRoutineByFlowUseCase: GetAllDailyRoutineByFlowUseCase,
+    private val getRoutinesFlowByDateUseCase: GetRoutinesFlowByDateUseCase,
     private val deleteRoutineUseCase: DeleteRoutineUseCase,
-    private val updateToggleRoutineUseCase: UpdateToggleRoutineUseCase
+    private val updateRoutineUseCase: UpdateRoutineUseCase
 ) : ViewModel(), DailyActionHandler {
 
-    val dailyRoutineEntityList: StateFlow<List<Routine>> = getAllDailyRoutineByFlowUseCase(
+    val dailyRoutineEntityList: StateFlow<List<Routine>> = getRoutinesFlowByDateUseCase(
         getTodayDate()
     ).stateIn(
         scope = viewModelScope,
@@ -57,7 +57,7 @@ class DailyViewModel @Inject constructor(
 
     override fun toggleFinishRoutine(routine: Routine) {
         viewModelScope.launch {
-            updateToggleRoutineUseCase(routine.copy(isFinished = !routine.isFinished))
+            updateRoutineUseCase(routine.copy(isFinished = !routine.isFinished))
         }
     }
 }

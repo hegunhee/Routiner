@@ -9,4 +9,5 @@ class InsertCategoryUseCase @Inject constructor(private val repository: Category
     suspend operator fun invoke(category: Category){
         repository.insertCategory(category)
     }
+
 }
