@@ -25,10 +25,5 @@ class DefaultRepository @Inject constructor(
     override suspend fun deleteCategory(category: Category) {
         localDataSource.deleteCategory(category.toCategoryEntity())
     }
-
-
-    override fun getSortedDayOfWeekList(): List<String> {
-        return listOf("월","화","수","목","금","토","일")
-    }
-
+    
 }

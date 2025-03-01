@@ -10,6 +10,4 @@ interface Repository {
     fun getAllCategoryListByFlow() : Flow<List<Category>>
 
     suspend fun deleteCategory(category : Category)
-
-    fun getSortedDayOfWeekList() : List<String>
 }
