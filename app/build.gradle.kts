@@ -31,3 +31,10 @@ dependencies {
 
     implementation(libs.gson)
 }
+
+//android {
+//    lint {
+//        baseline = file("lint-baseline.xml")
+//        lintConfig = file("lint.xml")
+//    }
+//}
