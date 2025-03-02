@@ -24,5 +24,5 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew build
-    - name: hello world
-      run: echo "Hello World!!"
+    - name: Run Unit Test
+      run: ./gradlew test
