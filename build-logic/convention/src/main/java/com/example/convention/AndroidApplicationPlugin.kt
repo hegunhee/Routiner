@@ -1,6 +1,7 @@
 package com.example.convention
 
 import com.android.build.api.dsl.ApplicationExtension
+import com.example.convention.project.configureComposeAndroid
 import com.example.convention.project.configureHiltKotlin
 import com.example.convention.project.configureKotlinAndroid
 import com.example.convention.project.setupViewDataBinding
@@ -17,10 +18,10 @@ class AndroidApplicationPlugin : Plugin<Project> {
             }
             extensions.configure<ApplicationExtension> {
                 setupViewDataBinding()
+                configureKotlinAndroid()
+                configureHiltKotlin()
+                configureComposeAndroid(this)
             }
-
-            configureKotlinAndroid()
-            configureHiltKotlin()
         }
     }
 }

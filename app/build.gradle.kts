@@ -30,4 +30,7 @@ dependencies {
     kapt(libs.room.compiler)
 
     implementation(libs.gson)
+
+    implementation(libs.material3)
+    implementation(libs.activity.compose)
 }
