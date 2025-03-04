@@ -1,6 +1,7 @@
 package com.example.convention
 
 import com.android.build.gradle.LibraryExtension
+import com.example.convention.project.configureComposeAndroid
 import com.example.convention.project.configureHiltKotlin
 import com.example.convention.project.setupViewDataBinding
 import com.example.convention.setup.libs
@@ -21,6 +22,7 @@ class AndroidFeaturePlugin : Plugin<Project> {
 
             extensions.configure<LibraryExtension> {
                 setupViewDataBinding()
+                configureComposeAndroid(this)
             }
 
             dependencies {
