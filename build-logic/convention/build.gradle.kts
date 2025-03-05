@@ -29,5 +29,9 @@ gradlePlugin {
             id = "routiner.android.library"
             implementationClass = "com.example.convention.AndroidLibraryPlugin"
         }
+        register("androidCompose") {
+            id = "routiner.android.compose"
+            implementationClass = "com.example.convention.AndroidComposePlugin"
+        }
     }
 }
