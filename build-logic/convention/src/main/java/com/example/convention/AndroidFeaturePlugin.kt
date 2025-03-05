@@ -45,6 +45,7 @@ class AndroidFeaturePlugin : Plugin<Project> {
                 add("androidTestImplementation", libs.findLibrary("espresso-core").get())
 
                 add("implementation", libs.findLibrary("activity-compose").get())
+                add("implementation",libs.findLibrary("compose-navigation").get())
 
                 add("implementation", libs.findBundle("navigation").get())
 
