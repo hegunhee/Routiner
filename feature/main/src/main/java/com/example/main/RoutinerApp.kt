@@ -11,9 +11,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.main.drawer.ui.DrawerSheetContent
+import com.example.main.screen.navigation.MAIN_ROUTE
+import com.example.main.screen.navigation.mainNavGraph
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -31,11 +32,9 @@ fun RoutinerApp(
     ) {
         NavHost(
             navController = routinerAppScaffoldState.navController,
-            startDestination = TestRoute
+            startDestination = MAIN_ROUTE
         ) {
-            composable(route = TestRoute) {
-                TestScreen()
-            }
+            mainNavGraph({})
         }
     }
 }
