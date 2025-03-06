@@ -1,4 +1,4 @@
-package com.example.main
+package com.example.main.app
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.DrawerState
@@ -61,14 +61,19 @@ fun RoutinerAppDrawer(
     drawerSheetContent: @Composable ColumnScope.() -> Unit,
     content: @Composable () -> Unit
 ) {
+    val isDrawerEnable = !disableDrawerRoutes.contains(routinerAppScaffoldState.currentDestination.value?.destination?.route.toString())
+
     ModalNavigationDrawer(
         drawerState = routinerAppScaffoldState.drawerState,
         drawerContent = {
             ModalDrawerSheet {
                 drawerSheetContent()
             }
-        }
+        },
+        gesturesEnabled = isDrawerEnable
     ) {
         content()
     }
 }
+
+private val disableDrawerRoutes = listOf(MAIN_ROUTE)
