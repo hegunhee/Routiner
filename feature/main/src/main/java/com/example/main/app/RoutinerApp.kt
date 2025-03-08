@@ -1,4 +1,4 @@
-package com.example.main
+package com.example.main.app
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.DrawerState
@@ -11,9 +11,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.main.drawer.ui.DrawerSheetContent
+import com.example.main.screen.navigation.MAIN_ROUTE
+import com.example.main.screen.navigation.mainNavGraph
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -31,11 +32,9 @@ fun RoutinerApp(
     ) {
         NavHost(
             navController = routinerAppScaffoldState.navController,
-            startDestination = TestRoute
+            startDestination = MAIN_ROUTE
         ) {
-            composable(route = TestRoute) {
-                TestScreen()
-            }
+            mainNavGraph({})
         }
     }
 }
@@ -62,14 +61,19 @@ fun RoutinerAppDrawer(
     drawerSheetContent: @Composable ColumnScope.() -> Unit,
     content: @Composable () -> Unit
 ) {
+    val isDrawerEnable = !disableDrawerRoutes.contains(routinerAppScaffoldState.currentDestination.value?.destination?.route.toString())
+
     ModalNavigationDrawer(
         drawerState = routinerAppScaffoldState.drawerState,
         drawerContent = {
             ModalDrawerSheet {
                 drawerSheetContent()
             }
-        }
+        },
+        gesturesEnabled = isDrawerEnable
     ) {
         content()
     }
 }
+
+private val disableDrawerRoutes = listOf(MAIN_ROUTE)

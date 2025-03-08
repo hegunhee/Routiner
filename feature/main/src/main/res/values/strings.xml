@@ -1,5 +1,12 @@
 <resources>
     <string name="app_name">Routiner</string>
+    <string name="app_description">당신의 하루를 기록하세요</string>
     <string name="empty_input">입력칸이 비어있습니다.</string>
     <string name="notification_setting">알람 설정이 %1$s 되었습니다.</string>
+
+    <string name="init_message">시작 작업중 입니다.</string>
+    <string name="first_app_open_message">저희 앱을 사용해주셔서 감사합니다.</string>
+    <string name="init_date_message">오늘의 날짜를 추가하겠습니다.</string>
+    <string name="insert_repeat_routine_message">반복 루틴을 추가하겠습니다.</string>
+    <string name="success_message">오래 기다리셨습니다.</string>
 </resources>
