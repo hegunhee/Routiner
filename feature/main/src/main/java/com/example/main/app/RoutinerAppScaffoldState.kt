@@ -9,6 +9,7 @@ import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.main.drawer.DrawerItem
+import com.example.main.screen.navigation.MAIN_ROUTE
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -25,6 +26,12 @@ class RoutinerAppScaffoldState(
         navController.navigate(drawerItem.navRoute)
         coroutineScope.launch {
             drawerState.close()
+        }
+    }
+
+    fun navigateMainTo(route : String) {
+        navController.navigate(route) {
+            popUpTo(MAIN_ROUTE) { inclusive = true }
         }
     }
 

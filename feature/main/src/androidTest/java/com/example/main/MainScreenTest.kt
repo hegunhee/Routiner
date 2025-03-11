@@ -126,6 +126,7 @@ class MainScreenTest {
     private fun ShowMainScreen(uiState: MainUiState, onAction: (MainUiState) -> Unit) {
         MainScreen(
             uiState = uiState,
+            successRoute = "",
             onNavigateDailyScreen = { },
             onAction = onAction
         )

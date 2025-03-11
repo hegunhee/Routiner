@@ -2,6 +2,7 @@ package com.example.main.drawer
 
 import androidx.annotation.DrawableRes
 import com.example.main.R
+import com.hegunhee.daily.screen.navigation.DAILY_ROUTE
 
 enum class DrawerItem(
     val titleString: String,
@@ -11,7 +12,7 @@ enum class DrawerItem(
     Daily(
         titleString = "daily",
         iconRes = R.drawable.ic_daily,
-        navRoute = "",
+        navRoute = DAILY_ROUTE,
     );
 
     companion object {

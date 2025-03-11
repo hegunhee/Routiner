@@ -15,6 +15,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.main.drawer.ui.DrawerSheetContent
 import com.example.main.screen.navigation.MAIN_ROUTE
 import com.example.main.screen.navigation.mainNavGraph
+import com.hegunhee.daily.screen.navigation.DAILY_ROUTE
+import com.hegunhee.daily.screen.navigation.dailyNavGraph
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -34,7 +36,13 @@ fun RoutinerApp(
             navController = routinerAppScaffoldState.navController,
             startDestination = MAIN_ROUTE
         ) {
-            mainNavGraph({})
+            mainNavGraph(
+                successRoute = DAILY_ROUTE,
+                onNavigateTo = routinerAppScaffoldState::navigateMainTo,
+            )
+            dailyNavGraph(
+                onClickDrawerButton = routinerAppScaffoldState::openDrawer
+            )
         }
     }
 }
