@@ -23,13 +23,15 @@ import hegunhee.routiner.designsystem.theme.DarkGreen
 
 @Composable
 fun MainRootScreen(
-    onNavigateDailyScreen: () -> Unit,
+    successRoute: String,
+    onNavigateDailyScreen: (String) -> Unit,
     mainViewModel: MainViewModel = hiltViewModel()
 ) {
     val uiState = mainViewModel.uiState.collectAsStateWithLifecycle().value
 
     MainScreen(
         uiState = uiState,
+        successRoute = successRoute,
         onNavigateDailyScreen = onNavigateDailyScreen,
         onAction = mainViewModel::onAction
     )
@@ -38,13 +40,14 @@ fun MainRootScreen(
 @Composable
 fun MainScreen(
     uiState: MainUiState,
-    onNavigateDailyScreen: () -> Unit,
+    successRoute: String,
+    onNavigateDailyScreen: (String) -> Unit,
     onAction: (MainUiState) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LaunchedEffect(uiState) {
         if (uiState == MainUiState.Success) {
-            onNavigateDailyScreen()
+            onNavigateDailyScreen(successRoute)
         } else {
             onAction(uiState)
         }
@@ -83,6 +86,7 @@ private fun MainScreenPreview() {
     val context = LocalContext.current
     MainScreen(
         uiState = MainUiState.Success,
+        successRoute = "",
         onAction = {},
         onNavigateDailyScreen = {
             Toast.makeText(context, "이동합니당", Toast.LENGTH_SHORT).show()
