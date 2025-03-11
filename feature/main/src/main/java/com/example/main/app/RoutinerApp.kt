@@ -40,7 +40,9 @@ fun RoutinerApp(
                 successRoute = DAILY_ROUTE,
                 onNavigateTo = routinerAppScaffoldState::navigateMainTo,
             )
-            dailyNavGraph()
+            dailyNavGraph(
+                onClickDrawerButton = routinerAppScaffoldState::openDrawer
+            )
         }
     }
 }

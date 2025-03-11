@@ -7,9 +7,11 @@ import com.hegunhee.daily.screen.DailyRootScreen
 const val DAILY_ROUTE = "DAILY"
 
 fun NavGraphBuilder.dailyNavGraph(
-
+    onClickDrawerButton: () -> Unit
 ) {
     composable(DAILY_ROUTE) {
-        DailyRootScreen()
+        DailyRootScreen(
+            onClickDrawerButton = onClickDrawerButton
+        )
     }
 }
