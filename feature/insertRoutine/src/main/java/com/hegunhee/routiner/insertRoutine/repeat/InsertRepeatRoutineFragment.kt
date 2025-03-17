@@ -55,16 +55,11 @@ class InsertRepeatRoutineFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        closeDrawer()
         setActionBarTitle()
         setEditorActionListener()
         observeData()
     }
 
-    private fun closeDrawer() {
-        val drawerLayout : DrawerLayout? = activity?.findViewById(com.example.main.R.id.drawerLayout)
-        drawerLayout?.closeDrawer(GravityCompat.START)
-    }
 
     private fun setActionBarTitle() {
         (requireActivity() as AppCompatActivity).supportActionBar?.title = "반복 루틴 추가"
