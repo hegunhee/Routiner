@@ -36,11 +36,13 @@ import com.hegunhee.daily.R
 fun DailyRootScreen(
     viewModel: DailyViewModel = hiltViewModel(),
     onClickDrawerButton: () -> Unit,
+    onClickAddRoutine: () -> Unit,
 ) {
     val uiState = viewModel.uiState.collectAsStateWithLifecycle().value
     DailyScreen(
         uiState = uiState,
-        onClickDrawerButton = onClickDrawerButton
+        onClickDrawerButton = onClickDrawerButton,
+        onClickAddRoutine = onClickAddRoutine,
     )
 }
 
@@ -49,6 +51,7 @@ fun DailyRootScreen(
 fun DailyScreen(
     uiState: DailyUiState,
     onClickDrawerButton: () -> Unit,
+    onClickAddRoutine: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column {
@@ -67,7 +70,7 @@ fun DailyScreen(
             DailyUiState.Init -> {}
             DailyUiState.Empty -> {
                 DailyEmptyScreen(
-                    onClickAddRoutine = { }
+                    onClickAddRoutine = onClickAddRoutine
                 )
             }
 
@@ -78,7 +81,7 @@ fun DailyScreen(
         Spacer(modifier = modifier.weight(1f))
 
         FloatingActionButton(
-            onClick = {},
+            onClick = onClickAddRoutine,
             modifier = modifier
                 .align(Alignment.End)
                 .padding(end = 20.dp, bottom = 20.dp)
@@ -123,6 +126,7 @@ private fun ColumnScope.DailyEmptyScreen(
 private fun DailyScreenPreview() {
     DailyScreen(
         uiState = DailyUiState.Init,
-        onClickDrawerButton = {}
+        onClickDrawerButton = {},
+        onClickAddRoutine = {},
     )
 }
