@@ -12,10 +12,12 @@ fun NavController.navigateInsertRoutine() {
 }
 
 fun NavGraphBuilder.insertNavGraph(
-    onClickBackStack : () -> Unit
+    onClickBackButton : () -> Unit
 ) {
     composable(INSERT_ROUTINE_ROUTE) {
-        InsertRoutineRootScreen()
+        InsertRoutineRootScreen(
+            onClickBackButton
+        )
     }
 }
 
