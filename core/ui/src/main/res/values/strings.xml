@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="selected_category">선택된 카테고리입니다.</string>
+    <string name="delete_category">삭제버튼</string>
+</resources>
