@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -29,10 +30,13 @@ fun InsertRoutineRootScreen(
     onClickBackButton: () -> Unit,
 ) {
     val (routineText, onRoutineTextChanged) = remember { mutableStateOf("") }
+    val (addedCategoryText, onAddCategoryTextChanged) = remember { mutableStateOf("") }
 
     InsertRoutineScreen(
         routineText = routineText,
+        addedCategoryText = addedCategoryText,
         onRoutineTextChanged = onRoutineTextChanged,
+        onAddCategoryTextChanged = onAddCategoryTextChanged,
         onClickBackButton = onClickBackButton,
     )
 }
@@ -41,7 +45,9 @@ fun InsertRoutineRootScreen(
 @Composable
 fun InsertRoutineScreen(
     routineText: String,
+    addedCategoryText: String,
     onRoutineTextChanged: (String) -> Unit,
+    onAddCategoryTextChanged: (String) -> Unit,
     onClickBackButton: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -72,7 +78,25 @@ fun InsertRoutineScreen(
             modifier = bottomModifier
         )
 
-        
+        Text(
+            stringResource(R.string.please_category_add_short),
+            modifier = bottomModifier
+        )
+        NormalTextField(
+            textValue = addedCategoryText,
+            hintResId = R.string.please_routine_enter_long,
+            onValueChanged = onAddCategoryTextChanged,
+            modifier = bottomModifier,
+            trailingIcon = {
+                IconButton({}) {
+                    Icon(
+                        imageVector = Icons.Rounded.AddCircle,
+                        contentDescription = stringResource(R.string.add_category_content_description),
+                        tint = Color.Blue
+                    )
+                }
+            }
+        )
     }
 }
 
@@ -82,6 +106,8 @@ private fun NormalTextField(
     hintResId : Int,
     onValueChanged: (String) -> Unit,
     modifier : Modifier = Modifier,
+    leadingIcon: @Composable (() -> Unit)? = null,
+    trailingIcon: @Composable (() -> Unit)? = null,
 ) {
     OutlinedTextField(
         textValue,
@@ -98,7 +124,9 @@ private fun NormalTextField(
         ),
         modifier = modifier
             .padding(end = 10.dp)
-            .fillMaxWidth()
+            .fillMaxWidth(),
+        leadingIcon = leadingIcon,
+        trailingIcon = trailingIcon
 
     )
 }
@@ -108,7 +136,9 @@ private fun NormalTextField(
 fun InsertRoutineScreenPreview() {
     InsertRoutineScreen(
         routineText = "",
+        addedCategoryText = "",
         onRoutineTextChanged = {},
+        onAddCategoryTextChanged = {},
         onClickBackButton = {},
     )
 }
