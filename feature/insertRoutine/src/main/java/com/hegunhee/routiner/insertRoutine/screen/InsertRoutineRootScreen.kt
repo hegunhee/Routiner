@@ -1,6 +1,7 @@
 package com.hegunhee.routiner.insertRoutine.screen
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,6 +24,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.hegunhee.routiner.insertRoutine.R
 
 @Composable
@@ -97,6 +99,18 @@ fun InsertRoutineScreen(
                 }
             }
         )
+
+        Row {
+            Text(
+                stringResource(R.string.category_select),
+                modifier = bottomModifier.alignByBaseline(),
+            )
+            Text(
+                stringResource(R.string.select),
+                modifier = bottomModifier.alignByBaseline(),
+                fontSize = 15.sp,
+            )
+        }
     }
 }
 
