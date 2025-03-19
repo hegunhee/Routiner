@@ -146,7 +146,7 @@ private fun LazyListScope.dailyRoutineList(
 ) {
     item {
         Text(
-            "루틴 리스트",
+            stringResource(R.string.routine_list_text),
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             modifier = modifier
@@ -160,6 +160,29 @@ private fun LazyListScope.dailyRoutineList(
             onClickDeleteRoutine = onClickDeleteRoutine,
         )
     }
+
+    item {
+        Text(
+            stringResource(R.string.routine_degree),
+            fontSize = 20.sp,
+            modifier = modifier.padding(top = 20.dp)
+        )
+    }
+
+    item {
+        Text(
+            stringResource(R.string.routine_percent, calculateFinishedPercent(items.size,items.count{it.isFinished})),
+            modifier = modifier.padding(start = 20.dp)
+        )
+    }
+
+}
+
+private fun calculateFinishedPercent(
+    size : Int,
+    finishedCount : Int,
+) : Int {
+    return (finishedCount * 100/ size)
 }
 
 @Preview
