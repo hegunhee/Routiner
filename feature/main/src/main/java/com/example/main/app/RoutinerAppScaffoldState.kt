@@ -10,6 +10,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.example.main.drawer.DrawerItem
 import com.example.main.screen.navigation.MAIN_ROUTE
+import com.hegunhee.routiner.insertRoutine.screen.navigation.navigateInsertRoutine
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -33,6 +34,10 @@ class RoutinerAppScaffoldState(
         navController.navigate(route) {
             popUpTo(MAIN_ROUTE) { inclusive = true }
         }
+    }
+
+    fun navigateInsertRoutine() {
+        navController.navigateInsertRoutine()
     }
 
     fun popBackStack() {
