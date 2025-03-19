@@ -16,7 +16,7 @@ fun NavGraphBuilder.insertNavGraph(
 ) {
     composable(INSERT_ROUTINE_ROUTE) {
         InsertRoutineRootScreen(
-            onClickBackButton
+            onClickBackButton = onClickBackButton
         )
     }
 }
