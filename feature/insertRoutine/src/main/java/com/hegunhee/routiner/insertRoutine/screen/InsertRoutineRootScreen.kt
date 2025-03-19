@@ -132,7 +132,7 @@ fun InsertRoutineScreen(
         )
         NormalTextField(
             textValue = addedCategoryText,
-            hintResId = R.string.please_routine_enter_long,
+            hintResId = R.string.please_category_add_long,
             onValueChanged = onAddCategoryTextChanged,
             modifier = bottomModifier,
             trailingIcon = {
