@@ -46,7 +46,6 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.routiner.insertRoutine.R
-import hegunhee.routiner.model.Category
 import hegunhee.routiner.ui.item.SelectableCategory
 import kotlinx.coroutines.flow.SharedFlow
 
@@ -69,6 +68,10 @@ fun InsertRoutineRootScreen(
         addedCategoryText = addedCategoryText,
         onRoutineTextChanged = onRoutineTextChanged,
         onAddCategoryTextChanged = onAddCategoryTextChanged,
+        onClickRoutineInsert = viewModel::onClickRoutineInsert,
+        onClickCategory = viewModel::onClickCategory,
+        onClickCategoryDelete = viewModel::onClickCategoryDelete,
+        onClickCategoryInsert = viewModel::onClickCategoryInsert,
         onClickBackButton = onClickBackButton,
     )
 
@@ -89,6 +92,10 @@ fun InsertRoutineScreen(
     addedCategoryText: String,
     onRoutineTextChanged: (String) -> Unit,
     onAddCategoryTextChanged: (String) -> Unit,
+    onClickRoutineInsert : (String) -> Unit,
+    onClickCategory : (String) -> Unit,
+    onClickCategoryDelete : (String) -> Unit,
+    onClickCategoryInsert : (String) -> Unit,
     onClickBackButton: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
@@ -129,7 +136,7 @@ fun InsertRoutineScreen(
             onValueChanged = onAddCategoryTextChanged,
             modifier = bottomModifier,
             trailingIcon = {
-                IconButton({}) {
+                IconButton({ onClickCategoryInsert(addedCategoryText) }) {
                     Icon(
                         imageVector = Icons.Rounded.AddCircle,
                         contentDescription = stringResource(R.string.add_category_content_description),
@@ -151,34 +158,38 @@ fun InsertRoutineScreen(
             )
         }
 
-        val list = listOf<Category>(Category("asd", false), Category("asdsad", true))
+        when(uiState) {
+            InsertRoutineUiState.Init -> { }
+            is InsertRoutineUiState.Categories -> {
 
-        val categoryModifier = modifier
-            .height(60.dp)
-            .background(Color.Gray)
-            .wrapContentHeight()
+                val categoryModifier = modifier
+                    .height(60.dp)
+                    .background(Color.Gray)
+                    .wrapContentHeight()
 
-        LazyHorizontalGrid(
-            rows = GridCells.Fixed(3),
-            modifier = modifier.height(180.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-        ) {
-            items(list) {
-                SelectableCategory(
-                    categoryText = it.name,
-                    isCategoryClicked = it.isSelected,
-                    onCategoryClick = {},
-                    onCategoryDeleteClick = {},
-                    modifier = categoryModifier
-                )
+                LazyHorizontalGrid(
+                    rows = GridCells.Fixed(3),
+                    modifier = modifier.height(180.dp),
+                    verticalArrangement = Arrangement.spacedBy(8.dp),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp),
+                ) {
+                    items(uiState.items) {
+                        SelectableCategory(
+                            categoryText = it.name,
+                            isCategoryClicked = it.isSelected,
+                            onCategoryClick = onClickCategory,
+                            onCategoryDeleteClick = onClickCategoryDelete,
+                            modifier = categoryModifier
+                        )
+                    }
+                }
             }
         }
 
         Spacer(modifier = modifier.weight(1f))
 
         Button(
-            {},
+            { onClickRoutineInsert(routineText)},
             modifier = modifier
                 .fillMaxWidth()
                 .padding(bottom = 10.dp, start = 10.dp, end = 10.dp),
@@ -255,6 +266,10 @@ fun InsertRoutineScreenPreview() {
         addedCategoryText = "",
         onRoutineTextChanged = {},
         onAddCategoryTextChanged = {},
+        onClickRoutineInsert = {},
+        onClickCategory = {},
         onClickBackButton = {},
+        onClickCategoryInsert = {},
+        onClickCategoryDelete = {}
     )
 }
