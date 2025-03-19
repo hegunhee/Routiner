@@ -5,4 +5,9 @@
     <string name="add_routine_string">루틴 등록하기</string>
     <string name="delete_routine">루틴 삭제</string>
     <string name="add_routine">루틴 추가</string>
+    
+    <string name="routine_list_text">루틴 리스트</string>
+    <string name="routine_degree">작업 진척도</string>
+    <string name="routine_percent">작업을 %d%% 완료했습니다.</string>
+    <string name="add_button">addButton</string>
 </resources>

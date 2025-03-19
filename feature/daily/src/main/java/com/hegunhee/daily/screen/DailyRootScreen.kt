@@ -4,11 +4,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.sharp.Add
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
@@ -22,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -31,6 +32,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hegunhee.daily.R
+import hegunhee.routiner.model.Routine
+import hegunhee.routiner.ui.item.DailyRoutine
 
 @Composable
 fun DailyRootScreen(
@@ -43,6 +46,8 @@ fun DailyRootScreen(
         uiState = uiState,
         onClickDrawerButton = onClickDrawerButton,
         onClickAddRoutine = onClickAddRoutine,
+        onClickRoutine = viewModel::onClickDailyRoutine,
+        onClickDeleteRoutine = viewModel::onClickDeleteDailyRoutine,
     )
 }
 
@@ -52,6 +57,8 @@ fun DailyScreen(
     uiState: DailyUiState,
     onClickDrawerButton: () -> Unit,
     onClickAddRoutine: () -> Unit,
+    onClickRoutine: (Routine) -> Unit,
+    onClickDeleteRoutine: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column {
@@ -75,6 +82,14 @@ fun DailyScreen(
             }
 
             is DailyUiState.Items -> {
+                LazyColumn {
+                    dailyRoutineList(
+                        uiState.routines,
+                        onClickRoutine = onClickRoutine,
+                        onClickDeleteRoutine = onClickDeleteRoutine,
+                        modifier = modifier.padding(top = 10.dp, start = 10.dp,end = 10.dp)
+                    )
+                }
             }
         }
 
@@ -86,7 +101,7 @@ fun DailyScreen(
                 .align(Alignment.End)
                 .padding(end = 20.dp, bottom = 20.dp)
         ) {
-            Icon(imageVector = Icons.Sharp.Add, contentDescription = "addButton")
+            Icon(imageVector = Icons.Sharp.Add, contentDescription = stringResource(R.string.add_button))
         }
 
     }
@@ -121,6 +136,53 @@ private fun ColumnScope.DailyEmptyScreen(
     }
 }
 
+private fun LazyListScope.dailyRoutineList(
+    items: List<Routine>,
+    onClickRoutine: (Routine) -> Unit,
+    onClickDeleteRoutine: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    item {
+        Text(
+            stringResource(R.string.routine_list_text),
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = modifier
+        )
+    }
+
+    items(items, key = { it.text }) { routine ->
+        DailyRoutine(
+            routine,
+            onClickRoutine = onClickRoutine,
+            onClickDeleteRoutine = onClickDeleteRoutine,
+        )
+    }
+
+    item {
+        Text(
+            stringResource(R.string.routine_degree),
+            fontSize = 20.sp,
+            modifier = modifier.padding(top = 20.dp)
+        )
+    }
+
+    item {
+        Text(
+            stringResource(R.string.routine_percent, calculateFinishedPercent(items.size,items.count{it.isFinished})),
+            modifier = modifier.padding(start = 20.dp)
+        )
+    }
+
+}
+
+private fun calculateFinishedPercent(
+    size : Int,
+    finishedCount : Int,
+) : Int {
+    return (finishedCount * 100/ size)
+}
+
 @Preview
 @Composable
 private fun DailyScreenPreview() {
@@ -128,5 +190,7 @@ private fun DailyScreenPreview() {
         uiState = DailyUiState.Init,
         onClickDrawerButton = {},
         onClickAddRoutine = {},
+        onClickRoutine = {},
+        onClickDeleteRoutine = {}
     )
 }
