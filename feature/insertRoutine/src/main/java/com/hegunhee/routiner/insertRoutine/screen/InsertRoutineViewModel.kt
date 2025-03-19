@@ -46,7 +46,7 @@ class InsertRoutineViewModel @Inject constructor(
         }.stateIn(
             scope = viewModelScope,
             initialValue = InsertRoutineUiState.Init,
-            started = SharingStarted.WhileSubscribed()
+            started = SharingStarted.WhileSubscribed(5_000)
         )
 
     private val _uiEvent: MutableSharedFlow<InsertRoutineUiEvent> = MutableSharedFlow()
@@ -60,24 +60,24 @@ class InsertRoutineViewModel @Inject constructor(
         }
     }
 
-    fun onClickCategoryDelete(category: Category) {
-        if (category.name == selectedCategory.value) {
+    fun onClickCategoryDelete(categoryName: String) {
+        if (categoryName == selectedCategory.value) {
             selectedCategory.value = null
         }
         viewModelScope.launch {
-            deleteCategoryUseCase(category)
+            deleteCategoryUseCase(Category(categoryName))
         }
     }
 
-    fun onClickCategoryInsert() {
-        val categoryName = selectedCategory.value
+    fun onClickCategoryInsert(insertCategoryText : String) {
         viewModelScope.launch {
-            if(categoryName == null) {
+            if(insertCategoryText.isBlank()) {
                 _uiEvent.emit(InsertRoutineUiEvent.InsertCategoryNameEmpty)
                 return@launch
             }
-            insertCategoryUseCase(Category(categoryName))
+            insertCategoryUseCase(Category(insertCategoryText))
         }
+
     }
 
     fun onClickRoutineInsert(routineName: String) {
