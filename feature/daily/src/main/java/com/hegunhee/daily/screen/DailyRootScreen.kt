@@ -4,6 +4,9 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListScope
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Menu
 import androidx.compose.material.icons.sharp.Add
@@ -31,6 +34,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hegunhee.daily.R
+import hegunhee.routiner.model.Routine
+import hegunhee.routiner.ui.item.DailyRoutine
 
 @Composable
 fun DailyRootScreen(
@@ -43,6 +48,8 @@ fun DailyRootScreen(
         uiState = uiState,
         onClickDrawerButton = onClickDrawerButton,
         onClickAddRoutine = onClickAddRoutine,
+        onClickRoutine = viewModel::onClickDailyRoutine,
+        onClickDeleteRoutine = viewModel::onClickDeleteDailyRoutine,
     )
 }
 
@@ -52,6 +59,8 @@ fun DailyScreen(
     uiState: DailyUiState,
     onClickDrawerButton: () -> Unit,
     onClickAddRoutine: () -> Unit,
+    onClickRoutine: (Routine) -> Unit,
+    onClickDeleteRoutine: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column {
@@ -75,6 +84,14 @@ fun DailyScreen(
             }
 
             is DailyUiState.Items -> {
+                LazyColumn {
+                    dailyRoutineList(
+                        uiState.routines,
+                        onClickRoutine = onClickRoutine,
+                        onClickDeleteRoutine = onClickDeleteRoutine,
+                        modifier = modifier.padding(top = 10.dp, start = 10.dp,end = 10.dp)
+                    )
+                }
             }
         }
 
@@ -121,6 +138,30 @@ private fun ColumnScope.DailyEmptyScreen(
     }
 }
 
+private fun LazyListScope.dailyRoutineList(
+    items: List<Routine>,
+    onClickRoutine: (Routine) -> Unit,
+    onClickDeleteRoutine: (Int) -> Unit,
+    modifier: Modifier = Modifier,
+) {
+    item {
+        Text(
+            "루틴 리스트",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = modifier
+        )
+    }
+
+    items(items, key = { it.text }) { routine ->
+        DailyRoutine(
+            routine,
+            onClickRoutine = onClickRoutine,
+            onClickDeleteRoutine = onClickDeleteRoutine,
+        )
+    }
+}
+
 @Preview
 @Composable
 private fun DailyScreenPreview() {
@@ -128,5 +169,7 @@ private fun DailyScreenPreview() {
         uiState = DailyUiState.Init,
         onClickDrawerButton = {},
         onClickAddRoutine = {},
+        onClickRoutine = {},
+        onClickDeleteRoutine = {}
     )
 }
