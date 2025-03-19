@@ -10,4 +10,6 @@
     <string name="select">(선택)</string>
 
     <string name="add_category_content_description">카테고리 추가 버튼 입니다.</string>
+
+    <string name="submit_routine">등록하기</string>
 </resources>
