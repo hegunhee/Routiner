@@ -35,6 +35,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
@@ -123,7 +124,7 @@ fun InsertRoutineScreen(
             textValue = routineText,
             hintResId = R.string.please_routine_enter_long,
             onValueChanged = onRoutineTextChanged,
-            modifier = bottomModifier
+            modifier = bottomModifier.testTag(stringResource(R.string.routine_text_test_tag))
         )
 
         Text(
@@ -134,7 +135,7 @@ fun InsertRoutineScreen(
             textValue = addedCategoryText,
             hintResId = R.string.please_category_add_long,
             onValueChanged = onAddCategoryTextChanged,
-            modifier = bottomModifier,
+            modifier = bottomModifier.testTag(stringResource(R.string.add_category_text_test_tag)),
             trailingIcon = {
                 IconButton({ onClickCategoryInsert(addedCategoryText) }) {
                     Icon(

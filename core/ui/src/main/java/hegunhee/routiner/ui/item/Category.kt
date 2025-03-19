@@ -48,7 +48,8 @@ fun SelectableCategory(
             text = categoryText,
             modifier = Modifier
                 .align(Alignment.CenterVertically)
-                .padding(start = 4.dp),
+                .padding(start = 4.dp)
+                .clickable { onCategoryClick(categoryText) },
             textAlign = TextAlign.Center,
         )
         Spacer(modifier = Modifier.weight(1f))
