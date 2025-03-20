@@ -3,6 +3,7 @@ package com.example.main.drawer
 import androidx.annotation.DrawableRes
 import com.example.main.R
 import com.hegunhee.daily.screen.navigation.DAILY_ROUTE
+import com.hegunhee.record.screen.navigation.RECORD_ROUTE
 
 enum class DrawerItem(
     val titleString: String,
@@ -13,6 +14,12 @@ enum class DrawerItem(
         titleString = "daily",
         iconRes = R.drawable.ic_daily,
         navRoute = DAILY_ROUTE,
+    ),
+
+    Record(
+        titleString = "record",
+        iconRes = R.drawable.ic_record,
+        navRoute = RECORD_ROUTE
     );
 
     companion object {

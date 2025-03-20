@@ -17,6 +17,7 @@ import com.example.main.screen.navigation.MAIN_ROUTE
 import com.example.main.screen.navigation.mainNavGraph
 import com.hegunhee.daily.screen.navigation.DAILY_ROUTE
 import com.hegunhee.daily.screen.navigation.dailyNavGraph
+import com.hegunhee.record.screen.navigation.recordNavGraph
 import com.hegunhee.routiner.insertRoutine.screen.navigation.INSERT_ROUTINE_ROUTE
 import com.hegunhee.routiner.insertRoutine.screen.navigation.insertNavGraph
 import kotlinx.coroutines.CoroutineScope
@@ -48,6 +49,9 @@ fun RoutinerApp(
             )
             insertNavGraph(
                 onClickBackButton = routinerAppScaffoldState::popBackStack
+            )
+            recordNavGraph(
+                onClickDrawer = routinerAppScaffoldState::openDrawer
             )
         }
     }
