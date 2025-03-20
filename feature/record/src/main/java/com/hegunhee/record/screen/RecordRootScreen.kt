@@ -25,6 +25,7 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -57,14 +58,17 @@ fun RecordRootScreen(
     onClickDrawer: () -> Unit
 ) {
     val (reviewText, onReviewTextChanged) = rememberSaveable { mutableStateOf("") }
-    val (reviewDate, onReviewDateChanged) = rememberSaveable { mutableIntStateOf(-1) }
+    val (reviewDate, onReviewDateChanged) = rememberSaveable { mutableIntStateOf(Date.EMPTY.date) }
 
     val lifecycleOwner = LocalLifecycleOwner.current
 
+    val dateList = viewModel.dateList.collectAsStateWithLifecycle().value
+
     RecordScreen(
-        dateList = viewModel.dateList.collectAsStateWithLifecycle().value,
+        dateList = dateList,
         routines = viewModel.routines.collectAsStateWithLifecycle().value,
         reviewState = viewModel.reviewState.collectAsStateWithLifecycle().value,
+        selectedDate = dateList.firstOrNull{ it.isSelected } ?: Date.EMPTY,
         reviewText = reviewText,
         reviewDate = reviewDate,
         onClickDate = viewModel::onClickDate,
@@ -102,7 +106,7 @@ fun RecordScreen(
     dateList: List<Date>,
     routines: List<Routine>,
     reviewState: ReviewState,
-    selectedDate: Date = Date.EMPTY,
+    selectedDate: Date,
     reviewText: String,
     reviewDate: Int,
     onClickDate: (Date) -> Unit,
@@ -119,7 +123,8 @@ fun RecordScreen(
                 if (selectedDate.desc == Date.EMPTY.desc) {
                     Text(stringResource(R.string.empty_date_desc))
                 } else {
-                    selectedDate.desc
+                    Text(selectedDate.desc)
+
                 }
             },
             navigationIcon = {
@@ -298,12 +303,13 @@ private fun ReviewScreen(
 @Composable
 private fun RecordScreenPreview() {
     val (reviewText, onReviewTextChanged) = rememberSaveable { mutableStateOf("") }
-    val reviewDate = rememberSaveable { mutableIntStateOf(-1) }
+    val reviewDate = rememberSaveable { mutableIntStateOf(Date.EMPTY.date) }
 
     RecordScreen(
         dateList = listOf(),
         routines = listOf(),
         reviewState = ReviewState.Empty,
+        selectedDate = Date.EMPTY,
         reviewText = reviewText,
         reviewDate = reviewDate.value,
         onClickDate = {},
