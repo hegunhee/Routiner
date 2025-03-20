@@ -7,11 +7,13 @@ import com.example.main.screen.MainRootScreen
 const val MAIN_ROUTE = "MAIN"
 
 fun NavGraphBuilder.mainNavGraph(
-    onNavigateDailyScreen : () -> Unit,
+    successRoute: String,
+    onNavigateTo : (String) -> Unit,
 ) {
     composable(route = MAIN_ROUTE) {
         MainRootScreen(
-            onNavigateDailyScreen = onNavigateDailyScreen,
+            successRoute = successRoute,
+            onNavigateDailyScreen = onNavigateTo,
         )
     }
 }

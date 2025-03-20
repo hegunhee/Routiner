@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="please_routine_enter_short">루틴 입력</string>
+    <string name="please_routine_enter_long">루틴을 입력해 주세요</string>
+    
+    <string name="please_category_add_short">카테고리 추가</string>
+    <string name="please_category_add_long">카테고리를 추가해 주세요</string>
+
+    <string name="category_select">카테고리 선택</string>
+    <string name="select">(선택)</string>
+
+    <string name="add_category_content_description">카테고리 추가 버튼 입니다.</string>
+
+    <string name="submit_routine">등록하기</string>
+
+    <string name="routine_name_empty">루틴 이름이 비어있습니다.</string>
+    <string name="add_category_empty">카테고리 이름이 비어있습니다.</string>
+
+    <string name="routine_text_test_tag">RoutineTextTag</string>
+    <string name="add_category_text_test_tag">CategoryTestTag</string>
+</resources>
