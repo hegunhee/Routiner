@@ -5,4 +5,5 @@
     <string name="revise">수정하기</string>
     <string name="remove">삭제하기</string>
     <string name="submit">등록하기</string>
+    <string name="empty_date_desc">저장된 데이터가 없습니다</string>
 </resources>

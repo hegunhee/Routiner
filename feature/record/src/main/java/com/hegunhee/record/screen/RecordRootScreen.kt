@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -33,11 +34,16 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.record.R
 import hegunhee.routiner.model.Date
 import hegunhee.routiner.model.Review
@@ -47,46 +53,75 @@ import hegunhee.routiner.ui.item.RecordRoutine
 
 @Composable
 fun RecordRootScreen(
+    viewModel: RecordViewModel = hiltViewModel(),
     onClickDrawer: () -> Unit
 ) {
     val (reviewText, onReviewTextChanged) = rememberSaveable { mutableStateOf("") }
     val (reviewDate, onReviewDateChanged) = rememberSaveable { mutableIntStateOf(-1) }
 
+    val lifecycleOwner = LocalLifecycleOwner.current
+
     RecordScreen(
-        dateList = listOf(),
-        routines = listOf(),
-        reviewState = ReviewState.Empty,
+        dateList = viewModel.dateList.collectAsStateWithLifecycle().value,
+        routines = viewModel.routines.collectAsStateWithLifecycle().value,
+        reviewState = viewModel.reviewState.collectAsStateWithLifecycle().value,
         reviewText = reviewText,
         reviewDate = reviewDate,
-        onClickDate = {},
+        onClickDate = viewModel::onClickDate,
         onReviewTextChanged = onReviewTextChanged,
-        onClickReviewSubmit = {_, _ ->},
-        onClickReviewRevise = {_, _ ->},
-        onClickReviewRemove = {_, _ ->},
+        onClickReviewSubmit = viewModel::onClickReviewSubmit,
+        onClickReviewRevise = viewModel::onClickReviewRevise,
+        onClickReviewRemove = viewModel::onClickDeleteReview,
         onClickDrawer = onClickDrawer
     )
+
+    LaunchedEffect(viewModel.reviewState) {
+        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.reviewState.collect { state ->
+                when (state) {
+                    is ReviewState.Exist -> {
+                        onReviewTextChanged(state.review.review)
+                        onReviewDateChanged(state.review.date)
+                    }
+                    ReviewState.Empty -> {
+                        onReviewTextChanged("")
+                    }
+
+                    else -> {
+
+                    }
+                }
+            }
+        }
+    }
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecordScreen(
-    dateList : List<Date>,
-    routines : List<Routine>,
-    reviewState : ReviewState,
+    dateList: List<Date>,
+    routines: List<Routine>,
+    reviewState: ReviewState,
     selectedDate: Date = Date.EMPTY,
-    reviewText : String,
-    reviewDate : Int,
-    onClickDate : (Date) -> Unit,
+    reviewText: String,
+    reviewDate: Int,
+    onClickDate: (Date) -> Unit,
     onReviewTextChanged: (String) -> Unit,
     onClickReviewSubmit: (reviewText: String, date: Int) -> Unit,
     onClickReviewRevise: (reviewText: String, date: Int) -> Unit,
-    onClickReviewRemove: (reviewText: String, date: Int) -> Unit,
+    onClickReviewRemove: () -> Unit,
     onClickDrawer: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column {
         TopAppBar(
-            title = { Text(selectedDate.desc) },
+            title = {
+                if (selectedDate.desc == Date.EMPTY.desc) {
+                    Text(stringResource(R.string.empty_date_desc))
+                } else {
+                    selectedDate.desc
+                }
+            },
             navigationIcon = {
                 IconButton(
                     onClickDrawer
@@ -142,7 +177,7 @@ private fun ReviewScreen(
     onReviewTextChanged: (String) -> Unit,
     onClickReviewSubmit: (reviewText: String, date: Int) -> Unit,
     onClickReviewRevise: (reviewText: String, date: Int) -> Unit,
-    onClickReviewRemove: (reviewText: String, date: Int) -> Unit,
+    onClickReviewRemove: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val roundedModifier = modifier.clip(RoundedCornerShape(16.dp))
@@ -150,12 +185,11 @@ private fun ReviewScreen(
         modifier = roundedModifier
             .background(Color.Gray)
             .fillMaxWidth()
-            .padding(2.dp)
     ) {
-        Text(stringResource(R.string.review_description), fontSize = 20.sp)
         when (reviewState) {
             ReviewState.Loading -> {}
             ReviewState.Empty -> {
+                Text(stringResource(R.string.review_description), fontSize = 20.sp)
                 OutlinedTextField(
                     value = reviewText,
                     onValueChange = onReviewTextChanged,
@@ -189,6 +223,7 @@ private fun ReviewScreen(
             }
 
             is ReviewState.Exist -> {
+                Text(stringResource(R.string.review_description), fontSize = 20.sp)
                 Text(
                     text = reviewText,
                     modifier = roundedModifier
@@ -209,7 +244,7 @@ private fun ReviewScreen(
                         Text(stringResource(R.string.revise))
                     }
                     Button(
-                        onClick = { onClickReviewRemove(reviewText, reviewDate) },
+                        onClick = { onClickReviewRemove() },
                         modifier = modifier
                             .weight(1f),
                         colors = ButtonDefaults.buttonColors(
@@ -223,6 +258,7 @@ private fun ReviewScreen(
             }
 
             ReviewState.Revise -> {
+                Text(stringResource(R.string.review_description), fontSize = 20.sp)
                 OutlinedTextField(
                     value = reviewText,
                     onValueChange = onReviewTextChanged,
@@ -262,19 +298,19 @@ private fun ReviewScreen(
 @Composable
 private fun RecordScreenPreview() {
     val (reviewText, onReviewTextChanged) = rememberSaveable { mutableStateOf("") }
-    val (reviewDate, onReviewDateChanged) = rememberSaveable { mutableIntStateOf(-1) }
+    val reviewDate = rememberSaveable { mutableIntStateOf(-1) }
 
     RecordScreen(
         dateList = listOf(),
         routines = listOf(),
         reviewState = ReviewState.Empty,
         reviewText = reviewText,
-        reviewDate = reviewDate,
+        reviewDate = reviewDate.value,
         onClickDate = {},
         onReviewTextChanged = onReviewTextChanged,
         onClickReviewSubmit = { _, _ -> },
         onClickReviewRevise = { _, _ -> },
-        onClickReviewRemove = { _, _ -> },
+        onClickReviewRemove = { },
         onClickDrawer = { },
     )
 }
@@ -301,7 +337,7 @@ private fun ReviewScreenPreview() {
             reviewText = newText
             reviewState = ReviewState.Revise
         },
-        onClickReviewRemove = { newText, _ ->
+        onClickReviewRemove = {
             reviewText = ""
             reviewState = ReviewState.Empty
         }
