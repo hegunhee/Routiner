@@ -11,6 +11,7 @@ dependencies {
     implementation(project(":feature:common"))
     implementation(project(":feature:daily"))
     implementation(project(":feature:insertRoutine"))
+    implementation(project(":feature:record"))
 
     implementation(libs.gson)
 }
