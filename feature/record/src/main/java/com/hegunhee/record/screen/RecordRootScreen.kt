@@ -1,13 +1,16 @@
 package com.hegunhee.record.screen
 
-import android.icu.text.CaseMap.Title
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Menu
@@ -18,13 +21,14 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -35,13 +39,30 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.hegunhee.record.R
+import hegunhee.routiner.model.Date
 import hegunhee.routiner.model.Review
+import hegunhee.routiner.model.Routine
+import hegunhee.routiner.ui.item.DateSelector
+import hegunhee.routiner.ui.item.RecordRoutine
 
 @Composable
 fun RecordRootScreen(
     onClickDrawer: () -> Unit
 ) {
+    val (reviewText, onReviewTextChanged) = rememberSaveable { mutableStateOf("") }
+    val (reviewDate, onReviewDateChanged) = rememberSaveable { mutableIntStateOf(-1) }
+
     RecordScreen(
+        dateList = listOf(),
+        routines = listOf(),
+        reviewState = ReviewState.Empty,
+        reviewText = reviewText,
+        reviewDate = reviewDate,
+        onClickDate = {},
+        onReviewTextChanged = onReviewTextChanged,
+        onClickReviewSubmit = {_, _ ->},
+        onClickReviewRevise = {_, _ ->},
+        onClickReviewRemove = {_, _ ->},
         onClickDrawer = onClickDrawer
     )
 }
@@ -49,13 +70,23 @@ fun RecordRootScreen(
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RecordScreen(
-    date: String = "2025년 2월 26일",
+    dateList : List<Date>,
+    routines : List<Routine>,
+    reviewState : ReviewState,
+    selectedDate: Date = Date.EMPTY,
+    reviewText : String,
+    reviewDate : Int,
+    onClickDate : (Date) -> Unit,
+    onReviewTextChanged: (String) -> Unit,
+    onClickReviewSubmit: (reviewText: String, date: Int) -> Unit,
+    onClickReviewRevise: (reviewText: String, date: Int) -> Unit,
+    onClickReviewRemove: (reviewText: String, date: Int) -> Unit,
     onClickDrawer: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column {
         TopAppBar(
-            title = { Text(date) },
+            title = { Text(selectedDate.desc) },
             navigationIcon = {
                 IconButton(
                     onClickDrawer
@@ -66,6 +97,38 @@ fun RecordScreen(
                     )
                 }
             }
+        )
+        LazyRow(
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            items(dateList) { date ->
+                DateSelector(
+                    date = date,
+                    onClickDate = onClickDate
+                )
+            }
+        }
+
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(4.dp)
+        ) {
+            items(routines) { routine ->
+                RecordRoutine(
+                    routine = routine
+                )
+            }
+        }
+
+        Spacer(modifier = modifier.weight(1f))
+
+        ReviewScreen(
+            reviewState = reviewState,
+            reviewText = reviewText,
+            reviewDate = reviewDate,
+            onReviewTextChanged = onReviewTextChanged,
+            onClickReviewSubmit = onClickReviewSubmit,
+            onClickReviewRevise = onClickReviewRevise,
+            onClickReviewRemove = onClickReviewRemove,
         )
     }
 }
@@ -198,8 +261,21 @@ private fun ReviewScreen(
 @Preview
 @Composable
 private fun RecordScreenPreview() {
+    val (reviewText, onReviewTextChanged) = rememberSaveable { mutableStateOf("") }
+    val (reviewDate, onReviewDateChanged) = rememberSaveable { mutableIntStateOf(-1) }
+
     RecordScreen(
-        onClickDrawer = {}
+        dateList = listOf(),
+        routines = listOf(),
+        reviewState = ReviewState.Empty,
+        reviewText = reviewText,
+        reviewDate = reviewDate,
+        onClickDate = {},
+        onReviewTextChanged = onReviewTextChanged,
+        onClickReviewSubmit = { _, _ -> },
+        onClickReviewRevise = { _, _ -> },
+        onClickReviewRemove = { _, _ -> },
+        onClickDrawer = { },
     )
 }
 
