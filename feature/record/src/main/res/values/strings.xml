@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="menu_content_description">drawer 여는 버튼입니다.</string>
+    <string name="review_description">리뷰를 등록해주세요</string>
+    <string name="revise">수정하기</string>
+    <string name="remove">삭제하기</string>
+    <string name="submit">등록하기</string>
 </resources>
