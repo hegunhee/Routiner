@@ -6,10 +6,10 @@ import android.app.PendingIntent
 import android.content.BroadcastReceiver
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import androidx.core.app.NotificationCompat
 import hegunhee.routiner.model.Routine
 import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
-import com.example.main.MainActivity
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
@@ -46,7 +46,7 @@ class AlarmReceiver() : BroadcastReceiver() {
     }
 
     private fun sendDailyAlarmNotification(context : Context,text : String) {
-            val contentIntent = Intent(context,MainActivity::class.java)
+            val contentIntent = Intent(Intent.ACTION_VIEW, Uri.parse("app://main"))
             val contentPendingIntent = PendingIntent.getActivity(
                 context,
                 ALARM_NOTIFICATION_ID,
