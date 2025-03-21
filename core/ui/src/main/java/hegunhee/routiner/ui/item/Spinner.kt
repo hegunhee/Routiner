@@ -14,6 +14,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import hegunhee.routiner.ui.R
@@ -33,7 +34,8 @@ fun Spinner(
         Icon(
             imageVector = Icons.Rounded.ArrowDropDown,
             contentDescription = stringResource(R.string.spinner_down_icon),
-            modifier = modifier.alignByBaseline()
+            modifier = modifier.alignByBaseline(),
+            tint = Color.White
         )
     }
 
@@ -56,7 +58,7 @@ fun Spinner(
 @Preview
 @Composable
 private fun SpinnerPreview() {
-    var items by remember { mutableStateOf(listOf("01", "02", "03")) }
+    val items by remember { mutableStateOf(listOf("01", "02", "03")) }
     var selectedItem by remember { mutableStateOf(items[0]) }
 
     val onSelectItemChanged: (String) -> Unit = { newItem ->
