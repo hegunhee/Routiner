@@ -28,15 +28,25 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.hegunhee.setting.R
 import hegunhee.routiner.ui.item.Spinner
 
 @Composable
 fun SettingRootScreen(
+    viewModel: SettingViewModel = hiltViewModel(),
     onClickDrawer: () -> Unit,
 ) {
     SettingScreen(
         onClickDrawer = onClickDrawer,
+        isAlarmEnabled = viewModel.alarmEnabled.collectAsStateWithLifecycle().value,
+        selectedHour = viewModel.alarmHour.collectAsStateWithLifecycle().value,
+        selectedMinute = viewModel.alarmMinute.collectAsStateWithLifecycle().value,
+        onClickAlarmEnableSwitch = viewModel::onClickAlarmEnabled,
+        onHourChanged = viewModel::onAlarmHourChanged,
+        onMinuteChanged = viewModel::onAlarmMinuteChanged,
+        onClickSaveAlarm = viewModel::onAlarmChanged,
     )
 }
 
@@ -44,6 +54,13 @@ fun SettingRootScreen(
 @Composable
 fun SettingScreen(
     onClickDrawer: () -> Unit,
+    isAlarmEnabled: Boolean,
+    selectedHour: String,
+    selectedMinute: String,
+    onClickAlarmEnableSwitch: (Boolean) -> Unit,
+    onHourChanged: (String) -> Unit,
+    onMinuteChanged: (String) -> Unit,
+    onClickSaveAlarm: (String, String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column {
@@ -67,10 +84,18 @@ fun SettingScreen(
             .background(Color.Black)
             .padding(10.dp)
 
-        
+        AlarmSetting(
+            isAlarmEnabled = isAlarmEnabled,
+            selectedHour = selectedHour,
+            selectedMinute = selectedMinute,
+            onClickAlarmEnableSwitch = onClickAlarmEnableSwitch,
+            onHourChanged = onHourChanged,
+            onMinuteChanged = onMinuteChanged,
+            onClickSaveAlarm = onClickSaveAlarm,
+            modifier = settingModifier,
+        )
 
     }
-    Text("SettingScreen")
 }
 
 @Composable
@@ -123,6 +148,13 @@ fun AlarmSetting(
 private fun SettingScreenPreview() {
     SettingScreen(
         onClickDrawer = {},
+        isAlarmEnabled = true,
+        selectedHour = "00",
+        selectedMinute = "00",
+        onClickAlarmEnableSwitch = {  },
+        onHourChanged = {},
+        onMinuteChanged = {},
+        onClickSaveAlarm = { _, _ -> },
     )
 }
 
