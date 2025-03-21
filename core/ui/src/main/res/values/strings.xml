@@ -3,4 +3,8 @@
     <string name="selected_category">선택된 카테고리입니다.</string>
     <string name="delete_category">삭제버튼</string>
     <string name="delete_routine">삭제</string>
+
+    <string name="finished_routine">완료한 루틴입니다.</string>
+
+    <string name="selected_dot">선택된 날짜입니다.</string>
 </resources>
