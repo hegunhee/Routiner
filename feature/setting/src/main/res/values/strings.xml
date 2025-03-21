@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setting">설정</string>
+    <string name="drawer_open">DrawerOpenButton</string>
+    <string name="alarm_setting">알람 설정</string>
+    <string name="time_setting">시간 설정</string>
+    <string name="save_alarm">저장하기</string>
+</resources>
