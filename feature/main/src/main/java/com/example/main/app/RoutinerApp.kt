@@ -20,6 +20,7 @@ import com.hegunhee.daily.screen.navigation.dailyNavGraph
 import com.hegunhee.record.screen.navigation.recordNavGraph
 import com.hegunhee.routiner.insertRoutine.screen.navigation.INSERT_ROUTINE_ROUTE
 import com.hegunhee.routiner.insertRoutine.screen.navigation.insertNavGraph
+import com.hegunhee.setting.screen.navigation.settingNavGraph
 import kotlinx.coroutines.CoroutineScope
 
 @Composable
@@ -51,6 +52,9 @@ fun RoutinerApp(
                 onClickBackButton = routinerAppScaffoldState::popBackStack
             )
             recordNavGraph(
+                onClickDrawer = routinerAppScaffoldState::openDrawer
+            )
+            settingNavGraph(
                 onClickDrawer = routinerAppScaffoldState::openDrawer
             )
         }

@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import com.example.main.R
 import com.hegunhee.daily.screen.navigation.DAILY_ROUTE
 import com.hegunhee.record.screen.navigation.RECORD_ROUTE
+import com.hegunhee.setting.screen.navigation.SETTING_ROUTE
 
 enum class DrawerItem(
     val titleString: String,
@@ -20,6 +21,12 @@ enum class DrawerItem(
         titleString = "record",
         iconRes = R.drawable.ic_record,
         navRoute = RECORD_ROUTE
+    ),
+
+    Setting(
+        titleString = "setting",
+        iconRes = R.drawable.ic_setting,
+        navRoute = SETTING_ROUTE
     );
 
     companion object {
