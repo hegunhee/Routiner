@@ -5,4 +5,5 @@
     <string name="alarm_setting">알람 설정</string>
     <string name="time_setting">시간 설정</string>
     <string name="save_alarm">저장하기</string>
+    <string name="alarm_switch_tag">alarmSwitchTag</string>
 </resources>
