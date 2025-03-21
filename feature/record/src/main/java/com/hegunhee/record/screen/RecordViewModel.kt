@@ -50,12 +50,12 @@ class RecordViewModel @Inject constructor(
                 if(index == currentDateList.size -1) date.copy(isSelected = true)
                 else date
             }
-            if(currentDateList.isEmpty()) {
-                _reviewState.emit(ReviewState.Loading)
-            } else {
-                setReviewExistState(currentDateList.first{it.isSelected}.date)
+            launch {
+                dateList.collect {
+                    val selectedDate = it.firstOrNull { it.isSelected}?.date ?: Date.EMPTY.date
+                    setReviewExistState(selectedDate)
+                }
             }
-
         }
     }
 
@@ -84,12 +84,14 @@ class RecordViewModel @Inject constructor(
     fun onClickReviewSubmit(reviewText : String,reviewDate: Int) {
         viewModelScope.launch {
             insertReviewUseCase(Review(date = reviewDate, reviewText))
+            _reviewState.value = ReviewState.Exist(Review(date = reviewDate, reviewText))
         }
     }
 
     fun onClickReviewRevise(reviewText: String, reviewDate: Int) {
         viewModelScope.launch {
             insertReviewUseCase(Review(date = reviewDate, reviewText))
+            _reviewState.value = ReviewState.Revise
         }
     }
 
@@ -98,6 +100,7 @@ class RecordViewModel @Inject constructor(
             val state = reviewState.value
             if(state is ReviewState.Exist) {
                 deleteReviewUseCase(state.review)
+                _reviewState.value = ReviewState.Empty
             }
         }
     }

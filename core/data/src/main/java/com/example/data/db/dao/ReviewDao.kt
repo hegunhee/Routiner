@@ -6,12 +6,12 @@ import com.example.data.entity.ReviewEntity
 @Dao
 interface ReviewDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertReview(reviewEntity: ReviewEntity)
+    suspend fun insertReview(reviewEntity: ReviewEntity)
 
     @Query("SELECT * FROM reviews WHERE date == :date")
     suspend fun getReviewOrNullByDate(date: Int): ReviewEntity?
 
     @Delete
-    fun deleteReview(reviewEntity: ReviewEntity) : Int
+    suspend fun deleteReview(reviewEntity: ReviewEntity) : Int
 
 }

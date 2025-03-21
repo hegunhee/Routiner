@@ -25,7 +25,6 @@ import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -60,15 +59,14 @@ fun RecordRootScreen(
     val (reviewText, onReviewTextChanged) = rememberSaveable { mutableStateOf("") }
     val (reviewDate, onReviewDateChanged) = rememberSaveable { mutableIntStateOf(Date.EMPTY.date) }
 
-    val lifecycleOwner = LocalLifecycleOwner.current
-
     val dateList = viewModel.dateList.collectAsStateWithLifecycle().value
+    val selectedDate = dateList.firstOrNull{ it.isSelected } ?: Date.EMPTY
 
     RecordScreen(
         dateList = dateList,
         routines = viewModel.routines.collectAsStateWithLifecycle().value,
         reviewState = viewModel.reviewState.collectAsStateWithLifecycle().value,
-        selectedDate = dateList.firstOrNull{ it.isSelected } ?: Date.EMPTY,
+        selectedDate = selectedDate,
         reviewText = reviewText,
         reviewDate = reviewDate,
         onClickDate = viewModel::onClickDate,
@@ -78,6 +76,8 @@ fun RecordRootScreen(
         onClickReviewRemove = viewModel::onClickDeleteReview,
         onClickDrawer = onClickDrawer
     )
+
+    val lifecycleOwner = LocalLifecycleOwner.current
 
     LaunchedEffect(viewModel.reviewState) {
         lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
@@ -89,6 +89,7 @@ fun RecordRootScreen(
                     }
                     ReviewState.Empty -> {
                         onReviewTextChanged("")
+                        onReviewDateChanged(selectedDate.date)
                     }
 
                     else -> {
@@ -235,7 +236,8 @@ private fun ReviewScreen(
                         .fillMaxWidth()
                         .padding(10.dp)
                         .background(Color.White)
-                        .height(100.dp)
+                        .height(100.dp),
+                    color = Color.Black
                 )
                 Row {
                     Button(
