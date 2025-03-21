@@ -3,6 +3,7 @@ package com.example.main.screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.date.GetCurrentDateUseCase
+import com.example.domain.usecase.date.InsertDateUseCase
 import com.example.domain.usecase.date.IsAppFirstOpenUseCase
 import com.example.domain.usecase.date.SetAppFirstOpenedUseCase
 import com.example.domain.usecase.date.SetCurrentDateUseCase
@@ -29,7 +30,8 @@ class MainViewModel @Inject constructor(
     private val getCurrentDateUseCase: GetCurrentDateUseCase,
     private val setCurrentDateUseCase: SetCurrentDateUseCase,
     private val getRepeatRoutinesUseCase: GetAllRepeatRoutineListUseCase,
-    private val insertRoutinesFromRepeatRoutinesUseCase: InsertRoutinesFromRepeatByDayOfWeekRoutineUseCase
+    private val insertRoutinesFromRepeatRoutinesUseCase: InsertRoutinesFromRepeatByDayOfWeekRoutineUseCase,
+    private val insertDateUseCase: InsertDateUseCase,
 ) : ViewModel() {
 
     private val _uiState: MutableStateFlow<MainUiState> = MutableStateFlow(Init)
@@ -56,7 +58,9 @@ class MainViewModel @Inject constructor(
 
     private suspend fun initTodayDate() {
         val todayDate = getTodayDate()
-        if (getCurrentDateUseCase() != todayDate) {
+        val currentDate = getCurrentDateUseCase()
+        if (currentDate != todayDate) {
+            insertDateUseCase(currentDate)
             setCurrentDateUseCase(todayDate)
             _uiState.value = InsertRepeatRoutine
         } else {
