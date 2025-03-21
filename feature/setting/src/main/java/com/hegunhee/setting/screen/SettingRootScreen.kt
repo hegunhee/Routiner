@@ -18,18 +18,23 @@ import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.setting.R
 import hegunhee.routiner.ui.item.Spinner
 
@@ -48,6 +53,25 @@ fun SettingRootScreen(
         onMinuteChanged = viewModel::onAlarmMinuteChanged,
         onClickSaveAlarm = viewModel::onAlarmChanged,
     )
+
+    val context = LocalContext.current
+    val lifecycleOwner = LocalLifecycleOwner.current
+
+    LaunchedEffect(lifecycleOwner) {
+        lifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewModel.alarmState.collect { state ->
+                when(state) {
+                    AlarmState.Cancel -> {
+                        context.cancelAlarm()
+                    }
+                    is AlarmState.Register -> {
+                        context.registerAlarm(hour = state.hour, minute = state.minute)
+                    }
+                }
+            }
+        }
+    }
+
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -94,7 +118,6 @@ fun SettingScreen(
             onClickSaveAlarm = onClickSaveAlarm,
             modifier = settingModifier,
         )
-
     }
 }
 
@@ -104,9 +127,9 @@ fun AlarmSetting(
     selectedHour: String,
     selectedMinute: String,
     onClickAlarmEnableSwitch: (Boolean) -> Unit,
-    onHourChanged : (String) -> Unit,
-    onMinuteChanged : (String) -> Unit,
-    onClickSaveAlarm : (String, String) -> Unit,
+    onHourChanged: (String) -> Unit,
+    onMinuteChanged: (String) -> Unit,
+    onClickSaveAlarm: (String, String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(modifier = modifier) {
@@ -115,7 +138,7 @@ fun AlarmSetting(
             Spacer(modifier = modifier.weight(1f))
             Switch(checked = isAlarmEnabled, onCheckedChange = onClickAlarmEnableSwitch)
         }
-        if(isAlarmEnabled) {
+        if (isAlarmEnabled) {
             Spacer(modifier = Modifier.height(10.dp))
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(stringResource(R.string.time_setting))
@@ -133,7 +156,7 @@ fun AlarmSetting(
                 )
             }
             Button(
-                onClick = { onClickSaveAlarm(selectedHour,selectedMinute) },
+                onClick = { onClickSaveAlarm(selectedHour, selectedMinute) },
                 modifier = modifier.fillMaxWidth()
             ) {
                 Text(stringResource(R.string.save_alarm))
@@ -151,7 +174,7 @@ private fun SettingScreenPreview() {
         isAlarmEnabled = true,
         selectedHour = "00",
         selectedMinute = "00",
-        onClickAlarmEnableSwitch = {  },
+        onClickAlarmEnableSwitch = { },
         onHourChanged = {},
         onMinuteChanged = {},
         onClickSaveAlarm = { _, _ -> },
@@ -160,7 +183,7 @@ private fun SettingScreenPreview() {
 
 @Preview
 @Composable
-private fun AlarmSettingPreview()  {
+private fun AlarmSettingPreview() {
     val (isAlarmEnabled, onAlarmSwitchChanged) = remember { mutableStateOf(false) }
     val (selectedHour, onSelectedHourChanged) = remember { mutableStateOf("00") }
     val (selectedMinute, onSelectedMinuteChanged) = remember { mutableStateOf("00") }
@@ -172,7 +195,7 @@ private fun AlarmSettingPreview()  {
         onClickAlarmEnableSwitch = onAlarmSwitchChanged,
         onHourChanged = onSelectedHourChanged,
         onMinuteChanged = onSelectedMinuteChanged,
-        onClickSaveAlarm = { hour, minute->
+        onClickSaveAlarm = { hour, minute ->
 
         }
     )
