@@ -12,13 +12,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.hegunhee.repeat.R
-import hegunhee.routiner.model.Date
 
 @Composable
 fun RepeatRoutineRootScreen(
     onClickDrawer: () -> Unit,
 ) {
-
+    RepeatRoutineScreen(
+        onClickDrawer = onClickDrawer
+    )
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
