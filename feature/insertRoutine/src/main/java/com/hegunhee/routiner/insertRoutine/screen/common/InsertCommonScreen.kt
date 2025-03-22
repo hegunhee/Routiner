@@ -82,6 +82,21 @@ internal fun RowScope.CategoryDescriptionScreen(
     )
 }
 
+@Composable
+internal fun RowScope.DayOfWeekDescriptionScreen(
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        stringResource(R.string.select_day_of_week),
+        modifier = modifier,
+    )
+    Text(
+        stringResource(R.string.required),
+        modifier = modifier,
+        fontSize = 15.sp
+    )
+}
+
 @Preview
 @Composable
 private fun RoutineEnterScreenPreview() {
@@ -112,5 +127,13 @@ private fun CategoryTextEnterScreenPreview() {
 private fun CategoryDescriptionScreenPreview() {
     Row {
         CategoryDescriptionScreen(modifier = Modifier.alignByBaseline())
+    }
+}
+
+@Preview
+@Composable
+private fun DayOfWeekDescriptionScreenPreview() {
+    Row {
+        DayOfWeekDescriptionScreen(modifier = Modifier.alignByBaseline())
     }
 }

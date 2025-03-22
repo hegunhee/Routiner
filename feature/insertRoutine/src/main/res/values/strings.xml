@@ -20,4 +20,6 @@
     <string name="add_category_text_test_tag">CategoryTestTag</string>
     <string name="repeat_routine_add_desc">반복 루틴 추가</string>
     <string name="back_button_desc">뒤로가기 버튼</string>
+    <string name="select_day_of_week">날짜 선택</string>
+    <string name="required">(필수)</string>
 </resources>
