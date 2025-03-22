@@ -7,7 +7,7 @@ sealed interface InsertRepeatRoutineUiEvent {
 
     data object InsertCategoryNameEmpty : InsertRepeatRoutineUiEvent
 
-    data object InsertDayOfWeekEmpty : InsertRepeatRoutineUiState
+    data object InsertDayOfWeekEmpty : InsertRepeatRoutineUiEvent
 
     data object InsertSuccess : InsertRepeatRoutineUiEvent
 

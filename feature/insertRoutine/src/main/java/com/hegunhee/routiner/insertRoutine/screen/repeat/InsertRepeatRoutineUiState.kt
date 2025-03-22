@@ -10,6 +10,6 @@ sealed interface InsertRepeatRoutineUiState {
     data class Categories(
         val categories: List<Category>,
         val dayOfWeeks : List<DayOfWeek>,
-    )
+    ) : InsertRepeatRoutineUiState
 
 }
