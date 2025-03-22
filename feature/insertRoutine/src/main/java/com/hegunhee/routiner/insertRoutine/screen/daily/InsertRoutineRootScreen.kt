@@ -1,22 +1,14 @@
-package com.hegunhee.routiner.insertRoutine.screen
+package com.hegunhee.routiner.insertRoutine.screen.daily
 
 import android.content.Context
 import android.widget.Toast
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.foundation.lazy.grid.GridCells
-import androidx.compose.foundation.lazy.grid.LazyHorizontalGrid
-import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material.icons.rounded.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -35,19 +27,20 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.routiner.insertRoutine.R
-import hegunhee.routiner.ui.item.SelectableCategory
+import com.hegunhee.routiner.insertRoutine.screen.common.CategoryDescriptionScreen
+import com.hegunhee.routiner.insertRoutine.screen.common.CategoryLazyList
+import com.hegunhee.routiner.insertRoutine.screen.common.CategoryTextEnterScreen
+import com.hegunhee.routiner.insertRoutine.screen.common.RoutineTextEnterScreen
 import kotlinx.coroutines.flow.SharedFlow
 
 @Composable
@@ -116,74 +109,33 @@ fun InsertRoutineScreen(
 
         val bottomModifier = modifier.padding(top = 10.dp, start = 10.dp)
 
-        Text(
-            stringResource(R.string.please_routine_enter_short),
-            modifier = bottomModifier
-        )
-        NormalTextField(
-            textValue = routineText,
-            hintResId = R.string.please_routine_enter_long,
-            onValueChanged = onRoutineTextChanged,
-            modifier = bottomModifier.testTag(stringResource(R.string.routine_text_test_tag))
+        RoutineTextEnterScreen(
+            routineText = routineText,
+            onRoutineTextChanged = onRoutineTextChanged,
+            modifier = bottomModifier,
         )
 
-        Text(
-            stringResource(R.string.please_category_add_short),
+        CategoryTextEnterScreen(
+            addedCategoryText = addedCategoryText,
+            onAddCategoryTextChanged = onAddCategoryTextChanged,
+            onClickCategoryInsert = onClickCategoryInsert,
             modifier = bottomModifier
-        )
-        NormalTextField(
-            textValue = addedCategoryText,
-            hintResId = R.string.please_category_add_long,
-            onValueChanged = onAddCategoryTextChanged,
-            modifier = bottomModifier.testTag(stringResource(R.string.add_category_text_test_tag)),
-            trailingIcon = {
-                IconButton({ onClickCategoryInsert(addedCategoryText) }) {
-                    Icon(
-                        imageVector = Icons.Rounded.AddCircle,
-                        contentDescription = stringResource(R.string.add_category_content_description),
-                        tint = Color.Blue
-                    )
-                }
-            }
         )
 
         Row {
-            Text(
-                stringResource(R.string.category_select),
-                modifier = bottomModifier.alignByBaseline(),
-            )
-            Text(
-                stringResource(R.string.select),
-                modifier = bottomModifier.alignByBaseline(),
-                fontSize = 15.sp,
-            )
+            CategoryDescriptionScreen(bottomModifier.alignByBaseline())
         }
 
         when(uiState) {
             InsertRoutineUiState.Init -> { }
             is InsertRoutineUiState.Categories -> {
 
-                val categoryModifier = modifier
-                    .height(60.dp)
-                    .background(Color.Gray)
-                    .wrapContentHeight()
-
-                LazyHorizontalGrid(
-                    rows = GridCells.Fixed(3),
-                    modifier = modifier.height(180.dp),
-                    verticalArrangement = Arrangement.spacedBy(8.dp),
-                    horizontalArrangement = Arrangement.spacedBy(8.dp),
-                ) {
-                    items(uiState.items) {
-                        SelectableCategory(
-                            categoryText = it.name,
-                            isCategoryClicked = it.isSelected,
-                            onCategoryClick = onClickCategory,
-                            onCategoryDeleteClick = onClickCategoryDelete,
-                            modifier = categoryModifier
-                        )
-                    }
-                }
+                CategoryLazyList(
+                    items = uiState.items,
+                    onClickCategory = onClickCategory,
+                    onClickCategoryDelete = onClickCategoryDelete,
+                    modifier = modifier,
+                )
             }
         }
 
@@ -202,7 +154,7 @@ fun InsertRoutineScreen(
 }
 
 @Composable
-private fun NormalTextField(
+fun NormalTextField(
     textValue: String,
     hintResId: Int,
     onValueChanged: (String) -> Unit,

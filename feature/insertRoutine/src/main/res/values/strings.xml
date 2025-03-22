@@ -15,7 +15,12 @@
 
     <string name="routine_name_empty">루틴 이름이 비어있습니다.</string>
     <string name="add_category_empty">카테고리 이름이 비어있습니다.</string>
+    <string name="day_of_week_empty">날짜를 선택해주세요</string>
 
     <string name="routine_text_test_tag">RoutineTextTag</string>
     <string name="add_category_text_test_tag">CategoryTestTag</string>
+    <string name="repeat_routine_add_desc">반복 루틴 추가</string>
+    <string name="back_button_desc">뒤로가기 버튼</string>
+    <string name="select_day_of_week">날짜 선택</string>
+    <string name="required">(필수)</string>
 </resources>
