@@ -2,6 +2,8 @@ package com.hegunhee.routiner.insertRoutine.screen.common
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AddCircle
 import androidx.compose.material3.Icon
@@ -15,14 +17,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.sp
 import com.hegunhee.routiner.insertRoutine.R
 import com.hegunhee.routiner.insertRoutine.screen.daily.NormalTextField
 
 @Composable
 internal fun ColumnScope.RoutineTextEnterScreen(
-    routineText : String,
-    onRoutineTextChanged : (String) -> Unit,
-    modifier : Modifier = Modifier,
+    routineText: String,
+    onRoutineTextChanged: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Text(
         stringResource(R.string.please_routine_enter_short),
@@ -39,9 +42,9 @@ internal fun ColumnScope.RoutineTextEnterScreen(
 @Composable
 internal fun ColumnScope.CategoryTextEnterScreen(
     addedCategoryText: String,
-    onAddCategoryTextChanged : (String) -> Unit,
-    onClickCategoryInsert : (String) -> Unit,
-    modifier : Modifier = Modifier,
+    onAddCategoryTextChanged: (String) -> Unit,
+    onClickCategoryInsert: (String) -> Unit,
+    modifier: Modifier = Modifier,
 ) {
     Text(
         stringResource(R.string.please_category_add_short),
@@ -61,6 +64,21 @@ internal fun ColumnScope.CategoryTextEnterScreen(
                 )
             }
         }
+    )
+}
+
+@Composable
+internal fun RowScope.CategoryDescriptionScreen(
+    modifier: Modifier = Modifier,
+) {
+    Text(
+        stringResource(R.string.category_select),
+        modifier = modifier,
+    )
+    Text(
+        stringResource(R.string.select),
+        modifier = modifier,
+        fontSize = 15.sp,
     )
 }
 
@@ -86,5 +104,13 @@ private fun CategoryTextEnterScreenPreview() {
             onAddCategoryTextChanged = onCategoryTextChanged,
             onClickCategoryInsert = {},
         )
+    }
+}
+
+@Preview
+@Composable
+private fun CategoryDescriptionScreenPreview() {
+    Row {
+        CategoryDescriptionScreen(modifier = Modifier.alignByBaseline())
     }
 }

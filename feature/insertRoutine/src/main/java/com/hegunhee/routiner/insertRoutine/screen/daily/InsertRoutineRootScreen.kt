@@ -47,6 +47,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.routiner.insertRoutine.R
+import com.hegunhee.routiner.insertRoutine.screen.common.CategoryDescriptionScreen
 import com.hegunhee.routiner.insertRoutine.screen.common.CategoryTextEnterScreen
 import com.hegunhee.routiner.insertRoutine.screen.common.RoutineTextEnterScreen
 import hegunhee.routiner.ui.item.SelectableCategory
@@ -132,15 +133,7 @@ fun InsertRoutineScreen(
         )
 
         Row {
-            Text(
-                stringResource(R.string.category_select),
-                modifier = bottomModifier.alignByBaseline(),
-            )
-            Text(
-                stringResource(R.string.select),
-                modifier = bottomModifier.alignByBaseline(),
-                fontSize = 15.sp,
-            )
+            CategoryDescriptionScreen(bottomModifier.alignByBaseline())
         }
 
         when(uiState) {
