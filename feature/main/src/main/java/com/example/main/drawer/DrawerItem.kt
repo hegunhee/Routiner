@@ -4,6 +4,7 @@ import androidx.annotation.DrawableRes
 import com.example.main.R
 import com.hegunhee.daily.screen.navigation.DAILY_ROUTE
 import com.hegunhee.record.screen.navigation.RECORD_ROUTE
+import com.hegunhee.repeat.screen.navigation.REPEAT_ROUTINE_ROUTE
 import com.hegunhee.setting.screen.navigation.SETTING_ROUTE
 
 enum class DrawerItem(
@@ -21,6 +22,12 @@ enum class DrawerItem(
         titleString = "record",
         iconRes = R.drawable.ic_record,
         navRoute = RECORD_ROUTE
+    ),
+
+    Repeat(
+        titleString = "repeat",
+        iconRes = R.drawable.ic_repeat,
+        navRoute = REPEAT_ROUTINE_ROUTE,
     ),
 
     Setting(

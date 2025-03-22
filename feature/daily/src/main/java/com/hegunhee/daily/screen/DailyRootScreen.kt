@@ -151,7 +151,7 @@ private fun LazyListScope.dailyRoutineList(
         )
     }
 
-    items(items, key = { it.text }) { routine ->
+    items(items) { routine ->
         DailyRoutine(
             routine,
             onClickRoutine = onClickRoutine,

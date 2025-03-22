@@ -9,4 +9,8 @@
     <string name="selected_dot">선택된 날짜입니다.</string>
 
     <string name="spinner_down_icon">스피너 아래아이콘</string>
+    <string name="selected_day_of_week_desc">선택된 날짜 %1$s</string>
+    <string name="repeat_routine_delete_button_desc">반복 루틴 삭제버튼</string>
+    <string name="day_of_week">날짜 : %1$s</string>
+    <string name="repeat_routine_category">카테고리 : %1$s</string>
 </resources>
