@@ -19,6 +19,7 @@ import com.hegunhee.daily.screen.navigation.DAILY_ROUTE
 import com.hegunhee.daily.screen.navigation.dailyNavGraph
 import com.hegunhee.record.screen.navigation.recordNavGraph
 import com.hegunhee.repeat.screen.navigation.repeatRoutineNavGraph
+import com.hegunhee.routiner.insertRoutine.screen.navigation.INSERT_REPEAT_ROUTINE_ROUTE
 import com.hegunhee.routiner.insertRoutine.screen.navigation.INSERT_ROUTINE_ROUTE
 import com.hegunhee.routiner.insertRoutine.screen.navigation.insertNavGraph
 import com.hegunhee.setting.screen.navigation.settingNavGraph
@@ -57,7 +58,7 @@ fun RoutinerApp(
             )
             repeatRoutineNavGraph(
                 onClickDrawer = routinerAppScaffoldState::openDrawer,
-                onClickAddRepeatRoutine = {},
+                onClickAddRepeatRoutine = routinerAppScaffoldState::navigateInsertRepeatRoutine,
             )
             settingNavGraph(
                 onClickDrawer = routinerAppScaffoldState::openDrawer
@@ -103,4 +104,4 @@ fun RoutinerAppDrawer(
     }
 }
 
-private val disableDrawerRoutes = listOf(MAIN_ROUTE, INSERT_ROUTINE_ROUTE)
+private val disableDrawerRoutes = listOf(MAIN_ROUTE, INSERT_ROUTINE_ROUTE, INSERT_REPEAT_ROUTINE_ROUTE)

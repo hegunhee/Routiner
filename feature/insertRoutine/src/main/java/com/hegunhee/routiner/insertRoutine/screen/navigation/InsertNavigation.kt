@@ -4,6 +4,7 @@ import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import com.hegunhee.routiner.insertRoutine.screen.InsertRoutineRootScreen
+import com.hegunhee.routiner.insertRoutine.screen.repeat.InsertRepeatRoutineRootScreen
 import com.hegunhee.routiner.insertRoutine.screen.repeat.InsertRepeatRoutineScreen
 
 const val INSERT_ROUTINE_ROUTE = "INSERT_ROUTINE"
@@ -27,7 +28,7 @@ fun NavGraphBuilder.insertNavGraph(
         )
     }
     composable(INSERT_REPEAT_ROUTINE_ROUTE) {
-        InsertRepeatRoutineScreen(
+        InsertRepeatRoutineRootScreen(
             onClickBackButton = onClickBackButton
         )
     }
