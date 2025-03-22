@@ -7,11 +7,13 @@ import com.hegunhee.repeat.screen.RepeatRoutineRootScreen
 const val REPEAT_ROUTINE_ROUTE = "REPEAT_ROUTINE"
 
 fun NavGraphBuilder.repeatRoutineNavGraph(
-    onClickDrawer : () -> Unit,
+    onClickDrawer: () -> Unit,
+    onClickAddRepeatRoutine: () -> Unit,
 ) {
     composable(REPEAT_ROUTINE_ROUTE) {
         RepeatRoutineRootScreen(
-            onClickDrawer = onClickDrawer
+            onClickDrawer = onClickDrawer,
+            onClickAddRepeatRoutine = onClickAddRepeatRoutine,
         )
     }
 }

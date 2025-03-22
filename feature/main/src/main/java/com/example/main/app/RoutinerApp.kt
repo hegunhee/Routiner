@@ -56,7 +56,8 @@ fun RoutinerApp(
                 onClickDrawer = routinerAppScaffoldState::openDrawer
             )
             repeatRoutineNavGraph(
-                onClickDrawer = routinerAppScaffoldState::openDrawer
+                onClickDrawer = routinerAppScaffoldState::openDrawer,
+                onClickAddRepeatRoutine = {},
             )
             settingNavGraph(
                 onClickDrawer = routinerAppScaffoldState::openDrawer
