@@ -2,4 +2,6 @@
 <resources>
     <string name="add_repeat_routine">반복 루틴 추가</string>
     <string name="write_routine">루틴 작성</string>
+    <string name="repeat_routine_desc">반복 루틴 설정</string>
+    <string name="menu_content_description">open_drawer</string>
 </resources>
