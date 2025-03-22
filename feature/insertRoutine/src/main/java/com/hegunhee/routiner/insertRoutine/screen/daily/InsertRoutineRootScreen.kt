@@ -47,6 +47,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.routiner.insertRoutine.R
+import com.hegunhee.routiner.insertRoutine.screen.common.RoutineTextEnterScreen
 import hegunhee.routiner.ui.item.SelectableCategory
 import kotlinx.coroutines.flow.SharedFlow
 
@@ -116,15 +117,10 @@ fun InsertRoutineScreen(
 
         val bottomModifier = modifier.padding(top = 10.dp, start = 10.dp)
 
-        Text(
-            stringResource(R.string.please_routine_enter_short),
-            modifier = bottomModifier
-        )
-        NormalTextField(
-            textValue = routineText,
-            hintResId = R.string.please_routine_enter_long,
-            onValueChanged = onRoutineTextChanged,
-            modifier = bottomModifier.testTag(stringResource(R.string.routine_text_test_tag))
+        RoutineTextEnterScreen(
+            routineText = routineText,
+            onRoutineTextChanged = onRoutineTextChanged,
+            modifier = bottomModifier,
         )
 
         Text(
@@ -202,7 +198,7 @@ fun InsertRoutineScreen(
 }
 
 @Composable
-private fun NormalTextField(
+fun NormalTextField(
     textValue: String,
     hintResId: Int,
     onValueChanged: (String) -> Unit,
