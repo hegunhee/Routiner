@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.insertRoutine.screen
+package com.hegunhee.routiner.insertRoutine.screen.daily
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

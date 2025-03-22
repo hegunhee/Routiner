@@ -10,7 +10,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assert
 import androidx.compose.ui.test.assertIsDisplayed
-import androidx.compose.ui.test.assertIsNotDisplayed
 import androidx.compose.ui.test.hasText
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
@@ -18,8 +17,8 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
-import com.hegunhee.routiner.insertRoutine.screen.InsertRoutineScreen
-import com.hegunhee.routiner.insertRoutine.screen.InsertRoutineUiState
+import com.hegunhee.routiner.insertRoutine.screen.daily.InsertRoutineScreen
+import com.hegunhee.routiner.insertRoutine.screen.daily.InsertRoutineUiState
 import hegunhee.routiner.model.Category
 import org.junit.Before
 import org.junit.Rule

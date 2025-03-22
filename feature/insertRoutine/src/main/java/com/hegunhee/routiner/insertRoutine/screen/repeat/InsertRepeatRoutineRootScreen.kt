@@ -12,7 +12,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.hegunhee.routiner.insertRoutine.R
-import com.hegunhee.routiner.insertRoutine.screen.InsertRoutineRootScreen
 
 @Composable
 fun InsertRepeatRoutineRootScreen(
@@ -47,12 +46,12 @@ fun InsertRepeatRoutineScreen(
     }
 }
 
-    @Preview
-    @Composable
-    private fun InsertRepeatRoutineScreenPreview(
+@Preview
+@Composable
+private fun InsertRepeatRoutineScreenPreview(
 
-    ) {
-        InsertRoutineRootScreen(
-            onClickBackButton = {},
-        )
-    }
+) {
+    InsertRepeatRoutineScreen(
+        onClickBackButton = {},
+    )
+}
