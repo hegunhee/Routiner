@@ -47,6 +47,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.routiner.insertRoutine.R
+import com.hegunhee.routiner.insertRoutine.screen.common.CategoryTextEnterScreen
 import com.hegunhee.routiner.insertRoutine.screen.common.RoutineTextEnterScreen
 import hegunhee.routiner.ui.item.SelectableCategory
 import kotlinx.coroutines.flow.SharedFlow
@@ -123,24 +124,11 @@ fun InsertRoutineScreen(
             modifier = bottomModifier,
         )
 
-        Text(
-            stringResource(R.string.please_category_add_short),
+        CategoryTextEnterScreen(
+            addedCategoryText = addedCategoryText,
+            onAddCategoryTextChanged = onAddCategoryTextChanged,
+            onClickCategoryInsert = onClickCategoryInsert,
             modifier = bottomModifier
-        )
-        NormalTextField(
-            textValue = addedCategoryText,
-            hintResId = R.string.please_category_add_long,
-            onValueChanged = onAddCategoryTextChanged,
-            modifier = bottomModifier.testTag(stringResource(R.string.add_category_text_test_tag)),
-            trailingIcon = {
-                IconButton({ onClickCategoryInsert(addedCategoryText) }) {
-                    Icon(
-                        imageVector = Icons.Rounded.AddCircle,
-                        contentDescription = stringResource(R.string.add_category_content_description),
-                        tint = Color.Blue
-                    )
-                }
-            }
         )
 
         Row {
