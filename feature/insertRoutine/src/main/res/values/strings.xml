@@ -15,6 +15,7 @@
 
     <string name="routine_name_empty">루틴 이름이 비어있습니다.</string>
     <string name="add_category_empty">카테고리 이름이 비어있습니다.</string>
+    <string name="day_of_week_empty">날짜를 선택해주세요</string>
 
     <string name="routine_text_test_tag">RoutineTextTag</string>
     <string name="add_category_text_test_tag">CategoryTestTag</string>
