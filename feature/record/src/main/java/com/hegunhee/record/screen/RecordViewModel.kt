@@ -7,6 +7,7 @@ import com.example.domain.usecase.review.DeleteReviewUseCase
 import com.example.domain.usecase.review.GetReviewOrNullByDateUseCase
 import com.example.domain.usecase.review.InsertReviewUseCase
 import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
+import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hegunhee.routiner.model.Date
 import hegunhee.routiner.model.Review
@@ -45,7 +46,7 @@ class RecordViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val currentDateList = getDateListUseCase()
+            val currentDateList = getDateListUseCase().filter { it.date != getTodayDate() }
             _dateList.value = currentDateList.mapIndexed { index, date ->
                 if(index == currentDateList.size -1) date.copy(isSelected = true)
                 else date
