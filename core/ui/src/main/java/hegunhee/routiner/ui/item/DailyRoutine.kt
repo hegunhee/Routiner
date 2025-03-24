@@ -1,14 +1,13 @@
 package hegunhee.routiner.ui.item
 
-import android.widget.CheckBox
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.Checkbox
-import androidx.compose.material3.Switch
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -45,10 +44,16 @@ fun DailyRoutine(
         Spacer(
             modifier = modifier.padding(start = 20.dp)
         )
-        Text(
-            text = routine.text,
-            fontSize = 16.sp
-        )
+        Column {
+            Text(
+                text = routine.text,
+                fontSize = 20.sp,
+            )
+            if(routine.category.isNotBlank()) {
+                Text(text = routine.category,modifier = Modifier.padding(start = 10.dp))
+            }
+        }
+
         Spacer(
             modifier = modifier.weight(1f)
         )
