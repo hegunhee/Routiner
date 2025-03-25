@@ -8,11 +8,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-        </activity>
-
-        <activity
-            android:name=".ComposeMainActivity"
-            android:exported="true">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
