@@ -8,7 +8,7 @@ import dagger.hilt.android.AndroidEntryPoint
 import hegunhee.routiner.designsystem.theme.RoutinerTheme
 
 @AndroidEntryPoint
-class ComposeMainActivity : ComponentActivity() {
+class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

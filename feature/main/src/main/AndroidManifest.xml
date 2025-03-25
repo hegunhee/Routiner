@@ -6,7 +6,7 @@
 
     <application>
         <activity
-            android:name=".ComposeMainActivity"
+            android:name=".MainActivity"
             android:exported="true">
 
             <intent-filter>
