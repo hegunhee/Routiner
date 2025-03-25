@@ -15,8 +15,8 @@ import androidx.navigation.compose.rememberNavController
 import com.example.main.drawer.ui.DrawerSheetContent
 import com.example.main.screen.navigation.MAIN_ROUTE
 import com.example.main.screen.navigation.mainNavGraph
-import com.hegunhee.daily.screen.navigation.DAILY_ROUTE
-import com.hegunhee.daily.screen.navigation.dailyNavGraph
+import com.hegunhee.daily.navigation.DAILY_ROUTE
+import com.hegunhee.daily.navigation.dailyNavGraph
 import com.hegunhee.record.screen.navigation.recordNavGraph
 import com.hegunhee.repeat.screen.navigation.repeatRoutineNavGraph
 import com.hegunhee.routiner.insertRoutine.screen.navigation.INSERT_REPEAT_ROUTINE_ROUTE

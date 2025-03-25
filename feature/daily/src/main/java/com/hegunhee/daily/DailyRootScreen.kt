@@ -1,4 +1,4 @@
-package com.hegunhee.daily.screen
+package com.hegunhee.daily
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
@@ -31,7 +31,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.hegunhee.daily.R
 import hegunhee.routiner.model.Routine
 import hegunhee.routiner.ui.item.DailyRoutine
 

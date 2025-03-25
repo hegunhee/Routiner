@@ -1,4 +1,4 @@
-package com.hegunhee.daily.screen
+package com.hegunhee.daily
 
 import hegunhee.routiner.model.Routine
 
