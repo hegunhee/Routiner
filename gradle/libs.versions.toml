@@ -59,9 +59,6 @@ hilt-viewmodel = { group = "androidx.hilt", name = "hilt-navigation-compose", ve
 ui-tooling = { module = "androidx.compose.ui:ui-tooling" }
 ui-test-manifest = { module = "androidx.compose.ui:ui-test-manifest" }
 
-navigation-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "navigation" }
-navigation-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "navigation" }
-
 activity-ktx = { module = "androidx.activity:activity-ktx", version.ref = "activity" }
 fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment" }
 
@@ -88,7 +85,6 @@ kotlin-gradlePlugin = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-pl
 [bundles]
 coroutine = ["coroutine-core", "coroutine-android"]
 compose-ui = ["compose-ui", "compose-graphics", "compose-preview"]
-navigation = ["navigation-fragment", "navigation-ui"]
 room = ["room-runtime", "room-ktx"]
 hilt = ["hilt-android"]
 

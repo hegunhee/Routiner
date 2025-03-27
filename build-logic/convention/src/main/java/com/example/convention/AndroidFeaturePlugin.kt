@@ -43,7 +43,6 @@ class AndroidFeaturePlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("compose-navigation").get())
                 add("implementation", libs.findLibrary("hilt-viewmodel").get())
 
-                add("implementation", libs.findBundle("navigation").get())
 
                 add("implementation", libs.findLibrary("activity-ktx").get())
                 add("implementation", libs.findLibrary("fragment-ktx").get())
