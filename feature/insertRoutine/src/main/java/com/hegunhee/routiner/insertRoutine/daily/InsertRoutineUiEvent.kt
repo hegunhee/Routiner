@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.insertRoutine.screen.daily
+package com.hegunhee.routiner.insertRoutine.daily
 
 sealed interface InsertRoutineUiEvent {
 
