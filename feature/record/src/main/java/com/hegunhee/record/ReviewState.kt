@@ -2,24 +2,16 @@ package com.hegunhee.record
 
 import hegunhee.routiner.model.Review
 
-
 sealed interface ReviewState {
 
-    fun isReviewEmpty() : Boolean
+    data object Loading : ReviewState
 
-    object Uninitalized : ReviewState {
-        override fun isReviewEmpty(): Boolean = true
-    }
+    data class Exist(
+        val review: Review,
+    ) : ReviewState
 
-    data class Success(val review: Review) : ReviewState {
-        override fun isReviewEmpty(): Boolean = false
-    }
+    data object Revise : ReviewState
 
-    object Empty : ReviewState {
-        override fun isReviewEmpty(): Boolean = true
-    }
+    data object Empty : ReviewState
 
-    object Revise: ReviewState {
-        override fun isReviewEmpty(): Boolean = true
-    }
 }

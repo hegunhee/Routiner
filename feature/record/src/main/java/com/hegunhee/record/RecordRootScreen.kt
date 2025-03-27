@@ -1,4 +1,4 @@
-package com.hegunhee.record.screen
+package com.hegunhee.record
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -44,7 +44,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import com.hegunhee.record.R
 import hegunhee.routiner.model.Date
 import hegunhee.routiner.model.Review
 import hegunhee.routiner.model.Routine
