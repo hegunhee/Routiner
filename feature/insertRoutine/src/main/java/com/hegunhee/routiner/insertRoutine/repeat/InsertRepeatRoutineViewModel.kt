@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.insertRoutine.screen.repeat
+package com.hegunhee.routiner.insertRoutine.repeat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

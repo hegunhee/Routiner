@@ -17,8 +17,8 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
-import com.hegunhee.routiner.insertRoutine.screen.daily.InsertRoutineScreen
-import com.hegunhee.routiner.insertRoutine.screen.daily.InsertRoutineUiState
+import com.hegunhee.routiner.insertRoutine.daily.InsertRoutineScreen
+import com.hegunhee.routiner.insertRoutine.daily.InsertRoutineUiState
 import hegunhee.routiner.model.Category
 import org.junit.Before
 import org.junit.Rule

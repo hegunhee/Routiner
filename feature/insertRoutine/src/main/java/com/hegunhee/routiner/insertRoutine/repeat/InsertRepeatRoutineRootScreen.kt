@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.insertRoutine.screen.repeat
+package com.hegunhee.routiner.insertRoutine.repeat
 
 import android.content.Context
 import android.widget.Toast
@@ -39,11 +39,11 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
 import com.hegunhee.routiner.insertRoutine.R
-import com.hegunhee.routiner.insertRoutine.screen.common.CategoryDescriptionScreen
-import com.hegunhee.routiner.insertRoutine.screen.common.CategoryLazyList
-import com.hegunhee.routiner.insertRoutine.screen.common.CategoryTextEnterScreen
-import com.hegunhee.routiner.insertRoutine.screen.common.DayOfWeekDescriptionScreen
-import com.hegunhee.routiner.insertRoutine.screen.common.RoutineTextEnterScreen
+import com.hegunhee.routiner.insertRoutine.common.CategoryDescriptionScreen
+import com.hegunhee.routiner.insertRoutine.common.CategoryLazyList
+import com.hegunhee.routiner.insertRoutine.common.CategoryTextEnterScreen
+import com.hegunhee.routiner.insertRoutine.common.DayOfWeekDescriptionScreen
+import com.hegunhee.routiner.insertRoutine.common.RoutineTextEnterScreen
 import hegunhee.routiner.model.DayOfWeek
 import hegunhee.routiner.ui.item.SelectableDayOfWeek
 import kotlinx.coroutines.flow.SharedFlow
