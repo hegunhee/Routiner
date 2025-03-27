@@ -1,4 +1,4 @@
-package com.hegunhee.setting.screen
+package com.hegunhee.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

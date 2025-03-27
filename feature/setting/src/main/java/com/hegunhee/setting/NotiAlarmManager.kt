@@ -1,4 +1,4 @@
-package com.hegunhee.setting.screen
+package com.hegunhee.setting
 
 import android.app.AlarmManager
 import android.content.Context
