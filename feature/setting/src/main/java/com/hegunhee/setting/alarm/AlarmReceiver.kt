@@ -11,6 +11,7 @@ import androidx.core.app.NotificationCompat
 import hegunhee.routiner.model.Routine
 import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
 import com.hegunhee.routiner.util.getTodayDate
+import com.hegunhee.setting.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -54,7 +55,7 @@ class AlarmReceiver() : BroadcastReceiver() {
                 PendingIntent.FLAG_IMMUTABLE
             )
             val builder = NotificationCompat.Builder(context, ALARM_CHANNEL_ID)
-                .setSmallIcon(com.hegunhee.common.R.drawable.ic_check)
+                .setSmallIcon(R.drawable.ic_check)
                 .setContentTitle("오늘의 루틴")
                 .setContentText(text)
                 .setContentIntent(contentPendingIntent)
