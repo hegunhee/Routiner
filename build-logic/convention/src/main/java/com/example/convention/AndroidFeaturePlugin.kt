@@ -36,9 +36,6 @@ class AndroidFeaturePlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("material").get())
                 add("implementation", libs.findLibrary("material3").get())
 
-                add("implementation", libs.findLibrary("constraintlayout").get())
-                add("implementation", libs.findLibrary("androidx-recyclerview").get())
-
                 add("implementation", libs.findLibrary("junit").get())
                 add("androidTestImplementation", libs.findLibrary("ext-junit").get())
                 add("androidTestImplementation", libs.findLibrary("espresso-core").get())
