@@ -2,10 +2,8 @@ package com.hegunhee.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import hegunhee.routiner.model.AlarmTime
 import com.example.domain.usecase.notification.GetAlarmNotiTimeUseCase
 import com.example.domain.usecase.notification.SetAlarmNotiTimeUseCase
-import com.hegunhee.setting.alarm.AlarmActions
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,38 +17,55 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingViewModel @Inject constructor(
     private val getAlarmNotiTimeUseCase: GetAlarmNotiTimeUseCase,
-    private val setAlarmNotiTimeUseCase: SetAlarmNotiTimeUseCase
+    private val setAlarmNotiTimeUseCase: SetAlarmNotiTimeUseCase,
 ) : ViewModel() {
 
-    private val _alarmTime: MutableStateFlow<AlarmTime> = MutableStateFlow(getAlarmNotiTimeUseCase())
-    val alarmTime: StateFlow<AlarmTime> = _alarmTime.asStateFlow()
+    private val _alarmState: MutableSharedFlow<AlarmState> = MutableSharedFlow()
+    val alarmState: SharedFlow<AlarmState> = _alarmState.asSharedFlow()
 
-    private val _alarmActions : MutableSharedFlow<AlarmActions> = MutableSharedFlow()
-    val alarmActions : SharedFlow<AlarmActions> = _alarmActions.asSharedFlow()
+    private val _alarmEnabled: MutableStateFlow<Boolean> = MutableStateFlow(false)
+    val alarmEnabled: StateFlow<Boolean> = _alarmEnabled.asStateFlow()
 
-    fun onEnableAlarmSwitchClick(changed: Boolean) {
-        if(!changed) {
-            setAlarmNotiTimeUseCase(AlarmTime.DEFAULT.toTimeStamp())
-            viewModelScope.launch {
-                _alarmActions.emit(AlarmActions.Cancel)
+    private val _alarmHour: MutableStateFlow<String> = MutableStateFlow("00")
+    val alarmHour: StateFlow<String> = _alarmHour.asStateFlow()
+
+    private val _alarmMinute: MutableStateFlow<String> = MutableStateFlow("00")
+    val alarmMinute: StateFlow<String> = _alarmMinute.asStateFlow()
+
+    init {
+        viewModelScope.launch {
+            val currentAlarm = getAlarmNotiTimeUseCase()
+            if (currentAlarm.enableAlarm) {
+                _alarmEnabled.value = true
+                _alarmHour.value = currentAlarm.hour
+                _alarmMinute.value = currentAlarm.minute
             }
         }
-        _alarmTime.value = alarmTime.value.copy(enableAlarm = changed)
     }
 
-    fun setAlarmHour(hour : String) {
-        _alarmTime.value = alarmTime.value.copy(hour = hour)
-    }
+    fun onClickAlarmEnabled(enabled: Boolean) {
+        _alarmEnabled.value = enabled
 
-    fun setAlarmMinute(minute : String) {
-        _alarmTime.value = alarmTime.value.copy(minute = minute)
-    }
-    fun onSaveAlarmClick() {
-        if(alarmTime.value.enableAlarm) {
-            setAlarmNotiTimeUseCase(alarmTime.value.toTimeStamp())
-            viewModelScope.launch {
-                _alarmActions.emit(AlarmActions.Register(alarmTime.value.hour,alarmTime.value.minute))
+        viewModelScope.launch {
+            if (!enabled) {
+                _alarmState.emit(AlarmState.Cancel)
             }
+        }
+
+    }
+
+    fun onAlarmHourChanged(newHour: String) {
+        _alarmHour.value = newHour
+    }
+
+    fun onAlarmMinuteChanged(newMinute: String) {
+        _alarmMinute.value = newMinute
+    }
+
+    fun onAlarmChanged(hour: String, minute: String) {
+        viewModelScope.launch {
+            setAlarmNotiTimeUseCase("$hour:$minute")
+            _alarmState.emit(AlarmState.Register(hour.toInt(), minute.toInt()))
         }
     }
 

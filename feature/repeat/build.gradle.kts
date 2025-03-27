@@ -8,7 +8,5 @@ android {
 
 dependencies {
 
-    implementation(project(":feature:common"))
-    implementation(project(":feature:category"))
     implementation(project(":core:ui"))
 }

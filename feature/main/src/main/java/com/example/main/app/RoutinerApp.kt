@@ -15,14 +15,14 @@ import androidx.navigation.compose.rememberNavController
 import com.example.main.drawer.ui.DrawerSheetContent
 import com.example.main.screen.navigation.MAIN_ROUTE
 import com.example.main.screen.navigation.mainNavGraph
-import com.hegunhee.daily.screen.navigation.DAILY_ROUTE
-import com.hegunhee.daily.screen.navigation.dailyNavGraph
-import com.hegunhee.record.screen.navigation.recordNavGraph
-import com.hegunhee.repeat.screen.navigation.repeatRoutineNavGraph
-import com.hegunhee.routiner.insertRoutine.screen.navigation.INSERT_REPEAT_ROUTINE_ROUTE
-import com.hegunhee.routiner.insertRoutine.screen.navigation.INSERT_ROUTINE_ROUTE
-import com.hegunhee.routiner.insertRoutine.screen.navigation.insertNavGraph
-import com.hegunhee.setting.screen.navigation.settingNavGraph
+import com.hegunhee.daily.navigation.DAILY_ROUTE
+import com.hegunhee.daily.navigation.dailyNavGraph
+import com.hegunhee.record.navigation.recordNavGraph
+import com.hegunhee.repeat.navigation.repeatRoutineNavGraph
+import com.hegunhee.routiner.insertRoutine.navigation.INSERT_REPEAT_ROUTINE_ROUTE
+import com.hegunhee.routiner.insertRoutine.navigation.INSERT_ROUTINE_ROUTE
+import com.hegunhee.routiner.insertRoutine.navigation.insertNavGraph
+import com.hegunhee.setting.navigation.settingNavGraph
 import kotlinx.coroutines.CoroutineScope
 
 @Composable

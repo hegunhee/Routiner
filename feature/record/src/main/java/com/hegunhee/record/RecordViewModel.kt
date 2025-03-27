@@ -1,19 +1,23 @@
 package com.hegunhee.record
 
-import androidx.lifecycle.*
-import hegunhee.routiner.model.Date
-import hegunhee.routiner.model.Review
-import hegunhee.routiner.model.Routine
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.domain.usecase.date.GetDateListUseCase
 import com.example.domain.usecase.review.DeleteReviewUseCase
 import com.example.domain.usecase.review.GetReviewOrNullByDateUseCase
 import com.example.domain.usecase.review.InsertReviewUseCase
 import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
-import com.hegunhee.record.dateSelector.DateSelectorActionHandler
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import hegunhee.routiner.model.Date
+import hegunhee.routiner.model.Review
+import hegunhee.routiner.model.Routine
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,107 +27,83 @@ class RecordViewModel @Inject constructor(
     private val getRoutinesByDateUseCase: GetRoutinesByDateUseCase,
     private val getReviewOrNullByDateUseCase: GetReviewOrNullByDateUseCase,
     private val insertReviewUseCase: InsertReviewUseCase,
-    private val deleteReviewUseCase: DeleteReviewUseCase
-) : ViewModel() , DateSelectorActionHandler{
+    private val deleteReviewUseCase: DeleteReviewUseCase,
+): ViewModel() {
 
-    private val _dateList : MutableStateFlow<List<Date>> = MutableStateFlow(emptyList())
+    private val _dateList : MutableStateFlow<List<Date>> = MutableStateFlow(listOf())
     val dateList : StateFlow<List<Date>> = _dateList.asStateFlow()
 
-    private val _currentDate : MutableStateFlow<Date> = MutableStateFlow(Date.EMPTY)
-    val currentDate : StateFlow<Date> = _currentDate.asStateFlow()
-
-    private val _currentRoutineList: MutableStateFlow<List<Routine>> = MutableStateFlow(emptyList())
-    val currentRoutineList: StateFlow<List<Routine>> = _currentRoutineList.asStateFlow()
-
-    private val _reviewState: MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Uninitalized)
-    val reviewState: StateFlow<ReviewState> = _reviewState.asStateFlow()
-
-    val reviewText : StateFlow<String> = reviewState.map {
-        if(it is ReviewState.Success) {
-            it.review.review
-        }else {
-            ""
-        }
+    val routines : StateFlow<List<Routine>> = dateList.map { dateList ->
+        getRoutinesByDateUseCase(dateList.firstOrNull{it.isSelected}?.date ?: Date.EMPTY.date)
     }.stateIn(
         scope = viewModelScope,
-        initialValue = "",
-        started = SharingStarted.WhileSubscribed(5000L),
+        initialValue = listOf(),
+        started = SharingStarted.WhileSubscribed(5_000)
     )
 
-    val reviewEditText: MutableStateFlow<String> = MutableStateFlow("")
+    private val _reviewState : MutableStateFlow<ReviewState> = MutableStateFlow(ReviewState.Empty)
+    val reviewState : StateFlow<ReviewState> = _reviewState.asStateFlow()
 
     init {
         viewModelScope.launch {
-            initRecordDateList()
-            initRecentRecord()
-        }
-    }
-
-    private suspend fun initRecordDateList() {
-        _dateList.value = getDateListUseCase()
-    }
-    private suspend fun initRecentRecord() {
-        if(dateList.value.isEmpty()) return
-        val recentDate = dateList.value.filter {it.date < getTodayDate() }.maxByOrNull { it.date }
-        recentDate?.let { date ->
-            setDateInfo(date)
-        }
-    }
-
-    private suspend fun setDateInfo(date: Date) {
-        setRecordRoutine(date.date)
-        setReviewExist(date.date)
-        _currentDate.emit(date)
-        _dateList.value = dateList.value.map {
-            if(it == date) {
-                it.copy(isSelected = true)
-            }else {
-                it.copy(isSelected = false)
+            val currentDateList = getDateListUseCase().filter { it.date != getTodayDate() }
+            _dateList.value = currentDateList.mapIndexed { index, date ->
+                if(index == currentDateList.size -1) date.copy(isSelected = true)
+                else date
+            }
+            launch {
+                dateList.collect {
+                    val selectedDate = it.firstOrNull { it.isSelected}?.date ?: Date.EMPTY.date
+                    setReviewExistState(selectedDate)
+                }
             }
         }
     }
 
-    override fun onDateSelectorClick(date: Date) {
-        viewModelScope.launch {
-            setDateInfo(date)
-        }
-
-    }
-
-    private suspend fun setRecordRoutine(date: Int) {
-        _currentRoutineList.emit((getRoutinesByDateUseCase(date)))
-    }
-
-    private suspend fun setReviewExist(date: Int) {
+    private suspend fun setReviewExistState(date: Int) {
         getReviewOrNullByDateUseCase(date)?.let { review ->
-            _reviewState.emit(ReviewState.Success(review))
-        } ?: kotlin.run {
-            _reviewState.emit(ReviewState.Empty)
-        }
-        reviewEditText.emit("")
-    }
-
-    fun addReview() = viewModelScope.launch(Dispatchers.IO) {
-        if(reviewEditText.value.isBlank()) return@launch
-        val date = currentDate.value
-        val review = Review(date.date, reviewEditText.value)
-        insertReviewUseCase(review)
-        _reviewState.emit(ReviewState.Success(review))
-        reviewEditText.emit("")
-    }
-
-    fun deleteReview() = viewModelScope.launch(Dispatchers.IO){
-        (reviewState.value as? ReviewState.Success)?.let { successReview ->
-            deleteReviewUseCase(successReview.review)
+            _reviewState.emit(ReviewState.Exist(review))
+        } ?: run {
             _reviewState.emit(ReviewState.Empty)
         }
     }
 
-    fun reviseReview() = viewModelScope.launch{
-        val currentReviewState = reviewState.value
-        (currentReviewState as? ReviewState.Success)?.let { _ ->
-            _reviewState.emit(ReviewState.Revise)
-            reviewEditText.emit(currentReviewState.review.review)
+    fun onClickDate(date : Date) {
+        viewModelScope.launch {
+            val dateList = _dateList.value.map { it.copy(isSelected = false) }
+
+            _dateList.value = dateList.map {
+                if(it.desc == date.desc) {
+                    it.copy(isSelected = true)
+                } else {
+                    it
+                }
+            }
         }
     }
+
+    fun onClickReviewSubmit(reviewText : String,reviewDate: Int) {
+        viewModelScope.launch {
+            insertReviewUseCase(Review(date = reviewDate, reviewText))
+            _reviewState.value = ReviewState.Exist(Review(date = reviewDate, reviewText))
+        }
+    }
+
+    fun onClickReviewRevise(reviewText: String, reviewDate: Int) {
+        viewModelScope.launch {
+            insertReviewUseCase(Review(date = reviewDate, reviewText))
+            _reviewState.value = ReviewState.Revise
+        }
+    }
+
+    fun onClickDeleteReview() {
+        viewModelScope.launch {
+            val state = reviewState.value
+            if(state is ReviewState.Exist) {
+                deleteReviewUseCase(state.review)
+                _reviewState.value = ReviewState.Empty
+            }
+        }
+    }
+
 }

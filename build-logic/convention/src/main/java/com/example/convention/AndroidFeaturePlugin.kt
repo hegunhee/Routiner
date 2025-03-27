@@ -3,7 +3,6 @@ package com.example.convention
 import com.android.build.gradle.LibraryExtension
 import com.example.convention.project.configureComposeAndroid
 import com.example.convention.project.configureHiltKotlin
-import com.example.convention.project.setupViewDataBinding
 import com.example.convention.setup.libs
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -21,14 +20,12 @@ class AndroidFeaturePlugin : Plugin<Project> {
             configureHiltKotlin()
 
             extensions.configure<LibraryExtension> {
-                setupViewDataBinding()
                 configureComposeAndroid(this)
             }
 
             dependencies {
                 add("implementation", project(":core:domain"))
                 add("implementation", project(":core:util"))
-                add("implementation", project(":core:navigation"))
                 add("implementation", project(":core:model"))
                 add("implementation", project(":core:designsystem"))
                 add("implementation", project(":core:ui"))
@@ -38,9 +35,6 @@ class AndroidFeaturePlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("material").get())
                 add("implementation", libs.findLibrary("material3").get())
 
-                add("implementation", libs.findLibrary("constraintlayout").get())
-                add("implementation", libs.findLibrary("androidx-recyclerview").get())
-
                 add("implementation", libs.findLibrary("junit").get())
                 add("androidTestImplementation", libs.findLibrary("ext-junit").get())
                 add("androidTestImplementation", libs.findLibrary("espresso-core").get())
@@ -49,7 +43,6 @@ class AndroidFeaturePlugin : Plugin<Project> {
                 add("implementation", libs.findLibrary("compose-navigation").get())
                 add("implementation", libs.findLibrary("hilt-viewmodel").get())
 
-                add("implementation", libs.findBundle("navigation").get())
 
                 add("implementation", libs.findLibrary("activity-ktx").get())
                 add("implementation", libs.findLibrary("fragment-ktx").get())

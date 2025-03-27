@@ -12,7 +12,6 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.hegunhee.setting.screen.SettingScreen
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
