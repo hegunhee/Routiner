@@ -1,4 +1,4 @@
-package com.hegunhee.record.screen
+package com.hegunhee.record
 
 import hegunhee.routiner.model.Review
 

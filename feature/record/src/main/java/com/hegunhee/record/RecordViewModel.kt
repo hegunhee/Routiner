@@ -1,4 +1,4 @@
-package com.hegunhee.record.screen
+package com.hegunhee.record
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

@@ -11,8 +11,6 @@ import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import com.hegunhee.record.screen.RecordScreen
-import com.hegunhee.record.screen.ReviewState
 import hegunhee.routiner.model.Date
 import hegunhee.routiner.model.Routine
 import org.junit.Before
