@@ -1,4 +1,4 @@
-package com.hegunhee.repeat.screen
+package com.hegunhee.repeat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

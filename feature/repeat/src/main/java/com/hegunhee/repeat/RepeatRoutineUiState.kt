@@ -1,4 +1,4 @@
-package com.hegunhee.repeat.screen
+package com.hegunhee.repeat
 
 import hegunhee.routiner.model.RepeatRoutine
 
