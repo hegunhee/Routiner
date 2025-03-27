@@ -5,7 +5,7 @@ import com.example.main.R
 import com.hegunhee.daily.navigation.DAILY_ROUTE
 import com.hegunhee.record.navigation.RECORD_ROUTE
 import com.hegunhee.repeat.navigation.REPEAT_ROUTINE_ROUTE
-import com.hegunhee.setting.screen.navigation.SETTING_ROUTE
+import com.hegunhee.setting.navigation.SETTING_ROUTE
 
 enum class DrawerItem(
     val titleString: String,

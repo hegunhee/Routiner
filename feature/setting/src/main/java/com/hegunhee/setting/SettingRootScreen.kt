@@ -1,4 +1,4 @@
-package com.hegunhee.setting.screen
+package com.hegunhee.setting
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -36,7 +36,6 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import com.hegunhee.setting.R
 import hegunhee.routiner.ui.item.Spinner
 
 @Composable

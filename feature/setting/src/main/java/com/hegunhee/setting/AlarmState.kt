@@ -1,4 +1,4 @@
-package com.hegunhee.setting.screen
+package com.hegunhee.setting
 
 sealed interface AlarmState {
 
