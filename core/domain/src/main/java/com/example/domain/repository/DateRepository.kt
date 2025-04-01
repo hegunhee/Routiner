@@ -8,4 +8,6 @@ interface DateRepository {
 
     suspend fun getDateList() : List<Date>
 
+    suspend fun getRoutineExistDateList() : List<Date>
+
 }

@@ -21,5 +21,9 @@ class DefaultDateRepository @Inject constructor(
         return localDataSource.getDateList().toDateList()
     }
 
+    override suspend fun getRoutineExistDateList(): List<Date> {
+        return localDataSource.getRoutineExistDateList().toDateList()
+    }
+
 }
 
