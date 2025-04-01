@@ -2,7 +2,7 @@ package com.hegunhee.record
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.date.GetDateListUseCase
+import com.example.domain.usecase.date.GetRoutineExistDateListUseCase
 import com.example.domain.usecase.review.DeleteReviewUseCase
 import com.example.domain.usecase.review.GetReviewOrNullByDateUseCase
 import com.example.domain.usecase.review.InsertReviewUseCase
@@ -23,7 +23,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class RecordViewModel @Inject constructor(
-    private val getDateListUseCase: GetDateListUseCase,
+    private val getRoutineExistDateListUseCase: GetRoutineExistDateListUseCase,
     private val getRoutinesByDateUseCase: GetRoutinesByDateUseCase,
     private val getReviewOrNullByDateUseCase: GetReviewOrNullByDateUseCase,
     private val insertReviewUseCase: InsertReviewUseCase,
@@ -46,7 +46,7 @@ class RecordViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
-            val currentDateList = getDateListUseCase().filter { it.date != getTodayDate() }
+            val currentDateList = getRoutineExistDateListUseCase().filter { it.date != getTodayDate() }
             _dateList.value = currentDateList.mapIndexed { index, date ->
                 if(index == currentDateList.size -1) date.copy(isSelected = true)
                 else date
