@@ -8,7 +8,6 @@ import com.example.data.entity.RoutineEntity
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertThat
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -128,6 +127,29 @@ class RoutineDaoTest {
 
             // then
             assertEquals(deleteSize, entities.filter { it.date == date1 }.size)
+        }
+    }
+
+    @Test
+    fun givenEntities_whenGetDistinctDateList_thenWorksFine() {
+        runBlocking {
+            // given
+            val date1 = 20250227
+            val size1 = 2
+            val date2 = 20250225
+            val size2 = 3
+
+            val entities =
+                createRoutineEntitiesWith(size1, date1) + createRoutineEntitiesWith(size2, date2)
+
+            sut.insertRoutines(entities)
+
+            // when
+            val dates = sut.getDistinctDateList()
+
+            // then
+            assertEquals(dates.size,entities.map { it.date }.distinct().size)
+            assertEquals(dates,entities.map { it.date }.distinct().sorted())
         }
     }
 
