@@ -52,4 +52,20 @@ class DateRepositoryTest {
             verify(localDateSource).getDateList()
         }
     }
+
+    @Test
+    fun given_whenGetRoutineExistDateList_thenWorksFine() {
+        runBlocking {
+            // given
+            val dateEntities = listOf(DateEntity(20250228), DateEntity(20250227))
+            whenever(localDateSource.getRoutineExistDateList()).thenReturn(dateEntities)
+
+            // when
+            val dateList = sut.getRoutineExistDateList()
+
+            // then
+            assertThat(dateList.size).isEqualTo(dateEntities.size)
+            verify(localDateSource).getRoutineExistDateList()
+        }
+    }
 }

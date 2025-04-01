@@ -24,6 +24,8 @@ interface LocalDataSource {
 
     suspend fun getDateList() : List<DateEntity>
 
+    suspend fun getRoutineExistDateList() : List<DateEntity>
+
 
     suspend fun insertReview(review : ReviewEntity)
 

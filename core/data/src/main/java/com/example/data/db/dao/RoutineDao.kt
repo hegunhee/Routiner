@@ -13,6 +13,9 @@ interface RoutineDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertRoutine(routineEntity: RoutineEntity)
 
+    @Query("SELECT DISTINCT date FROM Routine ORDER BY date ASC")
+    suspend fun getDistinctDateList() : List<Int>
+
     @Query("SELECT * FROM routine WHERE date = :date")
     fun getRoutinesFlowByDate(date: Int): Flow<List<RoutineEntity>>
 
