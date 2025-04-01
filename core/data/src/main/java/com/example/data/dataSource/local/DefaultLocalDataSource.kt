@@ -54,6 +54,10 @@ class DefaultLocalDataSource @Inject constructor(
         return dateDao.getDateList()
     }
 
+    override suspend fun getRoutineExistDateList(): List<DateEntity> {
+        return routineDao.getDistinctDateList().map { DateEntity(it) }
+    }
+
 
     override suspend fun insertReview(review: ReviewEntity) {
         reviewDao.insertReview(review)
