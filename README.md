@@ -5,7 +5,8 @@
 ## 사용된 라이브러리  
 * JetPack  
   * AAC-ViewModel  
-  * Room  
+  * Room
+  * Compose  
 * Coroutine  
   * Flow  
 * Hilt  
@@ -23,8 +24,10 @@
 * **Flow** 적용  
   UI State로 Flow 사용중 안드로이드 의존성을 줄일 수 있고 다양한 연산자를 지원해  
   더 다양한 연산을 사용 가능   
-* **DataBinding** 적용  
- dataBinding을 사용하여 findViewById를 사용하지 않으며 xml 파일과 데이터 객체를 연결해줍니다.  
+* **Jetpack Compose** 적용
+  선언형 UI인 Jetpack Compose를 도입해서 코드수를 줄이고 xml과 Kotlin 코드를 번갈아가면서 사용하지않아도 됨
+  보다 직관적으로 코드를 볼 수 있고 유연하게 코드를 재사용 가능
+  그에따라서 DataBinding을 걷어냄  
 * **Hilt** 적용  
  의존성 주입을 사용해서 테스트를 쉽게 사용하고 코드 내부에서 의존관계를 만들지 않고 관심사를 외부로 돌립니다.  
 * **Room Database** 적용  
