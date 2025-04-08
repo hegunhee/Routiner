@@ -60,7 +60,7 @@ class MainViewModel @Inject constructor(
         val todayDate = getTodayDate()
         val currentDate = getCurrentDateUseCase()
         if (currentDate != todayDate) {
-            insertDateUseCase(currentDate)
+            insertDateUseCase(todayDate)
             setCurrentDateUseCase(todayDate)
             _uiState.value = InsertRepeatRoutine
         } else {
