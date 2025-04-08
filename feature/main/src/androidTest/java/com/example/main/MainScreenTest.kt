@@ -127,6 +127,7 @@ class MainScreenTest {
         MainScreen(
             uiState = uiState,
             successRoute = "",
+            onRequestNotificationPermission = {},
             onNavigateDailyScreen = { },
             onAction = onAction
         )

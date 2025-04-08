@@ -1,6 +1,10 @@
 package com.example.main.screen
 
+import android.Manifest
+import android.os.Build
 import android.widget.Toast
+import androidx.activity.compose.rememberLauncherForActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -29,23 +33,48 @@ fun MainRootScreen(
 ) {
     val uiState = mainViewModel.uiState.collectAsStateWithLifecycle().value
 
+    val permissionLauncher = rememberLauncherForActivityResult (
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = {  }
+    )
+
+    val onRequestNotificationPermission = {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            permissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
+    }
+
     MainScreen(
         uiState = uiState,
         successRoute = successRoute,
+        onRequestNotificationPermission = onRequestNotificationPermission,
         onNavigateDailyScreen = onNavigateDailyScreen,
         onAction = mainViewModel::onAction
     )
 }
 
 @Composable
-fun MainScreen(
+internal fun MainScreen(
     uiState: MainUiState,
     successRoute: String,
+    onRequestNotificationPermission : () -> Unit,
     onNavigateDailyScreen: (String) -> Unit,
     onAction: (MainUiState) -> Unit,
     modifier: Modifier = Modifier
 ) {
     LaunchedEffect(uiState) {
+        when(uiState) {
+            MainUiState.Success -> {
+                onNavigateDailyScreen(successRoute)
+            }
+            MainUiState.FirstOpenApp -> {
+                onRequestNotificationPermission()
+                onAction(uiState)
+            }
+            else -> {
+                onAction(uiState)
+            }
+        }
         if (uiState == MainUiState.Success) {
             onNavigateDailyScreen(successRoute)
         } else {
@@ -87,6 +116,7 @@ private fun MainScreenPreview() {
     MainScreen(
         uiState = MainUiState.Success,
         successRoute = "",
+        onRequestNotificationPermission = {},
         onAction = {},
         onNavigateDailyScreen = {
             Toast.makeText(context, "이동합니당", Toast.LENGTH_SHORT).show()

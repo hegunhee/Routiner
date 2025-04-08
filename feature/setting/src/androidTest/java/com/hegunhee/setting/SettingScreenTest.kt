@@ -83,9 +83,11 @@ class SettingScreenTest {
         SettingScreen(
             onClickDrawer = onClickDrawer,
             isAlarmEnabled = isAlarmEnabled,
+            hasNotificationPermission = true,
             selectedHour = selectedHour,
             selectedMinute = selectedMinute,
             onClickAlarmEnableSwitch = onClickAlarmEnableSwitch,
+            onRequestNotificationPermission = {},
             onHourChanged = onHourChanged,
             onMinuteChanged = onMinuteChanged,
             onClickSaveAlarm = onClickSaveAlarm,
