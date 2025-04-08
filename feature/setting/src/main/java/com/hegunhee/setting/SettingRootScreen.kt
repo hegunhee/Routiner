@@ -163,7 +163,7 @@ internal fun SettingScreen(
 }
 
 @Composable
-fun AlarmSetting(
+internal fun AlarmSetting(
     isAlarmEnabled: Boolean,
     hasNotificationPermission : Boolean,
     selectedHour: String,

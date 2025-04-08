@@ -54,7 +54,7 @@ fun MainRootScreen(
 }
 
 @Composable
-fun MainScreen(
+internal fun MainScreen(
     uiState: MainUiState,
     successRoute: String,
     onRequestNotificationPermission : () -> Unit,
