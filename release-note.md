@@ -1,3 +1,28 @@
+Routiner 1.5.0 release note
+===========================
+- 알람 권한 요청
+앱을 처음 시작하거나 알람을 설정할 때 알람 권한 요청
+- Android 14 대응 
+현재 타겟 버전을 14버전으로 설정하였습니다.
+
+개발자 노트
+---
+UI를 Jetpack Compose로 변경했습니다.
+https://github.com/hegunhee/Routiner/milestone/2
+
+전반적인 테스트코드를 작성하였습니다.
+https://github.com/hegunhee/Routiner/milestone/1
+
+알람 권한을 요청합니다.
+https://github.com/hegunhee/Routiner/issues/147
+
+targetSdk를 34로 지정하였습니다.
+따로 대응할것은 없었습니다.
+https://github.com/hegunhee/Routiner/issues/152
+
+앱의 딥링크의 스킴을 routiner로 설정했습니다.
+https://github.com/hegunhee/Routiner/issues/153
+
 Routiner 1.4.0 release note
 =========================
 UI 개편 (기존의 theme에서 다크한 theme으로 변경), 기록 화면에서 상단에 날짜를 직접 클릭할 수 있도록 수정  
