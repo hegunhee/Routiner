@@ -47,7 +47,7 @@ class AlarmReceiver() : BroadcastReceiver() {
     }
 
     private fun sendDailyAlarmNotification(context : Context,text : String) {
-            val contentIntent = Intent(Intent.ACTION_VIEW, Uri.parse("app://main"))
+            val contentIntent = Intent(Intent.ACTION_VIEW, Uri.parse("routiner://main"))
             val contentPendingIntent = PendingIntent.getActivity(
                 context,
                 ALARM_NOTIFICATION_ID,
