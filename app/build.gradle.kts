@@ -5,7 +5,7 @@ plugins {
 android {
     namespace = "com.hegunhee.routiner"
     defaultConfig {
-        targetSdk = 33
+        targetSdk = 34
         applicationId = "com.hegunhee.routiner"
         versionCode = (7)
         versionName = "1.4.0"
