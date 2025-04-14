@@ -84,7 +84,7 @@ fun InsertRepeatRoutineRootScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun InsertRepeatRoutineScreen(
+internal fun InsertRepeatRoutineScreen(
     uiState: InsertRepeatRoutineUiState,
     routineText: String,
     addedCategoryText: String,

@@ -102,7 +102,7 @@ fun RecordRootScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RecordScreen(
+internal fun RecordScreen(
     dateList: List<Date>,
     routines: List<Routine>,
     reviewState: ReviewState,
