@@ -52,7 +52,7 @@ fun DailyRootScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun DailyScreen(
+internal fun DailyScreen(
     uiState: DailyUiState,
     onClickDrawerButton: () -> Unit,
     onClickAddRoutine: () -> Unit,
