@@ -48,7 +48,7 @@ fun RepeatRoutineRootScreen(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RepeatRoutineScreen(
+internal fun RepeatRoutineScreen(
     uiState: RepeatRoutineUiState,
     onClickDrawer: () -> Unit,
     onClickAddRepeatRoutine: () -> Unit,
