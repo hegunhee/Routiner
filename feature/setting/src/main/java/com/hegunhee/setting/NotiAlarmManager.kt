@@ -11,7 +11,7 @@ fun Context.registerAlarm(hour: Int, minute: Int) {
     val alarmManager = getSystemService(Context.ALARM_SERVICE) as AlarmManager
     val pendingIntent = AlarmReceiver.getAlarmPendingIntent(this, AlarmReceiver.DAILY_ALARM_PENDING_INTENT_FLAG)
 
-    Toast.makeText(this, "${hour}시 ${minute}분에 알람이 지정되었습니다.", Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, getString(R.string.alarm_set_message, hour.toString(), minute.toString()), Toast.LENGTH_SHORT).show()
     alarmManager.setRepeating(
         AlarmManager.RTC,
         toTimeMillis(hour = hour, minute = minute),
@@ -25,7 +25,7 @@ fun Context.cancelAlarm() {
     val pendingIntent = AlarmReceiver.getAlarmPendingIntent(this, AlarmReceiver.DAILY_ALARM_PENDING_INTENT_FLAG)
 
     alarmManager.cancel(pendingIntent)
-    Toast.makeText(this, "알람이 취소되었습니다.", Toast.LENGTH_SHORT).show()
+    Toast.makeText(this, getString(R.string.alarm_cancel_message), Toast.LENGTH_SHORT).show()
 }
 
 fun toTimeMillis(hour: Int, minute: Int): Long {
