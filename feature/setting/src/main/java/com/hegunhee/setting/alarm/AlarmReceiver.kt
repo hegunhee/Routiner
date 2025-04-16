@@ -24,53 +24,57 @@ class AlarmReceiver() : BroadcastReceiver() {
     @Inject
     lateinit var getRoutinesByDateUseCase: GetRoutinesByDateUseCase
 
-    private lateinit var notificationManager : NotificationManager
+    private lateinit var notificationManager: NotificationManager
 
     override fun onReceive(context: Context, intent: Intent) {
-        notificationManager = context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-        createAlarmNotificationChannel()
+        notificationManager =
+            context.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        createAlarmNotificationChannel(context)
         CoroutineScope(Dispatchers.Default).launch {
             val routine = getRoutinesByDateUseCase(getTodayDate())
-            sendDailyAlarmNotification(context,getRoutineCurrentText(routine))
+            sendDailyAlarmNotification(context, getRoutineCurrentText(routine, context))
         }
     }
 
-    private fun createAlarmNotificationChannel() {
+    private fun createAlarmNotificationChannel(context: Context) {
         NotificationChannel(
             ALARM_CHANNEL_ID,
-            "알람 채널",
+            context.getString(R.string.alarm_channel_title),
             NotificationManager.IMPORTANCE_DEFAULT
         ).apply {
-            description = "매일 울리는 알람 채널"
+            description = context.getString(R.string.toady_alarm_channel_title)
             notificationManager.createNotificationChannel(this)
         }
     }
 
-    private fun sendDailyAlarmNotification(context : Context,text : String) {
-            val contentIntent = Intent(Intent.ACTION_VIEW, Uri.parse("routiner://main"))
-            val contentPendingIntent = PendingIntent.getActivity(
-                context,
-                ALARM_NOTIFICATION_ID,
-                contentIntent,
-                PendingIntent.FLAG_IMMUTABLE
-            )
-            val builder = NotificationCompat.Builder(context, ALARM_CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_check)
-                .setContentTitle("오늘의 루틴")
-                .setContentText(text)
-                .setContentIntent(contentPendingIntent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setAutoCancel(true)
-            notificationManager.notify(ALARM_NOTIFICATION_ID,builder.build())
+    private fun sendDailyAlarmNotification(context: Context, text: String) {
+        val contentIntent = Intent(Intent.ACTION_VIEW, Uri.parse("routiner://main"))
+        val contentPendingIntent = PendingIntent.getActivity(
+            context,
+            ALARM_NOTIFICATION_ID,
+            contentIntent,
+            PendingIntent.FLAG_IMMUTABLE
+        )
+        val builder = NotificationCompat.Builder(context, ALARM_CHANNEL_ID)
+            .setSmallIcon(R.drawable.ic_check)
+            .setContentTitle(context.getString(R.string.today_routine_title))
+            .setContentText(text)
+            .setContentIntent(contentPendingIntent)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
+            .setAutoCancel(true)
+        notificationManager.notify(ALARM_NOTIFICATION_ID, builder.build())
     }
 
-    private fun getRoutineCurrentText(routineList : List<Routine>) : String{
-        return if(routineList.isEmpty()) {
-            "오늘의 루틴을 입력해주세요"
-        }else if(routineList.any { !it.isFinished }) {
-            "${routineList.size - routineList.count { it.isFinished }}개의 루틴이 남았습니다."
-        }else {
-            "모든 루틴을 완료했습니다!"
+    private fun getRoutineCurrentText(routineList: List<Routine>, context: Context): String {
+        return if (routineList.isEmpty()) {
+            context.getString(R.string.enter_today_routine)
+        } else if (routineList.any { !it.isFinished }) {
+            context.getString(
+                R.string.today_routine_count,
+                (routineList.size - routineList.count { it.isFinished }).toString()
+            )
+        } else {
+            context.getString(R.string.today_routine_finish)
         }
     }
 
@@ -81,13 +85,18 @@ class AlarmReceiver() : BroadcastReceiver() {
 
         const val ALARM_NOTIFICATION_ID = 1
 
-        private fun getDailyAlarmIntent(context : Context) : Intent {
-            return Intent(context,AlarmReceiver::class.java)
+        private fun getDailyAlarmIntent(context: Context): Intent {
+            return Intent(context, AlarmReceiver::class.java)
         }
 
-        fun getAlarmPendingIntent(context : Context,pendingIntentPlag : Int) : PendingIntent {
+        fun getAlarmPendingIntent(context: Context, pendingIntentPlag: Int): PendingIntent {
             return getDailyAlarmIntent(context).let { intent ->
-                PendingIntent.getBroadcast(context, pendingIntentPlag,intent,PendingIntent.FLAG_IMMUTABLE)
+                PendingIntent.getBroadcast(
+                    context,
+                    pendingIntentPlag,
+                    intent,
+                    PendingIntent.FLAG_IMMUTABLE
+                )
             }
         }
     }

@@ -8,4 +8,10 @@
     <string name="alarm_switch_tag">alarmSwitchTag</string>
     <string name="alarm_set_message">%1$s시 %2$s분에 알람이 지정되었습니다.</string>
     <string name="alarm_cancel_message">알람이 취소되었습니다.</string>
+    <string name="alarm_channel_title">알람 채널</string>
+    <string name="toady_alarm_channel_title">매일 울리는 알람 채널</string>
+    <string name="today_routine_title">오늘의 루틴</string>
+    <string name="enter_today_routine">오늘의 루틴을 입력해주세요</string>
+    <string name="today_routine_count">%1$s개의 루틴이 남았습니다.</string>
+    <string name="today_routine_finish">모든 루틴을 완료했습니다!</string>
 </resources>
