@@ -79,8 +79,8 @@ https://github.com/hegunhee/Routiner/issues/55
 ## 앱 사진  
 | 오늘의 루틴 | 지난 기록 | 반복 루틴 |
 | -------- | ------ |  ------ |
-| ![routiner_main](https://github.com/hegunhee/Routiner/assets/57277631/53fd0ae5-57f3-417a-af72-8efaac0793f6) | ![record_routine](https://github.com/hegunhee/Routiner/assets/57277631/0865c68f-09be-4d2b-9e36-c5477c6a8b4a) | ![repeat_routine](https://github.com/hegunhee/Routiner/assets/57277631/07a3e8fc-58d9-4dbc-8187-dd09525f4617) |
-|루틴 추가|      |      |
-| ![routine_insert](https://github.com/hegunhee/Routiner/assets/57277631/0a7c7314-e141-45d7-ab7b-fc838a1b1429) |
+| ![routiner_main](https://github.com/user-attachments/assets/d4af361d-e555-4728-8487-8ef28f61e967) | ![record_routine](https://github.com/hegunhee/Routiner/assets/57277631/0865c68f-09be-4d2b-9e36-c5477c6a8b4a) | ![repeat_routine](https://github.com/hegunhee/Routiner/assets/57277631/07a3e8fc-58d9-4dbc-8187-dd09525f4617) |
+|루틴 추가| 알람 |      |
+| ![routine_insert](https://github.com/user-attachments/assets/d448b5f3-99df-45a6-9c63-c38a5afb26e6) | ![alarm](https://github.com/user-attachments/assets/778ad791-eed4-47bd-8047-eb0a5413cb60)
 ## 앱 개인정보 설명  
 https://hegunhee.tistory.com/27
