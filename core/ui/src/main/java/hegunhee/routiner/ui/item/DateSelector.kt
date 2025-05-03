@@ -2,7 +2,6 @@ package hegunhee.routiner.ui.item
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.material.icons.Icons
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,7 +28,7 @@ fun DateSelector(
         if (date.isSelected) {
             Icon(
                 painter = painterResource(R.drawable.ic_dot_24),
-                contentDescription = stringResource(R.string.selected_dot)
+                contentDescription = stringResource(R.string.selected_date)
             )
         }
     }

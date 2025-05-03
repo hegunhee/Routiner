@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="add_repeat_routine">add repeat routine</string>
+    <string name="write_routine">write routine</string>
+    <string name="repeat_routine_desc">set repeat routine</string>
+    <string name="menu_content_description">open drawer</string>
+    <string name="empty_repeat_routine">no repeating routine</string>
+    <string name="repeat_routine_add_button">add repeating routine button</string>
+    <string name="empty_repeat_routine_text">There is no information stored</string>
+    <string name="insert_category">enter category</string>
+</resources>

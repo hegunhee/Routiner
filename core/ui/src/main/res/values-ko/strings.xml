@@ -3,11 +3,8 @@
     <string name="selected_category">선택된 카테고리입니다.</string>
     <string name="delete_category">삭제버튼</string>
     <string name="delete_routine">삭제</string>
-
     <string name="finished_routine">완료한 루틴입니다.</string>
-
     <string name="selected_date">선택된 날짜입니다.</string>
-
     <string name="spinner_down_icon">스피너 아래아이콘</string>
     <string name="selected_day_of_week_desc">선택된 날짜 %1$s</string>
     <string name="repeat_routine_delete_button_desc">반복 루틴 삭제버튼</string>

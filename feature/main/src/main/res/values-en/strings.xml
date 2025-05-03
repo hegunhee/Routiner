@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Routiner</string>
+    <string name="app_description">Record Your day</string>
+    <string name="empty_input">The field is empty</string>
+    <string name="notification_setting">Notification Settings are %1$s</string>
+
+    <string name="init_message">Working on starting</string>
+    <string name="first_app_open_message">Thank you for using our app</string>
+    <string name="init_date_message">We\'re adding today\'s date</string>
+    <string name="insert_repeat_routine_message">We\'ll add a repeating routine</string>
+    <string name="success_message">You\'ve been waiting a long time.</string>
+</resources>

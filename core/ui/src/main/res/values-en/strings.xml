@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="selected_category">선택된 카테고리입니다.</string>
+    <string name="delete_category">delete button</string>
+    <string name="delete_routine">delete</string>
+    <string name="finished_routine">finished routine</string>
+    <string name="selected_date">selected date</string>
+    <string name="spinner_down_icon">spinner down icon</string>
+    <string name="selected_day_of_week_desc">selected date is %1$s</string>
+    <string name="repeat_routine_delete_button_desc">delete repeat routine button</string>
+    <string name="day_of_week">day_of_week : %1$s</string>
+    <string name="repeat_routine_category">category : %1$s</string>
+</resources>

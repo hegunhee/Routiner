@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="daily_routine">Daily routines</string>
+    <string name="empty_string">There is no routine\n enter routine please</string>
+    <string name="add_routine_string">add routine</string>
+    <string name="delete_routine">remove routine</string>
+    <string name="routine_list_text">routine list</string>
+    <string name="routine_degree">Task Progress</string>
+    <string name="routine_percent">The task is %d%% complete</string>
+    <string name="add_button">addButton</string>
+</resources>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="please_routine_enter_short">enter routine</string>
+    <string name="please_routine_enter_long">please enter routine</string>
+    <string name="please_category_add_short">enter category</string>
+    <string name="please_category_add_long">please enter category</string>
+    <string name="category_select">select category</string>
+    <string name="select">(Optional)</string>
+    <string name="add_category_content_description">enter category button</string>
+    <string name="submit_routine">submit</string>
+    <string name="routine_name_empty">The routine name is empty</string>
+    <string name="add_category_empty">The category is empty</string>
+    <string name="day_of_week_empty">please select day_of_week</string>
+    <string name="routine_text_test_tag">RoutineTextTag</string>
+    <string name="add_category_text_test_tag">CategoryTestTag</string>
+    <string name="repeat_routine_add_desc">add repeat routine</string>
+    <string name="back_button_desc">back button</string>
+    <string name="select_day_of_week">select day_of_week</string>
+    <string name="required">(Required)</string>
+</resources>
