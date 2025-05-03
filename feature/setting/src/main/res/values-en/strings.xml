@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="setting">setting</string>
+    <string name="drawer_open">DrawerOpenButton</string>
+    <string name="alarm_setting">alarm setting</string>
+    <string name="time_setting">time setting</string>
+    <string name="save_alarm">save alarm</string>
+    <string name="alarm_switch_tag">alarm switch tag</string>
+    <string name="alarm_set_message">an alarm was set for %1$s:%2$s</string>
+    <string name="alarm_cancel_message">The alarm was canceled</string>
+    <string name="alarm_channel_title">alarm Channel</string>
+    <string name="toady_alarm_channel_title">Daily alarms</string>
+    <string name="today_routine_title">Today\'s alarm</string>
+    <string name="enter_today_routine">Enter your alarm for the day</string>
+    <string name="today_routine_count">There are %1$s routines left</string>
+    <string name="today_routine_finish">You\' ve done all routines</string>
+</resources>
