@@ -6,4 +6,6 @@
     <string name="menu_content_description">open_drawer</string>
     <string name="empty_repeat_routine">반복 루틴이 없습니다.</string>
     <string name="repeat_routine_add_button">반복루틴 추가 버튼</string>
+    <string name="empty_repeat_routine_text">저장되어있는 정보가 없습니다.</string>
+    <string name="insert_category">카테고리 추가</string>
 </resources>
