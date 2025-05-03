@@ -1,0 +1,23 @@
+package routiner.core.data.db.dao
+
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import routiner.core.data.entity.CategoryEntity
+import kotlinx.coroutines.flow.Flow
+
+@Dao
+interface CategoryDao {
+
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertCategory(categoryEntity: CategoryEntity)
+
+    @Query("SELECT * FROM category")
+    fun getCategoriesFlow() : Flow<List<CategoryEntity>>
+
+    @Delete
+    suspend fun deleteCategory(categoryEntity : CategoryEntity) : Int
+
+}
