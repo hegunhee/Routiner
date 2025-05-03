@@ -2,4 +2,4 @@
 <locale-config xmlns:android="http://schemas.android.com/apk/res/android">
     <locale android:name="ko"/> <!-- 한국어 -->
     <locale android:name="en"/> <!-- 영어 -->
-</locale-config> 
+</locale-config>
