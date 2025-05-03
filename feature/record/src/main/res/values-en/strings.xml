@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="menu_content_description">open the drawer</string>
+    <string name="review_description">Submit a review</string>
+    <string name="revise">revise</string>
+    <string name="remove">remove</string>
+    <string name="submit">submit</string>
+    <string name="empty_date_desc">No data stored</string>
+</resources>
