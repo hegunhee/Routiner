@@ -250,7 +250,7 @@ private fun AlarmSettingPreview() {
         onRequestNotificationPermission = { },
         onHourChanged = onSelectedHourChanged,
         onMinuteChanged = onSelectedMinuteChanged,
-        onClickSaveAlarm = { hour, minute ->
+        onClickSaveAlarm = { _, _ ->
 
         }
     )
