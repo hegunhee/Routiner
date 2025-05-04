@@ -6,7 +6,7 @@ import routiner.core.domain.usecase.category.DeleteCategoryUseCase
 import routiner.core.domain.usecase.category.GetCategoriesFlowUseCase
 import routiner.core.domain.usecase.category.InsertCategoryUseCase
 import routiner.core.domain.usecase.routine.InsertRoutineUseCase
-import com.hegunhee.routiner.util.getTodayDate
+import routiner.core.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import routiner.core.model.Category
 import routiner.core.model.Routine

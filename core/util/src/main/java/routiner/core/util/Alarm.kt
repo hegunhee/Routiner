@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.util
+package routiner.core.util
 
 object Alarm {
 

@@ -6,7 +6,7 @@ import routiner.core.domain.usecase.routine.DeleteRoutineUseCase
 import routiner.core.domain.usecase.routine.GetRoutinesFlowByDateUseCase
 import routiner.core.domain.usecase.routine.UpdateRoutineUseCase
 import com.hegunhee.daily.DailyUiState.Init
-import com.hegunhee.routiner.util.getTodayDate
+import routiner.core.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import routiner.core.model.Routine
 import kotlinx.coroutines.flow.SharingStarted

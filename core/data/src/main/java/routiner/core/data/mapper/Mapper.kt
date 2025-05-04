@@ -1,7 +1,6 @@
 package routiner.core.data.mapper
 
 import routiner.core.data.entity.CategoryEntity
-import com.hegunhee.routiner.util.*
 import routiner.core.model.AlarmTime
 import routiner.core.model.Category
 import routiner.core.model.Date
@@ -12,6 +11,7 @@ import routiner.core.data.entity.DateEntity
 import routiner.core.data.entity.RepeatRoutineEntity
 import routiner.core.data.entity.ReviewEntity
 import routiner.core.data.entity.RoutineEntity
+import routiner.core.util.getTodayDate
 
 fun Category.toCategoryEntity() : CategoryEntity =
     CategoryEntity(name)

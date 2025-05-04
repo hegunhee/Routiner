@@ -14,8 +14,8 @@ import com.example.main.screen.MainUiState.Init
 import com.example.main.screen.MainUiState.InitDate
 import com.example.main.screen.MainUiState.InsertRepeatRoutine
 import com.example.main.screen.MainUiState.Success
-import com.hegunhee.routiner.util.getTodayDate
-import com.hegunhee.routiner.util.getTodayDayOfWeekFormatedKorean
+import routiner.core.util.getTodayDate
+import routiner.core.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

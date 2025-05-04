@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.util
+package routiner.core.util
 
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter

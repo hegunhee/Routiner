@@ -7,7 +7,7 @@ import routiner.core.domain.usecase.review.DeleteReviewUseCase
 import routiner.core.domain.usecase.review.GetReviewOrNullByDateUseCase
 import routiner.core.domain.usecase.review.InsertReviewUseCase
 import routiner.core.domain.usecase.routine.GetRoutinesByDateUseCase
-import com.hegunhee.routiner.util.getTodayDate
+import routiner.core.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import routiner.core.model.Date
 import routiner.core.model.Review

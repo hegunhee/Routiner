@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hegunhee.routiner.util"
+    namespace = "routiner.core.util"
 }
 
 dependencies {
