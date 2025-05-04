@@ -4,7 +4,7 @@ import routiner.core.data.datasource.local.LocalDataSource
 import routiner.core.data.mapper.toDateEntity
 import routiner.core.data.mapper.toDateList
 import hegunhee.routiner.model.Date
-import com.example.domain.repository.DateRepository
+import routiner.core.domain.repository.DateRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 

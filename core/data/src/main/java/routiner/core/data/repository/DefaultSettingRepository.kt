@@ -3,7 +3,7 @@ package routiner.core.data.repository
 import routiner.core.data.datasource.local.LocalDataSource
 import routiner.core.data.mapper.toNotiAlarm
 import hegunhee.routiner.model.AlarmTime
-import com.example.domain.repository.SettingRepository
+import routiner.core.domain.repository.SettingRepository
 import javax.inject.Inject
 import javax.inject.Singleton
 

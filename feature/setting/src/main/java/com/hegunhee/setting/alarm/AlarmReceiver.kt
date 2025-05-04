@@ -9,7 +9,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.core.app.NotificationCompat
 import hegunhee.routiner.model.Routine
-import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
+import routiner.core.domain.usecase.routine.GetRoutinesByDateUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import com.hegunhee.setting.R
 import dagger.hilt.android.AndroidEntryPoint

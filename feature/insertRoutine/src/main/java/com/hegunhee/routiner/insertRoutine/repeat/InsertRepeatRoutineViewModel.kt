@@ -2,11 +2,11 @@ package com.hegunhee.routiner.insertRoutine.repeat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.category.DeleteCategoryUseCase
-import com.example.domain.usecase.category.GetCategoriesFlowUseCase
-import com.example.domain.usecase.category.InsertCategoryUseCase
-import com.example.domain.usecase.date.GetSortedDayOfWeekListUseCase
-import com.example.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
+import routiner.core.domain.usecase.category.DeleteCategoryUseCase
+import routiner.core.domain.usecase.category.GetCategoriesFlowUseCase
+import routiner.core.domain.usecase.category.InsertCategoryUseCase
+import routiner.core.domain.usecase.date.GetSortedDayOfWeekListUseCase
+import routiner.core.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hegunhee.routiner.model.Category
 import hegunhee.routiner.model.DayOfWeek

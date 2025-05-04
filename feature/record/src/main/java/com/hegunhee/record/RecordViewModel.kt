@@ -2,11 +2,11 @@ package com.hegunhee.record
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.date.GetRoutineExistDateListUseCase
-import com.example.domain.usecase.review.DeleteReviewUseCase
-import com.example.domain.usecase.review.GetReviewOrNullByDateUseCase
-import com.example.domain.usecase.review.InsertReviewUseCase
-import com.example.domain.usecase.routine.GetRoutinesByDateUseCase
+import routiner.core.domain.usecase.date.GetRoutineExistDateListUseCase
+import routiner.core.domain.usecase.review.DeleteReviewUseCase
+import routiner.core.domain.usecase.review.GetReviewOrNullByDateUseCase
+import routiner.core.domain.usecase.review.InsertReviewUseCase
+import routiner.core.domain.usecase.routine.GetRoutinesByDateUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hegunhee.routiner.model.Date

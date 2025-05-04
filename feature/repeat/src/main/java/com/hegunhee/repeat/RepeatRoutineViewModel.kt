@@ -2,8 +2,8 @@ package com.hegunhee.repeat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.repeatRoutine.DeleteRepeatRoutineUseCase
-import com.example.domain.usecase.repeatRoutine.GetRepeatRoutinesFlowUseCase
+import routiner.core.domain.usecase.repeatRoutine.DeleteRepeatRoutineUseCase
+import routiner.core.domain.usecase.repeatRoutine.GetRepeatRoutinesFlowUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

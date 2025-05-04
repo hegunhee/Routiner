@@ -5,7 +5,7 @@ import routiner.core.data.mapper.toRoutineEntity
 import routiner.core.data.mapper.toRoutineEntityList
 import routiner.core.data.mapper.toRoutineList
 import hegunhee.routiner.model.Routine
-import com.example.domain.repository.RoutineRepository
+import routiner.core.domain.repository.RoutineRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

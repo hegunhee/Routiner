@@ -2,8 +2,8 @@ package com.hegunhee.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.notification.GetAlarmNotiTimeUseCase
-import com.example.domain.usecase.notification.SetAlarmNotiTimeUseCase
+import routiner.core.domain.usecase.notification.GetAlarmNotiTimeUseCase
+import routiner.core.domain.usecase.notification.SetAlarmNotiTimeUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow

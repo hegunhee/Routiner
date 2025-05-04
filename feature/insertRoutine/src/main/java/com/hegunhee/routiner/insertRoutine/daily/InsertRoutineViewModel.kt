@@ -2,10 +2,10 @@ package com.hegunhee.routiner.insertRoutine.daily
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.category.DeleteCategoryUseCase
-import com.example.domain.usecase.category.GetCategoriesFlowUseCase
-import com.example.domain.usecase.category.InsertCategoryUseCase
-import com.example.domain.usecase.routine.InsertRoutineUseCase
+import routiner.core.domain.usecase.category.DeleteCategoryUseCase
+import routiner.core.domain.usecase.category.GetCategoriesFlowUseCase
+import routiner.core.domain.usecase.category.InsertCategoryUseCase
+import routiner.core.domain.usecase.routine.InsertRoutineUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import hegunhee.routiner.model.Category

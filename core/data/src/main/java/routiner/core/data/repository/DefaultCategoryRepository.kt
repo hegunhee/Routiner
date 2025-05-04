@@ -4,7 +4,7 @@ import routiner.core.data.datasource.local.LocalDataSource
 import routiner.core.data.mapper.toCategory
 import routiner.core.data.mapper.toCategoryEntity
 import hegunhee.routiner.model.Category
-import com.example.domain.repository.CategoryRepository
+import routiner.core.domain.repository.CategoryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject

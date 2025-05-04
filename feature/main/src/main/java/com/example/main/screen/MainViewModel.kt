@@ -2,13 +2,13 @@ package com.example.main.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.domain.usecase.date.GetCurrentDateUseCase
-import com.example.domain.usecase.date.InsertDateUseCase
-import com.example.domain.usecase.date.IsAppFirstOpenUseCase
-import com.example.domain.usecase.date.SetAppFirstOpenedUseCase
-import com.example.domain.usecase.date.SetCurrentDateUseCase
-import com.example.domain.usecase.repeatRoutine.GetAllRepeatRoutineListUseCase
-import com.example.domain.usecase.routine.InsertRoutinesFromRepeatByDayOfWeekRoutineUseCase
+import routiner.core.domain.usecase.date.GetCurrentDateUseCase
+import routiner.core.domain.usecase.date.InsertDateUseCase
+import routiner.core.domain.usecase.date.IsAppFirstOpenUseCase
+import routiner.core.domain.usecase.date.SetAppFirstOpenedUseCase
+import routiner.core.domain.usecase.date.SetCurrentDateUseCase
+import routiner.core.domain.usecase.repeatRoutine.GetAllRepeatRoutineListUseCase
+import routiner.core.domain.usecase.routine.InsertRoutinesFromRepeatByDayOfWeekRoutineUseCase
 import com.example.main.screen.MainUiState.FirstOpenApp
 import com.example.main.screen.MainUiState.Init
 import com.example.main.screen.MainUiState.InitDate

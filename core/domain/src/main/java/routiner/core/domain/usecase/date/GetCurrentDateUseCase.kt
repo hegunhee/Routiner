@@ -1,0 +1,12 @@
+package routiner.core.domain.usecase.date
+
+import routiner.core.domain.repository.SettingRepository
+import javax.inject.Inject
+
+class GetCurrentDateUseCase @Inject constructor(private val repository: SettingRepository) {
+
+    suspend operator fun invoke(): Int {
+        return repository.getCurrentDate()
+    }
+
+}
