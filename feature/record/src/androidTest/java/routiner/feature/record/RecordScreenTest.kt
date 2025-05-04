@@ -1,21 +1,19 @@
-package com.hegunhee.record
+package routiner.feature.record
 
 import android.content.Context
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import routiner.core.model.Date
-import routiner.core.model.Routine
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import routiner.core.model.Date
+import routiner.core.model.Routine
 
 class RecordScreenTest {
 
@@ -61,7 +59,7 @@ class RecordScreenTest {
 
         composeTestRule.setContent {
             var selectedDate by remember { mutableStateOf(Date(20250320, isSelected = true)) }
-            var dateList by remember { mutableStateOf(listOf(afterSelectedDate,selectedDate)) }
+            var dateList by remember { mutableStateOf(listOf(afterSelectedDate, selectedDate)) }
 
             val onClickDate : (Date) -> Unit =  { selected ->
                 selectedDate = selected

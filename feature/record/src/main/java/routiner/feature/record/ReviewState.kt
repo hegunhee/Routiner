@@ -1,4 +1,4 @@
-package com.hegunhee.record
+package routiner.feature.record
 
 import routiner.core.model.Review
 

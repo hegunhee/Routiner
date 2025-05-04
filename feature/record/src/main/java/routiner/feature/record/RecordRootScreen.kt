@@ -1,4 +1,4 @@
-package com.hegunhee.record
+package routiner.feature.record
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

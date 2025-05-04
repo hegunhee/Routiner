@@ -1,8 +1,8 @@
-package com.hegunhee.record.navigation
+package routiner.feature.record.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.hegunhee.record.RecordRootScreen
+import routiner.feature.record.RecordRootScreen
 
 const val RECORD_ROUTE = "RECORD"
 
