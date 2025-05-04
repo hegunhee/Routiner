@@ -4,7 +4,7 @@ import androidx.annotation.DrawableRes
 import routiner.feature.daily.navigation.DAILY_ROUTE
 import routiner.feature.record.navigation.RECORD_ROUTE
 import routiner.feature.repeat.navigation.REPEAT_ROUTINE_ROUTE
-import com.hegunhee.setting.navigation.SETTING_ROUTE
+import routiner.feature.setting.navigation.SETTING_ROUTE
 import routiner.feature.main.R
 
 enum class DrawerItem(

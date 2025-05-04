@@ -1,8 +1,8 @@
-package com.hegunhee.setting.navigation
+package routiner.feature.setting.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.hegunhee.setting.SettingRootScreen
+import routiner.feature.setting.SettingRootScreen
 
 const val SETTING_ROUTE = "SETTING"
 

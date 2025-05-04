@@ -1,4 +1,4 @@
-package com.hegunhee.setting
+package routiner.feature.setting
 
 import android.Manifest
 import android.content.pm.PackageManager

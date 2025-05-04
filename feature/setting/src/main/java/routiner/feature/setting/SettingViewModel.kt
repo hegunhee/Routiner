@@ -1,4 +1,4 @@
-package com.hegunhee.setting
+package routiner.feature.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

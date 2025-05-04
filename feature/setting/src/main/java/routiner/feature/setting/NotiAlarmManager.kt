@@ -1,9 +1,9 @@
-package com.hegunhee.setting
+package routiner.feature.setting
 
 import android.app.AlarmManager
 import android.content.Context
 import android.widget.Toast
-import com.hegunhee.setting.alarm.AlarmReceiver
+import routiner.feature.setting.alarm.AlarmReceiver
 import java.time.LocalDateTime
 import java.time.ZoneId
 

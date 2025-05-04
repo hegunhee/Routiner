@@ -22,7 +22,7 @@ import routiner.feature.repeat.navigation.repeatRoutineNavGraph
 import routiner.feature.insertRoutine.navigation.INSERT_REPEAT_ROUTINE_ROUTE
 import routiner.feature.insertRoutine.navigation.INSERT_ROUTINE_ROUTE
 import routiner.feature.insertRoutine.navigation.insertNavGraph
-import com.hegunhee.setting.navigation.settingNavGraph
+import routiner.feature.setting.navigation.settingNavGraph
 import kotlinx.coroutines.CoroutineScope
 
 @Composable

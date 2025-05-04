@@ -1,4 +1,4 @@
-package com.hegunhee.setting.alarm
+package routiner.feature.setting.alarm
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -11,11 +11,11 @@ import androidx.core.app.NotificationCompat
 import routiner.core.model.Routine
 import routiner.core.domain.usecase.routine.GetRoutinesByDateUseCase
 import routiner.core.util.getTodayDate
-import com.hegunhee.setting.R
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import routiner.feature.setting.R
 import javax.inject.Inject
 
 @AndroidEntryPoint

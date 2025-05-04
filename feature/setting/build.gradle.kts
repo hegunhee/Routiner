@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hegunhee.setting"
+    namespace = "routiner.feature.setting"
 }
 
 dependencies {

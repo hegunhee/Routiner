@@ -1,4 +1,4 @@
-package com.hegunhee.setting
+package routiner.feature.setting
 
 sealed interface AlarmState {
 

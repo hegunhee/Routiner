@@ -1,4 +1,4 @@
-package com.hegunhee.setting.alarm
+package routiner.feature.setting.alarm
 
 sealed class AlarmActions {
 
