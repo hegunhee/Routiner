@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.insertRoutine.repeat
+package routiner.feature.insertRoutine.repeat
 
 
 sealed interface InsertRepeatRoutineUiEvent {

@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.insertRoutine.common
+package routiner.feature.insertRoutine.common
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

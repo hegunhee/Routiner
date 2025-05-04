@@ -1,4 +1,4 @@
-package com.hegunhee.routiner.insertRoutine
+package routiner.feature.insertRoutine
 
 import android.content.Context
 import androidx.activity.ComponentActivity
@@ -17,12 +17,12 @@ import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
-import com.hegunhee.routiner.insertRoutine.daily.InsertRoutineScreen
-import com.hegunhee.routiner.insertRoutine.daily.InsertRoutineUiState
-import routiner.core.model.Category
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import routiner.core.model.Category
+import routiner.feature.insertRoutine.daily.InsertRoutineScreen
+import routiner.feature.insertRoutine.daily.InsertRoutineUiState
 
 class InsertRoutineScreenTest {
 
@@ -123,10 +123,14 @@ class InsertRoutineScreenTest {
     fun givenCategories_whenClickCategory_shownCheckIcon() {
         val selectedCategoryText = "운동"
         composeTestRule.setContent {
-            val categories = remember { mutableStateOf(listOf(
-                Category(selectedCategoryText),
-                Category("공부")
-            )) }
+            val categories = remember {
+                mutableStateOf(
+                    listOf(
+                        Category(selectedCategoryText),
+                        Category("공부")
+                    )
+                )
+            }
 
             val onClickCategory : (String) -> Unit= { categoryText ->
                 categories.value = categories.value.map { category ->
@@ -148,7 +152,7 @@ class InsertRoutineScreenTest {
             .performClick()
 
         composeTestRule
-            .onNodeWithContentDescription(context.getString(hegunhee.routiner.ui.R.string.selected_category))
+            .onNodeWithContentDescription(context.getString(routiner.core.ui.R.string.selected_category))
             .assertIsDisplayed()
     }
 
@@ -190,4 +194,3 @@ class InsertRoutineScreenTest {
         return InsertRoutineUiState.Categories(items)
     }
 }
-

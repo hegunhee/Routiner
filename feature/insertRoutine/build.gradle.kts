@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hegunhee.routiner.insertRoutine"
+    namespace = "routiner.feature.insertRoutine"
 }
 
 dependencies {

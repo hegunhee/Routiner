@@ -19,9 +19,9 @@ import routiner.feature.daily.navigation.DAILY_ROUTE
 import routiner.feature.daily.navigation.dailyNavGraph
 import com.hegunhee.record.navigation.recordNavGraph
 import com.hegunhee.repeat.navigation.repeatRoutineNavGraph
-import com.hegunhee.routiner.insertRoutine.navigation.INSERT_REPEAT_ROUTINE_ROUTE
-import com.hegunhee.routiner.insertRoutine.navigation.INSERT_ROUTINE_ROUTE
-import com.hegunhee.routiner.insertRoutine.navigation.insertNavGraph
+import routiner.feature.insertRoutine.navigation.INSERT_REPEAT_ROUTINE_ROUTE
+import routiner.feature.insertRoutine.navigation.INSERT_ROUTINE_ROUTE
+import routiner.feature.insertRoutine.navigation.insertNavGraph
 import com.hegunhee.setting.navigation.settingNavGraph
 import kotlinx.coroutines.CoroutineScope
 

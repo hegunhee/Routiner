@@ -1,10 +1,10 @@
-package com.hegunhee.routiner.insertRoutine.navigation
+package routiner.feature.insertRoutine.navigation
 
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.hegunhee.routiner.insertRoutine.daily.InsertRoutineRootScreen
-import com.hegunhee.routiner.insertRoutine.repeat.InsertRepeatRoutineRootScreen
+import routiner.feature.insertRoutine.daily.InsertRoutineRootScreen
+import routiner.feature.insertRoutine.repeat.InsertRepeatRoutineRootScreen
 
 const val INSERT_ROUTINE_ROUTE = "INSERT_ROUTINE"
 
