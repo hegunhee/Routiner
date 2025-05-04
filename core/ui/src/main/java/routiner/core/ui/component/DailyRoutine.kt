@@ -1,4 +1,4 @@
-package hegunhee.routiner.ui.item
+package routiner.core.ui.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -22,7 +22,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import routiner.core.model.Routine
-import hegunhee.routiner.ui.R
+import routiner.core.ui.R
 
 @Composable
 fun DailyRoutine(

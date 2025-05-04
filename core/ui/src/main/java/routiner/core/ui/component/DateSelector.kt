@@ -1,4 +1,4 @@
-package hegunhee.routiner.ui.item
+package routiner.core.ui.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -11,7 +11,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import routiner.core.model.Date
-import hegunhee.routiner.ui.R
+import routiner.core.ui.R
 
 @Composable
 fun DateSelector(

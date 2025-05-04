@@ -30,7 +30,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import hegunhee.routiner.ui.item.RepeatRoutineItem
+import routiner.core.ui.component.RepeatRoutineItem
 
 @Composable
 fun RepeatRoutineRootScreen(

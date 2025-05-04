@@ -47,8 +47,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import routiner.core.model.Date
 import routiner.core.model.Review
 import routiner.core.model.Routine
-import hegunhee.routiner.ui.item.DateSelector
-import hegunhee.routiner.ui.item.RecordRoutine
+import routiner.core.ui.component.DateSelector
+import routiner.core.ui.component.RecordRoutine
 
 @Composable
 fun RecordRootScreen(

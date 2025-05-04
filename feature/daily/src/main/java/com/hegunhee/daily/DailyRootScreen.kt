@@ -32,7 +32,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import routiner.core.model.Routine
-import hegunhee.routiner.ui.item.DailyRoutine
+import routiner.core.ui.component.DailyRoutine
 
 @Composable
 fun DailyRootScreen(

@@ -1,4 +1,4 @@
-package hegunhee.routiner.ui.item
+package routiner.core.ui.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -27,7 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import hegunhee.routiner.ui.R
+import routiner.core.ui.R
 
 @Composable
 fun SelectableCategory(
@@ -78,7 +78,7 @@ private fun SelectableCategoryPreview() {
     SelectableCategory(
         categoryText = "카테고리",
         isCategoryClicked = isCategoryClicked,
-        onCategoryClick = { str ->
+        onCategoryClick = { _ ->
             isCategoryClicked = !isCategoryClicked
         },
         onCategoryDeleteClick = {},

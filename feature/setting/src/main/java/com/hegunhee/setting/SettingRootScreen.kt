@@ -1,7 +1,6 @@
 package com.hegunhee.setting
 
 import android.Manifest
-import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import androidx.activity.compose.rememberLauncherForActivityResult
@@ -45,7 +44,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import hegunhee.routiner.ui.item.Spinner
+import routiner.core.ui.component.Spinner
 
 @Composable
 fun SettingRootScreen(

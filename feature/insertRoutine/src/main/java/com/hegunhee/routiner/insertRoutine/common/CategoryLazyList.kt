@@ -17,7 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import routiner.core.model.Category
-import hegunhee.routiner.ui.item.SelectableCategory
+import routiner.core.ui.component.SelectableCategory
 
 @Composable
 internal fun CategoryLazyList(
