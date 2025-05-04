@@ -1,4 +1,4 @@
-package com.hegunhee.daily
+package routiner.feature.daily
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope

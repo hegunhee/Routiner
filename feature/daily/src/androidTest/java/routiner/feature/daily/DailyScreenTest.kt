@@ -1,4 +1,4 @@
-package com.hegunhee.daily
+package routiner.feature.daily
 
 import android.content.Context
 import androidx.activity.ComponentActivity
@@ -17,10 +17,10 @@ import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import routiner.core.model.Routine
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import routiner.core.model.Routine
 
 class DailyScreenTest {
 
@@ -54,7 +54,17 @@ class DailyScreenTest {
     @Test
     fun givenRoutines_whenClickRoutine_shownCheckedRoutine() {
         composeTestRule.setContent {
-            val items = remember { mutableStateOf(listOf(Routine(date = 20250319,text = "운동", isFinished = false))) }
+            val items = remember {
+                mutableStateOf(
+                    listOf(
+                        Routine(
+                            date = 20250319,
+                            text = "운동",
+                            isFinished = false
+                        )
+                    )
+                )
+            }
 
             val onClickRoutine : (Routine) -> Unit= { clickedRoutine ->
                 items.value = items.value.map {  routine ->
@@ -125,12 +135,18 @@ class DailyScreenTest {
         }
 
         composeTestRule
-            .onNode(hasText(context.getString(R.string.delete_routine)) and hasParent(hasText(removedRoutineText)))
+            .onNode(
+                hasText(context.getString(R.string.delete_routine)) and hasParent(
+                    hasText(
+                        removedRoutineText
+                    )
+                )
+            )
             .performClick()
 
         composeTestRule
             .onNodeWithText(removedRoutineText)
-            .assertIsNotDisplayed()
+            .assertDoesNotExist()
 
         composeTestRule
             .onNodeWithText(context.getString(R.string.routine_degree,0))
@@ -157,4 +173,3 @@ class DailyScreenTest {
     }
 
 }
-

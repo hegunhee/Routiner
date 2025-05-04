@@ -1,11 +1,11 @@
-package com.hegunhee.daily
+package routiner.feature.daily
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import routiner.core.domain.usecase.routine.DeleteRoutineUseCase
 import routiner.core.domain.usecase.routine.GetRoutinesFlowByDateUseCase
 import routiner.core.domain.usecase.routine.UpdateRoutineUseCase
-import com.hegunhee.daily.DailyUiState.Init
+import routiner.feature.daily.DailyUiState.Init
 import routiner.core.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
 import routiner.core.model.Routine

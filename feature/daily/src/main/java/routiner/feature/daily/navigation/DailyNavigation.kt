@@ -1,8 +1,8 @@
-package com.hegunhee.daily.navigation
+package routiner.feature.daily.navigation
 
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
-import com.hegunhee.daily.DailyRootScreen
+import routiner.feature.daily.DailyRootScreen
 
 const val DAILY_ROUTE = "DAILY"
 

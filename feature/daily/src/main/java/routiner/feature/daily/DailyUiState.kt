@@ -1,4 +1,4 @@
-package com.hegunhee.daily
+package routiner.feature.daily
 
 import routiner.core.model.Routine
 
