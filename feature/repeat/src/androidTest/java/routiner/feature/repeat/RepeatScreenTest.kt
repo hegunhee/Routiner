@@ -1,12 +1,10 @@
-package com.hegunhee.repeat
+package routiner.feature.repeat
 
 import android.content.Context
 import androidx.activity.ComponentActivity
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
@@ -14,10 +12,10 @@ import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import routiner.core.model.RepeatRoutine
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import routiner.core.model.RepeatRoutine
 
 class RepeatScreenTest {
 
@@ -76,7 +74,7 @@ class RepeatScreenTest {
 
         // When
         composeTestRule
-            .onAllNodesWithContentDescription(context.getString(hegunhee.routiner.ui.R.string.repeat_routine_delete_button_desc))
+            .onAllNodesWithContentDescription(context.getString(routiner.core.ui.R.string.repeat_routine_delete_button_desc))
             .onFirst()
             .performClick()
 

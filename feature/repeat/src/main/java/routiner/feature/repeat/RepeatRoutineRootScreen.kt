@@ -1,4 +1,4 @@
-package com.hegunhee.repeat
+package routiner.feature.repeat
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column

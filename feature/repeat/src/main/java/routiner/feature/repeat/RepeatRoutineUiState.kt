@@ -1,4 +1,4 @@
-package com.hegunhee.repeat
+package routiner.feature.repeat
 
 import routiner.core.model.RepeatRoutine
 
