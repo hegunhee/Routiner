@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "hegunhee.routiner.designsystem"
+    namespace = "routiner.core.designsystem"
 }
 
 dependencies {

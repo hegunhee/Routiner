@@ -37,3 +37,7 @@ app/release/app-release.aab
 .idea/misc.xml
 .idea/gradle.xml
 .idea/compiler.xml
+
+core/data/schemas/com.example.data.db.RoutinerDatabase/1.json
+
+core/data/schemas/routiner.core.data.db.RoutinerDatabase/1.json

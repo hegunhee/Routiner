@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hegunhee.daily"
+    namespace = "routiner.feature.daily"
 }
 
 dependencies {

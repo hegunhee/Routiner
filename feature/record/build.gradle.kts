@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hegunhee.record"
+    namespace = "routiner.feature.record"
 }
 
 dependencies {

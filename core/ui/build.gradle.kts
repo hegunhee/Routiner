@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "hegunhee.routiner.ui"
+    namespace = "routiner.core.ui"
 
 }
 

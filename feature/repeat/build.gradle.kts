@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.hegunhee.repeat"
+    namespace = "routiner.feature.repeat"
 }
 
 dependencies {

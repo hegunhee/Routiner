@@ -3,7 +3,19 @@ plugins {
 }
 
 android {
-    namespace = "com.example.data"
+    namespace = "routiner.core.data"
+    
+    defaultConfig {
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += mapOf(
+                    "room.schemaLocation" to "$projectDir/schemas",
+                    "room.incremental" to "true",
+                    "room.expandProjection" to "true"
+                )
+            }
+        }
+    }
 }
 
 dependencies {
