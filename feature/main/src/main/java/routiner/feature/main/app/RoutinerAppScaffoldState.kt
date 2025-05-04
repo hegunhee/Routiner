@@ -1,4 +1,4 @@
-package com.example.main.app
+package routiner.feature.main.app
 
 import androidx.compose.material3.DrawerState
 import androidx.compose.runtime.Composable
@@ -8,8 +8,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.example.main.drawer.DrawerItem
-import com.example.main.screen.navigation.MAIN_ROUTE
+import routiner.feature.main.drawer.DrawerItem
+import routiner.feature.main.screen.navigation.MAIN_ROUTE
 import routiner.feature.insertRoutine.navigation.navigateInsertRepeatRoutine
 import routiner.feature.insertRoutine.navigation.navigateInsertRoutine
 import kotlinx.coroutines.CoroutineScope

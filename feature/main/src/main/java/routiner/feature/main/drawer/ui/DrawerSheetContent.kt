@@ -1,4 +1,4 @@
-package com.example.main.drawer.ui
+package routiner.feature.main.drawer.ui
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -17,7 +17,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.main.drawer.DrawerItem
+import routiner.feature.main.drawer.DrawerItem
 
 @Composable
 fun DrawerSheetContent(

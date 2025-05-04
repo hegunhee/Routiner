@@ -1,4 +1,4 @@
-package com.example.main.app
+package routiner.feature.main.app
 
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.material3.DrawerState
@@ -12,9 +12,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
-import com.example.main.drawer.ui.DrawerSheetContent
-import com.example.main.screen.navigation.MAIN_ROUTE
-import com.example.main.screen.navigation.mainNavGraph
+import routiner.feature.main.drawer.ui.DrawerSheetContent
+import routiner.feature.main.screen.navigation.MAIN_ROUTE
+import routiner.feature.main.screen.navigation.mainNavGraph
 import routiner.feature.daily.navigation.DAILY_ROUTE
 import routiner.feature.daily.navigation.dailyNavGraph
 import com.hegunhee.record.navigation.recordNavGraph

@@ -1,4 +1,4 @@
-package com.example.main.screen
+package routiner.feature.main.screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,11 +9,11 @@ import routiner.core.domain.usecase.date.SetAppFirstOpenedUseCase
 import routiner.core.domain.usecase.date.SetCurrentDateUseCase
 import routiner.core.domain.usecase.repeatRoutine.GetAllRepeatRoutineListUseCase
 import routiner.core.domain.usecase.routine.InsertRoutinesFromRepeatByDayOfWeekRoutineUseCase
-import com.example.main.screen.MainUiState.FirstOpenApp
-import com.example.main.screen.MainUiState.Init
-import com.example.main.screen.MainUiState.InitDate
-import com.example.main.screen.MainUiState.InsertRepeatRoutine
-import com.example.main.screen.MainUiState.Success
+import routiner.feature.main.screen.MainUiState.FirstOpenApp
+import routiner.feature.main.screen.MainUiState.Init
+import routiner.feature.main.screen.MainUiState.InitDate
+import routiner.feature.main.screen.MainUiState.InsertRepeatRoutine
+import routiner.feature.main.screen.MainUiState.Success
 import routiner.core.util.getTodayDate
 import routiner.core.util.getTodayDayOfWeekFormatedKorean
 import dagger.hilt.android.lifecycle.HiltViewModel

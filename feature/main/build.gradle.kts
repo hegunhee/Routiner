@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.main"
+    namespace = "routiner.feature.main"
 }
 
 dependencies {

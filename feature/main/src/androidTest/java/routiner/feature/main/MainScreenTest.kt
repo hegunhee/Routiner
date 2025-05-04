@@ -1,4 +1,4 @@
-package com.example.main
+package routiner.feature.main
 
 import android.content.Context
 import androidx.activity.ComponentActivity
@@ -8,16 +8,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.junit4.createAndroidComposeRule
 import androidx.compose.ui.test.onNodeWithText
-import com.example.main.screen.MainScreen
-import com.example.main.screen.MainUiState
-import com.example.main.screen.MainUiState.FirstOpenApp
-import com.example.main.screen.MainUiState.Init
-import com.example.main.screen.MainUiState.InitDate
-import com.example.main.screen.MainUiState.InsertRepeatRoutine
-import com.example.main.screen.MainUiState.Success
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import routiner.feature.main.screen.MainScreen
+import routiner.feature.main.screen.MainUiState
 
 class MainScreenTest {
 
@@ -35,7 +30,7 @@ class MainScreenTest {
     fun givenUiStateInit_whenInitScreen_shownInitMessage() {
         composeTestRule.setContent {
             ShowMainScreen(
-                uiState = Init,
+                uiState = MainUiState.Init,
                 onAction = {}
             )
         }
@@ -48,10 +43,10 @@ class MainScreenTest {
     @Test
     fun givenUiStateInit_whenWait_shownFirstAppOpenMessage() {
         composeTestRule.setContent {
-            val uiState = remember { mutableStateOf<MainUiState>(Init) }
+            val uiState = remember { mutableStateOf<MainUiState>(MainUiState.Init) }
 
             val onAction : (MainUiState) -> Unit = { state ->
-                if(state == Init) uiState.value = FirstOpenApp
+                if(state == MainUiState.Init) uiState.value = MainUiState.FirstOpenApp
             }
 
             ShowMainScreen(
@@ -69,10 +64,10 @@ class MainScreenTest {
     @Test
     fun givenUiStateFirstAppOpen_whenWait_shownInitDateMessage() {
         composeTestRule.setContent {
-            val uiState = remember { mutableStateOf<MainUiState>(FirstOpenApp) }
+            val uiState = remember { mutableStateOf<MainUiState>(MainUiState.FirstOpenApp) }
 
             val onAction : (MainUiState) -> Unit = { state ->
-                if(state == FirstOpenApp) uiState.value = InitDate
+                if(state == MainUiState.FirstOpenApp) uiState.value = MainUiState.InitDate
             }
 
             ShowMainScreen(
@@ -90,10 +85,10 @@ class MainScreenTest {
     @Test
     fun givenUiStateInitDate_whenWait_shownInsertRepeatRoutineMessage() {
         composeTestRule.setContent {
-            val uiState = remember { mutableStateOf<MainUiState>(InitDate) }
+            val uiState = remember { mutableStateOf<MainUiState>(MainUiState.InitDate) }
 
             val onAction : (MainUiState) -> Unit = { state ->
-                if(state == InitDate) uiState.value = InsertRepeatRoutine
+                if(state == MainUiState.InitDate) uiState.value = MainUiState.InsertRepeatRoutine
             }
 
             ShowMainScreen(
@@ -112,7 +107,7 @@ class MainScreenTest {
     fun givenUiStateSuccess_when_shownSuccessMessage() {
         composeTestRule.setContent {
             ShowMainScreen(
-                uiState = Success,
+                uiState = MainUiState.Success,
                 onAction = {}
             )
         }

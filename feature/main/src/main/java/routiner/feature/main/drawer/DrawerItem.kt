@@ -1,11 +1,11 @@
-package com.example.main.drawer
+package routiner.feature.main.drawer
 
 import androidx.annotation.DrawableRes
-import com.example.main.R
 import routiner.feature.daily.navigation.DAILY_ROUTE
 import com.hegunhee.record.navigation.RECORD_ROUTE
 import com.hegunhee.repeat.navigation.REPEAT_ROUTINE_ROUTE
 import com.hegunhee.setting.navigation.SETTING_ROUTE
+import routiner.feature.main.R
 
 enum class DrawerItem(
     val titleString: String,

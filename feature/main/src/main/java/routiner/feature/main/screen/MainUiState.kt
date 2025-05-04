@@ -1,7 +1,7 @@
-package com.example.main.screen
+package routiner.feature.main.screen
 
 import androidx.annotation.StringRes
-import com.example.main.R
+import routiner.feature.main.R
 
 sealed class MainUiState(
     @StringRes val stringId: Int,

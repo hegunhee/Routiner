@@ -1,4 +1,4 @@
-package com.example.main.screen
+package routiner.feature.main.screen
 
 import android.Manifest
 import android.os.Build
@@ -22,8 +22,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.main.R
 import routiner.core.designsystem.theme.DarkGreen
+import routiner.feature.main.R
 
 @Composable
 fun MainRootScreen(
