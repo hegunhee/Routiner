@@ -1,4 +1,4 @@
-package hegunhee.routiner.designsystem.theme
+package routiner.core.designsystem.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.graphics.Color

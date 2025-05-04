@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.example.main.R
-import hegunhee.routiner.designsystem.theme.DarkGreen
+import routiner.core.designsystem.theme.DarkGreen
 
 @Composable
 fun MainRootScreen(

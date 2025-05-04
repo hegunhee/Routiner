@@ -1,4 +1,4 @@
-package hegunhee.routiner.designsystem.theme
+package routiner.core.designsystem.theme
 
 import android.app.Activity
 import android.os.Build
