@@ -1,6 +1,6 @@
 package routiner.core.domain.repository
 
-import hegunhee.routiner.model.AlarmTime
+import routiner.core.model.AlarmTime
 
 interface SettingRepository {
 

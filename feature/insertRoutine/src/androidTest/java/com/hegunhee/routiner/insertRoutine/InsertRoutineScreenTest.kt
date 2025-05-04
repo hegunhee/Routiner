@@ -19,7 +19,7 @@ import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.performTextInput
 import com.hegunhee.routiner.insertRoutine.daily.InsertRoutineScreen
 import com.hegunhee.routiner.insertRoutine.daily.InsertRoutineUiState
-import hegunhee.routiner.model.Category
+import routiner.core.model.Category
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -123,7 +123,10 @@ class InsertRoutineScreenTest {
     fun givenCategories_whenClickCategory_shownCheckIcon() {
         val selectedCategoryText = "운동"
         composeTestRule.setContent {
-            val categories = remember { mutableStateOf(listOf(Category(selectedCategoryText),Category("공부"))) }
+            val categories = remember { mutableStateOf(listOf(
+                Category(selectedCategoryText),
+                Category("공부")
+            )) }
 
             val onClickCategory : (String) -> Unit= { categoryText ->
                 categories.value = categories.value.map { category ->

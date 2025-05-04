@@ -1,6 +1,6 @@
 package routiner.core.domain.repository
 
-import hegunhee.routiner.model.RepeatRoutine
+import routiner.core.model.RepeatRoutine
 import kotlinx.coroutines.flow.Flow
 
 interface RepeatRoutineRepository {

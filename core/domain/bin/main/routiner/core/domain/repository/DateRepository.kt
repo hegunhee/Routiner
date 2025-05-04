@@ -1,6 +1,6 @@
 package routiner.core.domain.repository
 
-import hegunhee.routiner.model.Date
+import routiner.core.model.Date
 
 interface DateRepository {
 

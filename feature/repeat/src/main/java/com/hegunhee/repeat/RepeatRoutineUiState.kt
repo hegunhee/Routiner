@@ -1,6 +1,6 @@
 package com.hegunhee.repeat
 
-import hegunhee.routiner.model.RepeatRoutine
+import routiner.core.model.RepeatRoutine
 
 sealed interface RepeatRoutineUiState {
 

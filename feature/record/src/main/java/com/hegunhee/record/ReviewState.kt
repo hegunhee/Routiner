@@ -1,6 +1,6 @@
 package com.hegunhee.record
 
-import hegunhee.routiner.model.Review
+import routiner.core.model.Review
 
 sealed interface ReviewState {
 

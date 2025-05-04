@@ -1,6 +1,6 @@
 package routiner.core.domain.usecase.review
 
-import hegunhee.routiner.model.Review
+import routiner.core.model.Review
 import routiner.core.domain.repository.ReviewRepository
 import javax.inject.Inject
 

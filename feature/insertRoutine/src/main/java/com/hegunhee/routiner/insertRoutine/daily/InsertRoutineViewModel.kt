@@ -8,8 +8,8 @@ import routiner.core.domain.usecase.category.InsertCategoryUseCase
 import routiner.core.domain.usecase.routine.InsertRoutineUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hegunhee.routiner.model.Category
-import hegunhee.routiner.model.Routine
+import routiner.core.model.Category
+import routiner.core.model.Routine
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow

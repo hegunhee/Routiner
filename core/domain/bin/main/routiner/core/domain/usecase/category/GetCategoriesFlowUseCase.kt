@@ -1,6 +1,6 @@
 package routiner.core.domain.usecase.category
 
-import hegunhee.routiner.model.Category
+import routiner.core.model.Category
 import routiner.core.domain.repository.CategoryRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

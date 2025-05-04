@@ -1,6 +1,6 @@
 package routiner.core.domain.usecase.notification
 
-import hegunhee.routiner.model.AlarmTime
+import routiner.core.model.AlarmTime
 import routiner.core.domain.repository.SettingRepository
 import javax.inject.Inject
 

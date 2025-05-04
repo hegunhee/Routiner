@@ -3,7 +3,7 @@ package routiner.core.data.repository
 import routiner.core.data.datasource.local.LocalDataSource
 import routiner.core.data.mapper.toDateEntity
 import routiner.core.data.mapper.toDateList
-import hegunhee.routiner.model.Date
+import routiner.core.model.Date
 import routiner.core.domain.repository.DateRepository
 import javax.inject.Inject
 import javax.inject.Singleton

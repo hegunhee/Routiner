@@ -3,7 +3,7 @@ package routiner.core.data.repository
 import routiner.core.data.datasource.local.LocalDataSource
 import routiner.core.data.mapper.toRepeatRoutineEntity
 import routiner.core.data.mapper.toRepeatRoutineList
-import hegunhee.routiner.model.RepeatRoutine
+import routiner.core.model.RepeatRoutine
 import routiner.core.domain.repository.RepeatRoutineRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

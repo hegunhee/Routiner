@@ -1,6 +1,6 @@
 package routiner.core.domain.usecase.date
 
-import hegunhee.routiner.model.Date
+import routiner.core.model.Date
 import routiner.core.domain.repository.DateRepository
 import javax.inject.Inject
 

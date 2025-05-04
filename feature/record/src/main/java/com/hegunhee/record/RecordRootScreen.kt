@@ -44,9 +44,9 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.repeatOnLifecycle
-import hegunhee.routiner.model.Date
-import hegunhee.routiner.model.Review
-import hegunhee.routiner.model.Routine
+import routiner.core.model.Date
+import routiner.core.model.Review
+import routiner.core.model.Routine
 import hegunhee.routiner.ui.item.DateSelector
 import hegunhee.routiner.ui.item.RecordRoutine
 

@@ -2,12 +2,12 @@ package routiner.core.data.mapper
 
 import routiner.core.data.entity.CategoryEntity
 import com.hegunhee.routiner.util.*
-import hegunhee.routiner.model.AlarmTime
-import hegunhee.routiner.model.Category
-import hegunhee.routiner.model.Date
-import hegunhee.routiner.model.RepeatRoutine
-import hegunhee.routiner.model.Review
-import hegunhee.routiner.model.Routine
+import routiner.core.model.AlarmTime
+import routiner.core.model.Category
+import routiner.core.model.Date
+import routiner.core.model.RepeatRoutine
+import routiner.core.model.Review
+import routiner.core.model.Routine
 import routiner.core.data.entity.DateEntity
 import routiner.core.data.entity.RepeatRoutineEntity
 import routiner.core.data.entity.ReviewEntity

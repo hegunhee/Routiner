@@ -1,5 +1,4 @@
-package hegunhee.routiner.model
-
+package routiner.core.model
 
 data class Category(
     val name : String,

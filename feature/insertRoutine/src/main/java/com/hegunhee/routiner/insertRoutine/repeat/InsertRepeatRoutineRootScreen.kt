@@ -44,7 +44,7 @@ import com.hegunhee.routiner.insertRoutine.common.CategoryLazyList
 import com.hegunhee.routiner.insertRoutine.common.CategoryTextEnterScreen
 import com.hegunhee.routiner.insertRoutine.common.DayOfWeekDescriptionScreen
 import com.hegunhee.routiner.insertRoutine.common.RoutineTextEnterScreen
-import hegunhee.routiner.model.DayOfWeek
+import routiner.core.model.DayOfWeek
 import hegunhee.routiner.ui.item.SelectableDayOfWeek
 import kotlinx.coroutines.flow.SharedFlow
 

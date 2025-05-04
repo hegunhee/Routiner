@@ -3,7 +3,7 @@ package routiner.core.data.repository
 import routiner.core.data.datasource.local.DefaultLocalDataSource
 import routiner.core.data.entity.ReviewEntity
 import routiner.core.data.mapper.toReviewEntity
-import hegunhee.routiner.model.Review
+import routiner.core.model.Review
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Test

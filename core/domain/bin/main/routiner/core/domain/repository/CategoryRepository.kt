@@ -1,6 +1,6 @@
 package routiner.core.domain.repository
 
-import hegunhee.routiner.model.Category
+import routiner.core.model.Category
 import kotlinx.coroutines.flow.Flow
 
 interface CategoryRepository {

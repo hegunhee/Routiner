@@ -9,9 +9,9 @@ import routiner.core.domain.usecase.review.InsertReviewUseCase
 import routiner.core.domain.usecase.routine.GetRoutinesByDateUseCase
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hegunhee.routiner.model.Date
-import hegunhee.routiner.model.Review
-import hegunhee.routiner.model.Routine
+import routiner.core.model.Date
+import routiner.core.model.Review
+import routiner.core.model.Routine
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow

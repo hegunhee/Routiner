@@ -1,6 +1,6 @@
 package routiner.core.domain.usecase.routine
 
-import hegunhee.routiner.model.Routine
+import routiner.core.model.Routine
 import routiner.core.domain.repository.RoutineRepository
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject

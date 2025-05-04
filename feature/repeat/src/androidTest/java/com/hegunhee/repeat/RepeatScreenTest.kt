@@ -14,7 +14,7 @@ import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.performClick
-import hegunhee.routiner.model.RepeatRoutine
+import routiner.core.model.RepeatRoutine
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

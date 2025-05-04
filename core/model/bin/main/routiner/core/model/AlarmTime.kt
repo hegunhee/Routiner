@@ -1,4 +1,4 @@
-package hegunhee.routiner.model
+package routiner.core.model
 
 data class AlarmTime(
     val hour : String,
@@ -14,6 +14,6 @@ data class AlarmTime(
     }
 
     companion object {
-        val DEFAULT = AlarmTime(hour = "00",minute = "00",enableAlarm = false)
+        val DEFAULT = AlarmTime(hour = "00", minute = "00", enableAlarm = false)
     }
 }

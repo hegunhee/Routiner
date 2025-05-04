@@ -1,4 +1,4 @@
-package hegunhee.routiner.model
+package routiner.core.model
 
 data class RepeatRoutine(
     var text : String = "",

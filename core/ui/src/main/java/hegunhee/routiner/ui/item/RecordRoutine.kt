@@ -19,7 +19,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import hegunhee.routiner.model.Routine
+import routiner.core.model.Routine
 import hegunhee.routiner.ui.R
 
 @Composable

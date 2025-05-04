@@ -1,6 +1,4 @@
-package hegunhee.routiner.model
-
-
+package routiner.core.model
 
 data class Review(
     val date: Int,

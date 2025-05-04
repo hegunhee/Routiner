@@ -1,6 +1,6 @@
 package com.hegunhee.daily
 
-import hegunhee.routiner.model.Routine
+import routiner.core.model.Routine
 
 sealed interface DailyUiState {
 

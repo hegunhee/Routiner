@@ -1,6 +1,6 @@
 package routiner.core.domain.repository
 
-import hegunhee.routiner.model.Review
+import routiner.core.model.Review
 
 interface ReviewRepository {
 

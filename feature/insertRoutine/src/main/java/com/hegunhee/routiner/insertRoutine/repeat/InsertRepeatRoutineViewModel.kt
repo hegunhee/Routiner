@@ -8,9 +8,9 @@ import routiner.core.domain.usecase.category.InsertCategoryUseCase
 import routiner.core.domain.usecase.date.GetSortedDayOfWeekListUseCase
 import routiner.core.domain.usecase.repeatRoutine.InsertRepeatRoutineUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hegunhee.routiner.model.Category
-import hegunhee.routiner.model.DayOfWeek
-import hegunhee.routiner.model.RepeatRoutine
+import routiner.core.model.Category
+import routiner.core.model.DayOfWeek
+import routiner.core.model.RepeatRoutine
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharedFlow

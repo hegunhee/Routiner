@@ -1,6 +1,6 @@
 package routiner.core.domain.usecase.repeatRoutine
 
-import hegunhee.routiner.model.RepeatRoutine
+import routiner.core.model.RepeatRoutine
 import routiner.core.domain.repository.RepeatRoutineRepository
 import javax.inject.Inject
 

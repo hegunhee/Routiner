@@ -3,7 +3,7 @@ package routiner.core.data.repository
 import routiner.core.data.datasource.local.LocalDataSource
 import routiner.core.data.mapper.toCategory
 import routiner.core.data.mapper.toCategoryEntity
-import hegunhee.routiner.model.Category
+import routiner.core.model.Category
 import routiner.core.domain.repository.CategoryRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map

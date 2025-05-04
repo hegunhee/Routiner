@@ -1,4 +1,4 @@
-package hegunhee.routiner.model
+package routiner.core.model
 
 data class DayOfWeek(
     val date : String,

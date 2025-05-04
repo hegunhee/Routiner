@@ -1,7 +1,7 @@
 package com.hegunhee.routiner.insertRoutine.repeat
 
-import hegunhee.routiner.model.Category
-import hegunhee.routiner.model.DayOfWeek
+import routiner.core.model.Category
+import routiner.core.model.DayOfWeek
 
 sealed interface InsertRepeatRoutineUiState {
 

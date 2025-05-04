@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import hegunhee.routiner.model.Date
+import routiner.core.model.Date
 import hegunhee.routiner.ui.R
 
 @Composable

@@ -3,7 +3,7 @@ package routiner.core.data.repository
 import routiner.core.data.datasource.local.LocalDataSource
 import routiner.core.data.mapper.toReviewEntity
 import routiner.core.data.mapper.toReviewOrNull
-import hegunhee.routiner.model.Review
+import routiner.core.model.Review
 import routiner.core.domain.repository.ReviewRepository
 import javax.inject.Inject
 import javax.inject.Singleton

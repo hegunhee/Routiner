@@ -1,6 +1,6 @@
 package com.hegunhee.routiner.insertRoutine.daily
 
-import hegunhee.routiner.model.Category
+import routiner.core.model.Category
 
 sealed interface InsertRoutineUiState {
 

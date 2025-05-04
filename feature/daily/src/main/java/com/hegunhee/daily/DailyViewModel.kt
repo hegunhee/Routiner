@@ -8,7 +8,7 @@ import routiner.core.domain.usecase.routine.UpdateRoutineUseCase
 import com.hegunhee.daily.DailyUiState.Init
 import com.hegunhee.routiner.util.getTodayDate
 import dagger.hilt.android.lifecycle.HiltViewModel
-import hegunhee.routiner.model.Routine
+import routiner.core.model.Routine
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.map
