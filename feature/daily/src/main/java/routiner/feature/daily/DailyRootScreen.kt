@@ -16,6 +16,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -60,49 +61,49 @@ internal fun DailyScreen(
     onClickDeleteRoutine: (Int) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column {
-        TopAppBar(
-            title = {
-                Text(stringResource(R.string.daily_routine))
-            },
-            navigationIcon = {
-                IconButton(onClickDrawerButton) {
-                    Icon(imageVector = Icons.Rounded.Menu, contentDescription = "DrawerOpenButton")
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(stringResource(R.string.daily_routine))
+                },
+                navigationIcon = {
+                    IconButton(onClickDrawerButton) {
+                        Icon(imageVector = Icons.Rounded.Menu, contentDescription = "DrawerOpenButton")
+                    }
                 }
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = onClickAddRoutine
+            ) {
+                Icon(imageVector = Icons.Sharp.Add, contentDescription = stringResource(R.string.add_button))
             }
-        )
-
-        when (uiState) {
-            DailyUiState.Init -> {}
-            DailyUiState.Empty -> {
-                DailyEmptyScreen(
-                    onClickAddRoutine = onClickAddRoutine
-                )
-            }
-
-            is DailyUiState.Items -> {
-                LazyColumn {
-                    dailyRoutineList(
-                        uiState.routines,
-                        onClickRoutine = onClickRoutine,
-                        onClickDeleteRoutine = onClickDeleteRoutine,
-                        modifier = modifier.padding(top = 10.dp, start = 10.dp,end = 10.dp)
+        }
+    ){ values ->
+        Column() {
+            when (uiState) {
+                DailyUiState.Init -> {}
+                DailyUiState.Empty -> {
+                    DailyEmptyScreen(
+                        onClickAddRoutine = onClickAddRoutine,
+                        modifier = Modifier.padding(values)
                     )
                 }
+
+                is DailyUiState.Items -> {
+                    LazyColumn {
+                        dailyRoutineList(
+                            uiState.routines,
+                            onClickRoutine = onClickRoutine,
+                            onClickDeleteRoutine = onClickDeleteRoutine,
+                            modifier = modifier.padding(top = 10.dp, start = 10.dp,end = 10.dp).padding(values)
+                        )
+                    }
+                }
             }
         }
-
-        Spacer(modifier = modifier.weight(1f))
-
-        FloatingActionButton(
-            onClick = onClickAddRoutine,
-            modifier = modifier
-                .align(Alignment.End)
-                .padding(end = 20.dp, bottom = 20.dp)
-        ) {
-            Icon(imageVector = Icons.Sharp.Add, contentDescription = stringResource(R.string.add_button))
-        }
-
     }
 
 }
@@ -162,14 +163,14 @@ private fun LazyListScope.dailyRoutineList(
         Text(
             stringResource(R.string.routine_degree),
             fontSize = 20.sp,
-            modifier = modifier.padding(top = 20.dp)
+            modifier = Modifier.padding(top = 20.dp)
         )
     }
 
     item {
         Text(
             stringResource(R.string.routine_percent, calculateFinishedPercent(items.size,items.count{it.isFinished})),
-            modifier = modifier.padding(start = 20.dp)
+            modifier = Modifier.padding(start = 20.dp)
         )
     }
 
