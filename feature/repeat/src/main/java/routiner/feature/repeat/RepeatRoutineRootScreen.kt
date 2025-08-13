@@ -2,7 +2,6 @@ package routiner.feature.repeat
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,6 +14,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
@@ -55,67 +55,70 @@ internal fun RepeatRoutineScreen(
     onClickRepeatRoutineDelete: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
-    Column {
-        TopAppBar(
-            title = {
-                Text(stringResource(R.string.repeat_routine_desc))
-            },
-            navigationIcon = {
-                IconButton(
-                    onClickDrawer
-                ) {
-                    Icon(
-                        imageVector = Icons.Rounded.Menu,
-                        contentDescription = stringResource(R.string.menu_content_description)
-                    )
-                }
-            }
-        )
-
-        when(uiState) {
-            RepeatRoutineUiState.Init -> {}
-            RepeatRoutineUiState.Empty -> {
-                Spacer(modifier = modifier.weight(1f))
-                Text(
-                    text = stringResource(R.string.empty_repeat_routine),
-                    modifier = modifier
-                        .align(Alignment.CenterHorizontally),
-                    fontSize = 25.sp,
-                    fontWeight = FontWeight.Bold,
-                    textAlign = TextAlign.Center
-                )
-            }
-            is RepeatRoutineUiState.Success -> {
-                val repeatRoutineItemModifier = modifier
-                    .fillMaxWidth()
-                    .padding(10.dp)
-                    .clip(RoundedCornerShape(16.dp))
-                    .background(Color.Gray)
-
-                LazyColumn {
-                    items(uiState.items) {
-                        RepeatRoutineItem(
-                            repeatRoutine = it,
-                            onClickRepeatRoutineDelete = onClickRepeatRoutineDelete,
-                            modifier = repeatRoutineItemModifier
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text(stringResource(R.string.repeat_routine_desc))
+                },
+                navigationIcon = {
+                    IconButton(
+                        onClickDrawer
+                    ) {
+                        Icon(
+                            imageVector = Icons.Rounded.Menu,
+                            contentDescription = stringResource(R.string.menu_content_description)
                         )
                     }
                 }
+            )
+        },
+        floatingActionButton = {
+            FloatingActionButton(
+                onClickAddRepeatRoutine,
+                modifier = modifier
+            ) {
+                Icon(
+                    imageVector = Icons.Sharp.Add,
+                    contentDescription = stringResource(R.string.repeat_routine_add_button)
+                )
             }
         }
+    ){ paddingValues ->
+        Column {
+            when(uiState) {
+                RepeatRoutineUiState.Init -> {}
+                RepeatRoutineUiState.Empty -> {
+                    Text(
+                        text = stringResource(R.string.empty_repeat_routine),
+                        modifier = modifier
+                            .align(Alignment.CenterHorizontally)
+                            .padding(paddingValues),
+                        fontSize = 25.sp,
+                        fontWeight = FontWeight.Bold,
+                        textAlign = TextAlign.Center
+                    )
+                }
+                is RepeatRoutineUiState.Success -> {
+                    val repeatRoutineItemModifier = modifier
+                        .fillMaxWidth()
+                        .padding(10.dp)
+                        .clip(RoundedCornerShape(16.dp))
+                        .background(Color.Gray)
 
-        Spacer(modifier = modifier.weight(1f))
-
-        FloatingActionButton(
-            onClickAddRepeatRoutine,
-            modifier = modifier
-                .align(Alignment.End)
-                .padding(end = 20.dp, bottom = 20.dp)
-        ) {
-            Icon(
-                imageVector = Icons.Sharp.Add,
-                contentDescription = stringResource(R.string.repeat_routine_add_button)
-            )
+                    LazyColumn (
+                        modifier = modifier.padding(paddingValues)
+                    ){
+                        items(uiState.items) {
+                            RepeatRoutineItem(
+                                repeatRoutine = it,
+                                onClickRepeatRoutineDelete = onClickRepeatRoutineDelete,
+                                modifier = repeatRoutineItemModifier
+                            )
+                        }
+                    }
+                }
+            }
         }
     }
 }
