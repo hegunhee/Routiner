@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
@@ -216,7 +217,8 @@ private fun ReviewScreen(
                     Button(
                         onClick = { onClickReviewSubmit(reviewText, reviewDate) },
                         modifier = modifier
-                            .weight(1f),
+                            .weight(1f)
+                            .navigationBarsPadding(),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.Blue
                         )
@@ -252,7 +254,8 @@ private fun ReviewScreen(
                     Button(
                         onClick = { onClickReviewRemove() },
                         modifier = modifier
-                            .weight(1f),
+                            .weight(1f)
+                            .navigationBarsPadding(),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.Magenta
                         )
@@ -286,7 +289,8 @@ private fun ReviewScreen(
                     Button(
                         onClick = { onClickReviewSubmit(reviewText, reviewDate) },
                         modifier = modifier
-                            .weight(1f),
+                            .weight(1f)
+                            .navigationBarsPadding(),
                         colors = ButtonDefaults.buttonColors(
                             containerColor = Color.Blue
                         )
