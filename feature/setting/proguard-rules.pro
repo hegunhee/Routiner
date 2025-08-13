@@ -21,3 +21,4 @@
 #-renamesourcefileattribute SourceFile
 
 -dontwarn java.lang.invoke.**
+-keep class routiner.core.util.DateUtilKt { *; }
