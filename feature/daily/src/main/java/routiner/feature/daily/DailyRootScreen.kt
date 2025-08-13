@@ -87,20 +87,19 @@ internal fun DailyScreen(
             }
         }
     ){ values ->
-        Column {
+        Column(
+            modifier = modifier.padding(values)
+        ) {
             when (uiState) {
                 DailyUiState.Init -> {}
                 DailyUiState.Empty -> {
                     DailyEmptyScreen(
                         onClickAddRoutine = onClickAddRoutine,
-                        modifier = Modifier.padding(values)
                     )
                 }
 
                 is DailyUiState.Items -> {
-                    LazyColumn (
-                        modifier = modifier.padding(values)
-                    ){
+                    LazyColumn {
                         dailyRoutineList(
                             uiState.routines,
                             onClickRoutine = onClickRoutine,
@@ -120,8 +119,6 @@ private fun ColumnScope.DailyEmptyScreen(
     onClickAddRoutine: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Spacer(modifier = modifier.weight(1f))
-
     Text(
         text = stringResource(R.string.empty_string),
         modifier = modifier
