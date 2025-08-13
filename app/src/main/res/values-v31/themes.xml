@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources >
+<resources>
 
     <style name="Theme.Routiner" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
@@ -12,6 +12,7 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
+        <item name="android:windowLightStatusBar">false</item>
 
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorSecondary">@color/white</item>
