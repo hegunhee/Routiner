@@ -1,3 +1,24 @@
+Routiner 1.6.0 release note
+===========================
+- Android 15 대응
+  현재 타겟 버전을 15버전으로 설정했습니다
+  edgeToEdge 대응
+  16KB 페이지 대응
+- 루틴을 맨 하단까지 추가할경우 플로팅액션버튼이 삭제되던 문제 수정  
+  현재 타겟 버전을 14버전으로 설정하였습니다.
+- 앱 바 아이콘이 회색이라 가시성이 떨어지던 문제 수정
+
+개발자 노트
+--- 
+Android 15 대응
+https://github.com/hegunhee/Routiner/issues/171
+
+FAB가 잘리던 문제 수정
+https://github.com/hegunhee/Routiner/issues/176
+
+앱 바 아이콘의 가시성이 떨어지는 이슈 수정
+https://github.com/hegunhee/Routiner/issues/174
+
 Routiner 1.5.0 release note
 ===========================
 - 알람 권한 요청
