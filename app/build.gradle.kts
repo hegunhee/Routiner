@@ -7,8 +7,8 @@ android {
     defaultConfig {
         targetSdk = 35
         applicationId = "com.hegunhee.routiner"
-        versionCode = (8)
-        versionName = "1.5.0"
+        versionCode = (9)
+        versionName = "1.6.0"
     }
     buildTypes {
         getByName("release") {
