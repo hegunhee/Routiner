@@ -3,7 +3,12 @@ package routiner.feature.daily
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.WindowInsetsSides
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.items
@@ -82,13 +87,14 @@ internal fun DailyScreen(
             }
         }
     ){ values ->
-        Column() {
+        Column(
+            modifier = modifier.padding(values)
+        ) {
             when (uiState) {
                 DailyUiState.Init -> {}
                 DailyUiState.Empty -> {
                     DailyEmptyScreen(
                         onClickAddRoutine = onClickAddRoutine,
-                        modifier = Modifier.padding(values)
                     )
                 }
 
@@ -98,7 +104,7 @@ internal fun DailyScreen(
                             uiState.routines,
                             onClickRoutine = onClickRoutine,
                             onClickDeleteRoutine = onClickDeleteRoutine,
-                            modifier = modifier.padding(top = 10.dp, start = 10.dp,end = 10.dp).padding(values)
+                            modifier = modifier.padding(top = 10.dp, start = 10.dp,end = 10.dp)
                         )
                     }
                 }
@@ -113,8 +119,6 @@ private fun ColumnScope.DailyEmptyScreen(
     onClickAddRoutine: () -> Unit,
     modifier: Modifier = Modifier
 ) {
-    Spacer(modifier = modifier.weight(1f))
-
     Text(
         text = stringResource(R.string.empty_string),
         modifier = modifier

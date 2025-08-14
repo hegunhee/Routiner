@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -145,7 +146,8 @@ internal fun InsertRoutineScreen(
             { onClickRoutineInsert(routineText)},
             modifier = modifier
                 .fillMaxWidth()
-                .padding(bottom = 10.dp, start = 10.dp, end = 10.dp),
+                .padding(bottom = 10.dp, start = 10.dp, end = 10.dp)
+                .navigationBarsPadding(),
             shape = RectangleShape
         ) {
             Text(stringResource(R.string.submit_routine))
